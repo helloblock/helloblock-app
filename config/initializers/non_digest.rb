@@ -24,7 +24,7 @@ module Sprockets
 
           SprocketsHack.angular_assets(dir, asset, logger)
 
-          if File.exist?(target) || SprocketsHack.html?(asset.logical_path)
+          if File.exist?(target)
             logger.info "Skipping: #{target}"
           else
             logger.info "Writing: #{target}"
@@ -52,7 +52,6 @@ module SprocketsHack
     if html?(asset.logical_path)
       logger.info "AngularJS View: #{undigested_target}"
       asset.write_to undigested_target
-      asset.write_to target
       if asset.is_a?(Sprockets::BundledAsset)
         asset.write_to "#{undigested_target}.gz"
       end
