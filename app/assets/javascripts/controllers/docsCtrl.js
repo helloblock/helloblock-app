@@ -26,21 +26,6 @@ hbApp.controller( "docsCtrl", function( $scope ) {
 	}, {
 		name: "Relay",
 		endpoint: "/pushtx"
-	}, {
-		name: "1",
-		endpoint: "/1"
-	}, {
-		name: "2",
-		endpoint: "/3"
-	}, {
-		name: "3",
-		endpoint: "/3"
-	}, {
-		name: "4",
-		endpoint: "/4"
-	}, {
-		name: "5",
-		endpoint: "/5"
-	}, ]
+	} ]
 
 } )

@@ -57,10 +57,17 @@
 
   /* Nav: second level (shown on .active) */
   .nav {
+
+    /* Hide by default */
     .nav {
-      display: none; /* Hide by default, but at >768px, show it */
+      display: none;
       margin-bottom: 8px;
     }
+
+    &.active {
+      display: block;
+    }
+
     .nav > li > a {
       padding-top:    3px;
       padding-bottom: 3px;
