@@ -3,6 +3,9 @@
 hbApp.controller( "docsCtrl", function( $scope ) {
 
 	$scope.methods = [ {
+		name: "Introduction",
+		endpoint: "/intro"
+	}, {
 		name: "Transactions",
 		endpoint: "/tx"
 	}, {

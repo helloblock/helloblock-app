@@ -11,14 +11,25 @@
 /* First level of nav */
 
 .bs-sidebar {
-  margin-top: 30px;
+  margin-top: 20px;
   width: 210px;
   margin-bottom: 30px;
+  padding-top: 10px;
   padding-bottom: 10px;
-  background-color: none;
+  background-color: lighten(@gray-lighter, 2%);
+
+  &.affix-top {
+    position: absolute;
+  }
 
   &.affix {
-    position: static;
+    top: 40px;
+    margin-top: 0px;
+    position: fixed;
+  }
+
+  &.affix-bottom {
+
   }
 
   /* All levels of nav */
@@ -32,7 +43,7 @@
     text-decoration: none;
     color: @white;
     background-color: @brand-info;
-    border-right: 1px solid @gray-lighter;
+    border-right: 3px solid @brand-primary;
   }
   .nav > .active > a,
   .nav > .active:hover > a,
@@ -41,7 +52,7 @@
     color: @white;
     background-color: @brand-primary;
     text-shadow: 0 1px 0 @gray;
-    border-right: 1px solid @brand-primary;
+    border-right: 3px solid darken(@brand-primary, 10%);
   }
 
   /* Nav: second level (shown on .active) */

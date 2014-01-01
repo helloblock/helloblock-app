@@ -1,12 +1,22 @@
-<div class="bs-sidebar hidden-print affix" role="complementary">
+<div class="bs-sidebar hidden-print" role="complementary" affix>
   <ul class="nav bs-sidenav">
 
-    <li ng-repeat="m in methods" ng-class="{'active': m.name === 'Transactions'}">
+    <li
+      ng-repeat="m in methods"
+      ng-class="{'active': m.name === 'Transactions'}">
+
       <a href="#!/docs/#{{m.name}}">{{m.name}}</a>
+
       <ul class="nav">
-        <li class=""><a href="#!/docs/glyphicons-glyphs">Available glyphs</a></li>
-        <li><a href="#!/docs/glyphicons-how-to-use">How to use</a></li>
-        <li><a href="#!/docs/glyphicons-examples">Examples</a></li>
+        <li class="">
+          <a href="#!/docs/glyphicons-glyphs">Available glyphs</a>
+        </li>
+        <li>
+          <a href="#!/docs/glyphicons-how-to-use">How to use</a>
+        </li>
+        <li>
+          <a href="#!/docs/glyphicons-examples">Examples</a>
+        </li>
       </ul>
     </li>
 
