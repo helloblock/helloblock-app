@@ -1,39 +1,42 @@
-<div>
+<div id="docs">
   <div class="col-md-2">
     <sidebar></sidebar>
   </div>
   <div class="col-md-10">
-    <div ng-repeat="i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
-      <div class="row method">
-        <div class="col-md-6 method-description">
-          <h2>Title</h2>
+    <div class="methods">
+      <span ng-repeat="i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
+        <div class="row method">
+          <div class="col-md-6 method-description">
+            <h2>Title</h2>
 
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
 
-          <br>
+            <br>
+          </div>
+          <div class="col-md-6 method-code">
+            <code ng-non-bindable>
+              {{puts "Hello, Block!"}}
+            </code>
+            <p ng-repeat="i in [1, 2, 2, 3, 4]">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </div>
         </div>
-        <div class="col-md-6 method-code">
-          <code ng-non-bindable>
-            {{puts "Hello, Block!"}}
-          </code>
-          <p ng-repeat="i in [1, 2, 2, 3, 4]">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </div>
-      </div>
-      <div class="line-divider"></div>
+        <div class="line"></div>
+      </span>
     </div>
   </div>
+
 </div>

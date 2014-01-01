@@ -1,64 +1,47 @@
 @import "yeti/base";
 
+#docs {
+    .row {
+        // margin-left: 0;
+        margin-right: 0;
+    }
+}
 
-// Parent
+.methods {
+    margin-left: 50%;
+    -webkit-box-shadow: #0f131a -1px 0 0,rgba(0,0,0,0.05) 1px 0 2px inset;
+    -moz-box-shadow: #0f131a -1px 0 0,rgba(0,0,0,0.05) 1px 0 2px inset;
+    -ms-box-shadow: #0f131a -1px 0 0,rgba(0,0,0,0.05) 1px 0 2px inset;
+    -o-box-shadow: #0f131a -1px 0 0,rgba(0,0,0,0.05) 1px 0 2px inset;
+    box-shadow: #0f131a -1px 0 0,rgba(0,0,0,0.05) 1px 0 2px inset;
+    background-color: #292e33;
+}
+
 .method {
-    display: table;
-    // margin-right: 0;
 
-    // Child
+    margin-left: -100%;
+
     & > * {
-        display: table-cell;
+        position: relative;
     }
 
     .method-description {
         background-color: @white;
-
     }
 
     .method-code {
-        background-color: @gray-dark;
+        padding-right: 0px;
     }
 }
 
-.line-divider {
-    border: 0;
+.line {
+    margin-left: -100%;
     height: 1px;
-    background: #333;
-    background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc);
-    background-image:    -moz-linear-gradient(left, #ccc, #333, #ccc);
-    background-image:     -ms-linear-gradient(left, #ccc, #333, #ccc);
-    background-image:      -o-linear-gradient(left, #ccc, #333, #ccc);
-}
-
-.line-divider-fancy {
-    padding: 0;
-    border: none;
-    border-top: medium double #333;
-    color: #333;
-    text-align: center;
-}
-.line-divider-fancy:after {
-    content: "§";
-    display: inline-block;
-    position: relative;
-    top: -0.7em;
-    font-size: 1.5em;
-    padding: 0 0.25em;
-    background: white;
-}
-
-.line-border {
-    -webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 1px;
-    -moz-box-shadow: rgba(0,0,0,0.3) 0 1px 1px;
-    -ms-box-shadow: rgba(0,0,0,0.3) 0 1px 1px;
-    -o-box-shadow: rgba(0,0,0,0.3) 0 1px 1px;
-    box-shadow: rgba(0,0,0,0.3) 0 1px 1px;
-    background-color: #0f131a;
-    height: 1px;
-    margin-left: -1px;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 100;
+    z-index: 2;
+    background-color: @debug;
+    .box-shadow(0px -3px 3px @gray-darker);
+    #gradient.horizontal(
+        @start-color: @gray-light,
+        @end-color: darken(@white, 30%)
+    );
 }
