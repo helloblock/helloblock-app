@@ -1,0 +1,29 @@
+@import "yeti/base";
+
+#landing {
+	// radial or directional
+	.centerpiece {
+		#gradient.directional(
+			@start-color: darken(@brand-info, 10%);
+			@end-color: @brand-primary;
+			@deg: 135deg
+		);
+		height: 350px;
+
+		.main-title {
+			font-size: 48px;
+		}
+	}
+
+	.feature {
+		border: 1px solid @gray-lighter;
+
+		&:nth-child(1), &:nth-child(2) {
+			border-right-width: 0px;
+		}
+	}
+
+	i.fa {
+		color: @brand-info;
+	}
+}

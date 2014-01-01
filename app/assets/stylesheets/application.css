@@ -13,6 +13,7 @@
  *= require yeti/bootswatch
  *= require yeti/sidebar
  *= require docs
+ *= require landing
  *= require global
  *= require font-awesome
  */
