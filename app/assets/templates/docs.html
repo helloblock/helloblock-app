@@ -18,6 +18,25 @@
     </div>
   </div>
   <div class="col-md-10">
+    <div id="language-setter">
+      <div class="col-md-6"></div>
+      <div class="col-md-6">
+        <a
+          class="btn btn-sm btn-default"
+          ng-class="{'btn-primary': global.language === 'curl'}"
+          ng-click="global.setLanguage('curl')"
+        >
+          Curl
+        </a>
+        <a
+          class="btn btn-sm btn-default"
+          ng-class="{'btn-primary': global.language === 'ruby'}"
+          ng-click="global.setLanguage('ruby')"
+        >
+          Ruby
+        </a>
+      </div>
+    </div>
     <div class="methods">
       <span ng-repeat="m in methods" id="{{m.name}}">
         <div class="row method">
@@ -43,7 +62,13 @@
             <br>
           </div>
           <div class="col-md-6 method-code">
-
+            <br>
+            <div ng-show="global.language === 'curl'">
+              <code>curl https://api.helloblock.io/v1/ping</code>
+            </div>
+            <div ng-show="global.language === 'ruby'">
+              <code>puts "Hello, block!"</code>
+            </div>
           </div>
         </div>
         <div class="line"></div>

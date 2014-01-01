@@ -9,3 +9,11 @@
 .white {
 	color: #fff;
 }
+
+.nav-pills > li {
+	cursor: pointer;
+}
+
+.btn:focus {
+	outline: none
+};

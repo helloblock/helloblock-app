@@ -21,6 +21,10 @@ hbApp.run( function( $rootScope, $location ) {
 	$rootScope.global = {
 		isOnLink: function( path ) {
 			return path === $location.path()
+		},
+		language: "curl",
+		setLanguage: function( name ) {
+			$rootScope.global.language = name;
 		}
 	}
 } )
