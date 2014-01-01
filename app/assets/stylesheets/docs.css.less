@@ -1,16 +1,23 @@
 @import "yeti/base";
 
+
+// Parent
 .method {
     display: table;
+    // margin-right: 0;
+
+    // Child
+    & > * {
+        display: table-cell;
+    }
 
     .method-description {
         background-color: @white;
-        display: table-cell;
+
     }
 
     .method-code {
         background-color: @gray-dark;
-        display: table-cell;
     }
 }
 
