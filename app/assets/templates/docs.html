@@ -1,4 +1,4 @@
-<div id="docs">
+<div id="docs" scroll-spy>
   <div class="col-md-2">
     <sidebar methods="methods"></sidebar>
   </div>
@@ -6,7 +6,7 @@
     <div class="methods">
       <span ng-repeat="m in methods">
         <div class="row method">
-          <div class="col-md-6 method-description">
+          <div class="col-md-6 method-description" id="{{m.name}}">
             <h2>{{m.name}}</h2>
 
             <code>

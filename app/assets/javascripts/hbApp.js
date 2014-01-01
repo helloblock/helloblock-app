@@ -12,6 +12,11 @@ hbApp.config( function( $httpProvider ) {
 	return $httpProvider.defaults.headers.common[ "X-CSRF-TOKEN" ] = authToken;
 } );
 
+hbApp.config( function( $locationProvider ) {
+	$locationProvider.html5Mode( false );
+	$locationProvider.hashPrefix( '!' );
+} )
+
 hbApp.run( function( $rootScope, $location ) {
 	$rootScope.global = {
 		isOnLink: function( path ) {
