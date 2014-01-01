@@ -1,0 +1,59 @@
+@import "yeti/base";
+/*
+ * Side navigation
+ *
+ * Scrollspy and affixed enhanced navigation to highlight sections and secondary
+ * sections of docs content.
+ */
+
+/* No mobile view */
+
+/* First level of nav */
+
+.bs-sidebar {
+  width: 210px;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  text-shadow: 0 1px 0 #fff;
+  background-color: @gray-lighter;
+  border-radius: 5px;
+
+  &.affix {
+    position: static;
+  }
+
+  /* All levels of nav */
+  .nav > li > a {
+    display: block;
+    color: @brand-info;
+    padding: 5px 20px;
+  }
+  .nav > li > a:hover,
+  .nav > li > a:focus {
+    text-decoration: none;
+    background-color: @brand-warning;
+    border-right: 1px solid @brand-success;
+  }
+  .nav > .active > a,
+  .nav > .active:hover > a,
+  .nav > .active:focus > a {
+    font-weight: bold;
+    color: @brand-success;
+    background-color: transparent;
+    border-right: 1px solid @debug;
+  }
+
+  /* Nav: second level (shown on .active) */
+  .nav {
+    .nav {
+      display: none; /* Hide by default, but at >768px, show it */
+      margin-bottom: 8px;
+    }
+    .nav > li > a {
+      padding-top:    3px;
+      padding-bottom: 3px;
+      padding-left: 30px;
+      font-size: 90%;
+    }
+  }
+}

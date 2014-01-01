@@ -11,7 +11,8 @@
  *= require_self
  *= require yeti/loader
  *= require yeti/bootswatch
- *= require sidebar
+ *= require yeti/sidebar
+ *= require docs
  *= require global
  *= require font-awesome
  */
