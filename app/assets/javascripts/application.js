@@ -10,11 +10,11 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require_self
 //= require jquery
 //= require jquery_ujs
 //= require yeti/loader
 //= require yeti/bootswatch
+//= require highlight.min
 //= require angular
 //= require angular-route
 //= require angular-resource
@@ -24,3 +24,4 @@
 //= require_tree ./controllers
 //= require_tree ./directives
 //= require_tree ./services
+//= require_self

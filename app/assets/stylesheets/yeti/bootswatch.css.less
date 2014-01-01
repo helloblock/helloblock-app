@@ -151,7 +151,7 @@
 			}
 
 			> li > a:hover {
-				background-color: darken(@btn-success-bg, 8%);
+				background-color: darken(@btn-success-bg, 3%);
 			}
 		}
 
@@ -406,4 +406,9 @@ label,
 // Other
 .btn:active {
 	box-shadow: none;
+}
+
+.btn-success:hover {
+	background-color: darken(@brand-success, 3%);
+	border-color: darken(@brand-success, 10%);
 }

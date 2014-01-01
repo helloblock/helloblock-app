@@ -44,6 +44,10 @@ hbApp.config( function( $routeProvider ) {
 		templateUrl: "/templates/explorer.html"
 	} )
 
+	$routeProvider.when( "/test", {
+		templateUrl: "/templates/test.html"
+	} )
+
 	$routeProvider.otherwise( {
 		redirectTo: '/'
 	} );
