@@ -5,7 +5,7 @@ hbApp.directive( 'sidebar', function() {
 		scope: {
 			methods: "="
 		},
-		templateUrl: "/assets/components/_sidebar.html",
+		templateUrl: "/templates/components/_sidebar.html",
 		transclude: true
 	}
 } );

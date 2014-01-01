@@ -2,7 +2,7 @@ hbApp.directive( 'navbar', function() {
 
 	return {
 		restrict: "E",
-		templateUrl: "/assets/components/_navbar.html",
+		templateUrl: "/templates/components/_navbar.html",
 		transclude: true
 	}
 } );

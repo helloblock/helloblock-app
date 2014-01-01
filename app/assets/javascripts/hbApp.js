@@ -32,16 +32,16 @@ hbApp.run( function( $rootScope, $location ) {
 hbApp.config( function( $routeProvider ) {
 
 	$routeProvider.when( "/", {
-		templateUrl: "/assets/landing.html"
+		templateUrl: "/templates/landing.html"
 	} )
 
 	$routeProvider.when( "/docs", {
-		templateUrl: "/assets/docs.html",
+		templateUrl: "/templates/docs.html",
 		controller: "docsCtrl"
 	} )
 
 	$routeProvider.when( "/explorer", {
-		templateUrl: "/assets/explorer.html"
+		templateUrl: "/templates/explorer.html"
 	} )
 
 	$routeProvider.otherwise( {
