@@ -52,6 +52,7 @@ module SprocketsHack
     if html?(asset.logical_path)
       logger.info "AngularJS View: #{undigested_target}"
       asset.write_to undigested_target
+      asset.write_to target
       if asset.is_a?(Sprockets::BundledAsset)
         asset.write_to "#{undigested_target}.gz"
       end
