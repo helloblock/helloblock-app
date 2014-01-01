@@ -1,0 +1,25 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: helloblock_development
+  pool: 5
+  username: helloblock
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: helloblock_test
+  pool: 5
+  username: helloblock
+  password:
+
+
+# Mock Production Db, not heroku
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: helloblock_production
+  pool: 5
+  username: helloblock
+  password:
