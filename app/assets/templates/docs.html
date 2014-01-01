@@ -3,16 +3,37 @@
     <sidebar></sidebar>
   </div>
   <div class="col-md-10">
-    <div class="row" ng-repeat="i in [1, 2, 3]">
-      <div class="col-md-6 text-background">
-        TEXT
+    <div ng-repeat="i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
+      <div class="row method">
+        <div class="col-md-6 method-description">
+          <h2>Title</h2>
+
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+
+
+        </div>
+        <div class="col-md-6 method-code">
+          <code ng-non-bindable>
+            {{puts "Hello, Block!"}}
+          </code>
+          <p ng-repeat="i in []">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
       </div>
-      <div class="col-md-6 code-background">
-        <code ng-non-bindable>{{puts "Hello, Block!"}}</code>
-      </div>
-      <br><br>
       <div class="line-divider"></div>
-      <br>
     </div>
   </div>
 </div>

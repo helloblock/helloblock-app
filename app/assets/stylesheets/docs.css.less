@@ -1,11 +1,17 @@
 @import "yeti/base";
 
-.code-background {
-	background-color: @gray-darker;
-}
+.method {
+    display: table;
 
-.text-background {
-	background-color: @gray-lighter;
+    .method-description {
+        background-color: @white;
+        display: table-cell;
+    }
+
+    .method-code {
+        background-color: @gray-dark;
+        display: table-cell;
+    }
 }
 
 .line-divider {
@@ -33,4 +39,19 @@
     font-size: 1.5em;
     padding: 0 0.25em;
     background: white;
+}
+
+.line-border {
+    -webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 1px;
+    -moz-box-shadow: rgba(0,0,0,0.3) 0 1px 1px;
+    -ms-box-shadow: rgba(0,0,0,0.3) 0 1px 1px;
+    -o-box-shadow: rgba(0,0,0,0.3) 0 1px 1px;
+    box-shadow: rgba(0,0,0,0.3) 0 1px 1px;
+    background-color: #0f131a;
+    height: 1px;
+    margin-left: -1px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 100;
 }
