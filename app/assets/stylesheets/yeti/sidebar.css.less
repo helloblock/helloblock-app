@@ -18,6 +18,11 @@
   padding-bottom: 10px;
   background-color: lighten(@gray-lighter, 2%);
 
+  &.static {
+    top: 80px;
+    position: fixed;
+  }
+
   &.affix-top {
     position: absolute;
   }
@@ -53,19 +58,29 @@
     background-color: @brand-primary;
     text-shadow: 0 1px 0 @gray;
     border-right: 3px solid darken(@brand-primary, 10%);
+
   }
 
   /* Nav: second level (shown on .active) */
   .nav {
 
+    & > .active .nav {
+      display: block;
+    }
+
     /* Hide by default */
     .nav {
       display: none;
       margin-bottom: 8px;
-    }
 
-    &.active {
-      display: block;
+      em {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 30px;
+        line-height: 2;
+        color: @gray;
+      }
+
     }
 
     .nav > li > a {

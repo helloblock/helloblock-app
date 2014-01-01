@@ -11,6 +11,6 @@
 // require twitter/bootstrap/modal
 // require twitter/bootstrap/tooltip
 // require twitter/bootstrap/popover
-//= require twitter/bootstrap/scrollspy
+// require twitter/bootstrap/scrollspy
 // require twitter/bootstrap/tab
-//= require twitter/bootstrap/affix
+// require twitter/bootstrap/affix
