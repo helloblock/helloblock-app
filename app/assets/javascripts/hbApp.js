@@ -27,7 +27,8 @@ hbApp.config( function( $routeProvider ) {
 	} )
 
 	$routeProvider.when( "/docs", {
-		templateUrl: "/assets/docs.html"
+		templateUrl: "/assets/docs.html",
+		controller: "docsCtrl"
 	} )
 
 	$routeProvider.when( "/explorer", {
