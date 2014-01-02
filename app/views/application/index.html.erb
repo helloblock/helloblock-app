@@ -17,10 +17,12 @@
   <meta property="og:image" content="http://i.imgur.com/POLpNIW.png" /> -->
 
 </head>
-<body ng-cloak>
+<body>
 	<navbar></navbar>
 	<div ng-view></div>
-
+	<div class="text-center" ng-show="false">
+		<img src="/assets/spinner.gif">
+	</div>
 	<%= javascript_include_tag "application" %>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 
