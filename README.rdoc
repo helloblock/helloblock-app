@@ -13,3 +13,7 @@ Looping through "intro" description too
 if partial doesn't exists, it's skipped
 
 loaded use docsCtrl sections
+
+
+=== Deploy
+grunt ngtemplates

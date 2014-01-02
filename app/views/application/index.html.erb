@@ -23,8 +23,15 @@
 	<div class="text-center" ng-show="false">
 		<img src="/assets/spinner.gif">
 	</div>
+
+
 	<%= javascript_include_tag "application" %>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+	<!-- _partials Caching -->
+	<%# if Rails.env.production? %>
+
+	<%# end %>
 
 	<!-- GA -->
 	<% if Rails.env.production? %>
