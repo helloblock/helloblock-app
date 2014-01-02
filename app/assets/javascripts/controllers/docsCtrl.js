@@ -9,13 +9,19 @@ hbApp.controller( "docsCtrl", function( $scope ) {
 	// Break into 2 and then recombine
 	$scope.general = [ {
 		name: "introduction",
-		subs: []
+		subs: [ {
+			name: "intro"
+		} ]
 	}, {
 		name: "walkthrough",
-		subs: []
+		subs: [ {
+			name: "intro"
+		} ]
 	}, {
 		name: "errors",
-		subs: []
+		subs: [ {
+			name: "intro"
+		} ]
 	}, ]
 
 	$scope.methods = [ {
@@ -42,7 +48,11 @@ hbApp.controller( "docsCtrl", function( $scope ) {
 		} ]
 	}, {
 		name: "blocks",
-		subs: [ "/a", "/b", "/c" ]
+		subs: [ {
+			name: "intro",
+		}, {
+			name: "single",
+		} ]
 	}, ]
 
 	$scope.sections = $scope.general.concat( $scope.methods )

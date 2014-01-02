@@ -20,3 +20,4 @@
 *.csr
 config/ssl/
 public/assets
+*.DS_Store

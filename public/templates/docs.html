@@ -16,7 +16,7 @@
           >
           <a href="#!/docs/#{{s.name}}">{{s.name.capitalize()}}</a>
           <ul class="nav">
-            <li ng-repeat="sub in s.subs">
+            <li ng-repeat="sub in s.subs.slice(1)">
               <em>{{sub.name.capitalize()}}</em>
             </li>
           </ul>
@@ -34,7 +34,7 @@
           spy="{{s.name}}">
           <a href="#!/docs/#{{s.name}}">{{s.name.capitalize()}}</a>
           <ul class="nav">
-            <li ng-repeat="sub in s.subs">
+            <li ng-repeat="sub in s.subs.slice(1)">
               <em>{{sub.name.capitalize()}}</em>
             </li>
           </ul>
