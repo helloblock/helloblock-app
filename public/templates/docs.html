@@ -1,11 +1,12 @@
 <div id="docs" scroll-spy>
+  <!-- SIDEBAR -->
   <div class="col-md-2">
     <div class="bs-sidebar static">
       <ul class="nav bs-sidenav">
-        <li ng-repeat="m in methods" spy="{{m.name}}">
-          <a href="#!/docs/#{{m.name}}">{{m.name}}</a>
+        <li ng-repeat="m in methods" spy="{{m}}">
+          <a href="#!/docs/#{{m}}">{{m.capitalize()}}</a>
           <ul class="nav">
-            <li >
+            <li>
               <em>How to use</em>
             </li>
             <li>
@@ -13,10 +14,11 @@
             </li>
           </ul>
         </li>
-
       </ul>
     </div>
   </div>
+
+  <!-- LANGUAGE -->
   <div class="col-md-10">
     <div id="language-setter">
       <div class="col-md-6"></div>
@@ -37,44 +39,33 @@
         </a>
       </div>
     </div>
+
+    <!-- METHOD -->
+
     <div class="methods">
-      <span ng-repeat="m in methods" id="{{m.name}}">
+      <span ng-repeat="m in methods" id="{{m}}">
         <div class="row method">
           <div class="col-md-6 method-description" >
-            <h2>{{m.name}}</h2>
             <br>
-            <code>
-              https://api.helloblock.io/v1{{m.endpoint}}
-            </code>
-            <br><br>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            </p>
-            <br>
-            <p>
-              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-
-            <br>
+            <div ng-include="docsUrl(m, 'description')"></div>
           </div>
-          <div class="col-md-6 method-code">
-            <br>
+          <div class="col-md-6 method-example">
             <div ng-show="global.language === 'curl'">
-              <code>curl https://api.helloblock.io/v1/ping</code>
+              <div ng-include="docsUrl(m, 'curl')"></div>
             </div>
             <div ng-show="global.language === 'ruby'">
-              <code>puts "Hello, block!"</code>
+              <div ng-include="docsUrl(m, 'ruby')"></div>
             </div>
           </div>
         </div>
         <div class="line"></div>
-        <br>
       </span>
     </div>
+    <!-- <div class="blank">
+      <br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br>
+    </div> -->
   </div>
 
 </div>

@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require monkey-patches
 //= require jquery
 //= require jquery_ujs
 //= require yeti/loader
