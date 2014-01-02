@@ -33,7 +33,7 @@ hbApp.controller( "docsCtrl", function( $scope ) {
 		}, {
 			name: "batch",
 		}, {
-			name: "unspent",
+			name: "unspents",
 		} ]
 	}, {
 		name: "transactions",
