@@ -54,7 +54,10 @@ module.exports = function( grunt ) {
           removeScriptTypeAttributes: true,
           removeStyleLinkTypeAttributes: true
         },
-        cwd: "public/",
+        options: {
+          prefix: '/'
+        },
+        cwd: "public",
         src: '**/*.html',
         dest: 'public/templatesCache.js'
       }

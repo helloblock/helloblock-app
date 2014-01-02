@@ -29,9 +29,9 @@
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 
 	<!-- _partials Caching -->
-	<%# if Rails.env.production? %>
-
-	<%# end %>
+	<% if Rails.env.production? %>
+		<script src="/templatesCache.js"></script>
+	<% end %>
 
 	<!-- GA -->
 	<% if Rails.env.production? %>
