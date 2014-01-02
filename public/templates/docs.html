@@ -10,16 +10,12 @@
             </h5>
           </div>
         </li>
-        <li ng-repeat="s in general" spy="{{s}}">
+        <li
+          ng-repeat="s in general"
+          spy="{{s}}"
+          ng-class="{'active': s == 'introduction'}"
+          >
           <a href="#!/docs/#{{s}}">{{s.capitalize()}}</a>
-          <!-- <ul class="nav">
-            <li>
-              <em>How to use</em>
-            </li>
-            <li>
-              <em>Examples</em>
-            </li>
-          </ul> -->
         </li>
         <li>
           <div class="title">
