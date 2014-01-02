@@ -2,8 +2,8 @@
 
 hbApp.controller( "docsCtrl", function( $scope ) {
 
-	$scope.docsUrl = function( method, partial ) {
-		return '/templates/docs/' + method + '/_' + partial + '.html'
+	$scope.docsUrl = function( method, sub, partial ) {
+		return '/templates/docs/' + method + '/' + sub + '/_' + partial + '.html'
 	}
 
 	// Break into 2 and then recombine
@@ -20,10 +20,26 @@ hbApp.controller( "docsCtrl", function( $scope ) {
 
 	$scope.methods = [ {
 		name: "addresses",
-		subs: [ "/a", "/b", "/c" ]
+		subs: [ {
+			name: "intro",
+		}, {
+			name: "single",
+		}, {
+			name: "batch",
+		}, {
+			name: "unspent",
+		} ]
 	}, {
 		name: "transactions",
-		subs: [ "/a", "/b", "/c" ]
+		subs: [ {
+			name: "intro",
+		}, {
+			name: "single",
+		}, {
+			name: "batch",
+		}, {
+			name: "post",
+		} ]
 	}, {
 		name: "blocks",
 		subs: [ "/a", "/b", "/c" ]

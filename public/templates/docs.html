@@ -17,7 +17,7 @@
           <a href="#!/docs/#{{s.name}}">{{s.name.capitalize()}}</a>
           <ul class="nav">
             <li ng-repeat="sub in s.subs">
-              <em>{{sub}}</em>
+              <em>{{sub.name.capitalize()}}</em>
             </li>
           </ul>
         </li>
@@ -35,7 +35,7 @@
           <a href="#!/docs/#{{s.name}}">{{s.name.capitalize()}}</a>
           <ul class="nav">
             <li ng-repeat="sub in s.subs">
-              <em>{{sub}}</em>
+              <em>{{sub.name.capitalize()}}</em>
             </li>
           </ul>
         </li>
@@ -66,24 +66,37 @@
     </div>
 
     <!-- METHOD -->
-
     <div class="sections">
       <span ng-repeat="s in sections" id="{{s.name}}">
-        <div class="row section">
-          <div class="col-md-6 section-description" >
-            <br>
-            <div ng-include="docsUrl(s.name, 'description')"></div>
-          </div>
-          <div class="col-md-6 section-example">
-            <div ng-show="global.language === 'curl'">
-              <div ng-include="docsUrl(s.name, 'curl')"></div>
+        <span ng-repeat="sub in s.subs">
+          <div class="row section">
+            <div class="col-md-6 section-description" >
+              <br>
+              <div
+                ng-if="sub.name !== undefined"
+                ng-include="docsUrl(s.name, sub.name, 'description')">
+              </div>
             </div>
-            <div ng-show="global.language === 'ruby'">
-              <div ng-include="docsUrl(s.name, 'ruby')"></div>
+            <div class="col-md-6 section-example">
+              <div ng-show="global.language === 'curl'">
+                <div
+                  ng-if="sub.name !== undefined"
+                  ng-include="docsUrl(s.name, sub.name, 'curl')">
+                </div>
+              </div>
+              <div ng-show="global.language === 'ruby'">
+                <div
+                  ng-if="sub.name !== undefined"
+                  ng-include="docsUrl(s.name, sub.name, 'ruby')">
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="line"></div>
+        </span>
+
+        <!-- Only display when section exists -->
+        <div class="line" ng-if="s.subs.length > 0"></div>
+
       </span>
     </div>
     <!-- <div class="blank">
