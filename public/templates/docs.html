@@ -12,10 +12,15 @@
         </li>
         <li
           ng-repeat="s in general"
-          spy="{{s}}"
-          ng-class="{'active': s == 'introduction'}"
+          spy="{{s.name}}"
           >
-          <a href="#!/docs/#{{s}}">{{s.capitalize()}}</a>
+          <a href="#!/docs/#{{s.name}}">{{s.name.capitalize()}}</a>
+          <ul class="nav">
+            <li ng-repeat="sub in s.subs">
+              <em>{{sub}}</em>
+            </li>
+          </ul>
+        </li>
         </li>
         <li>
           <div class="title">
@@ -24,16 +29,15 @@
             </h5>
           </div>
         </li>
-        <li ng-repeat="s in methods" spy="{{s}}">
-          <a href="#!/docs/#{{s}}">{{s.capitalize()}}</a>
-          <!-- <ul class="nav">
-            <li>
-              <em>How to use</em>
+        <li
+          ng-repeat="s in methods"
+          spy="{{s.name}}">
+          <a href="#!/docs/#{{s.name}}">{{s.name.capitalize()}}</a>
+          <ul class="nav">
+            <li ng-repeat="sub in s.subs">
+              <em>{{sub}}</em>
             </li>
-            <li>
-              <em>Examples</em>
-            </li>
-          </ul> -->
+          </ul>
         </li>
       </ul>
     </div>
@@ -64,18 +68,18 @@
     <!-- METHOD -->
 
     <div class="sections">
-      <span ng-repeat="s in sections" id="{{s}}">
+      <span ng-repeat="s in sections" id="{{s.name}}">
         <div class="row section">
           <div class="col-md-6 section-description" >
             <br>
-            <div ng-include="docsUrl(s, 'description')"></div>
+            <div ng-include="docsUrl(s.name, 'description')"></div>
           </div>
           <div class="col-md-6 section-example">
             <div ng-show="global.language === 'curl'">
-              <div ng-include="docsUrl(s, 'curl')"></div>
+              <div ng-include="docsUrl(s.name, 'curl')"></div>
             </div>
             <div ng-show="global.language === 'ruby'">
-              <div ng-include="docsUrl(s, 'ruby')"></div>
+              <div ng-include="docsUrl(s.name, 'ruby')"></div>
             </div>
           </div>
         </div>
