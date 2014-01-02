@@ -3,23 +3,48 @@
   <div class="col-md-2">
     <div class="bs-sidebar static">
       <ul class="nav bs-sidenav">
-        <li ng-repeat="m in methods" spy="{{m}}">
-          <a href="#!/docs/#{{m}}">{{m.capitalize()}}</a>
-          <ul class="nav">
+        <li>
+          <div class="title">
+            <h5>
+              <strong>API</strong>
+            </h5>
+          </div>
+        </li>
+        <li ng-repeat="s in general" spy="{{s}}">
+          <a href="#!/docs/#{{s}}">{{s.capitalize()}}</a>
+          <!-- <ul class="nav">
             <li>
               <em>How to use</em>
             </li>
             <li>
               <em>Examples</em>
             </li>
-          </ul>
+          </ul> -->
+        </li>
+        <li>
+          <div class="title">
+            <h5>
+              <strong>Methods</strong>
+            </h5>
+          </div>
+        </li>
+        <li ng-repeat="s in methods" spy="{{s}}">
+          <a href="#!/docs/#{{s}}">{{s.capitalize()}}</a>
+          <!-- <ul class="nav">
+            <li>
+              <em>How to use</em>
+            </li>
+            <li>
+              <em>Examples</em>
+            </li>
+          </ul> -->
         </li>
       </ul>
     </div>
   </div>
 
   <!-- LANGUAGE -->
-  <div class="col-md-10">
+  <div class="col-md-10" >
     <div id="language-setter">
       <div class="col-md-6"></div>
       <div class="col-md-6">
@@ -42,19 +67,19 @@
 
     <!-- METHOD -->
 
-    <div class="methods">
-      <span ng-repeat="m in methods" id="{{m}}">
-        <div class="row method">
-          <div class="col-md-6 method-description" >
+    <div class="sections">
+      <span ng-repeat="s in sections" id="{{s}}">
+        <div class="row section">
+          <div class="col-md-6 section-description" >
             <br>
-            <div ng-include="docsUrl(m, 'description')"></div>
+            <div ng-include="docsUrl(s, 'description')"></div>
           </div>
-          <div class="col-md-6 method-example">
+          <div class="col-md-6 section-example">
             <div ng-show="global.language === 'curl'">
-              <div ng-include="docsUrl(m, 'curl')"></div>
+              <div ng-include="docsUrl(s, 'curl')"></div>
             </div>
             <div ng-show="global.language === 'ruby'">
-              <div ng-include="docsUrl(m, 'ruby')"></div>
+              <div ng-include="docsUrl(s, 'ruby')"></div>
             </div>
           </div>
         </div>
