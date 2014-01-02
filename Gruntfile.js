@@ -60,9 +60,9 @@ module.exports = function( grunt ) {
       }
     },
     concat: {
-      app: {
-        src: [ '**.js', '<%= ngtemplates.app.dest %>' ]
-        dest: [ 'app.js' ]
+      hbApp: {
+        src: [ '**.js', '<%= ngtemplates.hbApp.dest %>' ],
+        dest: 'app.js'
       }
     }
   } );
@@ -71,6 +71,7 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks( 'grunt-contrib-qunit' );
   grunt.loadNpmTasks( 'grunt-contrib-jshint' );
   grunt.loadNpmTasks( 'grunt-contrib-watch' );
+  grunt.loadNpmTasks( 'grunt-contrib-concat' );
 
   // Pre-Compile Templates
   grunt.loadNpmTasks( 'grunt-angular-templates' );
