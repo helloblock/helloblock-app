@@ -8,14 +8,15 @@ hbApp.controller( "docsCtrl", function( $scope ) {
 
 	// Break into 2 and then recombine
 	$scope.general = [
-		"introduction"
+		"introduction",
+		"walkthrough",
+		"errors"
 	]
 
 	$scope.methods = [
-		"2",
-		"3",
-		"4",
-		"5",
+		"addresses",
+		"transactions",
+		"blocks",
 	]
 
 	$scope.sections = $scope.general.concat( $scope.methods )
