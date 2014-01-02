@@ -1,6 +1,9 @@
 @import "yeti/base";
 
 #docs {
+    p {
+        // font-size: 14px;
+    }
     margin-top: 20px;
 
     .col-md-10 {
@@ -14,6 +17,18 @@
     h2, .h2 {
         margin-top: 0px;
     }
+
+    table.table {
+        font-size: 14px;
+    }
+
+    .table-docs {
+        td:nth-of-type(1) {
+            width: 33%;
+            text-align: right;
+        }
+    }
+
 }
 
 #language-setter div {
@@ -40,6 +55,14 @@
 
     .section-example {
         padding-right: 0px;
+
+        .title {
+            color: @gray-light;
+        }
+
+        pre {
+            margin: 0;
+        }
     }
 }
 
@@ -53,3 +76,4 @@
         @end-color: darken(@white, 30%)
     );
 }
+
