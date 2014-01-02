@@ -22,4 +22,4 @@ config/ssl/
 public/assets
 *.DS_Store
 /node_modules
-/public/templatesCache.js
+
