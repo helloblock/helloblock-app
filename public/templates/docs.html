@@ -68,8 +68,7 @@
     <!-- METHOD -->
     <div class="sections">
       <span ng-repeat="s in sections" id="{{s.name}}">
-        <!-- Only display when section exists -->
-        <div class="line" ng-if="s.subs.length > 0"></div>
+        <div class="line" ng-cloak></div>
         <span ng-repeat="sub in s.subs">
           <div class="row section">
             <div class="col-md-6 section-description" >
