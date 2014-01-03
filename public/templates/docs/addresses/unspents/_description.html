@@ -1,4 +1,4 @@
-<h4>Unspents</h4>
+<h3>Retrieve Unspent Outputs for multiple Addresses</h3>
 <br>
 <p><strong>Request Parameters</strong></p>
 <table class="table table-bordered table-docs">
@@ -6,7 +6,7 @@
     <tr>
       <td>addresses: </td>
       <td>
-        <em>array of strings</em> (required)
+        <em>array</em> of <em>strings</em> [required]
       </td>
     </tr>
   </tbody>
@@ -14,43 +14,44 @@
 
 <br>
 <p><strong>Response Attributes</strong></p>
+<p>Returns <em>array</em> of: </p>
 <table class="table table-bordered table-docs table-condensed">
   <tbody>
     <tr>
-      <td>total_received: </td>
+      <td>confirmations: </td>
       <td><em>integer</em></td>
     </tr>
     <tr>
-      <td>total_received_n: </td>
+      <td>block_height: </td>
       <td><em>integer</em></td>
     </tr>
     <tr>
-      <td>total_sent: </td>
+      <td>tx_hash: </td>
+      <td><em>string</em></td>
+    </tr>
+    <tr>
+      <td>tx_id: </td>
       <td><em>integer</em></td>
     </tr>
     <tr>
-      <td>total_sent_n: </td>
+      <td>n: </td>
       <td><em>integer</em></td>
     </tr>
     <tr>
-      <td>tx_n: </td>
+      <td>scriptPubKey: </td>
+      <td><em>string</em></td>
+    </tr>
+    <tr>
+      <td>value: </td>
       <td><em>integer</em></td>
     </tr>
     <tr>
-      <td>balance: </td>
-      <td><em>integer</em></td>
+      <td>hash160: </td>
+      <td><em>string</em></td>
     </tr>
     <tr>
       <td>address: </td>
       <td><em>string</em> (base58)</td>
-    </tr>
-    <tr>
-      <td>hash160: </td>
-      <td><em>string</em> (hash160)</td>
-    </tr>
-    <tr>
-      <td>txs: </td>
-      <td><em>Array of Transaction Objects</em> (see below)</td>
     </tr>
   </tbody>
 </table>

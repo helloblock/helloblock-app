@@ -9,25 +9,34 @@ GET https://api.helloblock.io/v1/addresses/unspents?<span class="text-primary">a
 <pre>
   <code class="bash" hljs>
 $ curl -G https://api.helloblock.io/v1/addresses/unspents \
-   -d "addresses[]=mm7skHNwsbMSGxZA7Au4Gp5sRdNkfLQkLZ" \
-   -d "addresses[]=miwCPtnuCKxn5JMxXaGZumeHhSkndz6FTP" \
-   -d "addresses[]=msv7sCECsEC8vzAoPUkGVypXoxUBagFjYG"
+   -d "addresses[]=mfwyrZw47YY7wExpcLm7uPHLer7XoMVntd" \
+   -d "addresses[]=n161eDouWrxaPPk6D3y4si3Kenz43yAAo8" \
+   -d "addresses[]=mhdDvTC1wgTr6kEEs4wkDTSxwjuQzvN4md"
   </code>
 </pre>
 <div class="h5 title">EXAMPLE RESPONSE</div>
 <pre>
   <code class="json" hljs>
-[
-  {
-    "block_height": 155068,
-    "tx_hash": "a2d6d886b507209fb879eb23ebe7b32de926ef0b1fc344e167b6eb811640f16e",
-    "tx_id": 997370,
-    "n": 0,
-    "scriptPubKey": "76a9143d73642bb6a7dfa4dae730a4d87d3cf839897d6588ac",
-    "value": 2200000000,
-    "hash160": "3d73642bb6a7dfa4dae730a4d87d3cf839897d65",
-    "address": "mm7skHNwsbMSGxZA7Au4Gp5sRdNkfLQkLZ"
-  }
-]
+[ {
+  "confirmations": 32,
+  "block_height": 155068,
+  "tx_hash": "7110f57720d45f751e5a796cf53f3e78c74dd93939933642f4c277d2cf524f9e",
+  "tx_id": 997365,
+  "n": 1,
+  "scriptPubKey": "76a91404bbb3a6de41830289bb34a47133b0dbfcc3adc288ac",
+  "value": 2200000000,
+  "hash160": "04bbb3a6de41830289bb34a47133b0dbfcc3adc2",
+  "address": "mfwyrZw47YY7wExpcLm7uPHLer7XoMVntd"
+}, {
+  "confirmations": 32,
+  "block_height": 155068,
+  "tx_hash": "dbd9a8fee45519c338b0b49656967066c873afabe3ab4c831ff5c9ce5cab4725",
+  "tx_id": 997374,
+  "n": 0,
+  "scriptPubKey": "76a91404bbb3a6de41830289bb34a47133b0dbfcc3adc288ac",
+  "value": 2100000000,
+  "hash160": "04bbb3a6de41830289bb34a47133b0dbfcc3adc2",
+  "address": "mfwyrZw47YY7wExpcLm7uPHLer7XoMVntd"
+}]
   </code>
 </pre>

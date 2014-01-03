@@ -2,13 +2,11 @@
 <div class="h5 title">DEFINITION</div>
 <pre>
   <code class="bash" hljs>
-GET https://api.helloblock.io/v1/addresses/?<span class="text-primary">addresses[]</span>=<span class="text-info">&lt;address&gt;</span></code>
+GET https://api.helloblock.io/v1/addresses?<span class="text-primary">addresses[]</span>=<span class="text-info">&lt;address&gt;</span></code>
 </pre>
 <div class="h5 title">EXAMPLE REQUEST</div>
 <pre>
   <code class="bash" hljs>
-# Note: option -g enables globbing so [] can be parsed
-<!-- GET 'https://api.helloblock.io/v1/addresses?addresses[]=mu1izpJmF7CHnbVcH59f1PqfvXnmiBEMq8&addresses[]=mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3&addresses[]=n1Fr4r3wEcbXZGQJaqJkFRiMpYLAsk81RX' -->
 $ curl -G https://api.helloblock.io/v1/addresses \
    -d "addresses[]=mu1izpJmF7CHnbVcH59f1PqfvXnmiBEMq8" \
    -d "addresses[]=mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3" \
@@ -24,12 +22,18 @@ $ curl -G https://api.helloblock.io/v1/addresses \
 {
   "wallet": {
     "tx_n": 6,
-    "total_received_n": false,
+    "total_received_n": 2,
     "total_received": 8565778,
     "total_sent_n": 3,
     "total_sent": 8565778,
     "balance": 0
   },
+  "txs": [
+    TODO
+  ],
+  "info": [
+    TODO
+  ],
   "addresses": [ {
     "total_received": 4122889,
     "total_received_n": 1,

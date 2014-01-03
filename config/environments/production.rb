@@ -54,8 +54,9 @@ Helloblock::Application.configure do
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = "http://assets.example.com"
 
-  # Precompile additional assets.
-  # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
+
+  # hbAppCache is not in application.js, only include in production
+  # $ grunt ngtemplates to build this file
   config.assets.precompile += %w( hbAppCache.js )
   config.serve_static_assets = true
 

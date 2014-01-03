@@ -10,48 +10,61 @@ hbApp.controller( "docsCtrl", function( $scope ) {
 	$scope.general = [ {
 		name: "introduction",
 		subs: [ {
-			name: "intro"
+			name: "",
+			file: "intro"
 		} ]
 	}, {
 		name: "walkthrough",
 		subs: [ {
-			name: "intro"
+			name: "",
+			file: "intro"
 		} ]
 	}, {
 		name: "errors",
 		subs: [ {
-			name: "intro"
+			name: "",
+			file: "intro"
 		} ]
 	}, ]
 
 	$scope.methods = [ {
 		name: "addresses",
 		subs: [ {
-			name: "intro",
+			name: "",
+			file: "intro"
 		}, {
-			name: "single",
+			name: "Retrieve an Address",
+			file: "single"
 		}, {
-			name: "batch",
+			name: "Retrieve multiple Addresses",
+			file: "batch"
 		}, {
-			name: "unspents",
+			name: "Retrieve Unspent Outputs",
+			file: "unspents"
 		} ]
 	}, {
 		name: "transactions",
 		subs: [ {
 			name: "intro",
+			file: "intro"
 		}, {
-			name: "single",
+			name: "Retrieve a Transaction",
+			file: "single"
 		}, {
-			name: "batch",
+			name: "Retrieve multiple Transactions",
+			file: "batch"
 		}, {
-			name: "post",
+			name: "Propagate a Transaction",
+			file: "post"
 		} ]
 	}, {
 		name: "blocks",
 		subs: [ {
 			name: "intro",
+			file: "intro"
 		}, {
-			name: "single",
+			name: "Retrieve a Block",
+			file: "single"
 		} ]
 	}, ]
 

@@ -17,7 +17,7 @@
           <a href="#!/docs/#{{s.name}}">{{s.name.capitalize()}}</a>
           <ul class="nav">
             <li ng-repeat="sub in s.subs.slice(1)">
-              <em>{{sub.name.capitalize()}}</em>
+              <span class='sub'>{{sub.name.capitalize()}}</span class='sub'>
             </li>
           </ul>
         </li>
@@ -35,7 +35,7 @@
           <a href="#!/docs/#{{s.name}}">{{s.name.capitalize()}}</a>
           <ul class="nav">
             <li ng-repeat="sub in s.subs.slice(1)">
-              <em>{{sub.name.capitalize()}}</em>
+              <span class='sub'>{{sub.name.capitalize()}}</span class='sub'>
             </li>
           </ul>
         </li>
@@ -75,20 +75,20 @@
               <br>
               <div
                 ng-if="sub.name !== undefined"
-                ng-include="docsUrl(s.name, sub.name, 'description')">
+                ng-include="docsUrl(s.name, sub.file, 'description')">
               </div>
             </div>
             <div class="col-md-6 section-example">
               <div ng-show="global.language === 'curl'">
                 <div
                   ng-if="sub.name !== undefined"
-                  ng-include="docsUrl(s.name, sub.name, 'curl')">
+                  ng-include="docsUrl(s.name, sub.file, 'curl')">
                 </div>
               </div>
               <div ng-show="global.language === 'ruby'">
                 <div
                   ng-if="sub.name !== undefined"
-                  ng-include="docsUrl(s.name, sub.name, 'ruby')">
+                  ng-include="docsUrl(s.name, sub.file, 'ruby')">
                 </div>
               </div>
             </div>
