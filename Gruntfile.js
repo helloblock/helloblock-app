@@ -45,21 +45,14 @@ module.exports = function( grunt ) {
     ngtemplates: {
       hbApp: {
         htmlmin: {
-          collapseBooleanAttributes: true,
-          collapseWhitespace: false,
-          removeAttributeQuotes: true,
-          removeComments: true, // Only if you don't use comment directives!
-          removeEmptyAttributes: true,
-          removeRedundantAttributes: true,
-          removeScriptTypeAttributes: true,
-          removeStyleLinkTypeAttributes: true
+          collapseWhitespace: false
         },
         options: {
           prefix: '/'
         },
         cwd: "public",
         src: '**/*.html',
-        dest: 'public/templatesCache.js'
+        dest: 'app/assets/javascripts/hbAppCache.js'
       }
     },
     concat: {
