@@ -465,7 +465,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <tr>\n" +
     "      <td>addresses[]: </td>\n" +
     "      <td>\n" +
-    "        <em>string</em> <span class='text-primary'>[required]</span>\n" +
+    "        <em>string</em> <span class='label label-primary'>REQUIRED</span>\n" +
     "        <br><br>\n" +
     "        <div>\n" +
     "          Repeat for multiple addresses, e.g.\n" +
@@ -478,17 +478,17 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <tr>\n" +
     "      <td>txs: </td>\n" +
     "      <td>\n" +
-    "        <em>boolean</em> [optional; default: true]</td>\n" +
+    "        <em>boolean</em> <span class='label label-warning'>OPTIONAL</span> default: true</td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
     "      <td>wallet: </td>\n" +
     "      <td>\n" +
-    "        <em>boolean</em> [optional; default: true]</td>\n" +
+    "        <em>boolean</em> <span class='label label-warning'>OPTIONAL</span> default: true</td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
     "      <td>info: </td>\n" +
     "      <td>\n" +
-    "        <em>boolean</em> [optional; default: true]</td>\n" +
+    "        <em>boolean</em> <span class='label label-warning'>OPTIONAL</span> default: true</td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
     "</table>\n" +
@@ -498,7 +498,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<table class=\"table table-bordered table-docs table-condensed\">\n" +
     "  <tbody>\n" +
     "    <tr>\n" +
-    "      <td>wallet [optional]: </td>\n" +
+    "      <td>wallet <span class='label label-warning'>OPTIONAL</span>: </td>\n" +
     "      <td>\n" +
     "        <p>Wallet Object</p>\n" +
     "        <table class='table table-bordered table-condensed table-docs'>\n" +
@@ -538,13 +538,13 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      </td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>txs [optional]: </td>\n" +
+    "      <td>txs <span class='label label-warning'>OPTIONAL</span>: </td>\n" +
     "      <td>\n" +
     "        <p><em>array</em> of Transaction Objects</p>\n" +
     "      </td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>info [optional]: </td>\n" +
+    "      <td>info <span class='label label-warning'>OPTIONAL</span>: </td>\n" +
     "      <td>\n" +
     "        <p>Info Object</p>\n" +
     "        <table class='table table-bordered table-condensed table-docs'>\n" +
@@ -663,11 +663,11 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  <tbody>\n" +
     "    <tr>\n" +
     "      <td>address: </td>\n" +
-    "      <td><em>string</em> <span class='text-primary'>[required]</span></td>\n" +
+    "      <td><em>string</em> <span class='label label-primary'>REQUIRED</span></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
     "      <td>txs: </td>\n" +
-    "      <td><em>boolean</em> [optional]</td>\n" +
+    "      <td><em>boolean</em> <span class='label label-warning'>OPTIONAL</span></td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
     "</table>\n" +
@@ -778,11 +778,11 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  <tbody>\n" +
     "    <tr>\n" +
     "      <td>block_height: </td>\n" +
-    "      <td><em>integer</em> <span class='text-primary'>[required]</span></td>\n" +
+    "      <td><em>integer</em> <span class='label label-primary'>REQUIRED</span></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
     "      <td>txs: </td>\n" +
-    "      <td><em>boolean</em> [optional]</td>\n" +
+    "      <td><em>boolean</em> <span class='label label-warning'>OPTIONAL</span></td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
     "</table>\n" +
@@ -966,7 +966,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <tr>\n" +
     "      <td>tx_hashes=[]: </td>\n" +
     "      <td>\n" +
-    "        <em>array of</em> <em>strings</em><span class='text-primary'>[required]</span>\n" +
+    "        <em>array of</em> <em>strings</em><span class='label label-primary'>REQUIRED</span>\n" +
     "        <br><br>\n" +
     "        <div>\n" +
     "          Repeat for multiple transactions, e.g.\n" +
@@ -1049,7 +1049,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  <tbody>\n" +
     "    <tr>\n" +
     "      <td>tx_hex: </td>\n" +
-    "      <td><em>string</em> <span class='text-primary'>[required]</span></td>\n" +
+    "      <td><em>string</em> <span class='label label-primary'>REQUIRED</span></td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
     "</table>\n" +
@@ -1150,7 +1150,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  <tbody>\n" +
     "    <tr>\n" +
     "      <td>tx_hash: </td>\n" +
-    "      <td><em>string</em> <span class='text-primary'>[required]</span></td>\n" +
+    "      <td><em>string</em> <span class='label label-primary'>REQUIRED</span></td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
     "</table>\n" +
@@ -1297,16 +1297,16 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<div class=\"h5 title\">DEFINITION</div>\n" +
     "<pre>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "GET https://api.helloblock.io/v1/addresses/unspents?addresses[]=<span class=\"text-primary\">&lt;address&gt;</span></code>\n" +
+    "GET https://api.helloblock.io/v1/addresses/unspents?addresses[]=<span class=\"text-info\">&lt;address&gt;</span></code>\n" +
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
     "<pre>\n" +
     "  <code class=\"bash\" hljs>\n" +
     "$ curl -G https://api.helloblock.io/v1/addresses/unspents \\\n" +
-    "   -d \"addresses[]=<span class='text-primary'>mfwyrZw47YY7wExpcLm7uPHLer7XoMVntd</span>[\" \\\n" +
-    "   -d \"addresses[]=<span class='text-primary'>n161eDouWrxaPPk6D3y4si3Kenz43yAAo8</span>[\" \\\n" +
-    "   -d \"addresses[]=<span class='text-primary'>mhdDvTC1wgTr6kEEs4wkDTSxwjuQzvN4md</span>[\"\n" +
+    "   -d \"addresses[]=<span class='text-info'>mfwyrZw47YY7wExpcLm7uPHLer7XoMVntd</span>\" \\\n" +
+    "   -d \"addresses[]=<span class='text-info'>n161eDouWrxaPPk6D3y4si3Kenz43yAAo8</span>\" \\\n" +
+    "   -d \"addresses[]=<span class='text-info'>mhdDvTC1wgTr6kEEs4wkDTSxwjuQzvN4md</span>\"\n" +
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE REQUEST URL</div>\n" +
@@ -1353,7 +1353,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <tr>\n" +
     "      <td>addresses: </td>\n" +
     "      <td>\n" +
-    "        <em>array</em> of <em>strings</em> <span class='text-primary'>[required]</span>\n" +
+    "        <em>array</em> of <em>strings</em> <span class='label label-primary'>REQUIRED</span>\n" +
     "      </td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
