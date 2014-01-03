@@ -40,7 +40,7 @@ hbApp.controller( "docsCtrl", function( $scope ) {
 			file: "batch"
 		} ]
 	}, {
-		name: "Unspents",
+		name: "unspents",
 		subs: [ {
 			name: "intro",
 			file: "intro"

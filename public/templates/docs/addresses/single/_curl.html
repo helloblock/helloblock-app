@@ -1,16 +1,22 @@
-<br><br><br><br>
+<br><br><br><br><br>
 <div class="h5 title">DEFINITION</div>
 <pre>
   <code class="bash" hljs>
-GET https://api.helloblock.io/v1/addresses/<span class='text-info'>&lt;address&gt;</span>
+GET https://api.helloblock.io/v1/addresses/<span class='text-primary'>&lt;address&gt;</span>
   </code>
 </pre>
 <div class="h5 title">EXAMPLE REQUEST</div>
 <pre>
   <code class="bash" hljs>
 $ curl -G https://api.helloblock.io/v1/addresses/ \
-  <span class='text-info'>n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK</span> \
+  <span class='text-primary'>n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK</span> \
   -d "txs=true"
+  </code>
+</pre>
+<div class="h5 title">EXAMPLE REQUEST URL</div>
+<pre>
+  <code class="markdown" hljs>
+https://api.helloblock.io/v1/addresses/<span class=''>n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK</span>&txs=true
   </code>
 </pre>
 <div class="h5 title">EXAMPLE RESPONSE</div>
@@ -26,7 +32,7 @@ $ curl -G https://api.helloblock.io/v1/addresses/ \
   "address": "n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK",
   "hash160": "e18424c2562c495e16c4a67d9bf803116158be6e"
   "txs": [
-    TODO
+    ... Transaction Objects
   ]
 }
   </code>

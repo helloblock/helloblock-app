@@ -1,4 +1,4 @@
-<br><br><br><br><br><br>
+<br><br><br><br><br>
 <div class="h5 title">DEFINITION</div>
 <pre>
   <code class="bash" hljs>
@@ -9,13 +9,15 @@ POST https://api.helloblock.io/v1/transactions/
 <pre>
   <code class="bash" hljs>
 $ curl -X POST https://api.helloblock.io/v1/transactions \
- - d "tx_hash=TODO"
- - d "hex=TODO"
+ - d "tx_hex=<span class='text-primary'>TODO</span>"
   </code>
 </pre>
 <div class="h5 title">EXAMPLE RESPONSE</div>
 <pre>
-  <code class="json" hljs>
-TODO
+  <code class="javascript" hljs>
+{
+  "message": "Transaction propagation has been successful."
+  "tx_hash": TODO
+}
   </code>
 </pre>

@@ -1,69 +1,75 @@
-<br><br><br><br>
+<br><br><br><br><br>
 <div class="h5 title">DEFINITION</div>
 <pre>
   <code class="bash" hljs>
-GET https://api.helloblock.io/v1/transactions/?<span class="text-primary">tx_hashes[]</span>=<span class="text-info">&lt;tx_hash&gt;</span></code>
+GET https://api.helloblock.io/v1/transactions?tx_hashes[]=<span class="text-primary">&lt;tx_hash&gt;</span></code>
 </pre>
 <div class="h5 title">EXAMPLE REQUEST</div>
 <pre>
   <code class="bash" hljs>
 $ curl -G https://api.helloblock.io/v1/transactions \
-   -d "tx_hashes[]=6f9e9570881e781db8c137c84c111a138e4a022e6b2def5e2a1589a802fe25f3" \
-   -d "tx_hashes[]=770e6e4c66fc61fb523e5aefe11780b26c8473638e7065ca726a6492ab7f6345" \
-   -d "tx_hashes[]=47bf46f92384002dc008696dac3437a2ca4a2696c21a3f6d1d789513e7b9a3f0"
+   -d "tx_hashes[]=<span class='text-primary'>6f9e9570881e781db8c137c84c111a138e4a022e6b2def5e2a1589a802fe25f3</span>" \
+   -d "tx_hashes[]=<span class='text-primary'>770e6e4c66fc61fb523e5aefe11780b26c8473638e7065ca726a6492ab7f6345</span>" \
+   -d "tx_hashes[]=<span class='text-primary'>47bf46f92384002dc008696dac3437a2ca4a2696c21a3f6d1d789513e7b9a3f0</span>"
+  </code>
+</pre>
+<div class="h5 title">EXAMPLE REQUEST URL</div>
+<pre>
+  <code class="bash" hljs>
+https://api.helloblock.io/v1/transactions?tx_hashes[]=6f9e9570881e781db8c137c84c111a138e4a022e6b2def5e2a1589a802fe25f3&tx_hashes[]=770e6e4c66fc61fb523e5aefe11780b26c8473638e7065ca726a6492ab7f6345&tx_hashes[]=47bf46f92384002dc008696dac3437a2ca4a2696c21a3f6d1d789513e7b9a3f0
   </code>
 </pre>
 <div class="h5 title">EXAMPLE RESPONSE</div>
 <pre>
   <code class="javascript" hljs>
 [ {
-  "time": 1388684762,
-  "block_hash": "00000000ba5b52e73bced6159bbd67602d0108816f4eaad8c669c4a78132c254",
-  "block_height": 155064,
-  "hash": "47bf46f92384002dc008696dac3437a2ca4a2696c21a3f6d1d789513e7b9a3f0",
-  "ver": 1,
-  "lock_time": 0,
-  "size": 376,
-  "tx_id": 997342,
-  "vin_sz": 2,
-  "vout_sz": 2,
-  "in": [ {
-    "prev_out": {
+    "time": 1388684762,
+    "block_hash": "00000000ba5b52e73bced6159bbd67602d0108816f4eaad8c669c4a78132c254",
+    "block_height": 155064,
+    "hash": "47bf46f92384002dc008696dac3437a2ca4a2696c21a3f6d1d789513e7b9a3f0",
+    "ver": 1,
+    "lock_time": 0,
+    "size": 376,
+    "tx_id": 997342,
+    "vin_sz": 2,
+    "vout_sz": 2,
+    "in": [ {
+      "prev_out": {
+        "n": 0,
+        "hash": "75b1129641016a1762110ec82b5ccb42bd34a1213485d2b93792ca7456eb983d",
+        "tx_id": 996982,
+        "value": 100000,
+        "address": "mk1caepuZCUNELK7P1t8cP8GtqZPcdzibr",
+        "hash160": "314c1c19a662147ebafee5841e10b629f0a680ef"
+      },
+      "scriptSig": "493046022100bce7fe3cc1120f524af14ff157c9558b218e2c7e1f9722955d7bd34d31ccadca022100f4aa43e73a64e5aeceeaf237c94ed7e4b478d64241c640028067393bd2688464012103ba3fa2f1d35c2d8acf7a66f997a140e8d2be69dc0d054a26b46c2f1d50b2366a"
+    }, {
+      "prev_out": {
+        "n": 1,
+        "hash": "212da0321924ca43ec6645e69ebb5404877cf7e51d1a2ebbb800d3cddbd0c0c9",
+        "tx_id": 996979,
+        "value": 1030397,
+        "address": "mnmZ2hevsK1pEnpCtywYH1Sn1qKXi9DRGi",
+        "hash160": "4f8bb314083164c857176c5ff6f29d14eb8f78a9"
+      },
+      "scriptSig": "493046022100bf9d8c0e0b470eff1721e4c0afadb5d7d28f2b68a9f3a315399ebc61bca7c0c3022100b30be2ea458f34b7e7a91845ac437a528f6444b85eb2fe0f2adc8022c59d133a012102088960746782c504b30f39ab8e02f5a0360c2b9f392091f7a46246f0fe18a72d"
+    } ],
+    "out": [ {
       "n": 0,
-      "hash": "75b1129641016a1762110ec82b5ccb42bd34a1213485d2b93792ca7456eb983d",
-      "tx_id": 996982,
-      "value": 100000,
-      "address": "mk1caepuZCUNELK7P1t8cP8GtqZPcdzibr",
-      "hash160": "314c1c19a662147ebafee5841e10b629f0a680ef"
-    },
-    "scriptSig": "493046022100bce7fe3cc1120f524af14ff157c9558b218e2c7e1f9722955d7bd34d31ccadca022100f4aa43e73a64e5aeceeaf237c94ed7e4b478d64241c640028067393bd2688464012103ba3fa2f1d35c2d8acf7a66f997a140e8d2be69dc0d054a26b46c2f1d50b2366a"
-  }, {
-    "prev_out": {
+      "value": 1020397,
+      "scriptPubKey": "76a9143488c0786a4cc76c59dc509654831ba5b34a079988ac",
+      "spent": true,
+      "address": "mkJjFiLGTTZxc9gynVHZ3nam17aaQdZU75"
+    }, {
       "n": 1,
-      "hash": "212da0321924ca43ec6645e69ebb5404877cf7e51d1a2ebbb800d3cddbd0c0c9",
-      "tx_id": 996979,
-      "value": 1030397,
-      "address": "mnmZ2hevsK1pEnpCtywYH1Sn1qKXi9DRGi",
-      "hash160": "4f8bb314083164c857176c5ff6f29d14eb8f78a9"
-    },
-    "scriptSig": "493046022100bf9d8c0e0b470eff1721e4c0afadb5d7d28f2b68a9f3a315399ebc61bca7c0c3022100b30be2ea458f34b7e7a91845ac437a528f6444b85eb2fe0f2adc8022c59d133a012102088960746782c504b30f39ab8e02f5a0360c2b9f392091f7a46246f0fe18a72d"
-  } ],
-  "out": [ {
-    "n": 0,
-    "value": 1020397,
-    "scriptPubKey": "76a9143488c0786a4cc76c59dc509654831ba5b34a079988ac",
-    "spent": true,
-    "address": "mkJjFiLGTTZxc9gynVHZ3nam17aaQdZU75"
-  }, {
-    "n": 1,
-    "value": 100000,
-    "scriptPubKey": "76a914dfcb6c48e49b7a6d9d4f51e174f587a9b8ae33aa88ac",
-    "spent": true,
-    "address": "n1vGfugd2W27SkG5TZiWpmDzQrvtxAgFJw"
-  } ]
-}
+      "value": 100000,
+      "scriptPubKey": "76a914dfcb6c48e49b7a6d9d4f51e174f587a9b8ae33aa88ac",
+      "spent": true,
+      "address": "n1vGfugd2W27SkG5TZiWpmDzQrvtxAgFJw"
+    } ]
+  },
 
- etc ...
+  ... etc
 
 ]
   </code>

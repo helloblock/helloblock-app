@@ -1,19 +1,25 @@
-<br><br><br><br>
+<br><br><br><br><br>
 <div class="h5 title">DEFINITION</div>
 <pre>
   <code class="bash" hljs>
-GET https://api.helloblock.io/v1/addresses?<span class="text-primary">addresses[]</span>=<span class="text-info">&lt;address&gt;</span></code>
+GET https://api.helloblock.io/v1/addresses?addresses[]=<span class="text-primary">&lt;address&gt;</span></code>
 </pre>
 <div class="h5 title">EXAMPLE REQUEST</div>
 <pre>
   <code class="bash" hljs>
 $ curl -G https://api.helloblock.io/v1/addresses \
-   -d "addresses[]=mu1izpJmF7CHnbVcH59f1PqfvXnmiBEMq8" \
-   -d "addresses[]=mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3" \
-   -d "addresses[]=n1Fr4r3wEcbXZGQJaqJkFRiMpYLAsk81RX" \
+   -d "addresses[]=<span class='text-primary'>mu1izpJmF7CHnbVcH59f1PqfvXnmiBEMq8</span>" \
+   -d "addresses[]=<span class='text-primary'>mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3</span>" \
+   -d "addresses[]=<span class='text-primary'>n1Fr4r3wEcbXZGQJaqJkFRiMpYLAsk81RX</span>" \
    -d "tx=true" \
    -d "wallet=true" \
    -d "info=true"
+  </code>
+</pre>
+<div class="h5 title">EXAMPLE REQUEST URL</div>
+<pre>
+  <code class="markdown" hljs>
+https://api.helloblock.io/v1/addresses?&addresses[]=mu1izpJmF7CHnbVcH59f1PqfvXnmiBEMq8&addresses[]=mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3&addresses[]=n1Fr4r3wEcbXZGQJaqJkFRiMpYLAsk81RX&tx=true&wallet=true&info=true
   </code>
 </pre>
 <div class="h5 title">EXAMPLE RESPONSE</div>
@@ -28,12 +34,6 @@ $ curl -G https://api.helloblock.io/v1/addresses \
     "total_sent": 8565778,
     "balance": 0
   },
-  "txs": [
-    TODO
-  ],
-  "info": [
-    TODO
-  ],
   "addresses": [ {
     "total_received": 4122889,
     "total_received_n": 1,
@@ -61,7 +61,13 @@ $ curl -G https://api.helloblock.io/v1/addresses \
     "balance": 0,
     "address": "n1Fr4r3wEcbXZGQJaqJkFRiMpYLAsk81RX",
     "hash160": "d88713de7b1d0837e728de5d5e62399f5e6e145e"
-  } ]
+  } ],
+  "txs": [
+    ... Transaction Objects
+  ],
+  "info": [
+    TODO
+  ]
 }
 
   </code>
