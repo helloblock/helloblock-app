@@ -911,7 +911,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "  echo \"Here's a summary of all API Endpoints\"\n" +
     "\n" +
-    "  <span class=\"\">GET</span>  https://api.helloblock.io/v1/address/<span class=\"text-info\">&lt;:address&gt;</span>\n" +
+    "  <span class=\"\">GET</span>  https://api.helloblock.io/v1/address/<span class=\"text-info\">&lt;address&gt;</span>\n" +
     "  <span class=\"\">POST</span> https://api.helloblock.io/v1/transactions\n" +
     "\n" +
     "  </code>\n" +
