@@ -10,23 +10,39 @@
       <h3>REQUEST Builder</h3>
       <div class="bs-sidebar">
         <div class="row">
-          <div class="col-md-6">Type:</div>
-          <div class="col-md-6">GET</div>
+          <div class="col-md-5">
+            <div class='h5 title-key'>
+              <strong>Mode:</strong>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="h5">
+              asdf
+            </div>
+          </div>
         </div>
+        <br>
         <div class="row">
-          <div class="col-md-6">Mode:</div>
-          <div class="col-md-6">LIVE</div>
+          <div class="col-md-5">
+            <div class='h5 title-key'>
+              <strong>Resource:</strong>
+            </div>
+          </div>
+          <div class="col-md-7">
+            DROP
+          </div>
         </div>
+        <br>
         <div class="row">
-          <div class="col-md-6">Endpoint:</div>
-          <div class="col-md-6">DROPDOWN</div>
+          <div class="col-md-5">
+            <div class='h5 title-key'>
+              <strong>Parameters:</strong>
+            </div>
+          </div>
         </div>
-
-        <h4 class='title'>
-          <strong>Parameters</strong>
-        </h4>
+        <br>
         <div class="row" ng-repeat="p in options.params">
-          <div class="col-md-4"><h5>{{p.key.capitalize()}}:</h5></div>
+          <div class="col-md-4 text-right"><h5>{{p.key.capitalize()}}:</h5></div>
           <div class="col-md-8">
             <input class='form-control' ng-model="p.value">
           </div>
@@ -45,10 +61,10 @@
 
         <!-- scope.response -->
         <code class="javascript"
-          ng-hljs
-          ng-include="'/templates/_explorer_response.html'">
-        </code>
-      </pre>
-    </div>
+        ng-hljs
+        ng-include="'/templates/_explorer_response.html'">
+      </code>
+    </pre>
   </div>
+</div>
 </div>

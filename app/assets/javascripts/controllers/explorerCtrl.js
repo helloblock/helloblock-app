@@ -8,7 +8,7 @@ hbApp.controller( "explorerCtrl", function( $scope, $resource ) {
 
 	$scope.options = {
 		mode: "api",
-		resource: "",
+		resource: "addresses",
 		type: "",
 		params: [ {
 			key: "address",

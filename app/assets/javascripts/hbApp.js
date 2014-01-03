@@ -3,7 +3,7 @@
 var hbApp = angular.module( 'hbApp', [
 	'ngRoute',
 	'ngResource',
-	'ui.bootstrap'
+	// 'ui.bootstrap'
 ] )
 
 hbApp.config( function( $httpProvider ) {
