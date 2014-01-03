@@ -286,7 +286,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          <a href=\"#!/docs/#{{s.name}}\">{{s.name.capitalize()}}</a>\n" +
     "          <ul class=\"nav\">\n" +
     "            <li ng-repeat=\"sub in s.subs.slice(1)\">\n" +
-    "              <em>{{sub.name.capitalize()}}</em>\n" +
+    "              <span class='sub'>{{sub.name.capitalize()}}</span class='sub'>\n" +
     "            </li>\n" +
     "          </ul>\n" +
     "        </li>\n" +
@@ -304,7 +304,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          <a href=\"#!/docs/#{{s.name}}\">{{s.name.capitalize()}}</a>\n" +
     "          <ul class=\"nav\">\n" +
     "            <li ng-repeat=\"sub in s.subs.slice(1)\">\n" +
-    "              <em>{{sub.name.capitalize()}}</em>\n" +
+    "              <span class='sub'>{{sub.name.capitalize()}}</span class='sub'>\n" +
     "            </li>\n" +
     "          </ul>\n" +
     "        </li>\n" +
@@ -344,20 +344,20 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              <br>\n" +
     "              <div\n" +
     "                ng-if=\"sub.name !== undefined\"\n" +
-    "                ng-include=\"docsUrl(s.name, sub.name, 'description')\">\n" +
+    "                ng-include=\"docsUrl(s.name, sub.file, 'description')\">\n" +
     "              </div>\n" +
     "            </div>\n" +
     "            <div class=\"col-md-6 section-example\">\n" +
     "              <div ng-show=\"global.language === 'curl'\">\n" +
     "                <div\n" +
     "                  ng-if=\"sub.name !== undefined\"\n" +
-    "                  ng-include=\"docsUrl(s.name, sub.name, 'curl')\">\n" +
+    "                  ng-include=\"docsUrl(s.name, sub.file, 'curl')\">\n" +
     "                </div>\n" +
     "              </div>\n" +
     "              <div ng-show=\"global.language === 'ruby'\">\n" +
     "                <div\n" +
     "                  ng-if=\"sub.name !== undefined\"\n" +
-    "                  ng-include=\"docsUrl(s.name, sub.name, 'ruby')\">\n" +
+    "                  ng-include=\"docsUrl(s.name, sub.file, 'ruby')\">\n" +
     "                </div>\n" +
     "              </div>\n" +
     "            </div>\n" +
@@ -381,13 +381,11 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<div class=\"h5 title\">DEFINITION</div>\n" +
     "<pre>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "GET https://api.helloblock.io/v1/addresses/?<span class=\"text-primary\">addresses[]</span>=<span class=\"text-info\">&lt;address&gt;</span></code>\n" +
+    "GET https://api.helloblock.io/v1/addresses?<span class=\"text-primary\">addresses[]</span>=<span class=\"text-info\">&lt;address&gt;</span></code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
     "<pre>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "# Note: option -g enables globbing so [] can be parsed\n" +
-    "<!-- GET 'https://api.helloblock.io/v1/addresses?addresses[]=mu1izpJmF7CHnbVcH59f1PqfvXnmiBEMq8&addresses[]=mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3&addresses[]=n1Fr4r3wEcbXZGQJaqJkFRiMpYLAsk81RX' -->\n" +
     "$ curl -G https://api.helloblock.io/v1/addresses \\\n" +
     "   -d \"addresses[]=mu1izpJmF7CHnbVcH59f1PqfvXnmiBEMq8\" \\\n" +
     "   -d \"addresses[]=mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3\" \\\n" +
@@ -403,12 +401,18 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "{\n" +
     "  \"wallet\": {\n" +
     "    \"tx_n\": 6,\n" +
-    "    \"total_received_n\": false,\n" +
+    "    \"total_received_n\": 2,\n" +
     "    \"total_received\": 8565778,\n" +
     "    \"total_sent_n\": 3,\n" +
     "    \"total_sent\": 8565778,\n" +
     "    \"balance\": 0\n" +
     "  },\n" +
+    "  \"txs\": [\n" +
+    "    TODO\n" +
+    "  ],\n" +
+    "  \"info\": [\n" +
+    "    TODO\n" +
+    "  ],\n" +
     "  \"addresses\": [ {\n" +
     "    \"total_received\": 4122889,\n" +
     "    \"total_received_n\": 1,\n" +
@@ -445,77 +449,125 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/addresses/batch/_description.html',
-    "<h4>Batch Addresses</h4>\n" +
+    "<h3>Retrieve multiple Addresses</h3>\n" +
+    "<br>\n" +
+    "<p>Gets and returns data for multiple addresses.</p>\n" +
     "<br>\n" +
     "<p><strong>Request Parameters</strong></p>\n" +
     "<table class=\"table table-bordered table-docs\">\n" +
     "  <tbody>\n" +
     "    <tr>\n" +
-    "      <td>addresses: </td>\n" +
+    "      <td>addresses[]: </td>\n" +
     "      <td>\n" +
-    "        <em>array of strings</em> (required)\n" +
+    "        <em>string</em> [required]\n" +
     "        <div>\n" +
-    "          array[]=item follows RESTful\n" +
+    "          Can pass multiple\n" +
     "        </div>\n" +
     "      </td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>tx: </td>\n" +
-    "      <td><em>boolean</em> (optional)</td>\n" +
+    "      <td>txs: </td>\n" +
+    "      <td>\n" +
+    "        <em>boolean</em> (optional; default: true)</td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
     "      <td>wallet: </td>\n" +
-    "      <td><em>boolean</em> (optional)</td>\n" +
+    "      <td>\n" +
+    "        <em>boolean</em> (optional; default: true)</td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
     "      <td>info: </td>\n" +
-    "      <td><em>boolean</em> (optional)</td>\n" +
+    "      <td>\n" +
+    "        <em>boolean</em> (optional; default: true)</td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
     "</table>\n" +
     "\n" +
     "<br>\n" +
     "<p><strong>Response Attributes</strong></p>\n" +
-    "<p>Returns array of many addresses</p>\n" +
-    "Wallet\n" +
     "<table class=\"table table-bordered table-docs table-condensed\">\n" +
     "  <tbody>\n" +
     "    <tr>\n" +
-    "      <td>total_received: </td>\n" +
-    "      <td><em>integer</em></td>\n" +
+    "      <td>addresses: </td>\n" +
+    "      <td>\n" +
+    "        <p><em>array</em> of <a href=\"/#!/docs#addresses\">Address Objects</a></p>\n" +
+    "      </td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>total_received_n: </td>\n" +
-    "      <td><em>integer</em></td>\n" +
+    "      <td>txs (optional): </td>\n" +
+    "      <td>\n" +
+    "        <p><em>array</em> of <a href=\"/#!/docs#transactions\">Transaction Objects</a></p>\n" +
+    "      </td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>total_sent: </td>\n" +
-    "      <td><em>integer</em></td>\n" +
+    "      <td>wallet (optional): </td>\n" +
+    "      <td>\n" +
+    "        <p>Wallet Object</p>\n" +
+    "        <table class='table table-bordered table-condensed table-docs'>\n" +
+    "          <tbody>\n" +
+    "            <tr>\n" +
+    "              <td>tx_n</td>\n" +
+    "              <td><em>integer</em></td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>total_received_n</td>\n" +
+    "              <td><em>integer</em></td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>total_received</td>\n" +
+    "              <td><em>integer</em></td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>total_sent_n</td>\n" +
+    "              <td><em>integer</em></td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>total_sent</td>\n" +
+    "              <td><em>integer</em></td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>balance</td>\n" +
+    "              <td><em>integer</em></td>\n" +
+    "            </tr>\n" +
+    "          </tbody>\n" +
+    "        </table>\n" +
+    "      </td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>total_sent_n: </td>\n" +
-    "      <td><em>integer</em></td>\n" +
+    "      <td>info (optional): </td>\n" +
+    "      <td>\n" +
+    "        <p>Info Object</p>\n" +
+    "        <table class='table table-bordered table-condensed table-docs'>\n" +
+    "          <tbody>\n" +
+    "            <tr>\n" +
+    "              <td>tx_n</td>\n" +
+    "              <td><em>integer</em></td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>total_received_n</td>\n" +
+    "              <td><em>integer</em></td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>total_received</td>\n" +
+    "              <td><em>integer</em></td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>total_sent_n</td>\n" +
+    "              <td><em>integer</em></td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>total_sent</td>\n" +
+    "              <td><em>integer</em></td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>balance</td>\n" +
+    "              <td><em>integer</em></td>\n" +
+    "            </tr>\n" +
+    "          </tbody>\n" +
+    "        </table>\n" +
+    "      </td>\n" +
     "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>tx_n: </td>\n" +
-    "      <td><em>integer</em></td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>balance: </td>\n" +
-    "      <td><em>integer</em></td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>address: </td>\n" +
-    "      <td><em>string</em> (base58)</td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>hash160: </td>\n" +
-    "      <td><em>string</em> (hash160)</td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>txs: </td>\n" +
-    "      <td><em>Array of Transaction Objects</em> (see below)</td>\n" +
-    "    </tr>\n" +
+    "\n" +
     "  </tbody>\n" +
     "</table>\n"
   );
@@ -549,7 +601,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/addresses/single/_curl.html',
-    "<br><br><br><br><br><br>\n" +
+    "<br><br><br><br>\n" +
     "<div class=\"h5 title\">DEFINITION</div>\n" +
     "<pre>\n" +
     "  <code class=\"bash\" hljs>\n" +
@@ -559,7 +611,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
     "<pre>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "$ curl https://api.helloblock.io/v1/addresses/<span class='text-info'>n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK</span>\n" +
+    "$ curl -G https://api.helloblock.io/v1/addresses/ \\\n" +
+    "  <span class='text-info'>n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK</span> \\\n" +
+    "  -d \"tx=true\"\n" +
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
@@ -574,6 +628,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  \"balance\": 0,\n" +
     "  \"address\": \"n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK\",\n" +
     "  \"hash160\": \"e18424c2562c495e16c4a67d9bf803116158be6e\"\n" +
+    "  \"txs\": [\n" +
+    "    TODO\n" +
+    "  ]\n" +
     "}\n" +
     "  </code>\n" +
     "</pre>\n"
@@ -581,14 +638,16 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/addresses/single/_description.html',
-    "<h4>Single Addresses</h4>\n" +
+    "<h3>Retrieve an Address</h3>\n" +
+    "<br>\n" +
+    "<p>Gets and returns data for a single address.</p>\n" +
     "<br>\n" +
     "<p><strong>Request Parameters</strong></p>\n" +
     "<table class=\"table table-bordered table-docs\">\n" +
     "  <tbody>\n" +
     "    <tr>\n" +
     "      <td>address: </td>\n" +
-    "      <td><em>string</em> (required)</td>\n" +
+    "      <td><em>string</em> [required]</td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
     "      <td>tx: </td>\n" +
@@ -635,7 +694,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    </tr>\n" +
     "    <tr>\n" +
     "      <td>txs: </td>\n" +
-    "      <td><em>Array of Transaction Objects</em> (see below)</td>\n" +
+    "      <td><em>array</em> of <a href=\"/#!/docs#transactions\">Transaction Objects</a></td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
     "</table>\n"
@@ -659,33 +718,42 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<pre>\n" +
     "  <code class=\"bash\" hljs>\n" +
     "$ curl -G https://api.helloblock.io/v1/addresses/unspents \\\n" +
-    "   -d \"addresses[]=mm7skHNwsbMSGxZA7Au4Gp5sRdNkfLQkLZ\" \\\n" +
-    "   -d \"addresses[]=miwCPtnuCKxn5JMxXaGZumeHhSkndz6FTP\" \\\n" +
-    "   -d \"addresses[]=msv7sCECsEC8vzAoPUkGVypXoxUBagFjYG\"\n" +
+    "   -d \"addresses[]=mfwyrZw47YY7wExpcLm7uPHLer7XoMVntd\" \\\n" +
+    "   -d \"addresses[]=n161eDouWrxaPPk6D3y4si3Kenz43yAAo8\" \\\n" +
+    "   -d \"addresses[]=mhdDvTC1wgTr6kEEs4wkDTSxwjuQzvN4md\"\n" +
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
     "<pre>\n" +
     "  <code class=\"json\" hljs>\n" +
-    "[\n" +
-    "  {\n" +
-    "    \"block_height\": 155068,\n" +
-    "    \"tx_hash\": \"a2d6d886b507209fb879eb23ebe7b32de926ef0b1fc344e167b6eb811640f16e\",\n" +
-    "    \"tx_id\": 997370,\n" +
-    "    \"n\": 0,\n" +
-    "    \"scriptPubKey\": \"76a9143d73642bb6a7dfa4dae730a4d87d3cf839897d6588ac\",\n" +
-    "    \"value\": 2200000000,\n" +
-    "    \"hash160\": \"3d73642bb6a7dfa4dae730a4d87d3cf839897d65\",\n" +
-    "    \"address\": \"mm7skHNwsbMSGxZA7Au4Gp5sRdNkfLQkLZ\"\n" +
-    "  }\n" +
-    "]\n" +
+    "[ {\n" +
+    "  \"confirmations\": 32,\n" +
+    "  \"block_height\": 155068,\n" +
+    "  \"tx_hash\": \"7110f57720d45f751e5a796cf53f3e78c74dd93939933642f4c277d2cf524f9e\",\n" +
+    "  \"tx_id\": 997365,\n" +
+    "  \"n\": 1,\n" +
+    "  \"scriptPubKey\": \"76a91404bbb3a6de41830289bb34a47133b0dbfcc3adc288ac\",\n" +
+    "  \"value\": 2200000000,\n" +
+    "  \"hash160\": \"04bbb3a6de41830289bb34a47133b0dbfcc3adc2\",\n" +
+    "  \"address\": \"mfwyrZw47YY7wExpcLm7uPHLer7XoMVntd\"\n" +
+    "}, {\n" +
+    "  \"confirmations\": 32,\n" +
+    "  \"block_height\": 155068,\n" +
+    "  \"tx_hash\": \"dbd9a8fee45519c338b0b49656967066c873afabe3ab4c831ff5c9ce5cab4725\",\n" +
+    "  \"tx_id\": 997374,\n" +
+    "  \"n\": 0,\n" +
+    "  \"scriptPubKey\": \"76a91404bbb3a6de41830289bb34a47133b0dbfcc3adc288ac\",\n" +
+    "  \"value\": 2100000000,\n" +
+    "  \"hash160\": \"04bbb3a6de41830289bb34a47133b0dbfcc3adc2\",\n" +
+    "  \"address\": \"mfwyrZw47YY7wExpcLm7uPHLer7XoMVntd\"\n" +
+    "}]\n" +
     "  </code>\n" +
     "</pre>\n"
   );
 
 
   $templateCache.put('/templates/docs/addresses/unspents/_description.html',
-    "<h4>Unspents</h4>\n" +
+    "<h3>Retrieve Unspent Outputs for multiple Addresses</h3>\n" +
     "<br>\n" +
     "<p><strong>Request Parameters</strong></p>\n" +
     "<table class=\"table table-bordered table-docs\">\n" +
@@ -693,7 +761,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <tr>\n" +
     "      <td>addresses: </td>\n" +
     "      <td>\n" +
-    "        <em>array of strings</em> (required)\n" +
+    "        <em>array</em> of <em>strings</em> [required]\n" +
     "      </td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
@@ -701,43 +769,44 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "<br>\n" +
     "<p><strong>Response Attributes</strong></p>\n" +
+    "<p>Returns <em>array</em> of: </p>\n" +
     "<table class=\"table table-bordered table-docs table-condensed\">\n" +
     "  <tbody>\n" +
     "    <tr>\n" +
-    "      <td>total_received: </td>\n" +
+    "      <td>confirmations: </td>\n" +
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>total_received_n: </td>\n" +
+    "      <td>block_height: </td>\n" +
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>total_sent: </td>\n" +
+    "      <td>tx_hash: </td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>tx_id: </td>\n" +
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>total_sent_n: </td>\n" +
+    "      <td>n: </td>\n" +
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>tx_n: </td>\n" +
+    "      <td>scriptPubKey: </td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>value: </td>\n" +
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>balance: </td>\n" +
-    "      <td><em>integer</em></td>\n" +
+    "      <td>hash160: </td>\n" +
+    "      <td><em>string</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
     "      <td>address: </td>\n" +
     "      <td><em>string</em> (base58)</td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>hash160: </td>\n" +
-    "      <td><em>string</em> (hash160)</td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>txs: </td>\n" +
-    "      <td><em>Array of Transaction Objects</em> (see below)</td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
     "</table>\n"
@@ -797,14 +866,14 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/blocks/single/_description.html',
-    "<h4>Single Block</h4>\n" +
+    "<h3>Retrieve a Block</h3>\n" +
     "<br>\n" +
     "<p><strong>Request Parameters</strong></p>\n" +
     "<table class=\"table table-bordered table-docs\">\n" +
     "  <tbody>\n" +
     "    <tr>\n" +
     "      <td>block_height: </td>\n" +
-    "      <td><em>integer</em> (required)</td>\n" +
+    "      <td><em>integer</em> [required]</td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
     "      <td>tx: </td>\n" +
@@ -909,8 +978,6 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  <code class=\"bash\" hljs>\n" +
     "  echo \"Hello, block!\"\n" +
     "\n" +
-    "  echo \"Here's a summary of all API Endpoints\"\n" +
-    "\n" +
     "  <span class=\"\">GET</span>  https://api.helloblock.io/v1/address/<span class=\"text-info\">&lt;address&gt;</span>\n" +
     "  <span class=\"\">POST</span> https://api.helloblock.io/v1/transactions\n" +
     "\n" +
@@ -975,7 +1042,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/transactions/batch/_description.html',
-    "<h4>Batch Transacitons</h4>\n" +
+    "<h3>Retrieve multiple Transactions</h3>\n" +
     "<br>\n" +
     "<p><strong>Request Parameters</strong></p>\n" +
     "<table class=\"table table-bordered table-docs\">\n" +
@@ -983,7 +1050,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <tr>\n" +
     "      <td>transactions: </td>\n" +
     "      <td>\n" +
-    "        <em>array of strings</em> (required)\n" +
+    "        <em>array of strings</em> [required]\n" +
     "        <div>\n" +
     "          tx_hashes[]=item follows RESTful\n" +
     "        </div>\n" +
@@ -1092,18 +1159,18 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/transactions/post/_description.html',
-    "<h4>Post Transaction</h4>\n" +
+    "<h3>Propagate a Transaction</h3>\n" +
     "<br>\n" +
     "<p><strong>Arguments</strong></p>\n" +
     "<table class=\"table table-bordered table-docs\">\n" +
     "  <tbody>\n" +
     "    <tr>\n" +
     "      <td>tx_hash: </td>\n" +
-    "      <td><em>string</em> (required)</td>\n" +
+    "      <td><em>string</em> [required]</td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
     "      <td>hex: </td>\n" +
-    "      <td><em>string</em> (required)</td>\n" +
+    "      <td><em>string</em> [required]</td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
     "</table>\n" +
@@ -1214,14 +1281,14 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/transactions/single/_description.html',
-    "<h4>Single Addresses</h4>\n" +
+    "<h3>Retrieve a Transaction</h3>\n" +
     "<br>\n" +
     "<p><strong>Request Parameters</strong></p>\n" +
     "<table class=\"table table-bordered table-docs\">\n" +
     "  <tbody>\n" +
     "    <tr>\n" +
     "      <td>address: </td>\n" +
-    "      <td><em>string</em> (required)</td>\n" +
+    "      <td><em>string</em> [required]</td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
     "      <td>tx: </td>\n" +
