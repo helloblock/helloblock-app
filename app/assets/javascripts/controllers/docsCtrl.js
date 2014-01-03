@@ -2,8 +2,8 @@
 
 hbApp.controller( "docsCtrl", function( $scope ) {
 
-	$scope.docsUrl = function( method, sub, partial ) {
-		return '/templates/docs/' + method + '/' + sub + '/_' + partial + '.html'
+	$scope.docsUrl = function( resource, sub, partial ) {
+		return '/templates/docs/' + resource + '/' + sub + '/_' + partial + '.html'
 	}
 
 	// Break into 2 and then recombine
@@ -27,7 +27,7 @@ hbApp.controller( "docsCtrl", function( $scope ) {
 		} ]
 	}, ]
 
-	$scope.methods = [ {
+	$scope.resources = [ {
 		name: "addresses",
 		subs: [ {
 			name: "",
@@ -38,9 +38,15 @@ hbApp.controller( "docsCtrl", function( $scope ) {
 		}, {
 			name: "Retrieve multiple Addresses",
 			file: "batch"
+		} ]
+	}, {
+		name: "Unspents",
+		subs: [ {
+			name: "intro",
+			file: "intro"
 		}, {
 			name: "Retrieve Unspent Outputs",
-			file: "unspents"
+			file: "multiple"
 		} ]
 	}, {
 		name: "transactions",
@@ -68,6 +74,6 @@ hbApp.controller( "docsCtrl", function( $scope ) {
 		} ]
 	}, ]
 
-	$scope.sections = $scope.general.concat( $scope.methods )
+	$scope.sections = $scope.general.concat( $scope.resources )
 
 } )

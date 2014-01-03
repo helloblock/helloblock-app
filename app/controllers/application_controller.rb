@@ -5,8 +5,7 @@ class ApplicationController < ActionController::Base
 
   after_filter :set_csrf_cookie_for_ng
 
-
-  before_filter :set_cache_buster unless Rails.env.production?
+  # before_filter :set_cache_buster unless Rails.env.production?
 
   # Entry point for AngularJS app
   # /# Namespaced is all handled by AngularJs
