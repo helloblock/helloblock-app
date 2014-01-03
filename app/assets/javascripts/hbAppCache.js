@@ -186,6 +186,15 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('/templates/_explorer_response.html',
+    "STATUS CODE: 200 OK\n" +
+    "\n" +
+    "BODY:\n" +
+    "\n" +
+    "{{response.body}}\n"
+  );
+
+
   $templateCache.put('/templates/brand.html',
     "<h1 ng-non-bindable>\n" +
     "  <code>{{Hello, Block}}</code>\n" +
@@ -262,7 +271,51 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/components/_sidebar.html',
-    ""
+    "<div class=\"bs-sidebar static\">\n" +
+    "  <ul class=\"nav bs-sidenav\">\n" +
+    "    <li>\n" +
+    "      <div class=\"title\">\n" +
+    "        <h5>\n" +
+    "          <strong>API</strong>\n" +
+    "        </h5>\n" +
+    "      </div>\n" +
+    "    </li>\n" +
+    "    <li\n" +
+    "      ng-repeat=\"s in general\"\n" +
+    "      spy=\"{{s.name}}\"\n" +
+    "    >\n" +
+    "      <a href=\"#!/docs/#{{s.name}}\">{{s.name.capitalize()}}</a>\n" +
+    "      <ul class=\"nav\">\n" +
+    "        <li ng-repeat=\"sub in s.subs.slice(1)\" spy=\"{{sub.id}}\">\n" +
+    "          <span class='sub'>\n" +
+    "            <a href=\"/#!/docs#{{sub.id}}\">{{sub.name.capitalize()}}</a>\n" +
+    "          </span>\n" +
+    "        </li>\n" +
+    "      </ul>\n" +
+    "    </li>\n" +
+    "    </li>\n" +
+    "    <li>\n" +
+    "      <div class=\"title\">\n" +
+    "        <h5>\n" +
+    "          <strong>Resources</strong>\n" +
+    "        </h5>\n" +
+    "      </div>\n" +
+    "    </li>\n" +
+    "    <li\n" +
+    "      ng-repeat=\"s in resources\"\n" +
+    "      spy=\"{{s.name}}\"\n" +
+    "    >\n" +
+    "      <a href=\"#!/docs/#{{s.name}}\">{{s.name.capitalize()}}</a>\n" +
+    "      <ul class=\"nav\">\n" +
+    "        <li ng-repeat=\"sub in s.subs.slice(1)\" spy=\"{{sub.id}}\">\n" +
+    "          <span class='sub'>\n" +
+    "            <a href=\"/#!/docs#{{sub.id}}\">{{sub.name.capitalize()}}</a>\n" +
+    "          </span>\n" +
+    "        </li>\n" +
+    "      </ul>\n" +
+    "    </li>\n" +
+    "  </ul>\n" +
+    "</div>\n"
   );
 
 
@@ -282,11 +335,13 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        <li\n" +
     "          ng-repeat=\"s in general\"\n" +
     "          spy=\"{{s.name}}\"\n" +
-    "          >\n" +
+    "        >\n" +
     "          <a href=\"#!/docs/#{{s.name}}\">{{s.name.capitalize()}}</a>\n" +
     "          <ul class=\"nav\">\n" +
-    "            <li ng-repeat=\"sub in s.subs.slice(1)\">\n" +
-    "              <span class='sub'>{{sub.name.capitalize()}}</span class='sub'>\n" +
+    "            <li ng-repeat=\"sub in s.subs.slice(1)\" spy=\"{{sub.id}}\">\n" +
+    "              <span class='sub'>\n" +
+    "                <a href=\"/#!/docs#{{sub.id}}\">{{sub.name.capitalize()}}</a>\n" +
+    "              </span>\n" +
     "            </li>\n" +
     "          </ul>\n" +
     "        </li>\n" +
@@ -300,11 +355,14 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        </li>\n" +
     "        <li\n" +
     "          ng-repeat=\"s in resources\"\n" +
-    "          spy=\"{{s.name}}\">\n" +
+    "          spy=\"{{s.name}}\"\n" +
+    "        >\n" +
     "          <a href=\"#!/docs/#{{s.name}}\">{{s.name.capitalize()}}</a>\n" +
     "          <ul class=\"nav\">\n" +
-    "            <li ng-repeat=\"sub in s.subs.slice(1)\">\n" +
-    "              <span class='sub'>{{sub.name.capitalize()}}</span class='sub'>\n" +
+    "            <li ng-repeat=\"sub in s.subs.slice(1)\" spy=\"{{sub.id}}\">\n" +
+    "              <span class='sub'>\n" +
+    "                <a href=\"/#!/docs#{{sub.id}}\">{{sub.name.capitalize()}}</a>\n" +
+    "              </span>\n" +
     "            </li>\n" +
     "          </ul>\n" +
     "        </li>\n" +
@@ -338,7 +396,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <div class=\"sections\">\n" +
     "      <span ng-repeat=\"s in sections\" id=\"{{s.name}}\">\n" +
     "        <div class=\"line\" ng-cloak></div>\n" +
-    "        <span ng-repeat=\"sub in s.subs\">\n" +
+    "        <span ng-repeat=\"sub in s.subs\" id=\"{{sub.id}}\">\n" +
     "          <div class=\"row section\">\n" +
     "            <div class=\"col-md-6 section-description\" >\n" +
     "              <br>\n" +
@@ -1444,7 +1502,76 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/explorer.html',
-    ""
+    "<br>\n" +
+    "<div class=\"container\">\n" +
+    "  <div class=\"input-group input-group-lg\">\n" +
+    "    <span class=\"input-group-addon\">REQUEST URL: </span>\n" +
+    "    <input type=\"text\" class=\"form-control\" value=\"{{request.url}}\">\n" +
+    "  </div>\n" +
+    "\n" +
+    "  <div class=\"row\">\n" +
+    "    <div class=\"col-md-4\">\n" +
+    "      <h3>REQUEST Builder</h3>\n" +
+    "      <div class=\"bs-sidebar\">\n" +
+    "        <div class=\"row\">\n" +
+    "          <div class=\"col-md-5\">\n" +
+    "            <div class='h5 title-key'>\n" +
+    "              <strong>Mode:</strong>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "          <div class=\"col-md-7\">\n" +
+    "            <div class=\"h5\">\n" +
+    "              asdf\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "        <br>\n" +
+    "        <div class=\"row\">\n" +
+    "          <div class=\"col-md-5\">\n" +
+    "            <div class='h5 title-key'>\n" +
+    "              <strong>Resource:</strong>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "          <div class=\"col-md-7\">\n" +
+    "            DROP\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "        <br>\n" +
+    "        <div class=\"row\">\n" +
+    "          <div class=\"col-md-5\">\n" +
+    "            <div class='h5 title-key'>\n" +
+    "              <strong>Parameters:</strong>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "        <br>\n" +
+    "        <div class=\"row\" ng-repeat=\"p in options.params\">\n" +
+    "          <div class=\"col-md-4 text-right\"><h5>{{p.key.capitalize()}}:</h5></div>\n" +
+    "          <div class=\"col-md-8\">\n" +
+    "            <input class='form-control' ng-model=\"p.value\">\n" +
+    "          </div>\n" +
+    "          <br><br>\n" +
+    "        </div>\n" +
+    "        <br>\n" +
+    "        <a class=\"btn btn-block btn-success\">\n" +
+    "          SUBMIT REQUEST\n" +
+    "        </a>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-md-8\">\n" +
+    "      <h3>RESPONSE</h3>\n" +
+    "      <div ng-include=></div>\n" +
+    "      <pre class=\"response\">\n" +
+    "\n" +
+    "        <!-- scope.response -->\n" +
+    "        <code class=\"javascript\"\n" +
+    "        ng-hljs\n" +
+    "        ng-include=\"'/templates/_explorer_response.html'\">\n" +
+    "      </code>\n" +
+    "    </pre>\n" +
+    "  </div>\n" +
+    "</div>\n" +
+    "</div>\n"
   );
 
 
