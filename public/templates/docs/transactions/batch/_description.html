@@ -4,11 +4,15 @@
 <table class="table table-bordered table-docs">
   <tbody>
     <tr>
-      <td>transactions: </td>
+      <td>tx_hashes=[]: </td>
       <td>
-        <em>array of strings</em> [required]
+        <em>array of</em> <em>strings</em>[required]
+        <br><br>
         <div>
-          tx_hashes[]=item follows RESTful
+          Repeat for multiple transactions, e.g.
+        </div>
+        <div>
+          "tx_hashes[]=<em>&</em>tx_hashes[]=<em>&</em>tx_hashes[]=c"
         </div>
       </td>
     </tr>
@@ -17,45 +21,6 @@
 
 <br>
 <p><strong>Response Attributes</strong></p>
-<p>Returns array of many addresses</p>
-Wallet
-<table class="table table-bordered table-docs table-condensed">
-  <tbody>
-    <tr>
-      <td>total_received: </td>
-      <td><em>integer</em></td>
-    </tr>
-    <tr>
-      <td>total_received_n: </td>
-      <td><em>integer</em></td>
-    </tr>
-    <tr>
-      <td>total_sent: </td>
-      <td><em>integer</em></td>
-    </tr>
-    <tr>
-      <td>total_sent_n: </td>
-      <td><em>integer</em></td>
-    </tr>
-    <tr>
-      <td>tx_n: </td>
-      <td><em>integer</em></td>
-    </tr>
-    <tr>
-      <td>balance: </td>
-      <td><em>integer</em></td>
-    </tr>
-    <tr>
-      <td>address: </td>
-      <td><em>string</em> (base58)</td>
-    </tr>
-    <tr>
-      <td>hash160: </td>
-      <td><em>string</em> (hash160)</td>
-    </tr>
-    <tr>
-      <td>txs: </td>
-      <td><em>Array of Transaction Objects</em> (see below)</td>
-    </tr>
-  </tbody>
-</table>
+<p>
+  Returns <em>array</em> of <a href="/#!/docs#transactions">Transaction Objects</a>
+</p>
