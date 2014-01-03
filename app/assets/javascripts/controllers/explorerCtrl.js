@@ -11,9 +11,8 @@ hbApp.controller( "explorerCtrl", function( $scope, $resource ) {
 		data: {}
 	}
 
-	$scope.request = {
+	$scope.options = {
 		mode: "test",
-		url: "",
 		resource: "",
 		type: "",
 		params: {
@@ -24,9 +23,15 @@ hbApp.controller( "explorerCtrl", function( $scope, $resource ) {
 		},
 	}
 
+	$scope.request = {
+		url: "https://" + $scope.options.mode + ".helloblock.io/v1/",
+	}
+
 	$scope.submitRequest = function() {
 		$scope.response.loading = true;
 		HelloBlock.get()
+
+		// Formatter
 
 		$scope.response.loading = false;
 	}

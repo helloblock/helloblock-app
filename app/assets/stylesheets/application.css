@@ -15,6 +15,7 @@
  *= require highlight
  *= require docs
  *= require landing
+ *= require explorer
  *= require global
  *= require font-awesome
  */
