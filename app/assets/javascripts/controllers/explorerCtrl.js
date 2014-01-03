@@ -6,25 +6,33 @@ hbApp.controller( "explorerCtrl", function( $scope, $resource ) {
 
 	// CORE USER PARAMETERS
 
-	$scope.response = {
-		loading: false,
-		data: {}
-	}
-
 	$scope.options = {
-		mode: "test",
+		mode: "api",
 		resource: "",
 		type: "",
-		params: {
-
-		},
+		params: [ {
+			key: "address",
+			value: "123"
+		}, {
+			key: "txs",
+			value: "false"
+		} ],
 		body: {
 
 		},
 	}
 
 	$scope.request = {
-		url: "https://" + $scope.options.mode + ".helloblock.io/v1/",
+		url: "https://" + $scope.options.mode + ".helloblock.io/v1/" +
+			$scope.options.resource + "/" + $scope.options.params[ 0 ].value + "/"
+	}
+
+	$scope.response = {
+		loading: false,
+		body: angular.toJson( {
+			todo: true,
+			implemented: false
+		}, true )
 	}
 
 	$scope.submitRequest = function() {

@@ -7,32 +7,46 @@
 
   <div class="row">
     <div class="col-md-4">
-      <h3>Query Builder</h3>
+      <h3>REQUEST Builder</h3>
       <div class="bs-sidebar">
-        <ul class="nav bs-sidenav">
-          <li>
-            <div class="title">
-              <h5>
-                <strong>API</strong>
-              </h5>
-            </div>
-          </li>
-        </ul>
+        <div class="row">
+          <div class="col-md-6">Type:</div>
+          <div class="col-md-6">GET</div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">Mode:</div>
+          <div class="col-md-6">LIVE</div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">Endpoint:</div>
+          <div class="col-md-6">DROPDOWN</div>
+        </div>
+
+        <h4 class='title'>
+          <strong>Parameters</strong>
+        </h4>
+        <div class="row" ng-repeat="p in options.params">
+          <div class="col-md-4"><h5>{{p.key.capitalize()}}:</h5></div>
+          <div class="col-md-8">
+            <input class='form-control' ng-model="p.value">
+          </div>
+          <br><br>
+        </div>
+        <br>
+        <a class="btn btn-block btn-success">
+          SUBMIT REQUEST
+        </a>
       </div>
     </div>
     <div class="col-md-8">
-      <h3>JSON Response</h3>
+      <h3>RESPONSE</h3>
+      <div ng-include=></div>
       <pre class="response">
-        <spin ng-show="response.loading"></spin>
-        <code class="javascript" ng-hljs>
-          STATUS CODE: 200 OK
 
-          BODY:
-
-          {
-            "asdf": 1
-          }
-          {{response.data}}
+        <!-- scope.response -->
+        <code class="javascript"
+          ng-hljs
+          ng-include="'/templates/_explorer_response.html'">
         </code>
       </pre>
     </div>
