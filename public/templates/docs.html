@@ -13,11 +13,13 @@
         <li
           ng-repeat="s in general"
           spy="{{s.name}}"
-          >
+        >
           <a href="#!/docs/#{{s.name}}">{{s.name.capitalize()}}</a>
           <ul class="nav">
-            <li ng-repeat="sub in s.subs.slice(1)">
-              <span class='sub'>{{sub.name.capitalize()}}</span class='sub'>
+            <li ng-repeat="sub in s.subs.slice(1)" spy="{{sub.id}}">
+              <span class='sub'>
+                <a href="/#!/docs#{{sub.id}}">{{sub.name.capitalize()}}</a>
+              </span>
             </li>
           </ul>
         </li>
@@ -31,11 +33,14 @@
         </li>
         <li
           ng-repeat="s in resources"
-          spy="{{s.name}}">
+          spy="{{s.name}}"
+        >
           <a href="#!/docs/#{{s.name}}">{{s.name.capitalize()}}</a>
           <ul class="nav">
-            <li ng-repeat="sub in s.subs.slice(1)">
-              <span class='sub'>{{sub.name.capitalize()}}</span class='sub'>
+            <li ng-repeat="sub in s.subs.slice(1)" spy="{{sub.id}}">
+              <span class='sub'>
+                <a href="/#!/docs#{{sub.id}}">{{sub.name.capitalize()}}</a>
+              </span>
             </li>
           </ul>
         </li>
@@ -69,7 +74,7 @@
     <div class="sections">
       <span ng-repeat="s in sections" id="{{s.name}}">
         <div class="line" ng-cloak></div>
-        <span ng-repeat="sub in s.subs">
+        <span ng-repeat="sub in s.subs" id="{{sub.id}}">
           <div class="row section">
             <div class="col-md-6 section-description" >
               <br>

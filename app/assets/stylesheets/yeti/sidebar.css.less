@@ -13,7 +13,7 @@
 .bs-sidebar {
   z-index: 0;
   margin-top: 20px;
-  width: 210px;
+  width: 220px;
   margin-bottom: 30px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -72,13 +72,13 @@
   /* Nav: second level (shown on .active) */
   .nav {
 
-    & > .active .nav {
+    & > li.active .nav {
       display: block;
     }
 
     /* Hide by default */
     .nav {
-      display: none;
+      display: block;
       margin-bottom: 8px;
 
       span.sub {
@@ -87,16 +87,24 @@
         padding-left: 35px;
         font-size: 12px;
         line-height: 2;
-        color: @gray;
+        // color: @gray;
+
+        a {
+          color: @gray-light;
+        }
+
       }
 
-    }
+      li.active {
+        background-color: @brand-primary;
+        text-shadow: 0 1px 0 @gray;
+        border-right: 3px solid darken(@brand-primary, 10%);
 
-    .nav > li > a {
-      padding-top:    3px;
-      padding-bottom: 3px;
-      padding-left: 30px;
-      font-size: 90%;
+        a {
+          color: @white;
+        }
+      }
+
     }
   }
 }

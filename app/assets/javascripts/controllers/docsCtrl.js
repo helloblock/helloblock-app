@@ -11,66 +11,80 @@ hbApp.controller( "docsCtrl", function( $scope ) {
 		name: "introduction",
 		subs: [ {
 			name: "",
-			file: "intro"
+			file: "intro",
+			id: "introduction-intro"
 		} ]
 	}, {
 		name: "walkthrough",
 		subs: [ {
 			name: "",
-			file: "intro"
+			file: "intro",
+			id: "walkthrough-intro"
 		} ]
 	}, {
 		name: "errors",
 		subs: [ {
 			name: "",
-			file: "intro"
+			file: "intro",
+			id: "errors-intro"
 		} ]
-	}, ]
+	} ]
 
 	$scope.resources = [ {
 		name: "addresses",
 		subs: [ {
 			name: "",
-			file: "intro"
+			file: "intro",
+			id: "addresses-intro"
 		}, {
 			name: "Retrieve an Address",
-			file: "single"
+			file: "single",
+			id: "addresses-single"
 		}, {
 			name: "Retrieve multiple Addresses",
-			file: "batch"
+			file: "batch",
+			id: "addresses-batch"
 		} ]
 	}, {
 		name: "unspents",
 		subs: [ {
-			name: "intro",
-			file: "intro"
+			name: "",
+			file: "intro",
+			id: "unspents-intro"
 		}, {
 			name: "Retrieve Unspent Outputs",
-			file: "multiple"
+			file: "multiple",
+			id: "unspents-multiple"
 		} ]
 	}, {
 		name: "transactions",
 		subs: [ {
-			name: "intro",
-			file: "intro"
+			name: "",
+			file: "intro",
+			id: "transactions-intro"
 		}, {
 			name: "Retrieve a Transaction",
-			file: "single"
+			file: "single",
+			id: "transactions-single"
 		}, {
 			name: "Retrieve multiple Transactions",
-			file: "batch"
+			file: "batch",
+			id: "transactions-batch"
 		}, {
 			name: "Propagate a Transaction",
-			file: "post"
+			file: "post",
+			id: "transactions-post"
 		} ]
 	}, {
 		name: "blocks",
 		subs: [ {
 			name: "intro",
-			file: "intro"
+			file: "intro",
+			id: "blocks-intro"
 		}, {
 			name: "Retrieve a Block",
-			file: "single"
+			file: "single",
+			id: "blocks-single"
 		} ]
 	}, ]
 
