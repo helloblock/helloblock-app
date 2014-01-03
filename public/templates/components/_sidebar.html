@@ -1,0 +1,45 @@
+<div class="bs-sidebar static">
+  <ul class="nav bs-sidenav">
+    <li>
+      <div class="title">
+        <h5>
+          <strong>API</strong>
+        </h5>
+      </div>
+    </li>
+    <li
+      ng-repeat="s in general"
+      spy="{{s.name}}"
+    >
+      <a href="#!/docs/#{{s.name}}">{{s.name.capitalize()}}</a>
+      <ul class="nav">
+        <li ng-repeat="sub in s.subs.slice(1)" spy="{{sub.id}}">
+          <span class='sub'>
+            <a href="/#!/docs#{{sub.id}}">{{sub.name.capitalize()}}</a>
+          </span>
+        </li>
+      </ul>
+    </li>
+    </li>
+    <li>
+      <div class="title">
+        <h5>
+          <strong>Resources</strong>
+        </h5>
+      </div>
+    </li>
+    <li
+      ng-repeat="s in resources"
+      spy="{{s.name}}"
+    >
+      <a href="#!/docs/#{{s.name}}">{{s.name.capitalize()}}</a>
+      <ul class="nav">
+        <li ng-repeat="sub in s.subs.slice(1)" spy="{{sub.id}}">
+          <span class='sub'>
+            <a href="/#!/docs#{{sub.id}}">{{sub.name.capitalize()}}</a>
+          </span>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

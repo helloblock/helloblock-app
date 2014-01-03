@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <input>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <h3>Query Builder</h3>
+      <div class="bs-sidebar static">
+        <ul class="nav bs-sidenav">
+          <li>
+            <div class="title">
+              <h5>
+                <strong>API</strong>
+              </h5>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <h3>JSON Response</h3>
+      <spin ng-show="response.loading"></spin>
+      <pre>
+        <code class="javascript">
+          {{response.data}}
+        </code>
+      </pre>
+    </div>
+  </div>
+</div>

@@ -41,7 +41,8 @@ hbApp.config( function( $routeProvider ) {
 	} )
 
 	$routeProvider.when( "/explorer", {
-		templateUrl: "/templates/explorer.html"
+		templateUrl: "/templates/explorer.html",
+		controller: "explorerCtrl"
 	} )
 
 	$routeProvider.when( "/test", {

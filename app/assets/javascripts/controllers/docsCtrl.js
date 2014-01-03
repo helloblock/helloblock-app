@@ -1,5 +1,3 @@
-'use strict'
-
 hbApp.controller( "docsCtrl", function( $scope ) {
 
 	$scope.docsUrl = function( resource, sub, partial ) {
