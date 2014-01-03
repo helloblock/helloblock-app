@@ -4,12 +4,8 @@
 <table class="table table-bordered table-docs">
   <tbody>
     <tr>
-      <td>address: </td>
+      <td>tx_hash: </td>
       <td><em>string</em> [required]</td>
-    </tr>
-    <tr>
-      <td>tx: </td>
-      <td><em>boolean</em> (optional)</td>
     </tr>
   </tbody>
 </table>
@@ -19,40 +15,105 @@
 <table class="table table-bordered table-docs table-condensed">
   <tbody>
     <tr>
-      <td>total_received: </td>
+      <td>hash: </td>
+      <td><em>string</em></td>
+    </tr>
+    <tr>
+      <td>ver: </td>
       <td><em>integer</em></td>
     </tr>
     <tr>
-      <td>total_received_n: </td>
+      <td>lock_time: </td>
       <td><em>integer</em></td>
     </tr>
     <tr>
-      <td>total_sent: </td>
+      <td>size: </td>
       <td><em>integer</em></td>
     </tr>
     <tr>
-      <td>total_sent_n: </td>
+      <td>tx_id: </td>
       <td><em>integer</em></td>
     </tr>
     <tr>
-      <td>tx_n: </td>
+      <td>vin_sz: </td>
       <td><em>integer</em></td>
     </tr>
     <tr>
-      <td>balance: </td>
-      <td><em>integer</em></td>
+      <td>in: </td>
+      <td>
+        <table class='table table-bordered table-condensed table-docs'>
+          <tbody>
+            <tr>
+              <td>prev_out:</td>
+              <td>
+                <table class='table table-bordered table-condensed table-docs'>
+                  <tbody>
+                    <tr>
+                      <td>n</td>
+                      <td><em>integer</em></td>
+                    </tr>
+                    <tr>
+                      <td>hash</td>
+                      <td><em>string</em></td>
+                    </tr>
+                    <tr>
+                      <td>tx_id</td>
+                      <td><em>integer</em></td>
+                    </tr>
+                    <tr>
+                      <td>value</td>
+                      <td><em>integer</em></td>
+                    </tr>
+                    <tr>
+                      <td>address</td>
+                      <td><em>string</em></td>
+                    </tr>
+                    <tr>
+                      <td>hash160</td>
+                      <td><em>string</em></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <tr>
+                <td>scriptSig</td>
+                <td><em>string</em></td>
+              </tr>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
     </tr>
     <tr>
-      <td>address: </td>
-      <td><em>string</em> (base58)</td>
-    </tr>
-    <tr>
-      <td>hash160: </td>
-      <td><em>string</em> (hash160)</td>
-    </tr>
-    <tr>
-      <td>txs: </td>
-      <td><em>Array of Transaction Objects</em> (see below)</td>
+      <td>out: </td>
+      <td>
+        <p><em>array</em> of Output Objects</p>
+        <table class='table table-bordered table-condensed table-docs'>
+          <tbody>
+            <tr>
+              <td>n</td>
+              <td><em>integer</em></td>
+            </tr>
+            <tr>
+              <td>value</td>
+              <td><em>integer</em></td>
+            </tr>
+            <tr>
+              <td>scriptPubKey</td>
+              <td><em>string</em></td>
+            </tr>
+            <tr>
+              <td>spent</td>
+              <td><em>integer</em></td>
+            </tr>
+            <tr>
+              <td>address</td>
+              <td><em>string</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
     </tr>
   </tbody>
 </table>
