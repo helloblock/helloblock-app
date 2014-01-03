@@ -1,28 +1,64 @@
-<div scroll></div>
-<br><br><br><br><br><br id="special">
+<br><br><br><br>
 <div class="h5 title">DEFINITION</div>
 <pre>
   <code class="bash" hljs>
-GET https://api.helloblock.io/v1/addresses/?<span class="text-warning">addresses[]</span>=<span class="text-info">&lt;:address&gt;</span></code>
+GET https://api.helloblock.io/v1/addresses/?<span class="text-primary">addresses[]</span>=<span class="text-info">&lt;address&gt;</span></code>
 </pre>
 <div class="h5 title">EXAMPLE REQUEST</div>
 <pre>
   <code class="bash" hljs>
-$ curl https://api.helloblock.io/v1/addresses/<span class='text-info'>n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK</span>
+# Note: option -g enables globbing so [] can be parsed
+<!-- GET 'https://api.helloblock.io/v1/addresses?addresses[]=mu1izpJmF7CHnbVcH59f1PqfvXnmiBEMq8&addresses[]=mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3&addresses[]=n1Fr4r3wEcbXZGQJaqJkFRiMpYLAsk81RX' -->
+$ curl -G https://api.helloblock.io/v1/addresses \
+   -d "addresses[]=mu1izpJmF7CHnbVcH59f1PqfvXnmiBEMq8" \
+   -d "addresses[]=mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3" \
+   -d "addresses[]=n1Fr4r3wEcbXZGQJaqJkFRiMpYLAsk81RX" \
+   -d "tx=true" \
+   -d "wallet=true" \
+   -d "info=true"
   </code>
 </pre>
 <div class="h5 title">EXAMPLE RESPONSE</div>
 <pre>
-  <code class="json" hljs>
+  <code class="javascript" hljs>
 {
-  "total_received": 100000,
-  "total_received_n": 1,
-  "total_sent": 100000,
-  "total_sent_n": 1,
-  "tx_n": 2,
-  "balance": 0,
-  "address": "n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK",
-  "hash160": "e18424c2562c495e16c4a67d9bf803116158be6e"
+  "wallet": {
+    "tx_n": 6,
+    "total_received_n": false,
+    "total_received": 8565778,
+    "total_sent_n": 3,
+    "total_sent": 8565778,
+    "balance": 0
+  },
+  "addresses": [ {
+    "total_received": 4122889,
+    "total_received_n": 1,
+    "total_sent": 4122889,
+    "total_sent_n": 1,
+    "tx_n": 2,
+    "balance": 0,
+    "address": "mu1izpJmF7CHnbVcH59f1PqfvXnmiBEMq8",
+    "hash160": "940a991f8dd0f8d7609cb8e3f07235d3a136413a"
+  }, {
+    "total_received": 100000,
+    "total_received_n": 1,
+    "total_sent": 100000,
+    "total_sent_n": 1,
+    "tx_n": 2,
+    "balance": 0,
+    "address": "mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3",
+    "hash160": "a0a5226c2e376c929d800a070399e5a3d0277c6e"
+  }, {
+    "total_received": 4342889,
+    "total_received_n": 1,
+    "total_sent": 4342889,
+    "total_sent_n": 1,
+    "tx_n": 2,
+    "balance": 0,
+    "address": "n1Fr4r3wEcbXZGQJaqJkFRiMpYLAsk81RX",
+    "hash160": "d88713de7b1d0837e728de5d5e62399f5e6e145e"
+  } ]
 }
+
   </code>
 </pre>

@@ -2,27 +2,20 @@
 <div class="h5 title">DEFINITION</div>
 <pre>
   <code class="bash" hljs>
-GET https://api.helloblock.io/v1/addresses/<span class='text-info'>&lt;:address&gt;</span>
+POST https://api.helloblock.io/v1/transactions/
   </code>
 </pre>
 <div class="h5 title">EXAMPLE REQUEST</div>
 <pre>
   <code class="bash" hljs>
-$ curl https://api.helloblock.io/v1/addresses/<span class='text-info'>n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK</span>
+$ curl -X POST https://api.helloblock.io/v1/transactions \
+ - d "tx_hash=TODO"
+ - d "hex=TODO"
   </code>
 </pre>
 <div class="h5 title">EXAMPLE RESPONSE</div>
 <pre>
   <code class="json" hljs>
-{
-  "total_received": 100000,
-  "total_received_n": 1,
-  "total_sent": 100000,
-  "total_sent_n": 1,
-  "tx_n": 2,
-  "balance": 0,
-  "address": "n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK",
-  "hash160": "e18424c2562c495e16c4a67d9bf803116158be6e"
-}
+
   </code>
 </pre>

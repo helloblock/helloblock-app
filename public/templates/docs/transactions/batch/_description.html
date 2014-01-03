@@ -1,21 +1,24 @@
-<h4>Single Addresses</h4>
+<h4>Batch Transacitons</h4>
 <br>
 <p><strong>Request Parameters</strong></p>
 <table class="table table-bordered table-docs">
   <tbody>
     <tr>
-      <td>address: </td>
-      <td><em>string</em></td>
-    </tr>
-    <tr>
-      <td>tx: </td>
-      <td><em>boolean</em></td>
+      <td>transactions: </td>
+      <td>
+        <em>array of strings</em> (required)
+        <div>
+          tx_hashes[]=item follows RESTful
+        </div>
+      </td>
     </tr>
   </tbody>
 </table>
 
 <br>
 <p><strong>Response Attributes</strong></p>
+<p>Returns array of many addresses</p>
+Wallet
 <table class="table table-bordered table-docs table-condensed">
   <tbody>
     <tr>

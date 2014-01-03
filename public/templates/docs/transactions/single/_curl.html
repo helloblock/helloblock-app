@@ -2,27 +2,50 @@
 <div class="h5 title">DEFINITION</div>
 <pre>
   <code class="bash" hljs>
-GET https://api.helloblock.io/v1/addresses/<span class='text-info'>&lt;:address&gt;</span>
+GET https://api.helloblock.io/v1/transactions/<span class='text-info'>&lt;tx_hash&gt;</span>
   </code>
 </pre>
 <div class="h5 title">EXAMPLE REQUEST</div>
 <pre>
   <code class="bash" hljs>
-$ curl https://api.helloblock.io/v1/addresses/<span class='text-info'>n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK</span>
+$ curl https://api.helloblock.io/v1/transactions/<span class='text-info'>2542cd64e02d902975dc6e2e97797ceec5a84e8597c80d22a9e2dbd16e748738</span>
   </code>
 </pre>
 <div class="h5 title">EXAMPLE RESPONSE</div>
 <pre>
-  <code class="json" hljs>
+  <code class="javascript" hljs>
 {
-  "total_received": 100000,
-  "total_received_n": 1,
-  "total_sent": 100000,
-  "total_sent_n": 1,
-  "tx_n": 2,
-  "balance": 0,
-  "address": "n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK",
-  "hash160": "e18424c2562c495e16c4a67d9bf803116158be6e"
+  "hash": "2542cd64e02d902975dc6e2e97797ceec5a84e8597c80d22a9e2dbd16e748738",
+  "ver": 1,
+  "lock_time": 0,
+  "size": 226,
+  "tx_id": 994531,
+  "vin_sz": 1,
+  "vout_sz": 2,
+  "in": [ {
+    "prev_out": {
+      "n": 0,
+      "hash": "ff9e7a02702ea393facf57d94f233e58a29a9d7c2f3080bf404b1ec5ec572eb2",
+      "tx_id": 994520,
+      "value": 53022177768,
+      "address": "mjswyggXrNJKdb1PHEfqrFxyefwFnn1q68",
+      "hash160": "2fd8f955587181fdf2caded0d41c8f52c084cee4"
+    },
+    "scriptSig": "483045022100cc3a4f04c04b3aa6c4c98632f72641112e027a0f2280351e5722449c658d4a6c0220074f0537f668d4049c7b0da91486d6d83a2f37a60512a1771aedc35c97f0e92b0121038708f0be6ec42ff5788c5cd51c87f245538c1ecf890c12774fe006b55797c114"
+  } ],
+  "out": [ {
+    "n": 0,
+    "value": 46970000,
+    "scriptPubKey": "76a9144465358b1c07d001a49216c466b6e8de5c708d9988ac",
+    "spent": false,
+    "address": "mmkbVEWhehm6mKUgV36K6oWX4BCZcp5by3"
+  }, {
+    "n": 1,
+    "value": 52975207768,
+    "scriptPubKey": "76a9146a0d58b53a6b6aef32d5907e237ad57e6d84d0d688ac",
+    "spent": true,
+    "address": "mqBhuiixrkwypkjNHFwSNYiFEtAiDr54gp"
+  } ]
 }
   </code>
 </pre>

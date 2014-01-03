@@ -2,27 +2,32 @@
 <div class="h5 title">DEFINITION</div>
 <pre>
   <code class="bash" hljs>
-GET https://api.helloblock.io/v1/addresses/<span class='text-info'>&lt;:address&gt;</span>
+GET https://api.helloblock.io/v1/addresses/unspents?<span class="text-primary">addresses[]</span>=<span class="text-info">&lt;address&gt;</span></code>
   </code>
 </pre>
 <div class="h5 title">EXAMPLE REQUEST</div>
 <pre>
   <code class="bash" hljs>
-$ curl https://api.helloblock.io/v1/addresses/<span class='text-info'>n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK</span>
+$ curl -G https://api.helloblock.io/v1/addresses/unspents \
+   -d "addresses[]=mm7skHNwsbMSGxZA7Au4Gp5sRdNkfLQkLZ" \
+   -d "addresses[]=miwCPtnuCKxn5JMxXaGZumeHhSkndz6FTP" \
+   -d "addresses[]=msv7sCECsEC8vzAoPUkGVypXoxUBagFjYG"
   </code>
 </pre>
 <div class="h5 title">EXAMPLE RESPONSE</div>
 <pre>
   <code class="json" hljs>
-{
-  "total_received": 100000,
-  "total_received_n": 1,
-  "total_sent": 100000,
-  "total_sent_n": 1,
-  "tx_n": 2,
-  "balance": 0,
-  "address": "n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK",
-  "hash160": "e18424c2562c495e16c4a67d9bf803116158be6e"
-}
+[
+  {
+    "block_height": 155068,
+    "tx_hash": "a2d6d886b507209fb879eb23ebe7b32de926ef0b1fc344e167b6eb811640f16e",
+    "tx_id": 997370,
+    "n": 0,
+    "scriptPubKey": "76a9143d73642bb6a7dfa4dae730a4d87d3cf839897d6588ac",
+    "value": 2200000000,
+    "hash160": "3d73642bb6a7dfa4dae730a4d87d3cf839897d65",
+    "address": "mm7skHNwsbMSGxZA7Au4Gp5sRdNkfLQkLZ"
+  }
+]
   </code>
 </pre>
