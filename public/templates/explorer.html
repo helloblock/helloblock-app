@@ -2,20 +2,20 @@
 <div class="container">
   <div class="input-group input-group-lg">
     <span class="input-group-addon">REQUEST URL: </span>
-    <input type="text" class="form-control" value="{{request.url}}">
+    <input type="text" class="form-control" value="{{request.buildUrl()}}" readonly>
   </div>
 
   <div class="row">
     <div class="col-md-4">
-      <h3>REQUEST Builder</h3>
+      <h3>REQUEST</h3>
       <div class="bs-sidebar extra-padding">
         <div class="row">
-          <div class="col-md-5">
+          <div class="col-md-4">
             <div class='h5 title-key'>
               <strong>Mode:</strong>
             </div>
           </div>
-          <div class="col-md-7">
+          <div class="col-md-8">
             <select ui-select2="select2Options" ng-model="options.mode">
               <option value="api">LIVE</option>
               <option value="test">TEST</option>
@@ -24,24 +24,23 @@
         </div>
         <br>
         <div class="row">
-          <div class="col-md-5">
+          <div class="col-md-4">
             <div class='h5 title-key'>
               <strong>Resource:</strong>
             </div>
           </div>
-          <div class="col-md-7">
+          <div class="col-md-8">
             <select ui-select2="select2Options" ng-model="options.resource">
               <option value="addresses">Addresses</option>
-              <option value="two">Unspents</option>
-              <option value="two">Transactions</option>
+              <option value="unspents">Unspents</option>
+              <option value="transactions">Transactions</option>
               <option value="two">Blocks</option>
-              <option value="two" disabled>Coming Soon</option>
             </select>
           </div>
         </div>
         <br>
         <div class="row">
-          <div class="col-md-5">
+          <div class="col-md-4">
             <div class='h5 title-key'>
               <strong>Parameters:</strong>
             </div>

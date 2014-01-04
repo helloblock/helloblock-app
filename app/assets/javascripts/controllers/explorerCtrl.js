@@ -23,8 +23,11 @@ hbApp.controller( "explorerCtrl", function( $scope, $resource ) {
 	}
 
 	$scope.request = {
-		url: "https://" + $scope.options.mode + ".helloblock.io/v1/" +
-			$scope.options.resource + "/" + $scope.options.params[ 0 ].value + "/"
+		buildUrl: function() {
+			return "https://" + $scope.options.mode + ".helloblock.io/v1/" +
+				$scope.options.resource + "/" + $scope.options.params[ 0 ].value + "/"
+		}
+
 	}
 
 	$scope.response = {

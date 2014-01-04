@@ -254,6 +254,13 @@ label,
 	font-size: @font-size-small;
 }
 
+.form-control[disabled],
+.form-control[readonly],
+fieldset[disabled] .form-control {
+  cursor: text;
+  background-color: @white;
+}
+
 // Navs =======================================================================
 
 .nav {
