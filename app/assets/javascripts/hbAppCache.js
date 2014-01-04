@@ -1503,25 +1503,29 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('/templates/explorer.html',
     "<br>\n" +
-    "<div class=\"container\">\n" +
-    "  <div class=\"input-group input-group-lg\" prevent-backspace>\n" +
+    "<div class=\"wide-container\">\n" +
+    "  <form class=\"input-group input-group-lg\" ng-submit=\"submitRequest()\">\n" +
     "    <span class=\"input-group-addon h3\">REQUEST URL: </span>\n" +
-    "    <textarea type=\"text\" class=\"form-control no-white-space no-outline\" readonly selected>\n" +
-    "      {{requestUrl()}}\n" +
-    "    </textarea>\n" +
-    "  </div>\n" +
+    "    <input\n" +
+    "      type=\"text\"\n" +
+    "      class=\"form-control no-white-space no-outline\"\n" +
+    "      ng-model=\"request.url\"\n" +
+    "      selected>\n" +
+    "    </input>\n" +
+    "    <button ng-hide=\"true\" type=\"submit\"></button>\n" +
+    "  </form>\n" +
     "  <div class=\"row\">\n" +
     "    <div class=\"col-md-4\">\n" +
     "      <h3>REQUEST BUILDER</h3>\n" +
     "      <form class=\"bs-sidebar extra-padding\" ng-submit=\"submitRequest()\">\n" +
     "        <div class=\"row\">\n" +
-    "          <div class=\"col-md-4\">\n" +
+    "          <div class=\"col-md-3\">\n" +
     "            <div class='h5 title-key'>\n" +
-    "              <strong>Mode:</strong>\n" +
+    "              <strong>MODE:</strong>\n" +
     "            </div>\n" +
     "          </div>\n" +
-    "          <div class=\"col-md-8\">\n" +
-    "            <select ui-select2=\"select2Options\" ng-model=\"selected.mode\">\n" +
+    "          <div class=\"col-md-9\">\n" +
+    "            <select ui-select2=\"select2Options\" ng-model=\"options.selected.mode\">\n" +
     "              <option value=\"api\">LIVE</option>\n" +
     "              <option value=\"test\">TEST</option>\n" +
     "            </select>\n" +
@@ -1529,15 +1533,15 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        </div>\n" +
     "        <br>\n" +
     "        <div class=\"row\">\n" +
-    "          <div class=\"col-md-4\">\n" +
+    "          <div class=\"col-md-3\">\n" +
     "            <div class='h5 title-key'>\n" +
-    "              <strong>Resource:</strong>\n" +
+    "              <strong>RESOURCE:</strong>\n" +
     "            </div>\n" +
     "          </div>\n" +
-    "          <div class=\"col-md-8\">\n" +
-    "            <select ui-select2=\"select2Options\" ng-model=\"selected.resource.index\n" +
+    "          <div class=\"col-md-9\">\n" +
+    "            <select ui-select2=\"select2Options\" ng-model=\"options.selected.index\n" +
     "            \">\n" +
-    "              <option ng-repeat=\"def in definitions\" value=\"{{$index}}\">\n" +
+    "              <option ng-repeat=\"def in options.definitions\" value=\"{{$index}}\">\n" +
     "                {{def.definition}}\n" +
     "              </option>\n" +
     "            </select>\n" +
@@ -1547,7 +1551,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        <div class=\"row\">\n" +
     "          <div class='h5 title text-center'>\n" +
     "            <strong>\n" +
-    "              <span>Parameters</span>\n" +
+    "              <span>PARAMETERS</span>\n" +
     "            </strong>\n" +
     "          </div>\n" +
     "        </div>\n" +
@@ -1555,14 +1559,13 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        <div class=\"line-divider\"></div>\n" +
     "        <br>\n" +
     "\n" +
-    "        <div ng-repeat=\"def in definitions\">\n" +
-    "          <div ng-show=\"selected.resource.index === $index.toString()\">\n" +
+    "        <div ng-repeat=\"def in options.definitions\">\n" +
+    "          <div ng-show=\"options.selected.index === $index.toString()\">\n" +
     "            <div class=\"row\" ng-repeat=\"param in def.parameters\">\n" +
-    "              <div class=\"col-md-4 text-right\">\n" +
+    "              <div class=\"col-md-3 text-right\">\n" +
     "                <h5>{{param.key.capitalize()}}:</h5>\n" +
     "              </div>\n" +
-    "              <div class=\"col-md-8\">\n" +
-    "                <!-- TODO ng-if required etc... -->\n" +
+    "              <div class=\"col-md-9\">\n" +
     "                <input class='form-control' ng-model=\"param.value\">\n" +
     "              </div>\n" +
     "              <br><br>\n" +
@@ -1583,6 +1586,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <h3>RESPONSE</h3>\n" +
     "      <spin ng-show=\"response.loading\"></spin>\n" +
     "      <pre class=\"response\">\n" +
+    "        <code class='loose'>\n" +
+    "RESPONSE CODE: <span class='text-{{response.css}}'>{{response.code}}</span>\n" +
+    "        </code>\n" +
     "        <code class=\"javascript\" ng-hljs>\n" +
     "        </code>\n" +
     "    </pre>\n" +

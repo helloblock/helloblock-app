@@ -17,8 +17,8 @@ hbApp.directive( "spin", function() {
 				hwaccel: false,
 				className: 'spinner',
 				zIndex: 2e9,
-				top: '100%',
-				left: '300%'
+				top: '160%',
+				left: '440%'
 			};
 
 			var spinner = new Spinner( opts )

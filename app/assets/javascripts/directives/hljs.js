@@ -10,7 +10,7 @@ hbApp.directive( "ngHljs", function( $interpolate ) {
 			$scope.$watch( "response", function( newResponse, oldResponse ) {
 
 				// TODO: Hack, should use templateUrl somehow
-				var string = "STATUS CODE: {{response.code}}\n\nBODY: \n\n{{response.body}}"
+				var string = "BODY: \n\n{{response.body}}"
 
 				var tmp = $interpolate( string )( $scope );
 				element.html( hljs.highlight( attrs.class, tmp ).value );

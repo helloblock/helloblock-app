@@ -1,5 +1,9 @@
 @import "yeti/base";
 
+.wide-container {
+	margin: 0 25px;
+}
+
 pre.response {
 	height: 550px;
 	white-space: normal;
@@ -8,7 +12,13 @@ pre.response {
 	code {
 		height: 100%;
 		padding: 20px;
+		padding-top: 0px;
 		white-space: pre;
+	}
+
+	code.loose {
+		height: initial;
+		padding: 0 20px;
 	}
 }
 
@@ -21,4 +31,8 @@ pre.response {
         @inner-color: @gray-light,
         @outer-color: @gray-lighter
     );
+}
+
+.spinner {
+	background-color: @debug;
 }

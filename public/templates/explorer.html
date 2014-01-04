@@ -1,23 +1,27 @@
 <br>
-<div class="container">
-  <div class="input-group input-group-lg" prevent-backspace>
+<div class="wide-container">
+  <form class="input-group input-group-lg" ng-submit="submitRequest()">
     <span class="input-group-addon h3">REQUEST URL: </span>
-    <textarea type="text" class="form-control no-white-space no-outline" readonly selected>
-      {{requestUrl()}}
-    </textarea>
-  </div>
+    <input
+      type="text"
+      class="form-control no-white-space no-outline"
+      ng-model="request.url"
+      selected>
+    </input>
+    <button ng-hide="true" type="submit"></button>
+  </form>
   <div class="row">
     <div class="col-md-4">
       <h3>REQUEST BUILDER</h3>
       <form class="bs-sidebar extra-padding" ng-submit="submitRequest()">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div class='h5 title-key'>
-              <strong>Mode:</strong>
+              <strong>MODE:</strong>
             </div>
           </div>
-          <div class="col-md-8">
-            <select ui-select2="select2Options" ng-model="selected.mode">
+          <div class="col-md-9">
+            <select ui-select2="select2Options" ng-model="options.selected.mode">
               <option value="api">LIVE</option>
               <option value="test">TEST</option>
             </select>
@@ -25,15 +29,15 @@
         </div>
         <br>
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div class='h5 title-key'>
-              <strong>Resource:</strong>
+              <strong>RESOURCE:</strong>
             </div>
           </div>
-          <div class="col-md-8">
-            <select ui-select2="select2Options" ng-model="selected.resource.index
+          <div class="col-md-9">
+            <select ui-select2="select2Options" ng-model="options.selected.index
             ">
-              <option ng-repeat="def in definitions" value="{{$index}}">
+              <option ng-repeat="def in options.definitions" value="{{$index}}">
                 {{def.definition}}
               </option>
             </select>
@@ -43,7 +47,7 @@
         <div class="row">
           <div class='h5 title text-center'>
             <strong>
-              <span>Parameters</span>
+              <span>PARAMETERS</span>
             </strong>
           </div>
         </div>
@@ -51,14 +55,13 @@
         <div class="line-divider"></div>
         <br>
 
-        <div ng-repeat="def in definitions">
-          <div ng-show="selected.resource.index === $index.toString()">
+        <div ng-repeat="def in options.definitions">
+          <div ng-show="options.selected.index === $index.toString()">
             <div class="row" ng-repeat="param in def.parameters">
-              <div class="col-md-4 text-right">
+              <div class="col-md-3 text-right">
                 <h5>{{param.key.capitalize()}}:</h5>
               </div>
-              <div class="col-md-8">
-                <!-- TODO ng-if required etc... -->
+              <div class="col-md-9">
                 <input class='form-control' ng-model="param.value">
               </div>
               <br><br>
@@ -79,6 +82,9 @@
       <h3>RESPONSE</h3>
       <spin ng-show="response.loading"></spin>
       <pre class="response">
+        <code class='loose'>
+RESPONSE CODE: <span class='text-{{response.css}}'>{{response.code}}</span>
+        </code>
         <code class="javascript" ng-hljs>
         </code>
     </pre>

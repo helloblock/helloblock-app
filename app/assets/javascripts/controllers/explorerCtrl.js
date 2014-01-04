@@ -1,53 +1,36 @@
 hbApp.controller( "explorerCtrl", function( $scope, $http, Definitions, UrlBuilder ) {
-	// API RESOURCE
+	// REQUEST, options
 
-	// URL
-	$scope.requestUrl = function() {
-		var def = $scope.definitions[ $scope.selected.resource.index ];
-
-		return UrlBuilder.build(
-			$scope.selected.mode,
-			def.name,
-			def.parameters,
-			def.batch )
+	$scope.options = {
+		selected: {
+			index: "0",
+			mode: "api"
+		},
+		definitions: Definitions() // API Method Definitions
 	}
 
-	// API METHOD DEFINITIONS
-
-	$scope.definitions = Definitions()
-
-	// CORE USER PARAMETERS
-
-	$scope.selected = {
-		mode: "api",
-		resource: {
-			index: "0"
-		}
-	}
+	// RESPONSE
 
 	$scope.response = {
 		loading: false,
-		code: 321,
-		body: angular.toJson( {
-			todo: true,
-			implemented: "no"
-		}, true )
+		code: "",
+		body: {}
 	}
 
 	$scope.submitRequest = function() {
 		$scope.response = {}
 		$scope.response.loading = true
 
-		var def = $scope.definitions[ $scope.selected.resource.index ]
+		var def = $scope.options.definitions[ $scope.options.selected.index ]
 
-		// $scope.$apply( function() {
 		$http( {
 			method: def.method,
-			url: $scope.requestUrl()
+			url: $scope.request.url
 		} ).
 		success( function( data, status, config ) {
 			$scope.response = {
 				code: status,
+				css: "success",
 				body: angular.toJson( data, true ),
 				loading: false
 			}
@@ -55,18 +38,32 @@ hbApp.controller( "explorerCtrl", function( $scope, $http, Definitions, UrlBuild
 		error( function( data, status, config ) {
 			$scope.response = {
 				code: status,
+				css: "danger",
 				body: angular.toJson( data, true ),
 				loading: false
 			}
 		} )
-		// } )
 
-		// HelloBlock.get( "", function() {
-		// 	console.log( 'success' )
-		// 	$scope.response.loading = false;
-		// }, function() {
-		// 	console.log( 'error' )
-		// } )
+	}
+
+	// URL
+	$scope.request = {
+		url: "TODO"
+	}
+
+	$scope.$watch( "options", function() {
+		$scope.updateUrl();
+	}, true )
+
+	$scope.updateUrl = function() {
+		var def = $scope.options.definitions[ $scope.options.selected.index ];
+		var url = UrlBuilder.build(
+			$scope.options.selected.mode,
+			def.name,
+			def.parameters,
+			def.batch )
+
+		$scope.request.url = url
 	}
 
 	// HELPERS

@@ -42,7 +42,7 @@ hbApp.factory( "Definitions", function() {
 			name: "unspents",
 			method: "GET",
 			batch: true,
-			definition: "GET /unspents",
+			definition: "GET /unspents (batch)",
 			parameters: [ {
 				key: "addresses[]",
 				value: "mu1izpJmF7CHnbVcH59f1PqfvXnmiBEMq8",
@@ -66,7 +66,7 @@ hbApp.factory( "Definitions", function() {
 			name: "transactions",
 			method: "GET",
 			batch: true,
-			definition: "GET /transactions",
+			definition: "GET /transactions (batch)",
 			parameters: [ {
 				key: "tx_hashes[]",
 				value: "6f9e9570881e781db8c137c84c111a138e4a022e6b2def5e2a1589a802fe25f3",
