@@ -4,80 +4,99 @@ hbApp.factory( "Definitions", function() {
 	return function() {
 		var definitions = [ {
 			name: "addresses",
-			type: "GET",
+			method: "GET",
+			batch: false,
 			definition: "GET /addresses/:address",
 			parameters: [ {
-				key: "keyz",
-				value: "valuez",
+				key: "address",
+				value: "n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK",
 			}, {
-				key: "nutha",
-				value: "duoood",
+				key: "txs",
+				value: "true",
 			} ]
 		}, {
 			name: "addresses",
-			type: "BATCH GET",
+			method: "GET",
+			batch: true,
 			definition: "GET /addresses (batch)",
 			parameters: [ {
-				key: "addresses[]=",
-				value: "asdfasdf",
+				key: "addresses[]",
+				value: "mu1izpJmF7CHnbVcH59f1PqfvXnmiBEMq8",
 			}, {
-				key: "addresses[]=",
-				value: "fdsafdsaf",
+				key: "addresses[]",
+				value: "mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3",
+			}, {
+				key: "addresses[]",
+				value: "n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK",
+			}, {
+				key: "txs",
+				value: "true",
+			}, {
+				key: "wallet",
+				value: "true",
+			}, {
+				key: "info",
+				value: "true",
 			} ]
 		}, {
 			name: "unspents",
-			type: "BATCH GET",
-			definition: "GET /addresses/:address",
+			method: "GET",
+			batch: true,
+			definition: "GET /unspents",
 			parameters: [ {
-				key: "keyz",
-				value: "valuez",
+				key: "addresses[]",
+				value: "mu1izpJmF7CHnbVcH59f1PqfvXnmiBEMq8",
 			}, {
-				key: "nutha",
-				value: "duoood",
+				key: "addresses[]",
+				value: "mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3",
+			}, {
+				key: "addresses[]",
+				value: "n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK",
 			} ]
 		}, {
-			name: "addresses",
-			type: "GET",
-			definition: "GET /addresses/:address",
+			name: "transactions",
+			method: "GET",
+			batch: false,
+			definition: "GET /transactions/:transaction",
 			parameters: [ {
-				key: "keyz",
-				value: "valuez",
-			}, {
-				key: "nutha",
-				value: "duoood",
+				key: "tx_hash",
+				value: "2542cd64e02d902975dc6e2e97797ceec5a84e8597c80d22a9e2dbd16e748738",
 			} ]
 		}, {
-			name: "addresses",
-			type: "GET",
-			definition: "GET /addresses/:address",
+			name: "transactions",
+			method: "GET",
+			batch: true,
+			definition: "GET /transactions",
 			parameters: [ {
-				key: "keyz",
-				value: "valuez",
+				key: "tx_hashes[]",
+				value: "6f9e9570881e781db8c137c84c111a138e4a022e6b2def5e2a1589a802fe25f3",
 			}, {
-				key: "nutha",
-				value: "duoood",
+				key: "tx_hashes[]",
+				value: "770e6e4c66fc61fb523e5aefe11780b26c8473638e7065ca726a6492ab7f6345",
+			}, {
+				key: "tx_hashes[]",
+				value: "47bf46f92384002dc008696dac3437a2ca4a2696c21a3f6d1d789513e7b9a3f0",
 			} ]
 		}, {
-			name: "addresses",
-			type: "GET",
-			definition: "GET /addresses/:address",
+			name: "transactions",
+			method: "POST",
+			batch: false,
+			definition: "POST /transactions",
 			parameters: [ {
-				key: "keyz",
-				value: "valuez",
-			}, {
-				key: "nutha",
-				value: "duoood",
+				key: "tx_hex",
+				value: "TODO",
 			} ]
 		}, {
-			name: "addresses",
-			type: "GET",
-			definition: "GET /addresses/:address",
+			name: "blocks",
+			method: "GET",
+			batch: false,
+			definition: "GET /blocks/:block_height",
 			parameters: [ {
-				key: "keyz",
-				value: "valuez",
+				key: "block_height",
+				value: "99999",
 			}, {
-				key: "nutha",
-				value: "duoood",
+				key: "txs",
+				value: "true",
 			} ]
 		} ]
 

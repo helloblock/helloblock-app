@@ -3,7 +3,7 @@
   <div class="input-group input-group-lg" prevent-backspace>
     <span class="input-group-addon h3">REQUEST URL: </span>
     <textarea type="text" class="form-control no-white-space no-outline" readonly selected>
-      {{buildUrl()}}
+      {{requestUrl()}}
     </textarea>
   </div>
   <div class="row">
@@ -42,7 +42,9 @@
         <br>
         <div class="row">
           <div class='h5 title text-center'>
-            <strong>Parameters</strong>
+            <strong>
+              <span>Parameters</span>
+            </strong>
           </div>
         </div>
         <br>
@@ -56,6 +58,7 @@
                 <h5>{{param.key.capitalize()}}:</h5>
               </div>
               <div class="col-md-8">
+                <!-- TODO ng-if required etc... -->
                 <input class='form-control' ng-model="param.value">
               </div>
               <br><br>

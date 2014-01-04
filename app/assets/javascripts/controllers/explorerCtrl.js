@@ -1,14 +1,15 @@
-hbApp.controller( "explorerCtrl", function( $scope, $resource, Definitions ) {
+hbApp.controller( "explorerCtrl", function( $scope, $http, Definitions, UrlBuilder ) {
 	// API RESOURCE
 
-	var HelloBlock = $resource( "https://api.helloblock.io/v1/:resource/" )
+	// URL
+	$scope.requestUrl = function() {
+		var def = $scope.definitions[ $scope.selected.resource.index ];
 
-	// URL BUILDER
-	$scope.buildUrl = function() {
-		// var url = "https://" + $scope.selected.mode + ".helloblock.io/v1/" +
-		// 	$scope.selected.resource.name + "/" + $scope.selected.params[ 0 ].value + "/"
-
-		// return url
+		return UrlBuilder.build(
+			$scope.selected.mode,
+			def.name,
+			def.parameters,
+			def.batch )
 	}
 
 	// API METHOD DEFINITIONS
@@ -21,11 +22,7 @@ hbApp.controller( "explorerCtrl", function( $scope, $resource, Definitions ) {
 		mode: "api",
 		resource: {
 			index: "0"
-		},
-		params: [],
-		body: {
-
-		},
+		}
 	}
 
 	$scope.response = {
@@ -38,21 +35,31 @@ hbApp.controller( "explorerCtrl", function( $scope, $resource, Definitions ) {
 	}
 
 	$scope.submitRequest = function() {
-		$scope.response.loading = true;
+		$scope.response = {}
+		$scope.response.loading = true
 
-		$scope.response.code = ""
-		$scope.response.body = ""
+		var def = $scope.definitions[ $scope.selected.resource.index ]
 
-		$timeout( function() {
-			$scope.response.code = Math.random();
-			$scope.response.body = angular.toJson( {
-				todo: false,
-				implemented: true,
-				message: "yay"
-			}, true );
-
-			$scope.response.loading = false;
-		}, 1000 )
+		// $scope.$apply( function() {
+		$http( {
+			method: def.method,
+			url: $scope.requestUrl()
+		} ).
+		success( function( data, status, config ) {
+			$scope.response = {
+				code: status,
+				body: angular.toJson( data, true ),
+				loading: false
+			}
+		} ).
+		error( function( data, status, config ) {
+			$scope.response = {
+				code: status,
+				body: angular.toJson( data, true ),
+				loading: false
+			}
+		} )
+		// } )
 
 		// HelloBlock.get( "", function() {
 		// 	console.log( 'success' )

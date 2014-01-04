@@ -1505,15 +1505,14 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<br>\n" +
     "<div class=\"container\">\n" +
     "  <div class=\"input-group input-group-lg\" prevent-backspace>\n" +
-    "    <span class=\"input-group-addon\">REQUEST URL: </span>\n" +
+    "    <span class=\"input-group-addon h3\">REQUEST URL: </span>\n" +
     "    <textarea type=\"text\" class=\"form-control no-white-space no-outline\" readonly selected>\n" +
-    "      {{request.buildUrl()}}\n" +
+    "      {{requestUrl()}}\n" +
     "    </textarea>\n" +
     "  </div>\n" +
-    "\n" +
     "  <div class=\"row\">\n" +
     "    <div class=\"col-md-4\">\n" +
-    "      <h3>REQUEST</h3>\n" +
+    "      <h3>REQUEST BUILDER</h3>\n" +
     "      <form class=\"bs-sidebar extra-padding\" ng-submit=\"submitRequest()\">\n" +
     "        <div class=\"row\">\n" +
     "          <div class=\"col-md-4\">\n" +
@@ -1522,7 +1521,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            </div>\n" +
     "          </div>\n" +
     "          <div class=\"col-md-8\">\n" +
-    "            <select ui-select2=\"select2Options\" ng-model=\"options.mode\">\n" +
+    "            <select ui-select2=\"select2Options\" ng-model=\"selected.mode\">\n" +
     "              <option value=\"api\">LIVE</option>\n" +
     "              <option value=\"test\">TEST</option>\n" +
     "            </select>\n" +
@@ -1536,29 +1535,40 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            </div>\n" +
     "          </div>\n" +
     "          <div class=\"col-md-8\">\n" +
-    "            <select ui-select2=\"select2Options\" ng-model=\"options.resource\">\n" +
-    "              <option value=\"addresses\">Addresses</option>\n" +
-    "              <option value=\"unspents\">Unspents</option>\n" +
-    "              <option value=\"transactions\">Transactions</option>\n" +
-    "              <option value=\"blocks\">Blocks</option>\n" +
+    "            <select ui-select2=\"select2Options\" ng-model=\"selected.resource.index\n" +
+    "            \">\n" +
+    "              <option ng-repeat=\"def in definitions\" value=\"{{$index}}\">\n" +
+    "                {{def.definition}}\n" +
+    "              </option>\n" +
     "            </select>\n" +
     "          </div>\n" +
     "        </div>\n" +
     "        <br>\n" +
     "        <div class=\"row\">\n" +
-    "          <div class=\"col-md-4\">\n" +
-    "            <div class='h5 title-key'>\n" +
-    "              <strong>Parameters:</strong>\n" +
-    "            </div>\n" +
+    "          <div class='h5 title text-center'>\n" +
+    "            <strong>\n" +
+    "              <span>Parameters</span>\n" +
+    "            </strong>\n" +
     "          </div>\n" +
     "        </div>\n" +
     "        <br>\n" +
-    "        <div class=\"row\" ng-repeat=\"p in options.params\">\n" +
-    "          <div class=\"col-md-4 text-right\"><h5>{{p.key.capitalize()}}:</h5></div>\n" +
-    "          <div class=\"col-md-8\">\n" +
-    "            <input class='form-control' ng-model=\"p.value\">\n" +
+    "        <div class=\"line-divider\"></div>\n" +
+    "        <br>\n" +
+    "\n" +
+    "        <div ng-repeat=\"def in definitions\">\n" +
+    "          <div ng-show=\"selected.resource.index === $index.toString()\">\n" +
+    "            <div class=\"row\" ng-repeat=\"param in def.parameters\">\n" +
+    "              <div class=\"col-md-4 text-right\">\n" +
+    "                <h5>{{param.key.capitalize()}}:</h5>\n" +
+    "              </div>\n" +
+    "              <div class=\"col-md-8\">\n" +
+    "                <!-- TODO ng-if required etc... -->\n" +
+    "                <input class='form-control' ng-model=\"param.value\">\n" +
+    "              </div>\n" +
+    "              <br><br>\n" +
+    "            </div>\n" +
     "          </div>\n" +
-    "          <br><br>\n" +
+    "\n" +
     "        </div>\n" +
     "        <br>\n" +
     "        <button\n" +
