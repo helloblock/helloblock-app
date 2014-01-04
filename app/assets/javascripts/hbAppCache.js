@@ -1355,16 +1355,16 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<div class=\"h5 title\">DEFINITION</div>\n" +
     "<pre>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "GET https://api.helloblock.io/v1/addresses/unspents?addresses[]=<span class=\"text-info\">&lt;address&gt;</span></code>\n" +
+    "GET https://api.helloblock.io/v1/addresses/unspents?addresses[]=<span class=\"text-primary\">&lt;address&gt;</span></code>\n" +
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
     "<pre>\n" +
     "  <code class=\"bash\" hljs>\n" +
     "$ curl -G https://api.helloblock.io/v1/addresses/unspents \\\n" +
-    "   -d \"addresses[]=<span class='text-info'>mfwyrZw47YY7wExpcLm7uPHLer7XoMVntd</span>\" \\\n" +
-    "   -d \"addresses[]=<span class='text-info'>n161eDouWrxaPPk6D3y4si3Kenz43yAAo8</span>\" \\\n" +
-    "   -d \"addresses[]=<span class='text-info'>mhdDvTC1wgTr6kEEs4wkDTSxwjuQzvN4md</span>\"\n" +
+    "   -d \"addresses[]=<span class='text-primary'>mfwyrZw47YY7wExpcLm7uPHLer7XoMVntd</span>\" \\\n" +
+    "   -d \"addresses[]=<span class='text-primary'>n161eDouWrxaPPk6D3y4si3Kenz43yAAo8</span>\" \\\n" +
+    "   -d \"addresses[]=<span class='text-primary'>mhdDvTC1wgTr6kEEs4wkDTSxwjuQzvN4md</span>\"\n" +
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE REQUEST URL</div>\n" +
@@ -1549,7 +1549,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        </div>\n" +
     "        <br>\n" +
     "        <div class=\"row\">\n" +
-    "          <div class='h5 title text-center'>\n" +
+    "          <div class='h5 text-center title-params'>\n" +
     "            <strong>\n" +
     "              <span>PARAMETERS</span>\n" +
     "            </strong>\n" +
