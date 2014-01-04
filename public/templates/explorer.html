@@ -33,8 +33,8 @@
           <div class="col-md-8">
             <select ui-select2="select2Options" ng-model="selected.resource.index
             ">
-              <option ng-repeat="r in resources" value="{{$index}}">
-                {{r.definition}}
+              <option ng-repeat="def in definitions" value="{{$index}}">
+                {{def.definition}}
               </option>
             </select>
           </div>
@@ -49,19 +49,17 @@
         <div class="line-divider"></div>
         <br>
 
-        <div ng-repeat="r in resources">
-
-          <div class="row"
-            ng-repeat="p in r.parameters"
-            ng-show="selected.resource.index === $index.toString()"
-          >
-            <div class="col-md-4 text-right">
-              <h5>{{p.key.capitalize()}}:</h5>
+        <div ng-repeat="def in definitions">
+          <div ng-show="selected.resource.index === $index.toString()">
+            <div class="row" ng-repeat="param in def.parameters">
+              <div class="col-md-4 text-right">
+                <h5>{{param.key.capitalize()}}:</h5>
+              </div>
+              <div class="col-md-8">
+                <input class='form-control' ng-model="param.value">
+              </div>
+              <br><br>
             </div>
-            <div class="col-md-8">
-              <input class='form-control' ng-model="p.value">
-            </div>
-            <br><br>
           </div>
 
         </div>

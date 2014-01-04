@@ -1,4 +1,4 @@
-hbApp.controller( "explorerCtrl", function( $scope, $resource, $http, $timeout ) {
+hbApp.controller( "explorerCtrl", function( $scope, $resource, Definitions ) {
 	// API RESOURCE
 
 	var HelloBlock = $resource( "https://api.helloblock.io/v1/:resource/" )
@@ -11,31 +11,11 @@ hbApp.controller( "explorerCtrl", function( $scope, $resource, $http, $timeout )
 		// return url
 	}
 
-	// CORE USER PARAMETERS
+	// API METHOD DEFINITIONS
 
-	$scope.resources = [ {
-		name: "addresses",
-		type: "GET",
-		definition: "GET /addresses/:address",
-		parameters: [ {
-			key: "keyz",
-			value: "valuez",
-		}, {
-			key: "nutha",
-			value: "duoood",
-		} ]
-	}, {
-		name: "addresses",
-		type: "GET",
-		definition: "GET /addresses (batch)",
-		parameters: [ {
-			key: "addresses[]=",
-			value: "asdfasdf",
-		}, {
-			key: "addresses[]=",
-			value: "fdsafdsaf",
-		} ]
-	} ]
+	$scope.definitions = Definitions()
+
+	// CORE USER PARAMETERS
 
 	$scope.selected = {
 		mode: "api",
