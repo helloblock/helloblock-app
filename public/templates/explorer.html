@@ -2,7 +2,9 @@
 <div class="container">
   <div class="input-group input-group-lg">
     <span class="input-group-addon">REQUEST URL: </span>
-    <input type="text" class="form-control" value="{{request.buildUrl()}}" readonly>
+    <textarea type="text" class="form-control no-white-space no-outline" readonly selected>
+      {{request.buildUrl()}}
+    </textarea>
   </div>
 
   <div class="row">

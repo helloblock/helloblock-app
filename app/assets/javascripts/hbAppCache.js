@@ -187,7 +187,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/_explorer_response.html',
-    "STATUS CODE: 200 OK\n" +
+    "STATUS CODE: <span class='text-success'>200</span> OK\n" +
     "\n" +
     "BODY:\n" +
     "\n" +
@@ -1506,39 +1506,47 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<div class=\"container\">\n" +
     "  <div class=\"input-group input-group-lg\">\n" +
     "    <span class=\"input-group-addon\">REQUEST URL: </span>\n" +
-    "    <input type=\"text\" class=\"form-control\" value=\"{{request.url}}\">\n" +
+    "    <textarea type=\"text\" class=\"form-control no-white-space no-outline\" readonly selected>\n" +
+    "      {{request.buildUrl()}}\n" +
+    "    </textarea>\n" +
     "  </div>\n" +
     "\n" +
     "  <div class=\"row\">\n" +
     "    <div class=\"col-md-4\">\n" +
-    "      <h3>REQUEST Builder</h3>\n" +
-    "      <div class=\"bs-sidebar\">\n" +
+    "      <h3>REQUEST</h3>\n" +
+    "      <div class=\"bs-sidebar extra-padding\">\n" +
     "        <div class=\"row\">\n" +
-    "          <div class=\"col-md-5\">\n" +
+    "          <div class=\"col-md-4\">\n" +
     "            <div class='h5 title-key'>\n" +
     "              <strong>Mode:</strong>\n" +
     "            </div>\n" +
     "          </div>\n" +
-    "          <div class=\"col-md-7\">\n" +
-    "            <div class=\"h5\">\n" +
-    "              asdf\n" +
-    "            </div>\n" +
+    "          <div class=\"col-md-8\">\n" +
+    "            <select ui-select2=\"select2Options\" ng-model=\"options.mode\">\n" +
+    "              <option value=\"api\">LIVE</option>\n" +
+    "              <option value=\"test\">TEST</option>\n" +
+    "            </select>\n" +
     "          </div>\n" +
     "        </div>\n" +
     "        <br>\n" +
     "        <div class=\"row\">\n" +
-    "          <div class=\"col-md-5\">\n" +
+    "          <div class=\"col-md-4\">\n" +
     "            <div class='h5 title-key'>\n" +
     "              <strong>Resource:</strong>\n" +
     "            </div>\n" +
     "          </div>\n" +
-    "          <div class=\"col-md-7\">\n" +
-    "            DROP\n" +
+    "          <div class=\"col-md-8\">\n" +
+    "            <select ui-select2=\"select2Options\" ng-model=\"options.resource\">\n" +
+    "              <option value=\"addresses\">Addresses</option>\n" +
+    "              <option value=\"unspents\">Unspents</option>\n" +
+    "              <option value=\"transactions\">Transactions</option>\n" +
+    "              <option value=\"two\">Blocks</option>\n" +
+    "            </select>\n" +
     "          </div>\n" +
     "        </div>\n" +
     "        <br>\n" +
     "        <div class=\"row\">\n" +
-    "          <div class=\"col-md-5\">\n" +
+    "          <div class=\"col-md-4\">\n" +
     "            <div class='h5 title-key'>\n" +
     "              <strong>Parameters:</strong>\n" +
     "            </div>\n" +
@@ -1697,28 +1705,18 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/test.html',
-    "<br><br>\n" +
-    "<div class=\"container\" >\n" +
-    "  <pre>\n" +
-    "    <code class=\"ruby\" hljs>\n" +
-    "      class Thing\n" +
-    "        def initialize()\n" +
-    "      end\n" +
-    "    </code>\n" +
-    "  </pre>\n" +
-    "  <pre>\n" +
-    "    <code class=\"javascript\" hljs>\n" +
-    "      $(function() {\n" +
-    "        // do something ...\n" +
-    "      })\n" +
-    "    </code>\n" +
-    "  </pre>\n" +
-    "  <pre>\n" +
-    "    <code class=\"bash\" hljs>\n" +
-    "      curl https://main.helloblock.io/v1/\n" +
-    "    </code>\n" +
-    "  </pre>\n" +
-    "</div>\n"
+    "<br><br><br>\n" +
+    "<div class=\"container\">\n" +
+    "  <div class=\"col-md-4\">\n" +
+    "    <select ui-select2 ng-model=\"select2\" data-placeholder=\"Pick a number\">\n" +
+    "      <option value=\"\"></option>\n" +
+    "      <option value=\"one\">First</option>\n" +
+    "      <option value=\"two\">Second</option>\n" +
+    "      <option value=\"three\">Third</option>\n" +
+    "    </select>\n" +
+    "  </div>\n" +
+    "</div>\n" +
+    "<br><br><br>\n"
   );
 
 }]);
