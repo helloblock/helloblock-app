@@ -46,4 +46,9 @@ hbApp.controller( "explorerCtrl", function( $scope, $resource ) {
 
 	// HELPERS
 
+	$scope.select2Options = {
+		allowClear: false,
+		minimumResultsForSearch: -1
+	};
+
 } )

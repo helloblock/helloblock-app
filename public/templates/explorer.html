@@ -8,7 +8,7 @@
   <div class="row">
     <div class="col-md-4">
       <h3>REQUEST Builder</h3>
-      <div class="bs-sidebar">
+      <div class="bs-sidebar extra-padding">
         <div class="row">
           <div class="col-md-5">
             <div class='h5 title-key'>
@@ -16,9 +16,10 @@
             </div>
           </div>
           <div class="col-md-7">
-            <div class="h5">
-              asdf
-            </div>
+            <select ui-select2="select2Options" ng-model="options.mode">
+              <option value="api">LIVE</option>
+              <option value="test">TEST</option>
+            </select>
           </div>
         </div>
         <br>
@@ -29,7 +30,13 @@
             </div>
           </div>
           <div class="col-md-7">
-            DROP
+            <select ui-select2="select2Options" ng-model="options.resource">
+              <option value="addresses">Addresses</option>
+              <option value="two">Unspents</option>
+              <option value="two">Transactions</option>
+              <option value="two">Blocks</option>
+              <option value="two" disabled>Coming Soon</option>
+            </select>
           </div>
         </div>
         <br>

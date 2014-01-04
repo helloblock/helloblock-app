@@ -12,6 +12,7 @@
  *= require yeti/loader
  *= require yeti/bootswatch
  *= require yeti/sidebar
+ *= require select2
  *= require highlight
  *= require docs
  *= require landing

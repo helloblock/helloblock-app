@@ -16,10 +16,12 @@
 //= require yeti/loader
 //= require yeti/bootswatch
 //= require highlight.min
+//= require select2
 //= require angular
 //= require angular-route
 //= require angular-resource
-//= require angular-ui-bootstrap-tpls
+//= require angular-ui-select2
+// require angular-ui-bootstrap-tpls
 //= require spin.min
 //= require hbApp
 //= require_tree ./controllers
