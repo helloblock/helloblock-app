@@ -1,34 +1,51 @@
-hbApp.controller( "explorerCtrl", function( $scope, $resource, $http ) {
+hbApp.controller( "explorerCtrl", function( $scope, $resource, $http, $timeout ) {
 	// API RESOURCE
 
-	var HelloBlock = $resource( "https://api.helloblock.io/v1/:resource/", {
-		cors: true
-	} )
+	var HelloBlock = $resource( "https://api.helloblock.io/v1/:resource/" )
+
+	// URL BUILDER
+	$scope.buildUrl = function() {
+		// var url = "https://" + $scope.selected.mode + ".helloblock.io/v1/" +
+		// 	$scope.selected.resource.name + "/" + $scope.selected.params[ 0 ].value + "/"
+
+		// return url
+	}
 
 	// CORE USER PARAMETERS
 
-	$scope.options = {
-		mode: "api",
-		resource: "addresses",
-		type: "",
-		params: [ {
-			key: "address",
-			value: "mfwyrZw47YY7wExpcLm7uPHLer7XoMVntd"
+	$scope.resources = [ {
+		name: "addresses",
+		type: "GET",
+		definition: "GET /addresses/:address",
+		parameters: [ {
+			key: "keyz",
+			value: "valuez",
 		}, {
-			key: "txs",
-			value: "false"
-		} ],
+			key: "nutha",
+			value: "duoood",
+		} ]
+	}, {
+		name: "addresses",
+		type: "GET",
+		definition: "GET /addresses (batch)",
+		parameters: [ {
+			key: "addresses[]=",
+			value: "asdfasdf",
+		}, {
+			key: "addresses[]=",
+			value: "fdsafdsaf",
+		} ]
+	} ]
+
+	$scope.selected = {
+		mode: "api",
+		resource: {
+			index: "0"
+		},
+		params: [],
 		body: {
 
 		},
-	}
-
-	$scope.request = {
-		buildUrl: function() {
-			return "https://" + $scope.options.mode + ".helloblock.io/v1/" +
-				$scope.options.resource + "/" + $scope.options.params[ 0 ].value + "/"
-		}
-
 	}
 
 	$scope.response = {
@@ -41,13 +58,21 @@ hbApp.controller( "explorerCtrl", function( $scope, $resource, $http ) {
 	}
 
 	$scope.submitRequest = function() {
-		$scope.response.loading = false;
-		$scope.response.code = Math.random();
-		$scope.response.body = angular.toJson( {
-			todo: false,
-			implemented: true,
-			message: "yay"
-		}, true );
+		$scope.response.loading = true;
+
+		$scope.response.code = ""
+		$scope.response.body = ""
+
+		$timeout( function() {
+			$scope.response.code = Math.random();
+			$scope.response.body = angular.toJson( {
+				todo: false,
+				implemented: true,
+				message: "yay"
+			}, true );
+
+			$scope.response.loading = false;
+		}, 1000 )
 
 		// HelloBlock.get( "", function() {
 		// 	console.log( 'success' )

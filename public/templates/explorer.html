@@ -1,15 +1,14 @@
 <br>
 <div class="container">
   <div class="input-group input-group-lg" prevent-backspace>
-    <span class="input-group-addon">REQUEST URL: </span>
+    <span class="input-group-addon h3">REQUEST URL: </span>
     <textarea type="text" class="form-control no-white-space no-outline" readonly selected>
-      {{request.buildUrl()}}
+      {{buildUrl()}}
     </textarea>
   </div>
-
   <div class="row">
     <div class="col-md-4">
-      <h3>REQUEST</h3>
+      <h3>REQUEST BUILDER</h3>
       <form class="bs-sidebar extra-padding" ng-submit="submitRequest()">
         <div class="row">
           <div class="col-md-4">
@@ -18,7 +17,7 @@
             </div>
           </div>
           <div class="col-md-8">
-            <select ui-select2="select2Options" ng-model="options.mode">
+            <select ui-select2="select2Options" ng-model="selected.mode">
               <option value="api">LIVE</option>
               <option value="test">TEST</option>
             </select>
@@ -32,29 +31,39 @@
             </div>
           </div>
           <div class="col-md-8">
-            <select ui-select2="select2Options" ng-model="options.resource">
-              <option value="addresses">Addresses</option>
-              <option value="unspents">Unspents</option>
-              <option value="transactions">Transactions</option>
-              <option value="blocks">Blocks</option>
+            <select ui-select2="select2Options" ng-model="selected.resource.index
+            ">
+              <option ng-repeat="r in resources" value="{{$index}}">
+                {{r.definition}}
+              </option>
             </select>
           </div>
         </div>
         <br>
         <div class="row">
-          <div class="col-md-4">
-            <div class='h5 title-key'>
-              <strong>Parameters:</strong>
-            </div>
+          <div class='h5 title text-center'>
+            <strong>Parameters</strong>
           </div>
         </div>
         <br>
-        <div class="row" ng-repeat="p in options.params">
-          <div class="col-md-4 text-right"><h5>{{p.key.capitalize()}}:</h5></div>
-          <div class="col-md-8">
-            <input class='form-control' ng-model="p.value">
+        <div class="line-divider"></div>
+        <br>
+
+        <div ng-repeat="r in resources">
+
+          <div class="row"
+            ng-repeat="p in r.parameters"
+            ng-show="selected.resource.index === $index.toString()"
+          >
+            <div class="col-md-4 text-right">
+              <h5>{{p.key.capitalize()}}:</h5>
+            </div>
+            <div class="col-md-8">
+              <input class='form-control' ng-model="p.value">
+            </div>
+            <br><br>
           </div>
-          <br><br>
+
         </div>
         <br>
         <button

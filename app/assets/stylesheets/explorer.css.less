@@ -11,3 +11,14 @@ pre.response {
 		white-space: pre;
 	}
 }
+
+.line-divider {
+	margin: 0 20px;
+	height: 1px;
+    z-index: 2;
+    .box-shadow(0px 1px 0.5px lighten(@gray-light, 10%));
+    #gradient.radial(
+        @inner-color: @gray-light,
+        @outer-color: @gray-lighter
+    );
+}
