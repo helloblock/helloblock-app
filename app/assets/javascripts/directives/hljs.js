@@ -4,13 +4,17 @@ hbApp.directive( "hljs", function() {
 	}
 } )
 
-hbApp.directive( "ngHljs", function( $timeout, $interpolate ) {
-	return function( $scope, element, attrs ) {
+hbApp.directive( "ngHljs", function( $interpolate ) {
+	return {
+		link: function( $scope, element, attrs ) {
+			$scope.$watch( "response", function( newResponse, oldResponse ) {
 
-		var tmp = $interpolate( element.text() )( $scope );
+				// TODO: Hack, should use templateUrl somehow
+				var string = "STATUS CODE: {{response.code}}\n\nBODY: \n\n{{response.body}}"
 
-		$timeout( function() {
-			element.html( hljs.highlight( attrs.class, tmp ).value );
-		} );
+				var tmp = $interpolate( string )( $scope );
+				element.html( hljs.highlight( attrs.class, tmp ).value );
+			}, true )
+		}
 	}
 } )

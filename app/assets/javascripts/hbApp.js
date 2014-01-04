@@ -7,6 +7,9 @@ var hbApp = angular.module( 'hbApp', [
 ] )
 
 hbApp.config( function( $httpProvider ) {
+	// $httpProvider.defaults.useXDomain = true;
+	// delete $httpProvider.defaults.headers.common[ 'X-Requested-With' ];
+
 	var authToken;
 	authToken = $( "meta[name=\"csrf-token\"]" ).attr( "content" );
 	return $httpProvider.defaults.headers.common[ "X-CSRF-TOKEN" ] = authToken;

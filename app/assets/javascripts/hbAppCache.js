@@ -187,7 +187,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/_explorer_response.html',
-    "STATUS CODE: <span class='text-success'>200</span> OK\n" +
+    "STATUS CODE: {{response.code}}\n" +
     "\n" +
     "BODY:\n" +
     "\n" +
@@ -1504,7 +1504,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   $templateCache.put('/templates/explorer.html',
     "<br>\n" +
     "<div class=\"container\">\n" +
-    "  <div class=\"input-group input-group-lg\">\n" +
+    "  <div class=\"input-group input-group-lg\" prevent-backspace>\n" +
     "    <span class=\"input-group-addon\">REQUEST URL: </span>\n" +
     "    <textarea type=\"text\" class=\"form-control no-white-space no-outline\" readonly selected>\n" +
     "      {{request.buildUrl()}}\n" +
@@ -1514,7 +1514,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  <div class=\"row\">\n" +
     "    <div class=\"col-md-4\">\n" +
     "      <h3>REQUEST</h3>\n" +
-    "      <div class=\"bs-sidebar extra-padding\">\n" +
+    "      <form class=\"bs-sidebar extra-padding\" ng-submit=\"submitRequest()\">\n" +
     "        <div class=\"row\">\n" +
     "          <div class=\"col-md-4\">\n" +
     "            <div class='h5 title-key'>\n" +
@@ -1540,7 +1540,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              <option value=\"addresses\">Addresses</option>\n" +
     "              <option value=\"unspents\">Unspents</option>\n" +
     "              <option value=\"transactions\">Transactions</option>\n" +
-    "              <option value=\"two\">Blocks</option>\n" +
+    "              <option value=\"blocks\">Blocks</option>\n" +
     "            </select>\n" +
     "          </div>\n" +
     "        </div>\n" +
@@ -1561,21 +1561,20 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          <br><br>\n" +
     "        </div>\n" +
     "        <br>\n" +
-    "        <a class=\"btn btn-block btn-success\">\n" +
+    "        <button\n" +
+    "          class=\"btn btn-block btn-success\"\n" +
+    "          type=\"submit\"\n" +
+    "          >\n" +
     "          SUBMIT REQUEST\n" +
-    "        </a>\n" +
+    "        </button>\n" +
     "      </div>\n" +
-    "    </div>\n" +
+    "    </form>\n" +
     "    <div class=\"col-md-8\">\n" +
     "      <h3>RESPONSE</h3>\n" +
-    "      <div ng-include=></div>\n" +
+    "      <spin ng-show=\"response.loading\"></spin>\n" +
     "      <pre class=\"response\">\n" +
-    "\n" +
-    "        <!-- scope.response -->\n" +
-    "        <code class=\"javascript\"\n" +
-    "        ng-hljs\n" +
-    "        ng-include=\"'/templates/_explorer_response.html'\">\n" +
-    "      </code>\n" +
+    "        <code class=\"javascript\" ng-hljs>\n" +
+    "        </code>\n" +
     "    </pre>\n" +
     "  </div>\n" +
     "</div>\n" +

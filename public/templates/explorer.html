@@ -1,6 +1,6 @@
 <br>
 <div class="container">
-  <div class="input-group input-group-lg">
+  <div class="input-group input-group-lg" prevent-backspace>
     <span class="input-group-addon">REQUEST URL: </span>
     <textarea type="text" class="form-control no-white-space no-outline" readonly selected>
       {{request.buildUrl()}}
@@ -10,7 +10,7 @@
   <div class="row">
     <div class="col-md-4">
       <h3>REQUEST</h3>
-      <div class="bs-sidebar extra-padding">
+      <form class="bs-sidebar extra-padding" ng-submit="submitRequest()">
         <div class="row">
           <div class="col-md-4">
             <div class='h5 title-key'>
@@ -36,7 +36,7 @@
               <option value="addresses">Addresses</option>
               <option value="unspents">Unspents</option>
               <option value="transactions">Transactions</option>
-              <option value="two">Blocks</option>
+              <option value="blocks">Blocks</option>
             </select>
           </div>
         </div>
@@ -57,21 +57,20 @@
           <br><br>
         </div>
         <br>
-        <a class="btn btn-block btn-success">
+        <button
+          class="btn btn-block btn-success"
+          type="submit"
+          >
           SUBMIT REQUEST
-        </a>
+        </button>
       </div>
-    </div>
+    </form>
     <div class="col-md-8">
       <h3>RESPONSE</h3>
-      <div ng-include=></div>
+      <spin ng-show="response.loading"></spin>
       <pre class="response">
-
-        <!-- scope.response -->
-        <code class="javascript"
-        ng-hljs
-        ng-include="'/templates/_explorer_response.html'">
-      </code>
+        <code class="javascript" ng-hljs>
+        </code>
     </pre>
   </div>
 </div>
