@@ -3,9 +3,11 @@
   <form class="input-group input-group-lg" ng-submit="submitRequest()">
     <span class="input-group-addon h3">REQUEST URL: </span>
     <input
+      id="request-url"
       type="text"
-      class="form-control no-white-space no-outline"
+      class="form-control no-white-space"
       ng-model="request.url"
+      ng-class="{'input-success': request.isClean(), 'input-warning': !request.isClean()}"
       selected>
     </input>
     <button ng-hide="true" type="submit"></button>
@@ -13,7 +15,7 @@
   <div class="row">
     <div class="col-md-4">
       <h3>REQUEST BUILDER</h3>
-      <form class="bs-sidebar extra-padding" ng-submit="submitRequest()">
+      <form class="bs-sidebar extra-padding" ng-submit="submitRequest(true)">
         <div class="row">
           <div class="col-md-3">
             <div class='h5 title-key'>

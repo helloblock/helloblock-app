@@ -17,11 +17,15 @@ hbApp.controller( "explorerCtrl", function( $scope, $http, Definitions, UrlBuild
 		body: {}
 	}
 
-	$scope.submitRequest = function() {
+	$scope.submitRequest = function( force ) {
 		$scope.response = {}
 		$scope.response.loading = true
 
 		var def = $scope.options.definitions[ $scope.options.selected.index ]
+
+		if ( force ) {
+			$scope.updateUrl()
+		}
 
 		$http( {
 			method: def.method,
@@ -48,7 +52,10 @@ hbApp.controller( "explorerCtrl", function( $scope, $http, Definitions, UrlBuild
 
 	// URL
 	$scope.request = {
-		url: "TODO"
+		url: "",
+		isClean: function() {
+			return $scope.request.url === $scope.buildUrl();
+		}
 	}
 
 	$scope.$watch( "options", function() {
@@ -56,14 +63,16 @@ hbApp.controller( "explorerCtrl", function( $scope, $http, Definitions, UrlBuild
 	}, true )
 
 	$scope.updateUrl = function() {
+		$scope.request.url = $scope.buildUrl()
+	}
+
+	$scope.buildUrl = function() {
 		var def = $scope.options.definitions[ $scope.options.selected.index ];
-		var url = UrlBuilder.build(
+		return UrlBuilder.build(
 			$scope.options.selected.mode,
 			def.name,
 			def.parameters,
 			def.batch )
-
-		$scope.request.url = url
 	}
 
 	// HELPERS
