@@ -5,18 +5,9 @@
 GET https://api.helloblock.io/v1/transactions?tx_hashes[]=<span class="text-primary">&lt;tx_hash&gt;</span></code>
 </pre>
 <div class="h5 title">EXAMPLE REQUEST</div>
-<pre>
+<pre class='curl'>
   <code class="bash" hljs>
-$ curl -G https://api.helloblock.io/v1/transactions \
-   -d "tx_hashes[]=<span class='text-primary'>6f9e9570881e781db8c137c84c111a138e4a022e6b2def5e2a1589a802fe25f3</span>" \
-   -d "tx_hashes[]=<span class='text-primary'>770e6e4c66fc61fb523e5aefe11780b26c8473638e7065ca726a6492ab7f6345</span>" \
-   -d "tx_hashes[]=<span class='text-primary'>47bf46f92384002dc008696dac3437a2ca4a2696c21a3f6d1d789513e7b9a3f0</span>"
-  </code>
-</pre>
-<div class="h5 title">EXAMPLE REQUEST URL</div>
-<pre>
-  <code class="bash" hljs>
-https://api.helloblock.io/v1/transactions?tx_hashes[]=6f9e9570881e781db8c137c84c111a138e4a022e6b2def5e2a1589a802fe25f3&tx_hashes[]=770e6e4c66fc61fb523e5aefe11780b26c8473638e7065ca726a6492ab7f6345&tx_hashes[]=47bf46f92384002dc008696dac3437a2ca4a2696c21a3f6d1d789513e7b9a3f0
+$ curl https://api.helloblock.io/v1/transactions?tx_hashes[]=<span class='text-primary'>6f9e9570881e781db8c137c84c111a138e4a022e6b2def5e2a1589a802fe25f3</span>&tx_hashes[]=<span class='text-primary'>770e6e4c66fc61fb523e5aefe11780b26c8473638e7065ca726a6492ab7f6345</span>&tx_hashes[]=<span class='text-primary'>47bf46f92384002dc008696dac3437a2ca4a2696c21a3f6d1d789513e7b9a3f0</span>
   </code>
 </pre>
 <div class="h5 title">EXAMPLE RESPONSE</div>

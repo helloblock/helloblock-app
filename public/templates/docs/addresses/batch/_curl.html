@@ -5,21 +5,9 @@
 GET https://api.helloblock.io/v1/addresses?addresses[]=<span class="text-primary">&lt;address&gt;</span></code>
 </pre>
 <div class="h5 title">EXAMPLE REQUEST</div>
-<pre>
+<pre class='curl'>
   <code class="bash" hljs>
-$ curl -G https://api.helloblock.io/v1/addresses \
-   -d "addresses[]=<span class='text-primary'>mu1izpJmF7CHnbVcH59f1PqfvXnmiBEMq8</span>" \
-   -d "addresses[]=<span class='text-primary'>mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3</span>" \
-   -d "addresses[]=<span class='text-primary'>n1Fr4r3wEcbXZGQJaqJkFRiMpYLAsk81RX</span>" \
-   -d "tx=true" \
-   -d "wallet=true" \
-   -d "info=true"
-  </code>
-</pre>
-<div class="h5 title">EXAMPLE REQUEST URL</div>
-<pre>
-  <code class="markdown" hljs>
-https://api.helloblock.io/v1/addresses?&addresses[]=mu1izpJmF7CHnbVcH59f1PqfvXnmiBEMq8&addresses[]=mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3&addresses[]=n1Fr4r3wEcbXZGQJaqJkFRiMpYLAsk81RX&tx=true&wallet=true&info=true
+$ curl https://api.helloblock.io/v1/addresses?&addresses[]=<span class='text-primary'>mu1izpJmF7CHnbVcH59f1PqfvXnmiBEMq8</span>&addresses[]=<span class='text-primary'>mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3</span>&addresses[]=<span class='text-primary'>n1Fr4r3wEcbXZGQJaqJkFRiMpYLAsk81RX</span>&tx=true&wallet=true&info=true
   </code>
 </pre>
 <div class="h5 title">EXAMPLE RESPONSE</div>
