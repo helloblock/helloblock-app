@@ -13,13 +13,6 @@ hbApp.controller( "docsCtrl", function( $scope ) {
 			id: "introduction-intro"
 		} ]
 	}, {
-		name: "walkthrough",
-		subs: [ {
-			name: "",
-			file: "intro",
-			id: "walkthrough-intro"
-		} ]
-	}, {
 		name: "errors",
 		subs: [ {
 			name: "",
