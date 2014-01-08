@@ -1649,8 +1649,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          Mirrors Blockchain.info\n" +
     "        </h2>\n" +
     "        <p class='lead lead-smaller'>\n" +
-    "          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n" +
-    "          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam\n" +
+    "          Provides a testing environment for developers using blockchain.info in production\n" +
     "        </p>\n" +
     "      </div>\n" +
     "      <div class=\"feature col-md-4 text-center\">\n" +
@@ -1660,8 +1659,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          Built for Developers\n" +
     "        </h2>\n" +
     "        <p class='lead lead-smaller'>\n" +
-    "          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n" +
-    "          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam\n" +
+    "          HTTPS access to Blockchain Data through a RESTful JSON API. Hosted  Mainnet and Testnet.\n" +
     "        </p>\n" +
     "      </div>\n" +
     "      <div class=\"feature col-md-4 text-center\">\n" +
@@ -1671,8 +1669,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          Testnet3 Support\n" +
     "        </h2>\n" +
     "        <p class='lead lead-smaller'>\n" +
-    "          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n" +
-    "          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam\n" +
+    "          Built with Testnet in mind from Day One to enable developers to write automated tests.\n" +
     "        </p>\n" +
     "      </div>\n" +
     "    </div>\n" +
@@ -1683,44 +1680,29 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <div class=\"col-md-8 col-md-offset-2\">\n" +
     "        <blockquote>\n" +
     "          <p class=\"lead\">\n" +
-    "            If you're using the Blockchain.info API would like testnet support,\n" +
+    "            If you are using the <a href=\"https://blockchain.info/api/blockchain_api\">Blockchain.info API</a> would like testnet support,\n" +
     "            substituted your base URL as follows:\n" +
     "          </p>\n" +
     "        </blockquote>\n" +
-    "        <h2>\n" +
+    "        <br>\n" +
+    "        <h2 class=''>\n" +
     "          <code class=\"single\">https://blockchain.info/</code>\n" +
     "        </h2>\n" +
-    "        <h2>\n" +
+    "        <h2 class=''>\n" +
     "          <code class=\"single\">https://test.helloblock.io/b/</code>\n" +
     "        </h2>\n" +
-    "\n" +
+    "        <br><br>\n" +
     "        <blockquote>\n" +
     "          <p class=\"lead\">\n" +
-    "            This mirrors the endpoints specified in https://blockchain.info/api/blockchain_api (including pushtx) but uses testnet3\n" +
-    "          </p>\n" +
-    "          <p class=\"lead\">\n" +
-    "            Use our API explorer to see for yourself\n" +
+    "            <code class=''>https://test.helloblock.io/b/</code>\n" +
+    "            mirrors the methods and responses specified in <a href=\"blockchain.info/api/blockchain_api\">https://blockchain.info/api/blockchain_api</a> (including /pushtx), except it runs on <a href=\"https://en.bitcoin.it/wiki/Testnet\">testnet3</a>, an alternative blockchain used for testing.\n" +
     "          </p>\n" +
     "        </blockquote>\n" +
-    "        <div class=\"row\">\n" +
-    "          <p>For example:</p>\n" +
-    "          <pre>\n" +
-    "            <code class=\"ruby\" hljs>\n" +
-    "              class Thing\n" +
-    "                def initialize\n" +
-    "                end\n" +
-    "              end\n" +
-    "            </code>\n" +
-    "          </pre>\n" +
-    "        </div>\n" +
     "        <blockquote>\n" +
     "          <p class=\"lead\">\n" +
-    "            Use Us\n" +
+    "            However, if you prefer a more reliable API, we recommended you to try our API.\n" +
     "          </p>\n" +
     "        </blockquote>\n" +
-    "        <h2>\n" +
-    "          <code class=\"single\">https://test.helloblock.io/v1/</code>\n" +
-    "        </h2>\n" +
     "        <br>\n" +
     "        <div class=\"row text-center\">\n" +
     "          <a class=\"btn btn-success btn-lg\" href=\"/#!/docs/\">\n" +
