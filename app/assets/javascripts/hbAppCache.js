@@ -250,12 +250,17 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            <span>Contribute</span>\n" +
     "          </a>\n" +
     "        </li>\n" +
-    "        <li\n" +
-    "          ng-class=\"{'active': global.isOnLink('/docs')}\">\n" +
-    "          <a href=\"#!/docs\">\n" +
+    "        <li class=\"dropdown\" ng-class=\"{'active': global.isOnLink('/docs')}\">\n" +
+    "          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
     "            <i class=\"fa fa-book\"></i>\n" +
     "            <span>Documentation</span>\n" +
+    "            <b class=\"caret\"></b>\n" +
     "          </a>\n" +
+    "          <ul class=\"dropdown-menu\">\n" +
+    "            <li><a href=\"/#!/docs\">Reference</a></li>\n" +
+    "            <li class=\"divider\"></li>\n" +
+    "            <li><a href=\"/#!/docs/sample\" class='disabled'>Sample Apps</a></li>\n" +
+    "          </ul>\n" +
     "        </li>\n" +
     "        <li ng-class=\"{'active': global.isOnLink('/explorer')}\">\n" +
     "          <a href=\"#!/explorer\">\n" +
@@ -328,7 +333,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        <li>\n" +
     "          <div class=\"title\">\n" +
     "            <h5>\n" +
-    "              <strong>API</strong>\n" +
+    "              <strong>General</strong>\n" +
     "            </h5>\n" +
     "          </div>\n" +
     "        </li>\n" +
@@ -349,7 +354,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        <li>\n" +
     "          <div class=\"title\">\n" +
     "            <h5>\n" +
-    "              <strong>Resources</strong>\n" +
+    "              <strong>Reference</strong>\n" +
     "            </h5>\n" +
     "          </div>\n" +
     "        </li>\n" +
@@ -442,21 +447,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "GET https://api.helloblock.io/v1/addresses?addresses[]=<span class=\"text-primary\">&lt;address&gt;</span></code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
-    "<pre>\n" +
+    "<pre class='curl'>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "$ curl -G https://api.helloblock.io/v1/addresses \\\n" +
-    "   -d \"addresses[]=<span class='text-primary'>mu1izpJmF7CHnbVcH59f1PqfvXnmiBEMq8</span>\" \\\n" +
-    "   -d \"addresses[]=<span class='text-primary'>mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3</span>\" \\\n" +
-    "   -d \"addresses[]=<span class='text-primary'>n1Fr4r3wEcbXZGQJaqJkFRiMpYLAsk81RX</span>\" \\\n" +
-    "   -d \"tx=true\" \\\n" +
-    "   -d \"wallet=true\" \\\n" +
-    "   -d \"info=true\"\n" +
-    "  </code>\n" +
-    "</pre>\n" +
-    "<div class=\"h5 title\">EXAMPLE REQUEST URL</div>\n" +
-    "<pre>\n" +
-    "  <code class=\"markdown\" hljs>\n" +
-    "https://api.helloblock.io/v1/addresses?&addresses[]=mu1izpJmF7CHnbVcH59f1PqfvXnmiBEMq8&addresses[]=mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3&addresses[]=n1Fr4r3wEcbXZGQJaqJkFRiMpYLAsk81RX&tx=true&wallet=true&info=true\n" +
+    "$ curl https://api.helloblock.io/v1/addresses?&addresses[]=<span class='text-primary'>mu1izpJmF7CHnbVcH59f1PqfvXnmiBEMq8</span>&addresses[]=<span class='text-primary'>mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3</span>&addresses[]=<span class='text-primary'>n1Fr4r3wEcbXZGQJaqJkFRiMpYLAsk81RX</span>&tx=true&wallet=true&info=true\n" +
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
@@ -655,9 +648,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<h2>Addresses</h2>\n" +
     "<br>\n" +
     "<p>\n" +
-    "  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n" +
-    "  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n" +
-    "  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n" +
+    "  Get all associated information for a single or batch of Bitcoin address/es, including transaction information.\n" +
     "</p>\n" +
     "<br>\n"
   );
@@ -677,17 +668,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
-    "<pre>\n" +
+    "<pre class=\"curl\">\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "$ curl -G https://api.helloblock.io/v1/addresses/ \\\n" +
-    "  <span class='text-primary'>n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK</span> \\\n" +
-    "  -d \"txs=true\"\n" +
-    "  </code>\n" +
-    "</pre>\n" +
-    "<div class=\"h5 title\">EXAMPLE REQUEST URL</div>\n" +
-    "<pre>\n" +
-    "  <code class=\"markdown\" hljs>\n" +
-    "https://api.helloblock.io/v1/addresses/<span class=''>n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK</span>&txs=true\n" +
+    "$ curl https://api.helloblock.io/v1/addresses/<span class='text-primary'>n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK</span>?txs=true\n" +
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
@@ -789,9 +772,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<h2>Blocks</h2>\n" +
     "<br>\n" +
     "<p>\n" +
-    "  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n" +
-    "  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n" +
-    "  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n" +
+    "  Get all associated information regarding a Bitcoin blocks, including transactions within a block.\n" +
     "</p>\n" +
     "<br>\n"
   );
@@ -816,8 +797,6 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "$ curl https://api.helloblock.io/v1/blocks/<span class='text-primary'>100000</span>\n" +
     "  </code>\n" +
     "</pre>\n" +
-    "<div class=\"h5 title\">EXAMPLE REQUEST URL</div>\n" +
-    "https://api.helloblock.io/v1/blocks/100000\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
     "<pre>\n" +
@@ -868,30 +847,84 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/errors/intro/_curl.html',
-    ""
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">RESPONSE CODE SUMMARY</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "200 OK            -   Everything worked as expected.\n" +
+    "400 Bad Request   -   Often missing a required parameter.\n" +
+    "404 Not Found     -   The requested item does not exist.\n" +
+    "500 Server Error  -   Something went wrong on Hello Block servers.\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "CODE: 404\n" +
+    "\n" +
+    "BODY:\n" +
+    "\n" +
+    "{\n" +
+    "  \"details\": {\n" +
+    "    \"transactions\": [\n" +
+    "      \"6f9e9570881e781db8c137c84c111a138e4a022e6b2def5e2a1589a802fe25f\"\n" +
+    "    ]\n" +
+    "  },\n" +
+    "  \"error\": \"No Transaction Found!\",\n" +
+    "  \"inspect\": \"#&lt;Errs::User::NotFound: Errs::User::NotFound&gt;\",\n" +
+    "  \"contribute\": \"Help us improve fix bugs by reporting issues: https://github.com/BitcoinMafia/bitcoin_api/issues\",\n" +
+    "  \"backtrace\": [\n" +
+    "    \"/app/app/controllers/v1/blockchain_controller.rb:54:in `transaction'\",\n" +
+    "    \"/app/vendor/bundle/ruby/2.0.0/gems/actionpack-4.0.2/lib/abstract_controller/base.rb:189:in `process_action'\",\n" +
+    "    \"/app/vendor/bundle/ruby/2.0.0/gems/actionpack-4.0.2/lib/action_controller/metal/rendering.rb:10:in `process_action'\",\n" +
+    "    \"/app/vendor/bundle/ruby/2.0.0/gems/actionpack-4.0.2/lib/abstract_controller/callbacks.rb:18:in `block in process_action'\",\n" +
+    "    \"/app/vendor/bundle/ruby/2.0.0/gems/activesupport-4.0.2/lib/active_support/callbacks.rb:403:in `_run__3997361222176426458__process_action__callbacks'\",\n" +
+    "    \"/app/vendor/bundle/ruby/2.0.0/gems/activesupport-4.0.2/lib/active_support/callbacks.rb:80:in `run_callbacks'\",\n" +
+    "    \"/app/vendor/bundle/ruby/2.0.0/gems/actionpack-4.0.2/lib/abstract_controller/callbacks.rb:17:in `process_action'\",\n" +
+    "    \"/app/vendor/bundle/ruby/2.0.0/gems/actionpack-4.0.2/lib/action_controller/metal/rescue.rb:29:in `process_action'\",\n" +
+    "    \"/app/vendor/bundle/ruby/2.0.0/gems/actionpack-4.0.2/lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'\",\n" +
+    "    \"/app/vendor/bundle/ruby/2.0.0/gems/activesupport-4.0.2/lib/active_support/notifications.rb:159:in `block in instrument'\",\n" +
+    "    \"Ignored backtrace after 10 lines\"\n" +
+    "  ]\n" +
+    "}\n" +
+    "\n" +
+    "  </code>\n" +
+    "</pre>\n"
   );
 
 
   $templateCache.put('/templates/docs/errors/intro/_description.html',
     "<h2>Errors</h2>\n" +
-    "<br>\n" +
-    "<code class=\"single\">\n" +
-    "  https://api.helloblock.io/v1/\n" +
-    "</code>\n" +
     "<br><br>\n" +
     "<p>\n" +
-    "  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n" +
-    "  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n" +
-    "  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n" +
+    "  Conventional HTTP response codes are used to indicate success or failure of an API request. Codes in the 2xx range indicate success, codes in the 4xx range indicate an error that resulted from the provided information (e.g. a required parameter was missing, a charge failed, etc.), and codes in the 5xx range indicate an error with Hello Block's servers.\n" +
     "</p>\n" +
     "<br>\n" +
-    "<p>\n" +
-    "  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n" +
-    "  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n" +
-    "  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n" +
-    "</p>\n" +
-    "\n" +
-    "<br>\n"
+    "<p><strong>Response Attributes</strong></p>\n" +
+    "<table class=\"table table-bordered table-docs table-condensed\">\n" +
+    "  <tbody>\n" +
+    "    <tr>\n" +
+    "      <td>details: </td>\n" +
+    "      <td><em>object</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>error: </td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>inspect: </td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>contribute: </td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>backtrace: </td>\n" +
+    "      <td><em>array</em> of <em>strings</em></td>\n" +
+    "    </tr>\n" +
+    "  </tbody>\n" +
+    "</table>\n"
   );
 
 
@@ -901,12 +934,31 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/introduction/intro/_curl.html',
-    "<br><br><br>\n" +
+    "<br><br><br><br>\n" +
     "<pre>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "  echo \"Hello, block!\"\n" +
+    "echo \"Hello, block!\"\n" +
     "  </code>\n" +
-    "\n" +
+    "</pre>\n" +
+    "<div class=\"h4 white\">ENVIRONMENT ENDPOINTS</div>\n" +
+    "<br><br>\n" +
+    "<div class=\"h5 title\">MAINNET (production)</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "    https://<span class='text-primary'>api</span>.helloblock.io/v1/\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">TESTNET (development)</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "    https://<span class='text-primary'>test</span>.helloblock.io/v1/\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">TESTNET - blockchain.info mirror (development)</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "    https://<span class='text-primary'>test</span>.helloblock.io/<span class='text-primary'>b</span>/\n" +
+    "  </code>\n" +
     "</pre>\n"
   );
 
@@ -914,24 +966,52 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   $templateCache.put('/templates/docs/introduction/intro/_description.html',
     "<h2>Introduction</h2>\n" +
     "<br>\n" +
-    "<p>\n" +
-    "  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n" +
-    "  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n" +
-    "  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n" +
-    "</p>\n" +
+    "<h4>What is HelloBlock?</h4>\n" +
     "<br>\n" +
-    "<p>\n" +
-    "  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n" +
-    "  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n" +
-    "  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n" +
-    "</p>\n" +
+    "<p>HelloBlock provides node hosting for both MainNet and TestNet, and give HTTPS access to Blockchain Data through a RESTful JSON API.</p>\n" +
     "\n" +
-    "<br>\n"
+    "<p>It is designed to have predictable, resource-oriented URLs and meaningful HTTP response codes to indicate API errors. We support cross-origin resource sharing to allow client-side web application communication. The codebase is open source.</p>\n" +
+    "<p>This is the API we’ve always wanted. We hope you will love it too.</p>\n" +
+    "<br>\n" +
+    "<h4>Why?</h4>\n" +
+    "<br>\n" +
+    "<p>Bitcoin is programmable currency. However, the developer infrastructure around Bitcoin is underwhelming.</p>\n" +
+    "\n" +
+    "<p>Writing automated tests for Bitcoin transactions are a pain because setting up testnet (an alternative blockchain used for testing) can take a few days. This is because you need to download/parse it into a queriable format. Doing this is only becoming exponentially more difficult as the blockchain grows in size.</p>\n" +
+    "\n" +
+    "<p>As a result, many developers, including ourselves, chose to simulate transactions using real Bitcoins. This meant we paid a 0.0001 BTC TX fee for every test and occasionally even lost all our Bitcoins due to bugs or accidentally clearing our private keys!</p>\n" +
+    "\n" +
+    "<p>This leads to test anxiety where we just leave a bunch of “TODO” comments everywhere in our code. And, of course these “TODOs” really mean “Never going to happen”.</p>\n" +
+    "\n" +
+    "<p>This inevitably introduces bugs into our system. Worst of all, these are often mission critical bugs where real money is being moved around.</p>\n" +
+    "\n" +
+    "<p>HelloBlock provides testnet support and was built with testnet in mind from Day One.</p>\n" +
+    "\n" +
+    "<br>\n" +
+    "<h4>Why don’t I just use Blockchain.info?</h4>\n" +
+    "<br>\n" +
+    "<p>Blockchain.info has built a great consumer application, but it’s not for developers. They’ve made it clear that the API is not their core business, nor do they plan to support testnet (bitcoin talk link).</p>\n" +
+    "\n" +
+    "<p>What’s worse is their API response structures often change randomly without any prior announcements. Strings can become integers, attribute names can change, actual 400 errors come back with 200 response codes etc. This means they can’t be relied upon for any production critical applications. We’ve learnt this the hard way.</p>\n" +
+    "\n" +
+    "<br>\n" +
+    "<h4>Why don’t I just host my own node?</h4>\n" +
+    "<br>\n" +
+    "<p>At some stage, we’ve all said “Screw it, I’m just going to host my own node”. Four days later, when we realize we’re not even 1/3rd of the way there and our node keeps failing randomly, we come crawling back to blockchain.info.</p>\n" +
+    "\n" +
+    "<br><br><br>\n"
   );
 
 
   $templateCache.put('/templates/docs/introduction/intro/_ruby.html',
-    "<code>RUBY</code>\n"
+    "<br><br>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "puts \"The Ruby Client Library is a work in progress ...\"\n" +
+    "\n" +
+    "puts \"Please visit <a href=\"https://github.com/BitcoinMafia/\">https://github.com/BitcoinMafia/</a> if you'd like to contribute.\"\n" +
+    "  </code>\n" +
+    "</pre>\n"
   );
 
 
@@ -943,18 +1023,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "GET https://api.helloblock.io/v1/transactions?tx_hashes[]=<span class=\"text-primary\">&lt;tx_hash&gt;</span></code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
-    "<pre>\n" +
+    "<pre class='curl'>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "$ curl -G https://api.helloblock.io/v1/transactions \\\n" +
-    "   -d \"tx_hashes[]=<span class='text-primary'>6f9e9570881e781db8c137c84c111a138e4a022e6b2def5e2a1589a802fe25f3</span>\" \\\n" +
-    "   -d \"tx_hashes[]=<span class='text-primary'>770e6e4c66fc61fb523e5aefe11780b26c8473638e7065ca726a6492ab7f6345</span>\" \\\n" +
-    "   -d \"tx_hashes[]=<span class='text-primary'>47bf46f92384002dc008696dac3437a2ca4a2696c21a3f6d1d789513e7b9a3f0</span>\"\n" +
-    "  </code>\n" +
-    "</pre>\n" +
-    "<div class=\"h5 title\">EXAMPLE REQUEST URL</div>\n" +
-    "<pre>\n" +
-    "  <code class=\"bash\" hljs>\n" +
-    "https://api.helloblock.io/v1/transactions?tx_hashes[]=6f9e9570881e781db8c137c84c111a138e4a022e6b2def5e2a1589a802fe25f3&tx_hashes[]=770e6e4c66fc61fb523e5aefe11780b26c8473638e7065ca726a6492ab7f6345&tx_hashes[]=47bf46f92384002dc008696dac3437a2ca4a2696c21a3f6d1d789513e7b9a3f0\n" +
+    "$ curl https://api.helloblock.io/v1/transactions?tx_hashes[]=<span class='text-primary'>6f9e9570881e781db8c137c84c111a138e4a022e6b2def5e2a1589a802fe25f3</span>&tx_hashes[]=<span class='text-primary'>770e6e4c66fc61fb523e5aefe11780b26c8473638e7065ca726a6492ab7f6345</span>&tx_hashes[]=<span class='text-primary'>47bf46f92384002dc008696dac3437a2ca4a2696c21a3f6d1d789513e7b9a3f0</span>\n" +
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
@@ -1059,9 +1130,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<h2>Transactions</h2>\n" +
     "<br>\n" +
     "<p>\n" +
-    "  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n" +
-    "  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n" +
-    "  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n" +
+    "  Get all associated information regarding a single or batch of Bitcoin transaction/s including its inputs and outputs.\n" +
     "</p>\n" +
     "<br>\n"
   );
@@ -1147,16 +1216,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
-    "<pre>\n" +
+    "<pre class='curl'>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "$ curl -v -G https://api.helloblock.io/v1/transactions/\\\n" +
-    "<span class='text-primary no-highlight'>2542cd64e02d902975dc6e2e97797ceec5a84e8597c80d22a9e2dbd16e748738</span>\n" +
-    "  </code>\n" +
-    "</pre>\n" +
-    "<div class=\"h5 title\">EXAMPLE REQUEST URL</div>\n" +
-    "<pre>\n" +
-    "  <code class=\"markdown\" hljs>\n" +
-    "https://api.helloblock.io/v1/transactions/2542cd64e02d902975dc6e2e97797ceec5a84e8597c80d22a9e2dbd16e748738\n" +
+    "$ curl https://api.helloblock.io/v1/transactions/<span class='text-primary'>2542cd64e02d902975dc6e2e97797ceec5a84e8597c80d22a9e2dbd16e748738</span>\n" +
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
@@ -1337,9 +1399,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<h2>Unspent Outputs</h2>\n" +
     "<br>\n" +
     "<p>\n" +
-    "  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n" +
-    "  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n" +
-    "  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n" +
+    "  Get unspent outputs for any given address or batch of addresses so you can build a transaction.\n" +
     "</p>\n" +
     "<br>\n"
   );
@@ -1359,18 +1419,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
-    "<pre>\n" +
+    "<pre class='curl'>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "$ curl -G https://api.helloblock.io/v1/addresses/unspents \\\n" +
-    "   -d \"addresses[]=<span class='text-primary'>mfwyrZw47YY7wExpcLm7uPHLer7XoMVntd</span>\" \\\n" +
-    "   -d \"addresses[]=<span class='text-primary'>n161eDouWrxaPPk6D3y4si3Kenz43yAAo8</span>\" \\\n" +
-    "   -d \"addresses[]=<span class='text-primary'>mhdDvTC1wgTr6kEEs4wkDTSxwjuQzvN4md</span>\"\n" +
-    "  </code>\n" +
-    "</pre>\n" +
-    "<div class=\"h5 title\">EXAMPLE REQUEST URL</div>\n" +
-    "<pre>\n" +
-    "  <code class=\"markdown\" hljs>\n" +
-    "https://api.helloblock.io/v1/addresses/unspents?addresses[]=mfwyrZw47YY7wExpcLm7uPHLer7XoMVntd&addresses[]=n161eDouWrxaPPk6D3y4si3Kenz43yAAo8&addresses[]=mhdDvTC1wgTr6kEEs4wkDTSxwjuQzvN4md\n" +
+    "$ curl https://api.helloblock.io/v1/addresses/unspents?addresses[]=<span class='text-primary'>mfwyrZw47YY7wExpcLm7uPHLer7XoMVntd</span>&addresses[]=<span class='text-primary'>n161eDouWrxaPPk6D3y4si3Kenz43yAAo8</span>&addresses[]=<span class='text-primary'>mhdDvTC1wgTr6kEEs4wkDTSxwjuQzvN4md</span>\n" +
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
@@ -1468,48 +1519,17 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/templates/docs/walkthrough/intro/_curl.html',
-    ""
-  );
-
-
-  $templateCache.put('/templates/docs/walkthrough/intro/_description.html',
-    "<h2>Walkthrough</h2>\n" +
-    "<br>\n" +
-    "<code class=\"single\">\n" +
-    "  https://api.helloblock.io/v1/\n" +
-    "</code>\n" +
-    "<br><br>\n" +
-    "<p>\n" +
-    "  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n" +
-    "  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n" +
-    "  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n" +
-    "</p>\n" +
-    "<br>\n" +
-    "<p>\n" +
-    "  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n" +
-    "  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n" +
-    "  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n" +
-    "</p>\n" +
-    "\n" +
-    "<br>\n"
-  );
-
-
-  $templateCache.put('/templates/docs/walkthrough/intro/_ruby.html',
-    "<code>RUBY</code>\n"
-  );
-
-
   $templateCache.put('/templates/explorer.html',
     "<br>\n" +
     "<div class=\"wide-container\">\n" +
     "  <form class=\"input-group input-group-lg\" ng-submit=\"submitRequest()\">\n" +
     "    <span class=\"input-group-addon h3\">REQUEST URL: </span>\n" +
     "    <input\n" +
+    "      id=\"request-url\"\n" +
     "      type=\"text\"\n" +
-    "      class=\"form-control no-white-space no-outline\"\n" +
+    "      class=\"form-control no-white-space\"\n" +
     "      ng-model=\"request.url\"\n" +
+    "      ng-class=\"{'input-success': request.isClean(), 'input-warning': !request.isClean()}\"\n" +
     "      selected>\n" +
     "    </input>\n" +
     "    <button ng-hide=\"true\" type=\"submit\"></button>\n" +
@@ -1517,7 +1537,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  <div class=\"row\">\n" +
     "    <div class=\"col-md-4\">\n" +
     "      <h3>REQUEST BUILDER</h3>\n" +
-    "      <form class=\"bs-sidebar extra-padding\" ng-submit=\"submitRequest()\">\n" +
+    "      <form class=\"bs-sidebar extra-padding\" ng-submit=\"submitRequest(true)\">\n" +
     "        <div class=\"row\">\n" +
     "          <div class=\"col-md-3\">\n" +
     "            <div class='h5 title-key'>\n" +
