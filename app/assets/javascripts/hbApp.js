@@ -6,15 +6,8 @@ var hbApp = angular.module( 'hbApp', [
 	'ui.select2'
 ] )
 
-hbApp.config( function( $httpProvider ) {
-	// var authToken;
-	// authToken = $( "meta[name=\"csrf-token\"]" ).attr( "content" );
-	// return $httpProvider.defaults.headers.common[ "X-CSRF-TOKEN" ] = authToken;
-} );
-
 hbApp.config( function( $locationProvider ) {
 	$locationProvider.html5Mode( true );
-	// $locationProvider.hashPrefix( '!' );
 } )
 
 hbApp.run( function( $rootScope, $location ) {

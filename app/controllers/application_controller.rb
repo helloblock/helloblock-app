@@ -5,10 +5,7 @@ class ApplicationController < ActionController::Base
 
   after_filter :set_csrf_cookie_for_ng
 
-  # before_filter :set_cache_buster unless Rails.env.production?
-
   # Entry point for AngularJS app
-  # /# Namespaced is all handled by AngularJs
   def index
     render layout: false
   end
@@ -23,9 +20,4 @@ class ApplicationController < ActionController::Base
     super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
   end
 
-  def set_cache_buster
-    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
-    response.headers["Pragma"] = "no-cache"
-    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
-  end
 end
