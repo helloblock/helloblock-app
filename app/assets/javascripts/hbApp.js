@@ -13,8 +13,8 @@ hbApp.config( function( $httpProvider ) {
 } );
 
 hbApp.config( function( $locationProvider ) {
-	$locationProvider.html5Mode( false );
-	$locationProvider.hashPrefix( '!' );
+	$locationProvider.html5Mode( true );
+	// $locationProvider.hashPrefix( '!' );
 } )
 
 hbApp.run( function( $rootScope, $location ) {
@@ -47,6 +47,11 @@ hbApp.config( function( $routeProvider ) {
 
 	$routeProvider.when( "/test", {
 		templateUrl: "/templates/test.html"
+	} )
+
+	$routeProvider.when( "/testnet/", {
+		templateUrl: "/templates/explorer/addresses.html",
+		controller: "addressesCtrl"
 	} )
 
 	$routeProvider.otherwise( {
