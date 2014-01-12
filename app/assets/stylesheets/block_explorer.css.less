@@ -7,6 +7,7 @@
 .table-address {
 	margin: 0 auto;
 	width: 100%;
+	font-size: 14px;
 
 	td:nth-of-type(1) {
         width: 33%;
@@ -19,13 +20,50 @@ textarea.input {
 	margin: 0 auto;
 	text-align: center;
 	vertical-align: middle;
-	height: 50px;
+	height: 60px;
 	outline: 1px solid @gray-lighter;
 	padding: 7px;
 	border: none;
 	resize: none;
+	overflow: hidden;
 
 	&:focus {
 		outline: 1px solid @brand-success;
+	}
+}
+
+.amount {
+	white-space: nowrap;
+}
+
+table.table.table-higlighted {
+	background-color: lighten(@brand-warning, 40%);
+}
+
+table.table-transactions {
+
+	tr:nth-of-type(1) td {
+		// border-top: none;
+	}
+
+	table.table {
+		// background-color: inherit;
+	}
+}
+
+.break {
+	word-break: break-all;
+}
+
+.label-lg {
+	font-size: 125%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+table.table.table-info {
+	tr td {
+		padding-top: 8px;
+		padding-bottom: 8px;
 	}
 }
