@@ -50,9 +50,9 @@ hbApp.config( function( $routeProvider ) {
 			controller: name + "/addressesCtrl"
 		} )
 
-		$routeProvider.when( url, {
-			templateUrl: "/templates/" + name + "/home.html",
-			controller: name + "/homeCtrl"
+		$routeProvider.when( url + "/transactions", {
+			templateUrl: "/templates/" + name + "/transactions.html",
+			controller: name + "/transactionsCtrl"
 		} )
 	} )
 
