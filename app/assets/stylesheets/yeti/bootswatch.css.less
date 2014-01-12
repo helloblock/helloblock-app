@@ -14,7 +14,7 @@
 	font-weight: 300;
 	margin-bottom: 0;
 	background-color: @white;
-	.box-shadow(0px 2px 2px rgba(50, 50, 50, 0.15));
+	.box-shadow(0px 1px 1px rgba(50, 50, 50, 0.15));
 	#gradient.vertical(
 		@start-color: @white;
 		@end-color: @gray-lighter;
@@ -303,9 +303,26 @@ fieldset[disabled] .form-control {
 }
 
 .nav-tabs {
-	> li > a {
-		background-color: @btn-default-bg;
+	font-weight: 200;
+	li {
+		border: none
+	}
+
+	& > li > a {
+		background-color: lighten(@gray-lighter, 5%);
 		color: @text-color;
+		border-bottom: inherit;
+	}
+
+	> li.active > a {
+		background-color: @brand-primary;
+		color: @white;
+	}
+
+	> li.active > a:hover {
+		cursor: pointer;
+		background-color: @brand-primary;
+		color: @white;
 	}
 
 	.caret {

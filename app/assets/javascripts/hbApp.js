@@ -3,6 +3,7 @@
 var hbApp = angular.module( 'hbApp', [
 	'ngRoute',
 	'ngResource',
+	'ui.bootstrap',
 	'ui.select2'
 ] )
 

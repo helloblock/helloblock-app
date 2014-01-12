@@ -10,7 +10,7 @@
 	color: #fff;
 }
 
-.nav-pills > li {
+.nav-pills > li, .nav-tabs > li {
 	cursor: pointer;
 }
 
