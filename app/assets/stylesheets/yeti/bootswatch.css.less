@@ -57,16 +57,33 @@
 		}
 
 		.dropdown-menu {
-			background-color: @navbar-inverse-bg;
+			min-width: 0px;
+			width: 130px;
+			background-color: @white;
+
+			> li {
+				height: 30px;
+			}
+
+			.divider {
+				margin: 5px 0;
+			}
+
+			> li a {
+				height: inherit;
+				padding-top: 10px;
+				margin-bottom: 10px;
+			}
 
 			> li > a,
 			> li > a:focus {
-				color: @navbar-inverse-color;
+				color: @gray-dark;
 			}
 
 			> li > a:hover,
 			> .active > a,
 			> .active > a:hover {
+				color: @white;
 				background-color: @navbar-inverse-link-hover-bg;
 			}
 		}
@@ -83,6 +100,7 @@
 	}
 
 	&-subnav {
+
 		min-height: 0px;
 		height: 30px;
 		.box-shadow(0px 1px 1px rgba(50, 50, 50, 0.15));

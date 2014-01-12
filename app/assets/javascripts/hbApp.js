@@ -44,6 +44,16 @@ hbApp.config( function( $routeProvider ) {
 			templateUrl: "/templates/" + name + "/home.html",
 			controller: name + "/homeCtrl"
 		} )
+
+		$routeProvider.when( url + "/addresses", {
+			templateUrl: "/templates/" + name + "/addresses.html",
+			controller: name + "/addressesCtrl"
+		} )
+
+		$routeProvider.when( url, {
+			templateUrl: "/templates/" + name + "/home.html",
+			controller: name + "/homeCtrl"
+		} )
 	} )
 
 	$routeProvider.otherwise( {
