@@ -14,27 +14,27 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class='no-left'>
+        <li class='no-left' ng-class="{'active': selected == 'latest'}">
           <a href="/testnet/">
             Latest
           </a>
         </li>
-        <li class='active'>
+        <li ng-class="{'active': selected == 'addresses'}">
           <a href="/testnet/addresses">
             Addresses
           </a>
         </li>
-        <li>
+        <li ng-class="{'active': selected == 'transactions'}">
           <a href="/testnet/transactions">
             Transactions
           </a>
         </li>
-        <li>
+        <li ng-class="{'active': selected == 'blocks'}">
           <a href="/testnet/blocks">
             Blocks
           </a>
         </li>
-        <li>
+        <li ng-class="{'active': selected == 'unconfirmed'}">
           <a href="/testnet/unconfirmed">
             Unconfirmed
           </a>
