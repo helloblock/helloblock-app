@@ -5,7 +5,7 @@
       <input
         class='h3 big-input'
         spellcheck="false"
-        value="6f9e9570881e781db8c137c84c111a138e4a022e6b2def5e2a1589a802fe25f3">
+        value="{{transaction.tx_hash}}">
       <span class="input-group-btn">
         <button class="btn btn-success btn-block btn-search">
           <span class="h2">SEARCH</span>
@@ -28,27 +28,43 @@
       <a href='#'>View as JSON</a>
     </span>
     <br>
+    <div class="row">
+      <div class="col-md-12 table-tight">
+        <table class="table table-bordered table-summary table-overview">
+          <tbody>
+            <tr>
+              <td>Transaction Hash: </td>
+              <td>{{transaction.tx_hash}}</td>
+            </tr>
+            <tr>
+              <td>Block Hash: </td>
+              <td>
+                <a href="blocks/{{transaction.block_hash}}">
+                  {{transaction.block_hash}}
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
     <div class="col-md-6">
       <table class="table table-bordered table-summary">
         <tr>
           <td>Size: </td>
-          <td>284KB</td>
-        </tr>
-        <tr>
-          <td>Block Hash: </td>
-          <td>284KB</td>
+          <td>{{transaction.tx_size}} KB</td>
         </tr>
         <tr>
           <td>Block Height: </td>
-          <td>284KB</td>
+          <td>{{transaction.block_height}}</td>
         </tr>
         <tr>
           <td>Block Time: </td>
-          <td>284KB</td>
+          <td>{{transaction.block_ntime}}</td>
         </tr>
         <tr>
           <td>Confirmations: </td>
-          <td>284KB</td>
+          <td>{{transaction.confirmations}}</td>
         </tr>
       </table>
     </div>
@@ -56,147 +72,119 @@
       <table class="table table-bordered table-summary">
         <tr>
           <td>Received Time: </td>
-          <td>284KB</td>
+          <td>{{transaction.time}}</td>
         </tr>
         <tr>
           <td>Total Transacted (est.): </td>
-          <td>284KB</td>
+          <td>TODO</td>
         </tr>
         <tr>
-          <td>Total Input: </td>
-          <td>284KB</td>
+          <td>Total Inputs: </td>
+          <td>TODO</td>
         </tr>
         <tr>
-          <td>Total Output: </td>
-          <td>284KB</td>
-        </tr>
-        <tr>
-          <td>Total Fees: </td>
-          <td>284KB</td>
+          <td>Total Outputs: </td>
+          <td>TODO</td>
         </tr>
       </table>
     </div>
   </div>
   <br><br>
-  <div class="row">
-    <div class="h3 text-center text-gray">
-      INPUTS/OUTPUTS
-    </div>
-    <table class="table table-transactions">
-      <tr>
-        <td class='no-top'>
-        <br>
-        <div class="col-md-5">
-          <table class="table table-bordered">
-            <tbody>
-              <tr>
-                <td>n (index): </td>
-                <td><span class="h5">1</span></td>
-              </tr>
-              <tr>
-                <td>Address: </td>
-                <td>
-                  <img src="http://identicoin.herokuapp.com/address/2" width="16">
-                  <span class="h5">mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3</span>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Amount:
-                </td>
-                <td>
-                  <span class="h5 amount">1.1314124 BTC</span>
-                  <span class="label label-default">SPENT</span>
-                </td>
-              </tr>
-              <tr>
-                <td class='text-center'>ScriptSig: </td>
-                <td class='break'>
-                  <span class="h5">48304502204e11134afd57bc97af7d2d5b473e380095573f918dc6146030dcc370b80422f3022100f99a57a7dc7a1f4d4580107d6627130b703d5f9adeb3b4a1b6c30d255bb846470121024feb84207f01648c1b214cc83068d2fb7c9552d932c3519cacb9ae91d3c2a63c</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="col-md-2 text-center">
-          <i class="fa fa-arrow-circle-right fa-4x text-success"></i>
-        </div>
-        <div class="col-md-5 addresses">
-          <table class="table table-bordered">
-            <tbody>
-              <tr>
-                <td>n (index): </td>
-                <td><span class="h5">0</span></td>
-              </tr>
-              <tr>
-                <td>Address: </td>
-                <td>
-                  <img src="http://identicoin.herokuapp.com/address/1" width="16">
-                  <span class="h5">mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3</span>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Amount:
-                </td>
-                <td>
-                  <span class="h5 amount">1.1314124 BTC</span>
-                  <span class="label label-success">UNSPENT</span>
-                </td>
-              </tr>
-              <tr>
-                <td>scriptPubKey: </td>
-                <td>
-                  <span class="h5">OP_DUP OP_HASH160 0c79f15f08b0f94a2cba8de036272dee3ecb0961 OP_EQUALVERIFY OP_CHECKSIG
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td>scriptPubKey (raw): </td>
-                <td><span class="h5">76a914f8f0710fe396f1aabe29b24e7f117c9a82ae7c1088ac</span></td>
-              </tr>
-            </tbody>
-          </table>
-          <table class="table table-bordered">
-            <tbody>
-              <tr>
-                <td>n (index): </td>
-                <td><span class="h5">1</span></td>
-              </tr>
-              <tr>
-                <td>Address: </td>
-                <td>
-                  <img src="http://identicoin.herokuapp.com/address/3" width="16">
-                  <span class="h5">mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3</span>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Amount:
-                </td>
-                <td>
-                  <span class="h5 amount">1.1314124 BTC</span>
-                  <span class="label label-default">SPENT</span>
-                </td>
-              </tr>
-              <tr>
-                <td>scriptPubKey: </td>
-                <td>
-                  <span class="h5">OP_DUP OP_HASH160 0c79f15f08b0f94a2cba8de036272dee3ecb0961 OP_EQUALVERIFY OP_CHECKSIG
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td>scriptPubKey (raw): </td>
-                <td><span class="h5">76a914f8f0710fe396f1aabe29b24e7f117c9a82ae7c1088ac</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        </td>
-      </tr>
-    </table>
+</div>
+<div class="wide-container">
+  <div class="h3 text-center text-gray">
+    INPUTS/OUTPUTS
   </div>
-  <br>
-
+  <table class="table table-transactions">
+    <tr>
+      <td class='no-top'>
+      <br>
+      <div class="col-md-5">
+        <table
+          ng-repeat="i in transaction.in"
+          class="
+            table table-bordered table-io"
+            ng-repeat="o in transaction.out">
+          <tbody>
+            <tr>
+              <td>n (index): </td>
+              <td><span class="h5">{{i.prev_out.n}}</span></td>
+            </tr>
+            <tr>
+              <td>Address: </td>
+              <td>
+                <img
+                  ng-src="http://identicoin.herokuapp.com/address/{{i.prev_out.address}}"
+                  width="16">
+                <span class="h5">{{i.prev_out.address}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Amount:
+              </td>
+              <td>
+                <span class="h5 amount">{{i.prev_out.value}}</span>
+                <span class="label label-default">SPENT</span>
+              </td>
+            </tr>
+            <tr>
+              <td class='text-center'>ScriptSig: </td>
+              <td class='break'>
+                <span class="h5">{{i.scriptSig}}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-2 text-center">
+        TODO
+        <i class="fa fa-arrow-circle-right fa-4x text-success"></i>
+      </div>
+      <div class="col-md-5 addresses">
+        <table
+          class="table table-bordered table-io"
+          ng-repeat="o in transaction.out">
+          <tbody>
+            <tr>
+              <td>n (index): </td>
+              <td><span class="h5">{{o.n}}</span></td>
+            </tr>
+            <tr>
+              <td>Address: </td>
+              <td>
+                <img src="http://identicoin.herokuapp.com/address/{{o.address}}" width="16">
+                <span class="h5">{{o.address}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Amount:
+              </td>
+              <td>
+                <span class="h5 amount">{{o.value}}</span>
+                <span class="label label-success">{{o.spent}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td rowspan="2">scriptPubKey: </td>
+              <td>
+                <span class="h5">
+                  TODO: Parsed
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="h5">
+                  {{o.scriptPubKey}}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </td>
+    </tr>
+  </table>
 </div>

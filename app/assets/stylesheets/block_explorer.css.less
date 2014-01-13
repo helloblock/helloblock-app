@@ -97,14 +97,24 @@
 }
 
 table {
+	&.table-io {
+		font-size: 18px;
+		font-weight: 200;
+
+		td:nth-of-type(1) {
+      width: 20%;
+      text-align: right;
+		}
+	}
+
 	&.table-summary {
 		font-size: 18px;
 		font-weight: 200;
 
 		td:nth-of-type(1) {
-	        width: 40%;
-	        text-align: right;
-	    }
+      width: 40%;
+      text-align: right;
+		}
 	}
 
 	&.table-address {
@@ -157,4 +167,9 @@ table {
 		}
 	}
 
+}
+
+.table-tight {
+	padding-left: 30px;
+	padding-right: 30px;
 }

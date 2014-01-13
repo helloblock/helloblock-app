@@ -20,7 +20,6 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, HelloBlock ) 
       "tx_hash[]": unspents_tx_hashes
     }, function( res ) {
 
-      debugger
       $scope.address.unspent_transactions = res[ "data" ][ 'transactions' ]
     }, function( err ) {
       console.log( "error!", err )
