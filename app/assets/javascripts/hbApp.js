@@ -54,6 +54,16 @@ hbApp.config( function( $routeProvider ) {
       templateUrl: "/templates/" + name + "/transactions.html",
       controller: name + "/transactionsCtrl"
     } )
+
+    $routeProvider.when( url + "/blocks", {
+      templateUrl: "/templates/" + name + "/blocks.html",
+      controller: name + "/blocksCtrl"
+    } )
+
+    $routeProvider.when( url + "/unconfirmed", {
+      templateUrl: "/templates/" + name + "/unconfirmed.html",
+      controller: name + "/unconfirmedCtrl"
+    } )
   } )
 
   $routeProvider.otherwise( {
