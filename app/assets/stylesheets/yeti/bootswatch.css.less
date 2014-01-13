@@ -17,7 +17,7 @@
 	.box-shadow(0px 1px 1px rgba(50, 50, 50, 0.15));
 	#gradient.vertical(
 		@start-color: @white;
-		@end-color: lighten(@gray-lighter, 2%);
+		@end-color: lighten(@gray-lighter, 0%);
 		@start-percent: 0%;
 		@end-percent: 100%);
 
@@ -60,7 +60,7 @@
 			&.active > a,
 			&.active > a:hover,
 			&.active > a:focus, {
-				background-color: @brand-warning;
+				background-color: @brand-info;
 			}
 		}
 
@@ -92,7 +92,7 @@
 			> .active > a,
 			> .active > a:hover {
 				color: @white;
-				background-color: @brand-warning;
+				background-color: @brand-info;
 			}
 		}
 	}
@@ -111,7 +111,7 @@
 
 		min-height: 0px;
 		height: 30px;
-		.box-shadow(0px 1px 1px rgba(50, 50, 50, 0.15));
+		// .box-shadow(0px 1px 1px rgba(50, 50, 50, 0.15));
 		#gradient.vertical(
 			@start-color: @white;
 			@end-color: @white;

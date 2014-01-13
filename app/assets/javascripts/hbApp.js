@@ -40,6 +40,7 @@ hbApp.config( function( $routeProvider ) {
   } )
 
   Route.namespace( "/testnet", "blockExplorer", function( url, name ) {
+
     $routeProvider.when( url, {
       templateUrl: "/templates/" + name + "/home.html",
       controller: name + "/homeCtrl"
@@ -64,6 +65,12 @@ hbApp.config( function( $routeProvider ) {
       templateUrl: "/templates/" + name + "/unconfirmed.html",
       controller: name + "/unconfirmedCtrl"
     } )
+
+    $routeProvider.when( url + "/test", {
+      templateUrl: "/templates/" + name + "/test.html",
+      controller: name + "/testCtrl"
+    } )
+
   } )
 
   $routeProvider.otherwise( {
