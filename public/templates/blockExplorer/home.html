@@ -1,1 +1,102 @@
 <subnav></subnav>
+<br>
+<div class="container">
+  <div class="input-group">
+    <textarea
+    class='h2 input'
+    spellcheck="false"
+    placeholder="Search for any address, transaction hash or block hash"></textarea>
+    <span class="input-group-btn">
+      <button class="btn btn-success btn-block btn-search">
+        <span class="h2">SEARCH</span>
+      </button>
+    </span>
+  </div>
+</div>
+<br>
+<div class="container stats">
+  <div class="col-md-3">
+    <span class="label label-info">Nodes Connected:</span>
+    <span class='h6'>12424</span>
+  </div>
+  <div class="col-md-3">
+    <span class="label label-info">Difficulty:</span>
+    <span class='h6'>1</span>
+  </div>
+  <div class="col-md-3">
+    <span class="label label-info"># Total Transactions:</span>
+    <span class='h6'>42,425,630</span>
+  </div>
+  <div class="col-md-3">
+    <span class="label label-info"># Total Addresses:</span>
+    <span class='h6'>1,535,733</span>
+  </div>
+</div>
+<br><br>
+<div class="wide-container">
+  <div class="col-md-6">
+    <div class="h3 text-gray text-center">Latest Blocks</div>
+    <br>
+    <table class="table table-latest">
+      <thead>
+        <tr>
+          <th class='text-center'><span class='h5'>Block Height</span></th>
+          <th class='text-center'><span class='h5'># Transactions</span></th>
+          <th class='text-center'><span class='h5'>Total Output Value</span></th>
+          <th class='text-center'><span class='h5'>Time</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="i in [1, 2, 3, 4, 5, 6]">
+          <td>
+            <a href="">134,521</a>
+          </td>
+          <td>
+            <span class='h6'>21</span>
+          </td>
+          <td>
+            <span class="label label-success amount label-lg">
+              <span>1.4124 BTC</span>
+            </span>
+
+          </td>
+          <td>
+            <span class='h6'>47 secs ago</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-6">
+    <div class="h3 text-gray text-center">Latest Transactions
+      <span class='h5'>(see all)</span>
+    </div>
+    <br>
+    <table class="table table-latest">
+      <thead>
+        <tr>
+          <th class='text-center'><span class='h5'>Transaction Hash</span></th>
+          <th class='text-center'><span class='h5'>Total Outputs</span></th>
+          <th class='text-center'><span class='h5'>Time</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="i in [1, 2, 3, 4, 5, 6]">
+          <td>
+            <a href="">be367bddf3522c77e9ffdfdcdb6efaba4ed1ef65478ade415983e022e6e42b29</a>
+          </td>
+          <td>
+            <span class="label label-success amount label-lg">
+              <span>1.4124 BTC</span>
+            </span>
+
+          </td>
+          <td>
+            <span class='h6'>47 secs ago</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

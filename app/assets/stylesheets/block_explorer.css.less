@@ -1,5 +1,11 @@
 @import "yeti/base";
 
+.stats {
+	border: 1px solid @gray-lighter;
+	padding: 10px;
+
+}
+
 .address-identicoin {
 	vertical-align: middle;
 }
@@ -25,6 +31,11 @@
 .btn-hover:hover {
 	color: @white;
 	background-color: @brand-primary;
+}
+
+.input-group-btn .btn.btn-search {
+	height: 60px;
+	margin-left: 1px
 }
 
 textarea.input {
@@ -100,6 +111,12 @@ table {
 		tr td {
 			padding-top: 8px;
 			padding-bottom: 8px;
+		}
+	}
+
+	&.table.table-latest {
+		tr td {
+			text-align: center;
 		}
 	}
 

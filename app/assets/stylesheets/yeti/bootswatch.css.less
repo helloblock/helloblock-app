@@ -56,6 +56,14 @@
 			font-weight: 400;
 		}
 
+		.dropdown {
+			&.active > a,
+			&.active > a:hover,
+			&.active > a:focus, {
+				background-color: @brand-warning;
+			}
+		}
+
 		.dropdown-menu {
 			min-width: 0px;
 			width: 130px;
@@ -84,7 +92,7 @@
 			> .active > a,
 			> .active > a:hover {
 				color: @white;
-				background-color: @navbar-inverse-link-hover-bg;
+				background-color: @brand-warning;
 			}
 		}
 	}
