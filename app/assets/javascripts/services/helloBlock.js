@@ -1,13 +1,14 @@
-'use strict'
-
 hbApp.factory( "HelloBlock", function( $resource ) {
 
-	var BASE = "https://nodejshelloblock.herokuapp.com/v1"
+  var BASE = "https://nodejshelloblock.herokuapp.com/v1"
 
-	return {
-		Transactions: $resource( BASE + "/transactions/:tx_hash" ),
-		Addresses: $resource( BASE + "/transactions/:tx_hash" ),
-		Blocks: $resource( BASE + "/transactions/:tx_hash" )
-	}
+  return {
+    Addresses: $resource( BASE + "/addresses/:address", {
+      transactions: true,
+      unspents: true
+    } ),
+    Transactions: $resource( BASE + "/transactions/:tx_hash" ),
+    Blocks: $resource( BASE + "/blocks/:block_identifier" )
+  }
 
 } )

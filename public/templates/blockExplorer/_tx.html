@@ -1,0 +1,74 @@
+<table class="table table-striped table-transactions">
+  <tr>
+    <td class="text-center">
+      <span class="h5 pull-left">
+        TX HASH:
+        <a href="">{{tx.tx_hash}}</a>
+      </span>
+      <span class="pull-right">
+        <span class="label label-lg label-default amount">{{tx.time}}</span>
+        <span class="label label-lg label-success amount">TODO!</span>
+        <span class="label label-lg label-danger">{{tx.confirmations}}</span>
+      </span>
+    </td>
+  </tr>
+  <tr>
+    <td>
+    <br>
+    <div class="col-md-5">
+      <table class="table table-bordered" ng-repeat="i in tx.in">
+        <tbody>
+          <tr>
+            <td rowspan="2" class='text-center n-index'>
+              <a href="/transactions/{{i.prev_out.hash}}?n={{i.prev_out.n}}">
+                n: {{i.prev_out.n}}
+              </a>
+            </td>
+            <td rowspan="2" class='text-center'>
+              <img ng-src="http://identicoin.herokuapp.com/address/{{i.prev_out.address}}" width="48">
+            </td>
+            <td><span class="h6">{{i.prev_out.address}}</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="h6 amount">{{i.prev_out.value}}</span>
+              <span class="label label-default">SPENT</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-2 text-center">
+      TODO:
+      <i class="fa fa-arrow-circle-right fa-4x text-success"></i>
+    </div>
+    <div class="col-md-5 addresses">
+      TODO: Highlighted
+      <table
+        ng-repeat="o in tx.out"
+        class="table table-bordered">
+        <tbody>
+          <tr>
+            <td rowspan="2" class='text-center n-index'>
+              todo
+              <a href="#">
+                n: {{o.n}}
+              </a>
+            </td>
+            <td rowspan="2" class='text-center'>
+              <img src="http://identicoin.herokuapp.com/address/{{o.address}}" width="48">
+            </td>
+            <td><span class="h6">{{o.address}}</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="h6 amount">{{o.value}}</span>
+              <span class="label label-success">{{o.spent}}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </td>
+  </tr>
+</table>
