@@ -1,11 +1,21 @@
 @import "yeti/base";
 
-.stats {
-	border: 1px solid @gray-lighter;
-	padding: 10px;
-	margin-left: 0px;
-	margin-right: 0px;
+.container-stats {
+	position: fixed;
+	bottom: 0px;
+	margin: 0 auto;
+	text-align: center;
+	left: 50%;
 
+	.stats {
+		left: -50%;
+		position: relative;
+		border: 1px solid @gray-lighter;
+		padding: 10px;
+		margin-left: 0px;
+		margin-right: 0px;
+
+	}
 }
 
 .address-identicoin {
