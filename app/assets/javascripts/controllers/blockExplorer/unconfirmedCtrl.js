@@ -1,5 +1,5 @@
 hbApp.controller( "blockExplorer/unconfirmedCtrl", function( $scope ) {
 
-	// $scope.tester = "fuarkkkk"
+  $scope.unconfirmed_transactions = []
 
 } )
