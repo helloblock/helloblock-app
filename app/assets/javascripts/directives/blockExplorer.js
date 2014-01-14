@@ -68,7 +68,36 @@ hbApp.directive( "confirmations", function() {
 hbApp.directive( "utc", function() {
 	return function( $scope, element, attrs ) {
 		$scope.$watch( function() {
-			var date = new Date( attrs.utc * 1000 );
+			var epoch = attrs.utc
+
+			if ( epoch === "" ) {
+				$( element ).text( "n/a" )
+				return;
+			}
+
+			var time = moment( epoch, "X" ).utc()
+
+			var formatted = time.format( 'MMM D YYYY, h:mm:ssA UTC' );
+
+			$( element ).text( formatted )
 		} )
+	}
+} )
+
+hbApp.directive( "timeago", function() {
+	return function( $scope, element, attrs ) {
+		$scope.$watch( function() {
+			var epoch = attrs.timeago
+
+			if ( epoch === "" ) {
+				$( element ).text( "n/a" )
+				return;
+			}
+
+			var timeago = moment( epoch, "X" ).fromNow()
+
+			$( element ).text( timeago )
+		} )
+
 	}
 } )

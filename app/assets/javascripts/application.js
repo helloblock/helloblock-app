@@ -23,6 +23,7 @@
 //= require angular-ui-select2
 //= require angular-ui-bootstrap-tpls
 //= require spin.min
+//= require moment.min
 //= require hbApp
 //= require_tree ./controllers
 //= require_tree ./directives
