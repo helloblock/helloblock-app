@@ -9,5 +9,8 @@
     "grunt-contrib-qunit": "~0.3.0",
     "grunt-angular-templates": "~0.5.1",
     "grunt-contrib-concat": "~0.3.0"
+  },
+  "dependencies": {
+    "moment": "~2.5.0"
   }
 }

@@ -56,12 +56,19 @@ hbApp.directive( "confirmations", function() {
 				return;
 			};
 
-			// if ( confirmations > 6 ) {
-			// 	$( element ).addClass( "label-success" )
-			// 	$( element ).text( confirmations + " CONFIRMATIONS" )
-			// 	return;
-			// };
+			if ( confirmations > 6 ) {
+				$( element ).addClass( "label-default" )
+				$( element ).text( confirmations + " CONFIRMATIONS" )
+				return;
+			};
+		} )
+	}
+} )
 
+hbApp.directive( "utc", function() {
+	return function( $scope, element, attrs ) {
+		$scope.$watch( function() {
+			var date = new Date( attrs.utc * 1000 );
 		} )
 	}
 } )
