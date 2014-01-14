@@ -8,7 +8,7 @@
       <span class="pull-right">
         <span class="label label-lg label-default amount">{{tx.time}}</span>
         <span class="label label-lg label-success amount" to-btc="TODO"></span>
-        <span class="label label-lg label-danger">{{tx.confirmations}}</span>
+        <span class="label label-lg" confirmations="{{tx.confirmations}}"></span>
       </span>
     </td>
   </tr>
@@ -27,7 +27,11 @@
             <td rowspan="2" class='text-center'>
               <img ng-src="http://identicoin.herokuapp.com/address/{{i.prev_out.address}}" width="48">
             </td>
-            <td><span class="h6">{{i.prev_out.address}}</span></td>
+            <td>
+              <span class="h6">
+                <a href="">{{i.prev_out.address}}</a>
+              </span>
+              </td>
           </tr>
           <tr>
             <td>
@@ -50,15 +54,16 @@
         <tbody>
           <tr>
             <td rowspan="2" class='text-center n-index'>
-              todo
-              <a href="#">
-                n: {{o.n}}
-              </a>
+              n: {{o.n}}
             </td>
             <td rowspan="2" class='text-center'>
               <img src="http://identicoin.herokuapp.com/address/{{o.address}}" width="48">
             </td>
-            <td><span class="h6">{{o.address}}</span></td>
+            <td>
+              <span class="h6">
+                <a href="">{{o.address}}</a>
+              </span>
+            </td>
           </tr>
           <tr>
             <td>
