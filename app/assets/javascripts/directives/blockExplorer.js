@@ -57,7 +57,7 @@ hbApp.directive( "confirmations", function() {
 			};
 
 			if ( confirmations > 6 ) {
-				if ( JSON.parse( attrs.verbose ) === true ) {
+				if ( attrs.verbose === 'true' ) {
 					$( element ).addClass( "label-default" )
 					$( element ).text( confirmations + " CONFIRMATIONS" )
 				} else {
@@ -91,6 +91,24 @@ hbApp.directive( "utc", function() {
 } )
 
 hbApp.directive( "timeago", function() {
+	return function( $scope, element, attrs ) {
+		$scope.$watch( function() {
+			var epoch = attrs.timeago
+
+			if ( epoch === "" ) {
+				$( element ).text( "n/a" )
+				return;
+			}
+
+			var timeago = moment( epoch, "X" ).fromNow()
+
+			$( element ).text( timeago )
+		} )
+
+	}
+} )
+
+hbApp.directive( "highlightIfAddress", function() {
 	return function( $scope, element, attrs ) {
 		$scope.$watch( function() {
 			var epoch = attrs.timeago

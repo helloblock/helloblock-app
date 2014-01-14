@@ -1,19 +1,23 @@
 hbApp.controller( "blockExplorer/unconfirmedCtrl", function( $scope ) {
 
-  // TODO: HelloBlock.Transactions.get()
-  $scope.unconfirmed_transactions = []
+  HelloBlock.Transactions.get( {
+    tx_hash: "latest"
+  }, function( data ) {
+    $scope.unconfirmed_transactions = []
 
-  // Callback: Lvl 2
-  var transactionsListerer = PusherClient.subscribe( 'transactions' );
+    var transactionsListerer = PusherClient.subscribe( 'transactions' );
 
-  transactionsListerer.bind( 'unconfirmed', function( res ) {
-    Pusher.beep();
+    transactionsListerer.bind( 'unconfirmed', function( res ) {
+      Pusher.beep();
 
-    var tx = JSON.parse( res.message )
+      var tx = JSON.parse( res.message )
 
-    $scope.$apply( function() {
-      $scope.unconfirmed_transactions.unshift( tx )
-    } )
-  } );
+      $scope.$apply( function() {
+        $scope.unconfirmed_transactions.unshift( tx )
+      } )
+    } );
+  }, function( err ) {
+    console.log( err )
+  } )
 
 } )
