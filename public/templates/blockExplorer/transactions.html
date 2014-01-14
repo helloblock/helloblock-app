@@ -76,15 +76,15 @@
         </tr>
         <tr>
           <td>Total Transacted (est.): </td>
-          <td>TODO</td>
+          <td to-btc="TODO"></td>
         </tr>
         <tr>
           <td>Total Inputs: </td>
-          <td>TODO</td>
+          <td to-btc="TODO">TODO</td>
         </tr>
         <tr>
           <td>Total Outputs: </td>
-          <td>TODO</td>
+          <td to-btc="TODO">TODO</td>
         </tr>
       </table>
     </div>
@@ -124,8 +124,8 @@
                 Amount:
               </td>
               <td>
-                <span class="h5 amount">{{i.prev_out.value}}</span>
                 <span class="label label-default">SPENT</span>
+                <span class="h5 amount" to-btc="{{i.prev_out.value}}"></span>
               </td>
             </tr>
             <tr>
@@ -162,8 +162,8 @@
                 Amount:
               </td>
               <td>
-                <span class="h5 amount">{{o.value}}</span>
                 <span class="label label-success">{{o.spent}}</span>
+                <span class="h5 amount" to-btc="{{o.value}}"></span>
               </td>
             </tr>
             <tr>

@@ -1,5 +1,18 @@
 'use strict';
 
+var PusherClient = new Pusher( '1cca9695fd809ce4bbab' );
+
+Pusher.log = function( message ) {
+  if ( window.console && window.console.log ) {
+    window.console.log( message );
+  }
+};
+
+Pusher.beep = function() {
+  var file = "/beep.wav";
+  ( new Audio( file ) ).play()
+}
+
 var hbApp = angular.module( 'hbApp', [
   'ngRoute',
   'ngResource',

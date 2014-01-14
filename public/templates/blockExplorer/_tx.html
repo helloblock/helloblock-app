@@ -31,8 +31,8 @@
           </tr>
           <tr>
             <td>
-              <span class="h6 amount">{{i.prev_out.value}}</span>
               <span class="label label-default">SPENT</span>
+              <span class="h6 amount" to-btc="{{i.prev_out.value}}"></span>
             </td>
           </tr>
         </tbody>
@@ -62,8 +62,8 @@
           </tr>
           <tr>
             <td>
-              <span class="h6 amount">{{o.value}}</span>
               <span class="label label-success">{{o.spent}}</span>
+              <span class="h6 amount" to-btc="{{o.value}}"></span>
             </td>
           </tr>
         </tbody>
