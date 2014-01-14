@@ -57,8 +57,14 @@ hbApp.directive( "confirmations", function() {
 			};
 
 			if ( confirmations > 6 ) {
-				$( element ).addClass( "label-default" )
-				$( element ).text( confirmations + " CONFIRMATIONS" )
+				if ( JSON.parse( attrs.verbose ) === true ) {
+					$( element ).addClass( "label-default" )
+					$( element ).text( confirmations + " CONFIRMATIONS" )
+				} else {
+					$( element ).addClass( "label-default" )
+					$( element ).text( ">6 CONFIRMATIONS" )
+				}
+
 				return;
 			};
 		} )
