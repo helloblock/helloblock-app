@@ -108,7 +108,13 @@
           <tbody>
             <tr>
               <td>n (index): </td>
-              <td><span class="h5">{{i.prev_out.n}}</span></td>
+              <td>
+                <span class="h5">
+                  <a href="#">
+                    {{i.prev_out.n}}
+                  </a>
+                </span>
+              </td>
             </tr>
             <tr>
               <td>Address: </td>
@@ -162,7 +168,7 @@
                 Amount:
               </td>
               <td>
-                <span class="label label-success">{{o.spent}}</span>
+                <span class="label" spent="{{o.spent}}"></span>
                 <span class="h5 amount" to-btc="{{o.value}}"></span>
               </td>
             </tr>
