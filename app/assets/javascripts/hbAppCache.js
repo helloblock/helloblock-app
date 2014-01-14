@@ -204,9 +204,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        <a href=\"\">{{tx.tx_hash}}</a>\n" +
     "      </span>\n" +
     "      <span class=\"pull-right\">\n" +
-    "        <span class=\"label label-lg label-default amount\">{{tx.time}}</span>\n" +
-    "        <span class=\"label label-lg label-success amount\">TODO!</span>\n" +
-    "        <span class=\"label label-lg label-danger\">{{tx.confirmations}}</span>\n" +
+    "        <span class=\"label label-lg\" confirmations=\"{{tx.confirmations}}\"></span>\n" +
+    "        <span class=\"label label-lg label-default amount\" utc=\"{{tx.time}}\"></span>\n" +
+    "        <span class=\"label label-lg label-success amount\" to-btc=\"TODO\"></span>\n" +
     "      </span>\n" +
     "    </td>\n" +
     "  </tr>\n" +
@@ -225,12 +225,16 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            <td rowspan=\"2\" class='text-center'>\n" +
     "              <img ng-src=\"http://identicoin.herokuapp.com/address/{{i.prev_out.address}}\" width=\"48\">\n" +
     "            </td>\n" +
-    "            <td><span class=\"h6\">{{i.prev_out.address}}</span></td>\n" +
+    "            <td>\n" +
+    "              <span class=\"h6\">\n" +
+    "                <a href=\"\">{{i.prev_out.address}}</a>\n" +
+    "              </span>\n" +
+    "              </td>\n" +
     "          </tr>\n" +
     "          <tr>\n" +
     "            <td>\n" +
-    "              <span class=\"h6 amount\">{{i.prev_out.value}}</span>\n" +
     "              <span class=\"label label-default\">SPENT</span>\n" +
+    "              <span class=\"h6 amount\" to-btc=\"{{i.prev_out.value}}\"></span>\n" +
     "            </td>\n" +
     "          </tr>\n" +
     "        </tbody>\n" +
@@ -248,20 +252,21 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        <tbody>\n" +
     "          <tr>\n" +
     "            <td rowspan=\"2\" class='text-center n-index'>\n" +
-    "              todo\n" +
-    "              <a href=\"#\">\n" +
-    "                n: {{o.n}}\n" +
-    "              </a>\n" +
+    "              n: {{o.n}}\n" +
     "            </td>\n" +
     "            <td rowspan=\"2\" class='text-center'>\n" +
     "              <img src=\"http://identicoin.herokuapp.com/address/{{o.address}}\" width=\"48\">\n" +
     "            </td>\n" +
-    "            <td><span class=\"h6\">{{o.address}}</span></td>\n" +
+    "            <td>\n" +
+    "              <span class=\"h6\">\n" +
+    "                <a href=\"\">{{o.address}}</a>\n" +
+    "              </span>\n" +
+    "            </td>\n" +
     "          </tr>\n" +
     "          <tr>\n" +
     "            <td>\n" +
-    "              <span class=\"h6 amount\">{{o.value}}</span>\n" +
-    "              <span class=\"label label-success\">{{o.spent}}</span>\n" +
+    "              <span class=\"label\" spent=\"{{o.spent}}\"></span>\n" +
+    "              <span class=\"h6 amount\" to-btc=\"{{o.value}}\"></span>\n" +
     "            </td>\n" +
     "          </tr>\n" +
     "        </tbody>\n" +
@@ -329,15 +334,15 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          </tr>\n" +
     "          <tr>\n" +
     "            <td><strong>Total Sent Amount</strong></td>\n" +
-    "            <td>{{address.total_sent}}</td>\n" +
+    "            <td to-btc=\"{{address.total_sent}}\"></td>\n" +
     "          </tr>\n" +
     "          <tr>\n" +
     "            <td><strong>Total Received Amount</strong></td>\n" +
-    "            <td>{{address.total_received}}</td>\n" +
+    "            <td to-btc=\"{{address.total_received}}\"></td>\n" +
     "          </tr>\n" +
     "          <tr>\n" +
     "            <td><strong>Final Balance Amount</strong></td>\n" +
-    "            <td>{{address.total_received - address.total_sent}}</td>\n" +
+    "            <td to-btc=\"{{address.total_received - address.total_sent}}\"></td>\n" +
     "          </tr>\n" +
     "        </tbody>\n" +
     "      </table>\n" +
@@ -347,15 +352,15 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "</div>\n" +
     "<div class=\"container\">\n" +
     "  <tabset>\n" +
-    "    <tab heading=\"Unspent Outputs\">\n" +
-    "      <br>\n" +
-    "      <span ng-repeat=\"tx in address.unspent_transactions\">\n" +
-    "        <div ng-include=\"'/templates/blockExplorer/_tx.html'\"></div>\n" +
-    "      </span>\n" +
-    "    </tab>\n" +
     "    <tab heading=\"All Transactions\">\n" +
     "      <br>\n" +
     "      <span ng-repeat=\"tx in address.transactions\">\n" +
+    "        <div ng-include=\"'/templates/blockExplorer/_tx.html'\"></div>\n" +
+    "      </span>\n" +
+    "    </tab>\n" +
+    "    <tab heading=\"Unspent Outputs\">\n" +
+    "      <br>\n" +
+    "      <span ng-repeat=\"tx in address.unspent_transactions\">\n" +
     "        <div ng-include=\"'/templates/blockExplorer/_tx.html'\"></div>\n" +
     "      </span>\n" +
     "    </tab>\n" +
@@ -409,7 +414,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      </tr>\n" +
     "      <tr>\n" +
     "        <td>Block Time: </td>\n" +
-    "        <td>{{block.block_ntime}}</td>\n" +
+    "        <td utc=\"{{block.block_ntime}}\"></td>\n" +
     "      </tr>\n" +
     "      <tr>\n" +
     "        <td>Block Bits: </td>\n" +
@@ -433,15 +438,15 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      </tr>\n" +
     "      <tr>\n" +
     "        <td>Total Transaction Amount: </td>\n" +
-    "        <td>TODO </td>\n" +
+    "        <td to-btc=\"TODO\"></td>\n" +
     "      </tr>\n" +
     "      <tr>\n" +
     "        <td>Total Inputs: </td>\n" +
-    "        <td>TODO</td>\n" +
+    "        <td to-btc=\"TODO\"></td>\n" +
     "      </tr>\n" +
     "      <tr>\n" +
     "        <td>Total Outputs: </td>\n" +
-    "        <td>TODO</td>\n" +
+    "        <td to-btc=\"TODO\"></td>\n" +
     "      </tr>\n" +
     "    </table>\n" +
     "\n" +
@@ -524,12 +529,12 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          </td>\n" +
     "          <td>\n" +
     "            <span class=\"label label-success amount label-lg\">\n" +
-    "              <span>1.4124 BTC</span>\n" +
+    "              <span to-btc=\"13371337\"></span>\n" +
     "            </span>\n" +
     "\n" +
     "          </td>\n" +
     "          <td>\n" +
-    "            <span class='h6'>47 secs ago</span>\n" +
+    "            <span class='h6' timeago=\"1331231233\"></span>\n" +
     "          </td>\n" +
     "        </tr>\n" +
     "      </tbody>\n" +
@@ -555,12 +560,12 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          </td>\n" +
     "          <td>\n" +
     "            <span class=\"label label-success amount label-lg\">\n" +
-    "              <span>1.4124 BTC</span>\n" +
+    "              <span to-btc=\"13371337\"></span>\n" +
     "            </span>\n" +
     "\n" +
     "          </td>\n" +
     "          <td>\n" +
-    "            <span class='h6'>47 secs ago</span>\n" +
+    "            <span class='h6 nowrap' timeago=\"1331231233\"></span>\n" +
     "          </td>\n" +
     "        </tr>\n" +
     "      </tbody>\n" +
@@ -573,9 +578,12 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/blockExplorer/test.html',
-    "/test\n" +
-    "<div>\n" +
-    "  {{response}}\n" +
+    "<div class=\"container\">\n" +
+    "\n" +
+    "  <div ng-repeat=\"tx in unconfirmed\">\n" +
+    "    {{tx}}\n" +
+    "  </div>\n" +
+    "\n" +
     "</div>\n"
   );
 
@@ -639,15 +647,17 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        </tr>\n" +
     "        <tr>\n" +
     "          <td>Block Height: </td>\n" +
-    "          <td>{{transaction.block_height}}</td>\n" +
+    "          <td><a href=\"\">{{transaction.block_height}}</a></td>\n" +
     "        </tr>\n" +
     "        <tr>\n" +
     "          <td>Block Time: </td>\n" +
-    "          <td>{{transaction.block_ntime}}</td>\n" +
+    "          <td utc=\"{{transaction.block_ntime}}\"></td>\n" +
     "        </tr>\n" +
     "        <tr>\n" +
     "          <td>Confirmations: </td>\n" +
-    "          <td>{{transaction.confirmations}}</td>\n" +
+    "          <td>\n" +
+    "            <span class=\"label\" verbose=\"true\" confirmations=\"{{transaction.confirmations}}\"></span>\n" +
+    "          </td>\n" +
     "        </tr>\n" +
     "      </table>\n" +
     "    </div>\n" +
@@ -655,19 +665,19 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <table class=\"table table-bordered table-summary\">\n" +
     "        <tr>\n" +
     "          <td>Received Time: </td>\n" +
-    "          <td>{{transaction.time}}</td>\n" +
+    "          <td utc=\"{{transaction.time}}\"></td>\n" +
     "        </tr>\n" +
     "        <tr>\n" +
     "          <td>Total Transacted (est.): </td>\n" +
-    "          <td>TODO</td>\n" +
+    "          <td to-btc=\"TODO\"></td>\n" +
     "        </tr>\n" +
     "        <tr>\n" +
     "          <td>Total Inputs: </td>\n" +
-    "          <td>TODO</td>\n" +
+    "          <td to-btc=\"TODO\">TODO</td>\n" +
     "        </tr>\n" +
     "        <tr>\n" +
     "          <td>Total Outputs: </td>\n" +
-    "          <td>TODO</td>\n" +
+    "          <td to-btc=\"TODO\">TODO</td>\n" +
     "        </tr>\n" +
     "      </table>\n" +
     "    </div>\n" +
@@ -691,7 +701,13 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          <tbody>\n" +
     "            <tr>\n" +
     "              <td>n (index): </td>\n" +
-    "              <td><span class=\"h5\">{{i.prev_out.n}}</span></td>\n" +
+    "              <td>\n" +
+    "                <span class=\"h5\">\n" +
+    "                  <a href=\"#\">\n" +
+    "                    {{i.prev_out.n}}\n" +
+    "                  </a>\n" +
+    "                </span>\n" +
+    "              </td>\n" +
     "            </tr>\n" +
     "            <tr>\n" +
     "              <td>Address: </td>\n" +
@@ -699,7 +715,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "                <img\n" +
     "                  ng-src=\"http://identicoin.herokuapp.com/address/{{i.prev_out.address}}\"\n" +
     "                  width=\"16\">\n" +
-    "                <span class=\"h5\">{{i.prev_out.address}}</span>\n" +
+    "                <span class=\"h5\"><a href=\"\">{{i.prev_out.address}}</a></span>\n" +
     "              </td>\n" +
     "            </tr>\n" +
     "            <tr>\n" +
@@ -707,8 +723,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "                Amount:\n" +
     "              </td>\n" +
     "              <td>\n" +
-    "                <span class=\"h5 amount\">{{i.prev_out.value}}</span>\n" +
     "                <span class=\"label label-default\">SPENT</span>\n" +
+    "                <span class=\"h5 amount\" to-btc=\"{{i.prev_out.value}}\"></span>\n" +
     "              </td>\n" +
     "            </tr>\n" +
     "            <tr>\n" +
@@ -737,7 +753,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              <td>Address: </td>\n" +
     "              <td>\n" +
     "                <img src=\"http://identicoin.herokuapp.com/address/{{o.address}}\" width=\"16\">\n" +
-    "                <span class=\"h5\">{{o.address}}</span>\n" +
+    "                <span class=\"h5\"><a href=\"\">{{o.address}}</a></span>\n" +
     "              </td>\n" +
     "            </tr>\n" +
     "            <tr>\n" +
@@ -745,22 +761,22 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "                Amount:\n" +
     "              </td>\n" +
     "              <td>\n" +
-    "                <span class=\"h5 amount\">{{o.value}}</span>\n" +
-    "                <span class=\"label label-success\">{{o.spent}}</span>\n" +
+    "                <span class=\"label\" spent=\"{{o.spent}}\"></span>\n" +
+    "                <span class=\"h5 amount\" to-btc=\"{{o.value}}\"></span>\n" +
     "              </td>\n" +
     "            </tr>\n" +
     "            <tr>\n" +
     "              <td rowspan=\"2\">scriptPubKey: </td>\n" +
     "              <td>\n" +
     "                <span class=\"h5\">\n" +
-    "                  TODO: Parsed\n" +
+    "                  {{o.scriptPubKey}}\n" +
     "                </span>\n" +
     "              </td>\n" +
     "            </tr>\n" +
     "            <tr>\n" +
     "              <td>\n" +
     "                <span class=\"h5\">\n" +
-    "                  {{o.scriptPubKey}}\n" +
+    "                  TODO: Parsed\n" +
     "                </span>\n" +
     "              </td>\n" +
     "            </tr>\n" +
@@ -895,7 +911,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          </a>\n" +
     "        </li> -->\n" +
     "        <li>\n" +
-    "          <a href=\"/api-explorer\">\n" +
+    "          <a href=\"/explorer\">\n" +
     "            <i class=\"fa fa-search\"></i>\n" +
     "            <span>API Explorer</span>\n" +
     "          </a>\n" +
@@ -906,7 +922,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            <span>Documentation</span>\n" +
     "          </a>\n" +
     "        </li>\n" +
-    "        <li class='active'>\n" +
+    "        <li>\n" +
     "          <a href=\"/testnet\">\n" +
     "            <i class=\"fa fa-bars\"></i>\n" +
     "            <span>Block Explorer</span>\n" +
@@ -1038,7 +1054,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          <ul class=\"nav\">\n" +
     "            <li ng-repeat=\"sub in s.subs.slice(1)\" spy=\"{{sub.id}}\">\n" +
     "              <span class='sub'>\n" +
-    "                <a href=\"//docs#{{sub.id}}\">{{sub.name.capitalize()}}</a>\n" +
+    "                <a href=\"/docs#{{sub.id}}\">{{sub.name.capitalize()}}</a>\n" +
     "              </span>\n" +
     "            </li>\n" +
     "          </ul>\n" +
@@ -1059,7 +1075,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          <ul class=\"nav\">\n" +
     "            <li ng-repeat=\"sub in s.subs.slice(1)\" spy=\"{{sub.id}}\">\n" +
     "              <span class='sub'>\n" +
-    "                <a href=\"//docs#{{sub.id}}\">{{sub.name.capitalize()}}</a>\n" +
+    "                <a href=\"/docs#{{sub.id}}\">{{sub.name.capitalize()}}</a>\n" +
     "              </span>\n" +
     "            </li>\n" +
     "          </ul>\n" +
@@ -2325,7 +2341,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      </h2>\n" +
     "      <br><br><br>\n" +
     "      <div class=\"row text-center\">\n" +
-    "        <a class=\"btn btn-success btn-lg\" href=\"//docs/\">\n" +
+    "        <a class=\"btn btn-success btn-lg\" href=\"/docs/\">\n" +
     "          <!-- TODO: should be explorer -->\n" +
     "          Go to Docs\n" +
     "        </a>\n" +
@@ -2377,13 +2393,18 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            substituted your base URL as follows:\n" +
     "          </p>\n" +
     "        </blockquote>\n" +
-    "        <br>\n" +
-    "        <h2 class=''>\n" +
-    "          <code class=\"single\">https://blockchain.info/</code>\n" +
-    "        </h2>\n" +
-    "        <h2 class=''>\n" +
-    "          <code class=\"single\">https://test.helloblock.io/b/</code>\n" +
-    "        </h2>\n" +
+    "        <div>\n" +
+    "          <h2>\n" +
+    "            <code>\n" +
+    "              <textarea class='big-input has-warning link' readonly>https://blockchain.info/</textarea>\n" +
+    "            </code>\n" +
+    "          </h2>\n" +
+    "          <h2>\n" +
+    "            <code>\n" +
+    "              <textarea class='big-input link' readonly selected>https://test.helloblock.io/b/</textarea>\n" +
+    "            </code>\n" +
+    "          </h2>\n" +
+    "        </div>\n" +
     "        <br><br>\n" +
     "        <blockquote>\n" +
     "          <p class=\"lead\">\n" +
@@ -2398,7 +2419,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        </blockquote>\n" +
     "        <br>\n" +
     "        <div class=\"row text-center\">\n" +
-    "          <a class=\"btn btn-success btn-lg\" href=\"//docs/\">\n" +
+    "          <a class=\"btn btn-success btn-lg\" href=\"/docs/\">\n" +
     "            <!-- TODO: should be explorer -->\n" +
     "            Go to Docs\n" +
     "          </a>\n" +
