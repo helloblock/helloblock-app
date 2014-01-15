@@ -7,7 +7,9 @@
       </a>
     </div>
     <div class="col-md-4">
-      <input class='h2 big-input' spellcheck="false" value="{{block.height}}">
+      <form ng-submit="bigSearch(block.identifier)">
+        <input class='h2 big-input' spellcheck="false" ng-model="block.identifier">
+      </form>
     </div>
     <div class="col-md-4">
       <a class="btn btn-default btn-block btn-hover">

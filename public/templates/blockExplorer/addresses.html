@@ -1,17 +1,21 @@
 <subnav selected="'addresses'"></subnav>
 <div class="centerpiece-alt text-center">
   <div class="container">
-    <div class="input-group">
-      <input
-        class='h3 big-input'
-        spellcheck="false"
-        value="{{address.base58}}">
-      <span class="input-group-btn">
-        <button class="btn btn-success btn-block btn-search">
-          <span class="h2">SEARCH</span>
-        </button>
-      </span>
-    </div>
+    <form ng-submit="bigSearch(address.base58)">
+      <div class="input-group">
+          <input
+            class='h3 big-input'
+            spellcheck="false"
+            name="query"
+            ng-model="address.base58"
+            >
+          <span class="input-group-btn">
+            <button class="btn btn-success btn-block btn-search">
+              <span class="h2">SEARCH</span>
+            </button>
+          </span>
+      </div>
+    </form>
   </div>
 </div>
 <div class="container">
@@ -31,10 +35,10 @@
     <div class="col-md-8">
       <table class="table table-bordered table-address">
         <tbody>
-          <tr>
+          <!-- <tr>
             <td><strong>Base58</strong></td>
             <td>{{address.base58}}</td>
-          </tr>
+          </tr> -->
           <tr>
             <td><strong>Hash160</strong></td>
             <td>{{address.hash160}}</td>

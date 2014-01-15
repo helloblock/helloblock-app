@@ -1,7 +1,6 @@
 'use strict';
 
 var PusherClient = new Pusher( '1cca9695fd809ce4bbab' );
-
 Pusher.log = function( message ) {
   if ( window.console && window.console.log ) {
     window.console.log( message );
@@ -35,6 +34,27 @@ hbApp.run( function( $rootScope, $location ) {
       $rootScope.global.language = name;
     }
   }
+
+  $rootScope.bigSearch = function( query ) {
+
+    var queryType = query
+
+    if ( queryType === "address" ) {
+      return;
+    }
+
+    if ( queryType === "transaction" ) {
+      return;
+    }
+
+    if ( queryType === "block" ) {
+      return;
+    }
+
+    // TODO Error Handling
+    // return
+  }
+
 } )
 
 hbApp.config( function( $routeProvider ) {
