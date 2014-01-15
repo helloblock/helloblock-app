@@ -42,11 +42,7 @@
             </tr>
             <tr>
               <td>Block Hash: </td>
-              <td>
-                <a href="blocks/{{transaction.block_hash}}">
-                  {{transaction.block_hash}}
-                </a>
-              </td>
+              <td>{{transaction.block_hash}}</td>
             </tr>
           </tbody>
         </table>
@@ -60,7 +56,7 @@
         </tr>
         <tr>
           <td>Block Height: </td>
-          <td><a href="">{{transaction.block_height}}</a></td>
+          <td><a href="/testnet/blocks/{{transaction.block_height}}">{{transaction.block_height}}</a></td>
         </tr>
         <tr>
           <td>Confirmations: </td>
@@ -108,7 +104,7 @@
               <td>n (index): </td>
               <td>
                 <span class="h5">
-                  <a href="#">
+                  <a href="/testnet/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}">
                     {{i.prev_out.n}}
                   </a>
                 </span>
@@ -146,8 +142,9 @@
       </div>
       <div class="col-md-5 addresses">
         <table
+          ng-repeat="o in transaction.out"
           class="table table-bordered table-io"
-          ng-repeat="o in transaction.out">
+          ng-class="{'table-highlighted': transaction.n === o.n}">
           <tbody>
             <tr>
               <td>n (index): </td>
@@ -170,20 +167,20 @@
               </td>
             </tr>
             <tr>
-              <td rowspan="2">scriptPubKey: </td>
+              <td rowspan="1">scriptPubKey: </td>
               <td>
                 <span class="h5">
                   {{o.scriptPubKey}}
                 </span>
               </td>
             </tr>
-            <tr>
+            <!-- <tr>
               <td>
                 <span class="h5">
                   TODO: Parsed
                 </span>
               </td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
       </div>

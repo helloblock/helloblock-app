@@ -3,7 +3,7 @@ hbApp.controller( "blockExplorer/blocksCtrl", function( $scope, $routeParams, He
   var defaultIdentifer = 168058
 
   $scope.block = {
-    identifier: $routeParams.identifier || defaultIdentifer,
+    identifier: parseInt( $routeParams.identifier ) || defaultIdentifer,
     transactions: []
   }
 

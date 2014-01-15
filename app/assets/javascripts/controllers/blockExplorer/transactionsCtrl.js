@@ -3,7 +3,8 @@ hbApp.controller( "blockExplorer/transactionsCtrl", function( $scope, $routePara
   var defaultTxHash = "6f9e9570881e781db8c137c84c111a138e4a022e6b2def5e2a1589a802fe25f3"
 
   $scope.transaction = {
-    tx_hash: $routeParams.tx_hash || defaultTxHash
+    tx_hash: $routeParams.tx_hash || defaultTxHash,
+    n: parseInt( $routeParams.n )
   }
 
   HelloBlock.Transactions.get( {
