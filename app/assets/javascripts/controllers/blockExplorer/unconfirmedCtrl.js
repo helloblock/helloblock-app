@@ -38,9 +38,7 @@ hbApp.controller( "blockExplorer/unconfirmedCtrl", function( $scope, HelloBlock 
   }
 
   $scope.$on( "$destroy", function() {
-    transactionsChannel.unbind( "unconfirmed", function() {
-      console.log( "unbinding..." )
-    } )
+    PusherClient.unsubscribe( "transactions" )
   } )
 
 } )

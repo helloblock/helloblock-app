@@ -58,4 +58,8 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, HelloBlock ) 
     unspents: 5
   }
 
+  $scope.$on( "$destroy", function() {
+    PusherClient.unsubscribe( "addresses" )
+  } )
+
 } )

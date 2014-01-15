@@ -63,4 +63,9 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, HelloBlock ) {
     console.log( err )
   } )
 
+  $scope.$on( "$destroy", function() {
+    PusherClient.unsubscribe( "blocks" )
+    PusherClient.unsubscribe( "transactions" )
+  } )
+
 } )
