@@ -7,8 +7,8 @@
       </span>
       <span class="pull-right">
         <span class="label label-lg" confirmations="{{tx.confirmations}}"></span>
-        <span class="label label-lg label-default amount" utc="{{tx.time}}"></span>
-        <span class="label label-lg label-success amount" to-btc="TODO"></span>
+        <span class="label label-lg label-default amount" utc="{{tx.estimated_time}}"></span>
+        <span class="label label-lg label-success amount" to-btc="{{tx.estimated_tx_value}}"></span>
       </span>
     </td>
   </tr>
@@ -16,7 +16,10 @@
     <td>
     <br>
     <div class="col-md-5">
-      <table class="table table-bordered" ng-repeat="i in tx.in">
+      <table
+        class="table table-bordered"
+        ng-repeat="i in tx.in"
+        ng-class="{'table-higlighted': i.prev_out.address === address.base58}">
         <tbody>
           <tr>
             <td rowspan="2" class='text-center n-index'>
@@ -43,14 +46,16 @@
       </table>
     </div>
     <div class="col-md-2 text-center">
-      TODO:
-      <i class="fa fa-arrow-circle-right fa-4x text-success"></i>
+      <span class="text-gray-light" direction="{{tx.estimated_tx_direction}}">
+        <i class="fa fa-arrow-circle-right fa-4x"></i>
+      </span>
     </div>
     <div class="col-md-5 addresses">
-      TODO: Highlighted
       <table
         ng-repeat="o in tx.out"
-        class="table table-bordered">
+        class="table table-bordered"
+        ng-class="{'table-higlighted': o.address === address.base58}"
+        >
         <tbody>
           <tr>
             <td rowspan="2" class='text-center n-index'>

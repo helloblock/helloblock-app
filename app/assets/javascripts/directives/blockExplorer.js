@@ -83,7 +83,7 @@ hbApp.directive( "utc", function() {
 
 			var time = moment( epoch, "X" ).utc()
 
-			var formatted = time.format( 'MMM D YYYY, h:mm:ssA UTC' );
+			var formatted = time.format( 'MMM D YY, h:mm:ssA UTC' );
 
 			$( element ).text( formatted )
 		} )
@@ -123,5 +123,27 @@ hbApp.directive( "highlightIfAddress", function() {
 			$( element ).text( timeago )
 		} )
 
+	}
+} )
+
+hbApp.directive( "direction", function() {
+	return function( $scope, element, attrs ) {
+		$scope.$watch( function() {
+			if ( attrs.direction == "" ) {
+				return;
+			}
+
+			$( element ).removeClass()
+
+			if ( attrs.direction == "incoming" ) {
+				$( element ).addClass( "text-success" )
+				return;
+			}
+
+			if ( attrs.direction == "outgoing" ) {
+				$( element ).addClass( "text-danger" )
+				return;
+			}
+		} )
 	}
 } )
