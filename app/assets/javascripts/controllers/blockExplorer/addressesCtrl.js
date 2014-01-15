@@ -1,7 +1,9 @@
-hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, HelloBlock ) {
+hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams, HelloBlock ) {
+
+  var defaultAddress = "mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo"
 
   $scope.address = {
-    base58: "mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo",
+    base58: $routeParams.address || defaultAddress,
     transactions: [],
     unspents: []
   }

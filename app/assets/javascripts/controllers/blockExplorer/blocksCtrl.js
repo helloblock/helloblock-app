@@ -1,12 +1,14 @@
-hbApp.controller( "blockExplorer/blocksCtrl", function( $scope, HelloBlock ) {
+hbApp.controller( "blockExplorer/blocksCtrl", function( $scope, $routeParams, HelloBlock ) {
+
+  var defaultIdentifer = 168058
 
   $scope.block = {
-    height: 168058,
+    identifer: $routeParams.identifier || defaultIdentifer,
     transactions: []
   }
 
   HelloBlock.Blocks.get( {
-    identifier: $scope.block.height
+    identifier: $scope.block.identifer
   }, function( res ) {
     $scope.block = $.extend( {}, $scope.block, res[ "data" ][ "block" ] );
   }, function( err ) {

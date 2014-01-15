@@ -60,17 +60,17 @@ hbApp.config( function( $routeProvider ) {
       controller: name + "/homeCtrl"
     } )
 
-    $routeProvider.when( url + "/addresses", {
+    $routeProvider.when( url + "/addresses/:address?", {
       templateUrl: "/templates/" + name + "/addresses.html",
       controller: name + "/addressesCtrl"
     } )
 
-    $routeProvider.when( url + "/transactions", {
+    $routeProvider.when( url + "/transactions/:tx_hash?", {
       templateUrl: "/templates/" + name + "/transactions.html",
       controller: name + "/transactionsCtrl"
     } )
 
-    $routeProvider.when( url + "/blocks", {
+    $routeProvider.when( url + "/blocks/:identifier?", {
       templateUrl: "/templates/" + name + "/blocks.html",
       controller: name + "/blocksCtrl"
     } )
