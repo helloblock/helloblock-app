@@ -201,7 +201,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <td class=\"text-center\">\n" +
     "      <span class=\"h5 pull-left\">\n" +
     "        TX HASH:\n" +
-    "        <a href=\"\">{{tx.tx_hash}}</a>\n" +
+    "        <a href=\"/testnet/transactions/{{tx.tx_hash}}\">{{tx.tx_hash}}</a>\n" +
     "      </span>\n" +
     "      <span class=\"pull-right\">\n" +
     "        <span class=\"label label-lg\" confirmations=\"{{tx.confirmations}}\"></span>\n" +
@@ -216,12 +216,11 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <div class=\"col-md-5\">\n" +
     "      <table\n" +
     "        class=\"table table-bordered\"\n" +
-    "        ng-repeat=\"i in tx.in\"\n" +
-    "        ng-class=\"{'table-higlighted': i.prev_out.address === address.base58}\">\n" +
+    "        ng-repeat=\"i in tx.in\">\n" +
     "        <tbody>\n" +
     "          <tr>\n" +
     "            <td rowspan=\"2\" class='text-center n-index'>\n" +
-    "              <a href=\"/transactions/{{i.prev_out.hash}}?n={{i.prev_out.n}}\">\n" +
+    "              <a href=\"/testnet/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}\">\n" +
     "                n: {{i.prev_out.n}}\n" +
     "              </a>\n" +
     "            </td>\n" +
@@ -230,7 +229,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            </td>\n" +
     "            <td>\n" +
     "              <span class=\"h6\">\n" +
-    "                <a href=\"\">{{i.prev_out.address}}</a>\n" +
+    "                <a href=\"/testnet/addresses/{{i.prev_out.address}}\">{{i.prev_out.address}}</a>\n" +
     "              </span>\n" +
     "              </td>\n" +
     "          </tr>\n" +
@@ -252,7 +251,6 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <table\n" +
     "        ng-repeat=\"o in tx.out\"\n" +
     "        class=\"table table-bordered\"\n" +
-    "        ng-class=\"{'table-higlighted': o.address === address.base58}\"\n" +
     "        >\n" +
     "        <tbody>\n" +
     "          <tr>\n" +
@@ -264,7 +262,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            </td>\n" +
     "            <td>\n" +
     "              <span class=\"h6\">\n" +
-    "                <a href=\"\">{{o.address}}</a>\n" +
+    "                <a href=\"/testnet/addresses/{{o.address}}\">{{o.address}}</a>\n" +
     "              </span>\n" +
     "            </td>\n" +
     "          </tr>\n" +
@@ -287,17 +285,21 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<subnav selected=\"'addresses'\"></subnav>\n" +
     "<div class=\"centerpiece-alt text-center\">\n" +
     "  <div class=\"container\">\n" +
-    "    <div class=\"input-group\">\n" +
-    "      <input\n" +
-    "        class='h3 big-input'\n" +
-    "        spellcheck=\"false\"\n" +
-    "        value=\"{{address.base58}}\">\n" +
-    "      <span class=\"input-group-btn\">\n" +
-    "        <button class=\"btn btn-success btn-block btn-search\">\n" +
-    "          <span class=\"h2\">SEARCH</span>\n" +
-    "        </button>\n" +
-    "      </span>\n" +
-    "    </div>\n" +
+    "    <form ng-submit=\"bigSearch(address.base58)\">\n" +
+    "      <div class=\"input-group\">\n" +
+    "          <input\n" +
+    "            class='h3 big-input'\n" +
+    "            spellcheck=\"false\"\n" +
+    "            name=\"query\"\n" +
+    "            ng-model=\"address.base58\"\n" +
+    "            >\n" +
+    "          <span class=\"input-group-btn\">\n" +
+    "            <button class=\"btn btn-success btn-block btn-search\">\n" +
+    "              <span class=\"h2\">SEARCH</span>\n" +
+    "            </button>\n" +
+    "          </span>\n" +
+    "      </div>\n" +
+    "    </form>\n" +
     "  </div>\n" +
     "</div>\n" +
     "<div class=\"container\">\n" +
@@ -317,10 +319,10 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <div class=\"col-md-8\">\n" +
     "      <table class=\"table table-bordered table-address\">\n" +
     "        <tbody>\n" +
-    "          <tr>\n" +
+    "          <!-- <tr>\n" +
     "            <td><strong>Base58</strong></td>\n" +
     "            <td>{{address.base58}}</td>\n" +
-    "          </tr>\n" +
+    "          </tr> -->\n" +
     "          <tr>\n" +
     "            <td><strong>Hash160</strong></td>\n" +
     "            <td>{{address.hash160}}</td>\n" +
@@ -339,15 +341,15 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          </tr>\n" +
     "          <tr>\n" +
     "            <td><strong>Total Sent Amount</strong></td>\n" +
-    "            <td to-btc=\"{{address.total_sent}}\"></td>\n" +
+    "            <td watch='true' to-btc=\"{{address.total_sent}}\"></td>\n" +
     "          </tr>\n" +
     "          <tr>\n" +
     "            <td><strong>Total Received Amount</strong></td>\n" +
-    "            <td to-btc=\"{{address.total_received}}\"></td>\n" +
+    "            <td watch='true' to-btc=\"{{address.total_received}}\"></td>\n" +
     "          </tr>\n" +
     "          <tr>\n" +
     "            <td><strong>Final Balance Amount</strong></td>\n" +
-    "            <td to-btc=\"{{address.total_received - address.total_sent}}\"></td>\n" +
+    "            <td watch='true' to-btc=\"{{address.total_received - address.total_sent}}\"></td>\n" +
     "          </tr>\n" +
     "        </tbody>\n" +
     "      </table>\n" +
@@ -359,19 +361,32 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  <tabset>\n" +
     "    <tab heading=\"All Transactions\">\n" +
     "      <br>\n" +
-    "      <span ng-repeat=\"tx in address.transactions\">\n" +
+    "      <span ng-repeat=\"tx in address.transactions | limitTo:limit.transactions\">\n" +
     "        <div ng-include=\"'/templates/blockExplorer/_tx.html'\"></div>\n" +
     "      </span>\n" +
+    "\n" +
+    "      <div\n" +
+    "        infinite-scroll=\"loadMoreTransactions()\"\n" +
+    "        infinite-scroll-distance=\"0\">\n" +
+    "      </div>\n" +
+    "\n" +
     "    </tab>\n" +
     "    <tab heading=\"Unspent Outputs\">\n" +
     "      <br>\n" +
-    "      <span ng-repeat=\"tx in address.unspent_transactions\">\n" +
-    "        <div ng-include=\"'/templates/blockExplorer/_tx.html'\"></div>\n" +
-    "      </span>\n" +
+    "      <div\n" +
+    "        infinite-scroll=\"loadMoreUnspents()\"\n" +
+    "        infinite-scroll-distance=\"0\">\n" +
+    "\n" +
+    "        <span ng-repeat=\"tx in address.unspent_transactions | limitTo:limit.unspents\">\n" +
+    "          <div ng-include=\"'/templates/blockExplorer/_tx.html'\"></div>\n" +
+    "        </span>\n" +
+    "\n" +
+    "      </div>\n" +
     "    </tab>\n" +
     "  </tabset>\n" +
     "\n" +
-    "</div>\n"
+    "</div>\n" +
+    "<div class=\"space\"></div>\n"
   );
 
 
@@ -380,15 +395,21 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<div class=\"centerpiece-alt text-center\">\n" +
     "  <div class=\"container\">\n" +
     "    <div class=\"col-md-4\">\n" +
-    "      <a class=\"btn btn-default btn-block btn-hover\">\n" +
+    "      <a\n" +
+    "        href=\"/testnet/blocks/{{block.identifier - 1}}\"\n" +
+    "        class=\"btn btn-default btn-block btn-hover\">\n" +
     "        <span class='h3'>PREVIOUS</span>\n" +
     "      </a>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-4\">\n" +
-    "      <input class='h2 big-input' spellcheck=\"false\" value=\"{{block.height}}\">\n" +
+    "      <form ng-submit=\"bigSearch(block.identifier)\">\n" +
+    "        <input class='h2 big-input' spellcheck=\"false\" ng-model=\"block.identifier\">\n" +
+    "      </form>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-4\">\n" +
-    "      <a class=\"btn btn-default btn-block btn-hover\">\n" +
+    "      <a\n" +
+    "        href=\"/testnet/blocks/{{block.identifier + 1}}\"\n" +
+    "        class=\"btn btn-default btn-block btn-hover\">\n" +
     "        <span class='h3'>NEXT</span>\n" +
     "      </a>\n" +
     "    </div>\n" +
@@ -473,19 +494,22 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<subnav selected=\"'latest'\"></subnav>\n" +
     "<!-- <br><br><br><br> -->\n" +
     "<div class=\"centerpiece-alt\">\n" +
-    "  <div class=\"container\">\n" +
-    "    <div class=\"input-group\">\n" +
-    "      <input\n" +
-    "        class='h2 big-input'\n" +
-    "        spellcheck=\"false\"\n" +
-    "        placeholder=\"Search for any address, transaction hash or block hash\">\n" +
-    "      <span class=\"input-group-btn\">\n" +
-    "        <button class=\"btn btn-success btn-block btn-search\">\n" +
-    "          <span class=\"h2\">SEARCH</span>\n" +
-    "        </button>\n" +
-    "      </span>\n" +
+    "  <form ng-submit=\"bigSearch(query)\">\n" +
+    "    <div class=\"container\">\n" +
+    "      <div class=\"input-group\">\n" +
+    "        <input\n" +
+    "          class='h3 big-input'\n" +
+    "          spellcheck=\"false\"\n" +
+    "          ng-model=\"query\"\n" +
+    "          placeholder=\"Search for any address, transaction hash or block hash\">\n" +
+    "        <span class=\"input-group-btn\">\n" +
+    "          <button class=\"btn btn-success btn-block btn-search\">\n" +
+    "            <span class=\"h2\">SEARCH</span>\n" +
+    "          </button>\n" +
+    "        </span>\n" +
+    "      </div>\n" +
     "    </div>\n" +
-    "  </div>\n" +
+    "  </form>\n" +
     "</div>\n" +
     "<div class=\"container container-stats\">\n" +
     "  <div class=\"row stats\">\n" +
@@ -523,10 +547,10 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      </thead>\n" +
     "      <tbody>\n" +
     "        <tr ng-repeat=\"block in blocks.latest\">\n" +
-    "          <td>\n" +
-    "            <a href=\"#\">{{block.block_height}}</a>\n" +
+    "          <td class='text-center'>\n" +
+    "            <a href=\"/testnet/blocks/{{block.block_height}}\">{{block.block_height}}</a>\n" +
     "          </td>\n" +
-    "          <td>\n" +
+    "          <td class='text-center'>\n" +
     "            <span class='h6'>{{block.tx_n}}</span>\n" +
     "          </td>\n" +
     "          <td>\n" +
@@ -535,8 +559,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            </span>\n" +
     "\n" +
     "          </td>\n" +
-    "          <td>\n" +
-    "            <span class='h6' timeago=\"{{block.block_time}}\"></span>\n" +
+    "          <td class='text-center'>\n" +
+    "            <span class='h6' live='true' timeago=\"{{block.block_time}}\"></span>\n" +
     "          </td>\n" +
     "        </tr>\n" +
     "      </tbody>\n" +
@@ -557,10 +581,10 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <tbody>\n" +
     "        <tr ng-repeat=\"tx in transactions.latest\">\n" +
     "          <td>\n" +
-    "            <a href=\"\">{{tx.tx_hash}}</a>\n" +
+    "            <a href=\"/testnet/transactions/{{tx.tx_hash}}\">{{tx.tx_hash}}</a>\n" +
     "          </td>\n" +
     "          <td>\n" +
-    "            <span class='h6 nowrap' timeago=\"{{tx.estimated_time}}\"></span>\n" +
+    "            <span class='h6 nowrap' live='true' timeago=\"{{tx.estimated_time}}\"></span>\n" +
     "          </td>\n" +
     "        </tr>\n" +
     "      </tbody>\n" +
@@ -581,17 +605,21 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<subnav selected=\"'transactions'\"></subnav>\n" +
     "<div class=\"centerpiece-alt text-center\">\n" +
     "  <div class=\"container\">\n" +
-    "    <div class=\"input-group\">\n" +
-    "      <input\n" +
-    "        class='h3 big-input'\n" +
-    "        spellcheck=\"false\"\n" +
-    "        value=\"{{transaction.tx_hash}}\">\n" +
-    "      <span class=\"input-group-btn\">\n" +
-    "        <button class=\"btn btn-success btn-block btn-search\">\n" +
-    "          <span class=\"h2\">SEARCH</span>\n" +
-    "        </button>\n" +
-    "      </span>\n" +
-    "    </div>\n" +
+    "    <form ng-submit=\"bigSearch(transaction.tx_hash)\">\n" +
+    "      <div class=\"input-group\">\n" +
+    "          <input\n" +
+    "            class='h3 big-input'\n" +
+    "            spellcheck=\"false\"\n" +
+    "            name=\"query\"\n" +
+    "            ng-model=\"transaction.tx_hash\"\n" +
+    "            >\n" +
+    "          <span class=\"input-group-btn\">\n" +
+    "            <button class=\"btn btn-success btn-block btn-search\">\n" +
+    "              <span class=\"h2\">SEARCH</span>\n" +
+    "            </button>\n" +
+    "          </span>\n" +
+    "      </div>\n" +
+    "    </form>\n" +
     "  </div>\n" +
     "</div>\n" +
     "<div class=\"container\">\n" +
@@ -618,11 +646,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            </tr>\n" +
     "            <tr>\n" +
     "              <td>Block Hash: </td>\n" +
-    "              <td>\n" +
-    "                <a href=\"blocks/{{transaction.block_hash}}\">\n" +
-    "                  {{transaction.block_hash}}\n" +
-    "                </a>\n" +
-    "              </td>\n" +
+    "              <td>{{transaction.block_hash}}</td>\n" +
     "            </tr>\n" +
     "          </tbody>\n" +
     "        </table>\n" +
@@ -636,7 +660,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        </tr>\n" +
     "        <tr>\n" +
     "          <td>Block Height: </td>\n" +
-    "          <td><a href=\"\">{{transaction.block_height}}</a></td>\n" +
+    "          <td><a href=\"/testnet/blocks/{{transaction.block_height}}\">{{transaction.block_height}}</a></td>\n" +
     "        </tr>\n" +
     "        <tr>\n" +
     "          <td>Confirmations: </td>\n" +
@@ -684,7 +708,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              <td>n (index): </td>\n" +
     "              <td>\n" +
     "                <span class=\"h5\">\n" +
-    "                  <a href=\"#\">\n" +
+    "                  <a href=\"/testnet/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}\">\n" +
     "                    {{i.prev_out.n}}\n" +
     "                  </a>\n" +
     "                </span>\n" +
@@ -696,7 +720,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "                <img\n" +
     "                  ng-src=\"http://identicoin.herokuapp.com/address/{{i.prev_out.address}}\"\n" +
     "                  width=\"16\">\n" +
-    "                <span class=\"h5\"><a href=\"\">{{i.prev_out.address}}</a></span>\n" +
+    "                <span class=\"h5\"><a href=\"/testnet/addresses/{{i.prev_out.address}}\">{{i.prev_out.address}}</a></span>\n" +
     "              </td>\n" +
     "            </tr>\n" +
     "            <tr>\n" +
@@ -722,8 +746,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      </div>\n" +
     "      <div class=\"col-md-5 addresses\">\n" +
     "        <table\n" +
+    "          ng-repeat=\"o in transaction.out\"\n" +
     "          class=\"table table-bordered table-io\"\n" +
-    "          ng-repeat=\"o in transaction.out\">\n" +
+    "          ng-class=\"{'table-highlighted': transaction.n === o.n}\">\n" +
     "          <tbody>\n" +
     "            <tr>\n" +
     "              <td>n (index): </td>\n" +
@@ -733,7 +758,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              <td>Address: </td>\n" +
     "              <td>\n" +
     "                <img src=\"http://identicoin.herokuapp.com/address/{{o.address}}\" width=\"16\">\n" +
-    "                <span class=\"h5\"><a href=\"\">{{o.address}}</a></span>\n" +
+    "                <span class=\"h5\"><a href=\"/testnet/addresses/{{o.address}}\">{{o.address}}</a></span>\n" +
     "              </td>\n" +
     "            </tr>\n" +
     "            <tr>\n" +
@@ -746,20 +771,20 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              </td>\n" +
     "            </tr>\n" +
     "            <tr>\n" +
-    "              <td rowspan=\"2\">scriptPubKey: </td>\n" +
+    "              <td rowspan=\"1\">scriptPubKey: </td>\n" +
     "              <td>\n" +
     "                <span class=\"h5\">\n" +
     "                  {{o.scriptPubKey}}\n" +
     "                </span>\n" +
     "              </td>\n" +
     "            </tr>\n" +
-    "            <tr>\n" +
+    "            <!-- <tr>\n" +
     "              <td>\n" +
     "                <span class=\"h5\">\n" +
     "                  TODO: Parsed\n" +
     "                </span>\n" +
     "              </td>\n" +
-    "            </tr>\n" +
+    "            </tr> -->\n" +
     "          </tbody>\n" +
     "        </table>\n" +
     "      </div>\n" +
@@ -781,9 +806,14 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "</div>\n" +
     "<div class=\"container\">\n" +
     "  <br>\n" +
-    "  <span ng-repeat=\"tx in transactions.unconfirmed\">\n" +
+    "  <span ng-repeat=\"tx in transactions.unconfirmed | limitTo:limit.unconfirmed\">\n" +
     "    <div ng-include=\"'/templates/blockExplorer/_tx.html'\"></div>\n" +
     "  </span>\n" +
+    "\n" +
+    "  <div\n" +
+    "    infinite-scroll=\"loadMoreTransactions()\"\n" +
+    "    infinite-scroll-distance=\"0\">\n" +
+    "  </div>\n" +
     "</div>\n"
   );
 
