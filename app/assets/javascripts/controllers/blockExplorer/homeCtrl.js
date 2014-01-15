@@ -23,14 +23,13 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, HelloBlock ) {
     $scope.blocks.latest = res.data.blocks
 
     // Callback Level 2
-
     blockChannel.bind( 'latest', function( res ) {
       Pusher.beep();
 
       var block = res.message
 
       $scope.$apply( function() {
-        $scope.blocks.latest.transactions.unshift( block )
+        $scope.blocks.latest.unshift( block )
       } )
     } );
 

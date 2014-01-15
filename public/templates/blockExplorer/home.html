@@ -1,14 +1,22 @@
 <subnav selected="'latest'"></subnav>
 <!-- <br><br><br><br> -->
 <div class="centerpiece-alt">
-  <form ng-submit="bigSearch(query)">
+  <form ng-submit="bigSearch.query(query)">
     <div class="container">
+      <div ng-show="bigSearch.error.show">
+        <div class="alert alert-danger alert-danger-light text-center">
+          <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+          <span class="h4">
+            Please ensure your query is an address, transaction hash or block height
+          </span>
+        </div>
+      </div>
       <div class="input-group">
         <input
           class='h3 big-input'
           spellcheck="false"
           ng-model="query"
-          placeholder="Search for any address, transaction hash or block hash">
+          placeholder="Search for any address, transaction hash or block height">
         <span class="input-group-btn">
           <button class="btn btn-success btn-block btn-search">
             <span class="h2">SEARCH</span>

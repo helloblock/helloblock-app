@@ -36,28 +36,32 @@ hbApp.run( function( $rootScope, $location ) {
     }
   }
 
-  $rootScope.bigSearch = function( query ) {
-    console.log( query )
-    console.log( QueryValidator.address( query ) )
-    console.log( QueryValidator.transaction( query ) )
-    console.log( QueryValidator.block( query ) )
-    if ( QueryValidator.address( query ) ) {
-      $location.path( "/testnet/addresses/" + query )
-      return;
-    }
+  $rootScope.bigSearch = {
+    query: function( query ) {
+      this.error.show = false
 
-    if ( QueryValidator.transaction( query ) ) {
-      $location.path( "/testnet/transactions/" + query )
-      return;
-    }
+      if ( QueryValidator.address( query ) ) {
+        $location.path( "/testnet/addresses/" + query )
+        return;
+      }
 
-    if ( QueryValidator.block( query ) ) {
-      $location.path( "/testnet/blocks/" + query )
-      return;
-    }
+      if ( QueryValidator.transaction( query ) ) {
+        $location.path( "/testnet/transactions/" + query )
+        return;
+      }
 
-    // TODO Error Handling
-    // return
+      if ( QueryValidator.block( query ) ) {
+        $location.path( "/testnet/blocks/" + query )
+        return;
+      }
+
+      // Error Handling
+      this.error.show = true
+      $location.path( "/testnet" )
+    },
+    error: {
+      show: false
+    }
   }
 
 } )
