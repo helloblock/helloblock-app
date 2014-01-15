@@ -24,6 +24,7 @@
 //= require angular-ui-bootstrap-tpls
 //= require spin.min
 //= require moment.min
+//= require ng-infinite-scroll
 //= require hbApp
 //= require_tree ./controllers
 //= require_tree ./directives

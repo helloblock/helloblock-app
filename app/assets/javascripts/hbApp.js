@@ -17,7 +17,8 @@ var hbApp = angular.module( 'hbApp', [
   'ngRoute',
   'ngResource',
   'ui.bootstrap',
-  'ui.select2'
+  'ui.select2',
+  'infinite-scroll'
 ] )
 
 hbApp.config( function( $locationProvider ) {

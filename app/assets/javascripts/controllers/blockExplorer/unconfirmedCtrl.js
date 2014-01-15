@@ -28,4 +28,12 @@ hbApp.controller( "blockExplorer/unconfirmedCtrl", function( $scope, HelloBlock 
     console.log( err )
   } )
 
+  $scope.limit = {
+    unconfirmed: 5
+  }
+
+  $scope.loadMoreTransactions = function() {
+    $scope.limit.unconfirmed += 1
+  }
+
 } )

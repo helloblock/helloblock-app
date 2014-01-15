@@ -45,4 +45,17 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, HelloBlock ) 
     console.log( "error!", err )
   } )
 
+  $scope.loadMoreTransactions = function() {
+    $scope.limit.transactions += 1
+  }
+
+  $scope.loadMoreUnspents = function() {
+    $scope.limit.unspents += 1
+  }
+
+  $scope.limit = {
+    transactions: 5,
+    unspents: 5
+  }
+
 } )

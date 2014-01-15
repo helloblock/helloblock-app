@@ -73,15 +73,26 @@
   <tabset>
     <tab heading="All Transactions">
       <br>
-      <span ng-repeat="tx in address.transactions | limitTo:5">
+      <span ng-repeat="tx in address.transactions | limitTo:limit.transactions">
         <div ng-include="'/templates/blockExplorer/_tx.html'"></div>
       </span>
+
+      <div
+        infinite-scroll="loadMoreTransactions()"
+        infinite-scroll-distance="1">
+      </div>
+
     </tab>
     <tab heading="Unspent Outputs">
       <br>
-      <span ng-repeat="tx in address.unspent_transactions | limitTo:5">
+      <span ng-repeat="tx in address.unspent_transactions">
         <div ng-include="'/templates/blockExplorer/_tx.html'"></div>
       </span>
+
+      <!-- <div
+        infinite-scroll="loadMoreUnspents()"
+        infinite-scroll-distance="3">
+      </div> -->
     </tab>
   </tabset>
 

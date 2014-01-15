@@ -8,7 +8,12 @@
 </div>
 <div class="container">
   <br>
-  <span ng-repeat="tx in transactions.unconfirmed">
+  <span ng-repeat="tx in transactions.unconfirmed | limit:limit.unconfirmed">
     <div ng-include="'/templates/blockExplorer/_tx.html'"></div>
   </span>
+
+  <div
+    infinite-scroll="loadMoreTransactions()"
+    infinite-scroll-distance="0">
+  </div>
 </div>
