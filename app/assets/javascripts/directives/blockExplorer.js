@@ -90,6 +90,17 @@ hbApp.directive( "utc", function() {
 	}
 } )
 
+moment.fn.fromNowWithSeconds = function( a ) {
+	var milliseconds = Math.abs( moment().diff( this ) );
+
+	if ( milliseconds < 60000 ) { // 60 seconds
+		var seconds = ( milliseconds / 1000 ).toFixed( 0 )
+		return seconds + ' secs ago';
+	}
+
+	return this.fromNow( a );
+}
+
 hbApp.directive( "timeago", function( $timeout ) {
 	return function( $scope, element, attrs ) {
 		var epoch = attrs.timeago
@@ -99,11 +110,17 @@ hbApp.directive( "timeago", function( $timeout ) {
 			return;
 		}
 
-		// $timeout( function() {
-		var timeago = moment( epoch, "X" ).fromNow()
+		var tick = function() {
+			var timeago = moment( epoch, "X" ).fromNowWithSeconds()
 
-		$( element ).text( timeago )
-		// }, 1000 )
+			$( element ).text( timeago )
+
+			$timeout( function() {
+				tick()
+			}, 1000 )
+		}
+
+		tick()
 
 	}
 } )

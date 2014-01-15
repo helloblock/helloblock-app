@@ -14,7 +14,8 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, HelloBlock ) {
   }
 
   HelloBlock.Blocks.get( {
-    identifier: "latest"
+    identifier: "latest",
+    limit: 20
   }, function( res ) {
     $scope.blocks.latest = res.data.blocks
 
@@ -24,7 +25,7 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, HelloBlock ) {
     blockListener.bind( 'latest', function( res ) {
       Pusher.beep();
 
-      var block = JSON.parse( res.message )
+      var block = res.message
 
       $scope.$apply( function() {
         $scope.blocks.latest.transactions.unshift( block )
@@ -37,7 +38,8 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, HelloBlock ) {
 
   // Callback Level 1
   HelloBlock.Transactions.get( {
-    tx_hash: "latest"
+    tx_hash: "latest",
+    limit: 20
   }, function( res ) {
     $scope.transactions.latest = res.data.transactions
 
@@ -47,7 +49,10 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, HelloBlock ) {
     transactionsListener.bind( 'unconfirmed', function( res ) {
       Pusher.beep();
 
-      var tx = JSON.parse( res.message )
+      var tx = res.message
+
+      debugger
+      console.log( tx )
 
       $scope.$apply( function() {
         $scope.transactions.latest.unshift( tx )

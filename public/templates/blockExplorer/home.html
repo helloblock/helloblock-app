@@ -1,6 +1,5 @@
 <subnav selected="'latest'"></subnav>
 <!-- <br><br><br><br> -->
-<div timeago="1389752895"></div>
 <div class="centerpiece-alt">
   <div class="container">
     <div class="input-group">
@@ -53,7 +52,7 @@
       <tbody>
         <tr ng-repeat="block in blocks.latest">
           <td>
-            <a href="">{{block.block_height}}</a>
+            <a href="#">{{block.block_height}}</a>
           </td>
           <td>
             <span class='h6'>{{block.tx_n}}</span>
@@ -89,7 +88,7 @@
             <a href="">{{tx.tx_hash}}</a>
           </td>
           <td>
-            <span class='h6 nowrap' timeago="tx.estimated_time"></span>
+            <span class='h6 nowrap' timeago="{{tx.estimated_time}}"></span>
           </td>
         </tr>
       </tbody>
