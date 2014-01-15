@@ -93,7 +93,7 @@ hbApp.directive( "utc", function() {
 moment.fn.fromNowWithSeconds = function( a ) {
 	var milliseconds = Math.abs( moment().diff( this ) );
 
-	if ( milliseconds < 60000 ) { // 60 seconds
+	if ( milliseconds > 0 && milliseconds < 60000 ) { // 60 seconds
 		var seconds = ( milliseconds / 1000 ).toFixed( 0 )
 		return seconds + ' secs ago';
 	}

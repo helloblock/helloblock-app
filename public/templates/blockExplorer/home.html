@@ -51,10 +51,10 @@
       </thead>
       <tbody>
         <tr ng-repeat="block in blocks.latest">
-          <td>
+          <td class='text-center'>
             <a href="#">{{block.block_height}}</a>
           </td>
-          <td>
+          <td class='text-center'>
             <span class='h6'>{{block.tx_n}}</span>
           </td>
           <td>
@@ -63,7 +63,7 @@
             </span>
 
           </td>
-          <td>
+          <td class='text-center'>
             <span class='h6' timeago="{{block.block_time}}"></span>
           </td>
         </tr>
