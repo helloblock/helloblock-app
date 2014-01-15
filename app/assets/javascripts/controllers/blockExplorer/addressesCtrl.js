@@ -36,7 +36,7 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
     addressListener.bind( $scope.address.base58, function( res ) {
       Pusher.beep();
 
-      var tx = JSON.parse( res.message )
+      var tx = res.message
 
       $scope.$apply( function() {
         $scope.address.transactions.unshift( tx )
@@ -47,17 +47,21 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
     console.log( "error!", err )
   } )
 
-  $scope.loadMoreTransactions = function() {
-    $scope.limit.transactions += 5
-  }
-
-  $scope.loadMoreUnspents = function() {
-    $scope.limit.unspents += 5
-  }
+  // Infinite Scrolling
 
   $scope.limit = {
     transactions: 5,
     unspents: 5
+  }
+
+  $scope.loadMoreTransactions = function() {
+    console.log( 'hit tx!' )
+    $scope.limit.transactions += 5
+  }
+
+  $scope.loadMoreUnspents = function() {
+    console.log( 'hit unspent!' )
+    $scope.limit.unspents += 5
   }
 
   $scope.$on( "$destroy", function() {

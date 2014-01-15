@@ -43,7 +43,7 @@ hbApp.directive( "confirmations", function() {
 		$scope.$watch( "address + block + transaction + transactions", function() {
 			var confirmations = parseInt( attrs.confirmations )
 
-			if ( confirmations === 0 ) {
+			if ( confirmations === 0 || attrs.confirmations === "" ) {
 				$( element ).addClass( "label-danger" )
 				$( element ).text( "UNCONFIRMED" )
 				return;

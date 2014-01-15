@@ -51,9 +51,6 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, HelloBlock ) {
 
       var tx = res.message
 
-      debugger
-      console.log( tx )
-
       $scope.$apply( function() {
         $scope.transactions.latest.unshift( tx )
       } )
