@@ -1,7 +1,7 @@
 hbApp.controller( "blockExplorer/blocksCtrl", function( $scope, HelloBlock ) {
 
   $scope.block = {
-    height: 160001,
+    height: 168058,
     transactions: []
   }
 

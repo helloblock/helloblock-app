@@ -4,21 +4,22 @@ hbApp.controller( "blockExplorer/unconfirmedCtrl", function( $scope, HelloBlock 
     unconfirmed: []
   }
 
+  var transactionsChannel = PusherClient.subscribe( 'transactions' );
+
   // Callback: Lvl 1
   HelloBlock.Transactions.get( {
-    tx_hash: "latest"
+    tx_hash: "latest",
+    limit: 100
   }, function( res ) {
 
     $scope.transactions.unconfirmed = res.data.transactions;
 
-    var transactionsListener = PusherClient.subscribe( 'transactions' );
-
     // Callback: Lvl 1
-    transactionsListener.bind( 'unconfirmed', function( res ) {
+    transactionsChannel.bind( 'unconfirmed', function( res ) {
       Pusher.beep();
 
       var tx = res.message;
-      console.log( tx )
+
       $scope.$apply( function() {
         $scope.transactions.unconfirmed.unshift( tx )
       } )
@@ -33,7 +34,13 @@ hbApp.controller( "blockExplorer/unconfirmedCtrl", function( $scope, HelloBlock 
   }
 
   $scope.loadMoreTransactions = function() {
-    $scope.limit.unconfirmed += 1
+    $scope.limit.unconfirmed += 5
   }
+
+  $scope.$on( "$destroy", function() {
+    transactionsChannel.unbind( "unconfirmed", function() {
+      console.log( "unbinding..." )
+    } )
+  } )
 
 } )

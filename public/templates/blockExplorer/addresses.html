@@ -79,21 +79,23 @@
 
       <div
         infinite-scroll="loadMoreTransactions()"
-        infinite-scroll-distance="1">
+        infinite-scroll-distance="0">
       </div>
 
     </tab>
     <tab heading="Unspent Outputs">
       <br>
-      <span ng-repeat="tx in address.unspent_transactions">
-        <div ng-include="'/templates/blockExplorer/_tx.html'"></div>
-      </span>
-
-      <!-- <div
+      <div
         infinite-scroll="loadMoreUnspents()"
-        infinite-scroll-distance="3">
-      </div> -->
+        infinite-scroll-distance="0">
+
+        <span ng-repeat="tx in address.unspent_transactions | limitTo:limit.unspents">
+          <div ng-include="'/templates/blockExplorer/_tx.html'"></div>
+        </span>
+
+      </div>
     </tab>
   </tabset>
 
 </div>
+<div class="space"></div>
