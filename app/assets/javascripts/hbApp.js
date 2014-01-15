@@ -37,18 +37,21 @@ hbApp.run( function( $rootScope, $location ) {
   }
 
   $rootScope.bigSearch = function( query ) {
-    var queryType = 'address'
-    if ( queryType === "address" ) {
+    console.log( query )
+    console.log( QueryValidator.address( query ) )
+    console.log( QueryValidator.transaction( query ) )
+    console.log( QueryValidator.block( query ) )
+    if ( QueryValidator.address( query ) ) {
       $location.path( "/testnet/addresses/" + query )
       return;
     }
 
-    if ( queryType === "transaction" ) {
+    if ( QueryValidator.transaction( query ) ) {
       $location.path( "/testnet/transactions/" + query )
       return;
     }
 
-    if ( queryType === "block" ) {
+    if ( QueryValidator.block( query ) ) {
       $location.path( "/testnet/blocks/" + query )
       return;
     }
@@ -115,9 +118,37 @@ hbApp.config( function( $routeProvider ) {
 
 } )
 
+var QueryValidator = {
+  hexRegex: /^[0-9a-f]+$/i,
+  address: function( query ) {
+    return cryptocoin.Address.validate( query )
+  },
+  transaction: function( query ) {
+    if ( query.length !== 64 ) {
+      return false
+    }
+
+    if ( query.match( this.hexRegex ) === null ) {
+      return false
+    }
+
+    return true
+  },
+  block: function( query ) {
+    if ( query.match( /^\d+$/ ) && query > 0 ) {
+      return true
+    }
+
+    if ( query.match( this.hexRegex ) && query.length === 64 ) {
+      return true
+    }
+
+    return false
+  }
+}
+
 var Route = {
   namespace: function( url, name, callback ) {
     callback( url, name )
   }
-
 }
