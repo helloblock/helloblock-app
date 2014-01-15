@@ -18,8 +18,7 @@
     <div class="col-md-5">
       <table
         class="table table-bordered"
-        ng-repeat="i in tx.in"
-        ng-class="{'table-higlighted': i.prev_out.address === address.base58}">
+        ng-repeat="i in tx.in">
         <tbody>
           <tr>
             <td rowspan="2" class='text-center n-index'>
@@ -54,7 +53,6 @@
       <table
         ng-repeat="o in tx.out"
         class="table table-bordered"
-        ng-class="{'table-higlighted': o.address === address.base58}"
         >
         <tbody>
           <tr>

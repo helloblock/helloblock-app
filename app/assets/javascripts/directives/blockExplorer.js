@@ -2,91 +2,90 @@ var SATOSHI = 100000000
 
 hbApp.directive( "toBtc", function() {
 	return function( $scope, element, attrs ) {
-		// $scope.$watch( function() {
-		var satoshiStr = attrs.toBtc
-		if ( satoshiStr === "" ) {
-			return
-		};
+		$scope.$watch( function() {
+			var satoshiStr = attrs.toBtc
+			if ( satoshiStr === "" ) {
+				return
+			};
 
-		var satoshis = parseInt( satoshiStr )
-		var btc = ( satoshis / SATOSHI ).toFixed( 8 )
-		var btc = btc.replace( /\.?0+$/, "" )
+			var satoshis = parseInt( satoshiStr )
+			var btc = ( satoshis / SATOSHI ).toFixed( 8 )
+			var btc = btc.replace( /\.?0+$/, "" )
 
-		$( element ).text( btc + " BTC" )
-		// } )
+			$( element ).text( btc + " BTC" )
+		} )
 	}
 } )
 
 hbApp.directive( "spent", function() {
 	return function( $scope, element, attrs ) {
-		// $scope.$watch( function() {
-		var spent = JSON.parse( attrs.spent ) // parseBool
+		$scope.$watch( function() {
+			var spent = JSON.parse( attrs.spent ) // parseBool
 
-		if ( spent === true ) {
-			$( element ).addClass( "label-default" )
-			$( element ).text( "SPENT" )
-			return;
-		}
+			if ( spent === true ) {
+				$( element ).addClass( "label-default" )
+				$( element ).text( "SPENT" )
+				return;
+			}
 
-		if ( spent === false ) {
-			$( element ).addClass( "label-success" )
-			$( element ).text( "UNSPENT" )
-			return;
-		}
-		// } )
+			if ( spent === false ) {
+				$( element ).addClass( "label-success" )
+				$( element ).text( "UNSPENT" )
+				return;
+			}
+		} )
 	}
 } )
 
 hbApp.directive( "confirmations", function() {
 	return function( $scope, element, attrs ) {
-		// $scope.$watch( function() {
-		var confirmations = parseInt( attrs.confirmations )
 
-		// debugger
+		$scope.$watch( function() {
+			var confirmations = parseInt( attrs.confirmations )
 
-		if ( confirmations === 0 ) {
-			$( element ).addClass( "label-danger" )
-			$( element ).text( "UNCONFIRMED" )
-			return;
-		};
+			if ( confirmations === 0 ) {
+				$( element ).addClass( "label-danger" )
+				$( element ).text( "UNCONFIRMED" )
+				return;
+			};
 
-		if ( confirmations >= 1 && confirmations <= 6 ) {
-			$( element ).addClass( "label-warning" )
-			$( element ).text( confirmations + " CONFIRMATIONS" )
-			return;
-		};
-
-		if ( confirmations > 6 ) {
-			if ( attrs.verbose === 'true' ) {
-				$( element ).addClass( "label-default" )
+			if ( confirmations >= 1 && confirmations <= 6 ) {
+				$( element ).addClass( "label-warning" )
 				$( element ).text( confirmations + " CONFIRMATIONS" )
-			} else {
-				$( element ).addClass( "label-default" )
-				$( element ).text( ">6 CONFIRMATIONS" )
-			}
+				return;
+			};
 
-			return;
-		};
-		// } )
+			if ( confirmations > 6 ) {
+				if ( attrs.verbose === 'true' ) {
+					$( element ).addClass( "label-default" )
+					$( element ).text( confirmations + " CONFIRMATIONS" )
+				} else {
+					$( element ).addClass( "label-default" )
+					$( element ).text( ">6 CONFIRMATIONS" )
+				}
+
+				return;
+			};
+		} )
 	}
 } )
 
 hbApp.directive( "utc", function() {
 	return function( $scope, element, attrs ) {
-		// $scope.$watch( function() {
-		var epoch = attrs.utc
 
-		if ( epoch === "" ) {
-			$( element ).text( "n/a" )
-			return;
-		}
+		$scope.$watch( function() {
+			var epoch = attrs.utc
 
-		var time = moment( epoch, "X" ).utc()
+			if ( epoch === "" ) {
+				$( element ).text( "n/a" )
+				return;
+			}
 
-		var formatted = time.format( 'MMM D YY, h:mm:ssA UTC' );
+			var time = moment( epoch, "X" ).utc()
+			var formatted = time.format( 'MMM D YY, h:mm:ssA UTC' );
 
-		$( element ).text( formatted )
-		// } )
+			$( element ).text( formatted )
+		} )
 	}
 } )
 
@@ -110,42 +109,28 @@ hbApp.directive( "timeago", function( $timeout ) {
 			return;
 		}
 
-		var tick = function() {
+		var update = function() {
 			var timeago = moment( epoch, "X" ).fromNowWithSeconds()
-
 			$( element ).text( timeago )
-
-			$timeout( function() {
-				tick()
-			}, 1000 )
 		}
 
-		tick()
+		if ( attrs.live === 'true' ) {
+			var tick = function() {
+				update()
+				$timeout( function() {
+					tick()
+				}, 1000 )
+			}
 
-	}
-} )
-
-hbApp.directive( "highlightIfAddress", function() {
-	return function( $scope, element, attrs ) {
-		// $scope.$watch( function() {
-		var epoch = attrs.timeago
-
-		if ( epoch === "" ) {
-			$( element ).text( "n/a" )
-			return;
+			tick()
 		}
-
-		var timeago = moment( epoch, "X" ).fromNow()
-
-		$( element ).text( timeago )
-		// } )
 
 	}
 } )
 
 hbApp.directive( "direction", function() {
 	return function( $scope, element, attrs ) {
-		// $scope.$watch( function() {
+
 		if ( attrs.direction == "" ) {
 			return;
 		}
@@ -161,6 +146,5 @@ hbApp.directive( "direction", function() {
 			$( element ).addClass( "text-danger" )
 			return;
 		}
-		// } )
 	}
 } )
