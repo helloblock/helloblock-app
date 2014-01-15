@@ -11,7 +11,7 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, HelloBlock ) 
     address: $scope.address.base58
   }, function( res ) {
 
-    $scope.address = $.extend( {}, $scope.address, res[ "data" ][ "address" ] );
+    $scope.address = $.extend( {}, $scope.address, res.data.address );
 
     var unspents_tx_hashes = $scope.address.unspents.map( function( i ) {
       return i.tx_hash;
@@ -22,7 +22,7 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, HelloBlock ) 
       "tx_hash[]": unspents_tx_hashes
     }, function( res ) {
 
-      $scope.address.unspent_transactions = res[ "data" ][ 'transactions' ]
+      $scope.address.unspent_transactions = res.data.transactions
 
     }, function( err ) {
       console.log( "error!", err )

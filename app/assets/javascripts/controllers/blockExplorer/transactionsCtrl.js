@@ -7,7 +7,7 @@ hbApp.controller( "blockExplorer/transactionsCtrl", function( $scope, HelloBlock
   HelloBlock.Transactions.get( {
     tx_hash: $scope.transaction.tx_hash
   }, function( res ) {
-    $scope.transaction = $.extend( {}, $scope.transaction, res[ "data" ][ "transaction" ] );
+    $scope.transaction = $.extend( {}, $scope.transaction, res.data.transaction );
 
     $scope.transaction.total_inputs = sumInputs( $scope.transaction[ "in" ] )
     $scope.transaction.total_outputs = sumOutputs( $scope.transaction[ "out" ] )
