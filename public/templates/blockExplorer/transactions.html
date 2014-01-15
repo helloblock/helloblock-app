@@ -59,10 +59,6 @@
           <td><a href="">{{transaction.block_height}}</a></td>
         </tr>
         <tr>
-          <td>Block Time: </td>
-          <td utc="{{transaction.block_ntime}}"></td>
-        </tr>
-        <tr>
           <td>Confirmations: </td>
           <td>
             <span class="label" verbose="true" confirmations="{{transaction.confirmations}}"></span>
@@ -74,19 +70,15 @@
       <table class="table table-bordered table-summary">
         <tr>
           <td>Received Time: </td>
-          <td utc="{{transaction.time}}"></td>
-        </tr>
-        <tr>
-          <td>Total Transacted (est.): </td>
-          <td to-btc="TODO"></td>
+          <td utc="{{transaction.estimated_time}}"></td>
         </tr>
         <tr>
           <td>Total Inputs: </td>
-          <td to-btc="TODO">TODO</td>
+          <td to-btc="{{transaction.total_inputs}}"></td>
         </tr>
         <tr>
           <td>Total Outputs: </td>
-          <td to-btc="TODO">TODO</td>
+          <td to-btc="{{transaction.total_outputs}}"></td>
         </tr>
       </table>
     </div>
@@ -146,8 +138,7 @@
         </table>
       </div>
       <div class="col-md-2 text-center">
-        TODO
-        <i class="fa fa-arrow-circle-right fa-4x text-success"></i>
+        <i class="fa fa-arrow-circle-right fa-4x text-gray-light"></i>
       </div>
       <div class="col-md-5 addresses">
         <table
