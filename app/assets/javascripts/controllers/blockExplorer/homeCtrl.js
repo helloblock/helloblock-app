@@ -13,6 +13,9 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, HelloBlock ) {
     latest: []
   }
 
+  var blockChannel = PusherClient.subscribe( 'blocks' );
+  var transactionsChannel = PusherClient.subscribe( 'transactions' );
+
   HelloBlock.Blocks.get( {
     identifier: "latest",
     limit: 20
@@ -20,9 +23,8 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, HelloBlock ) {
     $scope.blocks.latest = res.data.blocks
 
     // Callback Level 2
-    var blockListener = PusherClient.subscribe( 'blocks' );
 
-    blockListener.bind( 'latest', function( res ) {
+    blockChannel.bind( 'latest', function( res ) {
       Pusher.beep();
 
       var block = res.message
@@ -44,9 +46,7 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, HelloBlock ) {
     $scope.transactions.latest = res.data.transactions
 
     // Callback Level 2
-    var transactionsListener = PusherClient.subscribe( 'transactions' );
-
-    transactionsListener.bind( 'unconfirmed', function( res ) {
+    transactionsChannel.bind( 'unconfirmed', function( res ) {
       Pusher.beep();
 
       var tx = res.message

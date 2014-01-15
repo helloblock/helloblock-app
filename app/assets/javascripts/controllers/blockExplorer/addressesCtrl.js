@@ -8,6 +8,8 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
     unspents: []
   }
 
+  var addressChannel = PusherClient.subscribe( 'addresses' );
+
   // Callback: Lvl 1
   HelloBlock.Addresses.get( {
     address: $scope.address.base58
@@ -31,9 +33,7 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
     } )
 
     // Callback: Lvl 2
-    var addressListener = PusherClient.subscribe( 'addresses' );
-
-    addressListener.bind( $scope.address.base58, function( res ) {
+    addressChannel.bind( $scope.address.base58, function( res ) {
       Pusher.beep();
 
       var tx = res.message
