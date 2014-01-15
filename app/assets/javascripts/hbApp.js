@@ -1,6 +1,7 @@
 'use strict';
 
 var PusherClient = new Pusher( '1cca9695fd809ce4bbab' );
+
 Pusher.log = function( message ) {
   if ( window.console && window.console.log ) {
     window.console.log( message );
@@ -36,18 +37,19 @@ hbApp.run( function( $rootScope, $location ) {
   }
 
   $rootScope.bigSearch = function( query ) {
-
-    var queryType = query
-
+    var queryType = 'address'
     if ( queryType === "address" ) {
+      $location.path( "/testnet/addresses/" + query )
       return;
     }
 
     if ( queryType === "transaction" ) {
+      $location.path( "/testnet/transactions/" + query )
       return;
     }
 
     if ( queryType === "block" ) {
+      $location.path( "/testnet/blocks/" + query )
       return;
     }
 

@@ -1,7 +1,7 @@
 <subnav selected="'transactions'"></subnav>
 <div class="centerpiece-alt text-center">
   <div class="container">
-    <form ng-submit="bigSearch(address.base58)">
+    <form ng-submit="bigSearch(transaction.tx_hash)">
       <div class="input-group">
           <input
             class='h3 big-input'
@@ -116,7 +116,7 @@
                 <img
                   ng-src="http://identicoin.herokuapp.com/address/{{i.prev_out.address}}"
                   width="16">
-                <span class="h5"><a href="">{{i.prev_out.address}}</a></span>
+                <span class="h5"><a href="/testnet/addresses/{{i.prev_out.address}}">{{i.prev_out.address}}</a></span>
               </td>
             </tr>
             <tr>
@@ -154,7 +154,7 @@
               <td>Address: </td>
               <td>
                 <img src="http://identicoin.herokuapp.com/address/{{o.address}}" width="16">
-                <span class="h5"><a href="">{{o.address}}</a></span>
+                <span class="h5"><a href="/testnet/addresses/{{o.address}}">{{o.address}}</a></span>
               </td>
             </tr>
             <tr>
