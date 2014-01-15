@@ -1,5 +1,6 @@
 <subnav selected="'latest'"></subnav>
 <!-- <br><br><br><br> -->
+<div timeago="1389752895"></div>
 <div class="centerpiece-alt">
   <div class="container">
     <div class="input-group">
@@ -45,26 +46,26 @@
         <tr>
           <th class='text-center'><span class='h5'>Block Height</span></th>
           <th class='text-center'><span class='h5'># Transactions</span></th>
-          <th class='text-center'><span class='h5'>Total Output Value</span></th>
+          <th class='text-center'><span class='h5 nowrap'>Total Output Value</span></th>
           <th class='text-center'><span class='h5'>Time</span></th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 22, 33, 44]">
+        <tr ng-repeat="block in blocks.latest">
           <td>
-            <a href="">134,521</a>
+            <a href="">{{block.block_height}}</a>
           </td>
           <td>
-            <span class='h6'>21</span>
+            <span class='h6'>{{block.tx_n}}</span>
           </td>
           <td>
             <span class="label label-success amount label-lg">
-              <span to-btc="13371337"></span>
+              <span to-btc="{{block.total_outputs}}"></span>
             </span>
 
           </td>
           <td>
-            <span class='h6' timeago="1331231233"></span>
+            <span class='h6' timeago="{{block.block_time}}"></span>
           </td>
         </tr>
       </tbody>
@@ -79,23 +80,16 @@
       <thead>
         <tr>
           <th class='text-center'><span class='h5'>Transaction Hash</span></th>
-          <th class='text-center'><span class='h5'>Total Outputs</span></th>
           <th class='text-center'><span class='h5'>Time</span></th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="i in [1, 2, 3, 4, 5, 6]">
+        <tr ng-repeat="tx in transactions.latest">
           <td>
-            <a href="">be367bddf3522c77e9ffdfdcdb6efaba4ed1ef65478ade415983e022e6e42b29</a>
+            <a href="">{{tx.tx_hash}}</a>
           </td>
           <td>
-            <span class="label label-success amount label-lg">
-              <span to-btc="13371337"></span>
-            </span>
-
-          </td>
-          <td>
-            <span class='h6 nowrap' timeago="1331231233"></span>
+            <span class='h6 nowrap' timeago="tx.estimated_time"></span>
           </td>
         </tr>
       </tbody>
