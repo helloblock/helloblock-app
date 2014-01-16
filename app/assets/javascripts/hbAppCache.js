@@ -583,7 +583,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  </div>\n" +
     "  <div class=\"col-md-6\">\n" +
     "    <div class=\"h3 text-gray text-center\">Latest Transactions\n" +
-    "      <span class='h5'>(see all)</span>\n" +
+    "      <span class='h5'>\n" +
+    "        <a href=\"/testnet/unconfirmed\">(see all)</a>\n" +
+    "      </span>\n" +
     "    </div>\n" +
     "    <br>\n" +
     "    <waitspin ng-show=\"transactions.latest.length === 0\" left='250'></waitspin>\n" +
@@ -741,8 +743,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    TRANSACTION:\n" +
     "  </div>\n" +
     "  <br>\n" +
-    "  <waitspin ng-show=\"!transaction.block_hash\"></waitspin>\n" +
-    "  <div class=\"row\" ng-show=\"transaction.block_hash\">\n" +
+    "  <waitspin ng-show=\"!transaction.tx_hash\"></waitspin>\n" +
+    "  <div class=\"row\" ng-show=\"transaction.tx_hash\">\n" +
     "    <div class=\"h3 text-center text-gray\">\n" +
     "      SUMMARY\n" +
     "    </div>\n" +
@@ -803,7 +805,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  </div>\n" +
     "  <br><br>\n" +
     "</div>\n" +
-    "<div class=\"wide-container\" ng-show=\"transaction.block_hash\">\n" +
+    "<div class=\"wide-container\">\n" +
     "  <div class=\"h3 text-center text-gray\">\n" +
     "    INPUTS/OUTPUTS\n" +
     "  </div>\n" +
@@ -2522,10 +2524,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          </p>\n" +
     "        </blockquote>\n" +
     "        <div>\n" +
-    "          <h2>\n" +
-    "            <code>\n" +
-    "              <textarea class='big-input has-warning link' readonly>https://blockchain.info/</textarea>\n" +
-    "            </code>\n" +
+    "          <h2 class='text-center'>\n" +
+    "            <code>https://blockchain.info/</code>\n" +
     "          </h2>\n" +
     "          <h2>\n" +
     "            <code>\n" +
