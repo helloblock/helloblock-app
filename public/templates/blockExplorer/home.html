@@ -51,6 +51,7 @@
   <div class="col-md-6">
     <div class="h3 text-gray text-center">Latest Blocks</div>
     <br>
+    <waitspin ng-show="blocks.latest.length === 0" left='250'></waitspin>
     <table class="table table-latest">
       <thead>
         <tr>
@@ -86,6 +87,7 @@
       <span class='h5'>(see all)</span>
     </div>
     <br>
+    <waitspin ng-show="transactions.latest.length === 0" left='250'></waitspin>
     <table class="table table-latest">
       <thead>
         <tr>

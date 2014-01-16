@@ -7,13 +7,11 @@
   </div>
 </div>
 <div class="container">
+  <waitspin ng-show="transactions.unconfirmed.length === 0"></waitspin>
   <br>
-  <span ng-repeat="tx in transactions.unconfirmed | limitTo:limit.unconfirmed">
-    <div ng-include="'/templates/blockExplorer/_tx.html'"></div>
-  </span>
-
-  <div
-    infinite-scroll="loadMoreTransactions()"
-    infinite-scroll-distance="0">
+  <div infinite-scroll="loadMoreTransactions()">
+    <span ng-repeat="tx in transactions.unconfirmed | limitTo:limit.unconfirmed">
+      <div ng-include="'/templates/blockExplorer/_tx.html'"></div>
+    </span>
   </div>
 </div>

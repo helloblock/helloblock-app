@@ -27,7 +27,7 @@ hbApp.directive( "spin", function() {
 	}
 } );
 
-hbApp.directive( "spinAlt", function() {
+hbApp.directive( "waitspin", function() {
 	return {
 		restrict: "E",
 		link: function( $scope, element, attrs ) {
@@ -39,16 +39,20 @@ hbApp.directive( "spinAlt", function() {
 				corners: 1,
 				rotate: 0,
 				direction: 1,
-				color: '#fff',
+				color: '#000',
 				speed: 1,
 				trail: 60,
 				shadow: false,
 				hwaccel: false,
 				className: 'spinner',
 				zIndex: 2e9,
-				top: '160%',
-				left: '440%'
+				top: '50%',
+				left: '500%'
 			};
+
+			if ( attrs.left !== undefined ) {
+				opts.left = attrs.left;
+			}
 
 			var spinner = new Spinner( opts )
 			spinner.spin( element[ 0 ] );

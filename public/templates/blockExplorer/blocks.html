@@ -31,12 +31,15 @@
   <div class="h3 text-center text-gray">
     SUMMARY:
   </div>
+  <waitspin ng-show="!block.block_height"></waitspin>
   <div class="col-md-8 col-md-offset-2">
     <span class="pull-right view-json">
       <a href='#'>View as JSON</a>
     </span>
     <br>
-    <table class="table table-bordered table-summary">
+    <table
+      ng-show="block.block_height"
+      class="table table-bordered table-summary">
       <tr>
         <td>Block Height: </td>
         <td>{{block.block_height}}</td>
@@ -84,7 +87,7 @@
   </div>
 </div>
 <br><br><br>
-<div class="container">
+<div class="container" ng-show="block.transactions.length > 0">
   <div class="h3 text-center text-gray">
     TRANSACTIONS:
   </div>

@@ -24,7 +24,8 @@
     TRANSACTION:
   </div>
   <br>
-  <div class="row">
+  <waitspin ng-show="!transaction.block_hash"></waitspin>
+  <div class="row" ng-show="transaction.block_hash">
     <div class="h3 text-center text-gray">
       SUMMARY
     </div>
@@ -85,7 +86,7 @@
   </div>
   <br><br>
 </div>
-<div class="wide-container">
+<div class="wide-container" ng-show="transaction.block_hash">
   <div class="h3 text-center text-gray">
     INPUTS/OUTPUTS
   </div>
