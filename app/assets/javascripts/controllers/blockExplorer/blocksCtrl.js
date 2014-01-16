@@ -1,4 +1,4 @@
-hbApp.controller( "blockExplorer/blocksCtrl", function( $scope, $routeParams, HelloBlock ) {
+hbApp.controller( "blockExplorer/blocksCtrl", function( $scope, $routeParams, $location, HelloBlock ) {
 
   var identifier = 168058
 
