@@ -1,8 +1,11 @@
 var SATOSHI = 100000000
 
+var WATCHED = "address + block.transactions + transaction + transactions"
+
 hbApp.directive( "toBtc", function() {
 	return function( $scope, element, attrs ) {
-		$scope.$watch( "address + block + transaction + transactions", function() {
+
+		$scope.$watch( WATCHED, function() {
 			var satoshiStr = attrs.toBtc
 			if ( satoshiStr === "" ) {
 				return
@@ -19,7 +22,8 @@ hbApp.directive( "toBtc", function() {
 
 hbApp.directive( "spent", function() {
 	return function( $scope, element, attrs ) {
-		$scope.$watch( "address + block + transaction + transactions", function() {
+
+		$scope.$watch( WATCHED, function() {
 			var spent = JSON.parse( attrs.spent ) // parseBool
 
 			if ( spent === true ) {
@@ -40,7 +44,7 @@ hbApp.directive( "spent", function() {
 hbApp.directive( "confirmations", function() {
 	return function( $scope, element, attrs ) {
 
-		$scope.$watch( "address + block + transaction + transactions", function() {
+		$scope.$watch( WATCHED, function() {
 			var confirmations = parseInt( attrs.confirmations )
 
 			if ( confirmations === 0 || attrs.confirmations === "" ) {
@@ -73,7 +77,7 @@ hbApp.directive( "confirmations", function() {
 hbApp.directive( "utc", function() {
 	return function( $scope, element, attrs ) {
 
-		$scope.$watch( "address + block + transaction + transactions", function() {
+		$scope.$watch( WATCHED, function() {
 			var epoch = attrs.utc
 
 			if ( epoch === "" ) {

@@ -92,8 +92,10 @@
     TRANSACTIONS:
   </div>
   <br>
-  <span ng-repeat="tx in block.transactions">
-    <div ng-include="'/templates/blockExplorer/_tx.html'"></div>
-  </span>
+  <div infinite-scroll="loadMoreTransactions()">
+    <span ng-repeat="tx in block.transactions| limitTo:limit.transactions">
+        <div ng-include="'/templates/blockExplorer/_tx.html'"></div>
+      </span>
+  </div>
 
 </div>
