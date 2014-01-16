@@ -73,10 +73,10 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
     $scope.limitTo.transactions += 5
 
     if ( $scope.limitTo.transactions >= $scope.offset.transactions ) {
-
       if ( $scope.fetching === true ) {
         return;
       }
+
       $scope.fetching = true;
 
       // Callback: Lvl 1
@@ -106,10 +106,10 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
     $scope.limitTo.unspents += 5
 
     if ( $scope.limitTo.unspents >= $scope.offset.unspents ) {
-
       if ( $scope.fetching === true ) {
         return;
       }
+
       $scope.fetching = true;
 
       // Callback: Lvl 1
@@ -119,9 +119,14 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
         offset: $scope.limitTo.unspents
       }, function( res ) {
 
-        var unspents_tx_hashes = res.unspents.map( function( i ) {
+        var unspents_tx_hashes = res.data.unspents.map( function( i ) {
           return i.tx_hash;
         } )
+
+        if ( unspents_tx_hashes.length === 0 ) {
+          $scope.fetching = false;
+          return;
+        }
 
         // Callback: Lvl 2
         HelloBlock.Transactions.get( {
@@ -129,7 +134,8 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
         }, function( res ) {
 
           if ( res.data.transactions.length > 0 ) {
-            $scope.address.unspent_transactions.concat( res.data.transactions )
+            $scope.address.unspent_transactions = $scope.address.unspent_transactions.concat(
+              res.data.transactions )
             $scope.offset.unspents = $scope.limitTo.unspents
             $scope.offset.unspents += 50
           }
