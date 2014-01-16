@@ -13,7 +13,7 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
   // Callback: Lvl 1
   HelloBlock.Addresses.get( {
     address: $scope.address.base58,
-    limit: 100,
+    limit: 50,
     offset: 0
   }, function( res ) {
 
@@ -63,27 +63,41 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
   }
 
   $scope.offset = {
-    transactions: 100,
-    unspents: 100
+    transactions: 50,
+    unspents: 50
   }
+
+  $scope.fetching = false
 
   $scope.loadMoreTransactions = function() {
     $scope.limitTo.transactions += 5
 
     if ( $scope.limitTo.transactions >= $scope.offset.transactions ) {
 
+      if ( $scope.fetching === true ) {
+        return;
+      }
+      $scope.fetching = true;
+
       // Callback: Lvl 1
       HelloBlock.AddressTransactions.get( {
         address: $scope.address.base58,
-        limit: 100,
+        limit: 50,
         offset: $scope.limitTo.transactions
       }, function( res ) {
-        $scope.address.transactions.push( res.data.transactions )
 
-        $scope.offset.transactions = $scope.limitTo.transactions
-        $scope.offset.transactions += 100
+        if ( res.data.transactions.length > 0 ) {
+          $scope.address.transactions = $scope.address.transactions.concat(
+            res.data.transactions );
+          $scope.offset.transactions = $scope.limitTo.transactions;
+          $scope.offset.transactions += 50;
+        }
+
+        $scope.fetching = false;
+
       }, function( err ) {
         console.log( err )
+        $scope.fetching = false;
       } )
     }
   }
@@ -91,12 +105,17 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
   $scope.loadMoreUnspents = function() {
     $scope.limitTo.unspents += 5
 
-    if ( $scope.limitTo.transactions >= $scope.offset.transactions ) {
+    if ( $scope.limitTo.unspents >= $scope.offset.unspents ) {
+
+      if ( $scope.fetching === true ) {
+        return;
+      }
+      $scope.fetching = true;
 
       // Callback: Lvl 1
       HelloBlock.AddressUnspents.get( {
         address: $scope.address.base58,
-        limit: 100,
+        limit: 50,
         offset: $scope.limitTo.unspents
       }, function( res ) {
 
@@ -109,9 +128,13 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
           "tx_hash[]": unspents_tx_hashes
         }, function( res ) {
 
-          $scope.address.unspent_transactions.push( res.data.transactions )
-          $scope.offset.unspents = $scope.limitTo.unspents
-          $scope.offset.unspents += 100
+          if ( res.data.transactions.length > 0 ) {
+            $scope.address.unspent_transactions.concat( res.data.transactions )
+            $scope.offset.unspents = $scope.limitTo.unspents
+            $scope.offset.unspents += 50
+          }
+
+          $scope.fetching = false;
 
         }, function( err ) {
           console.log( "error!", err )

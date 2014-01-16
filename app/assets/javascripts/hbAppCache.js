@@ -389,6 +389,10 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  </tabset>\n" +
     "\n" +
     "</div>\n" +
+    "<div class=\"col-md-8 col-md-offset-1\">\n" +
+    "  <waitspin ng-show=\"fetching\"></waitspin>\n" +
+    "</div>\n" +
+    "<div class=\"space-big\"></div>\n" +
     "<div class=\"space-big\"></div>\n"
   );
 
@@ -611,7 +615,6 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    </table>\n" +
     "  </div>\n" +
     "</div>\n" +
-    "\n" +
     "<div class=\"space\"></div>\n"
   );
 
