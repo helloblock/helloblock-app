@@ -19,6 +19,8 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
 
     $scope.address = $.extend( {}, $scope.address, res.data.address );
 
+    if ( $scope.address.unspents.length === 0 ) return;
+
     var unspents_tx_hashes = $scope.address.unspents.map( function( i ) {
       return i.tx_hash;
     } )

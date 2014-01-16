@@ -17,6 +17,9 @@ var PusherClient = new Pusher( '1cca9695fd809ce4bbab' );
 
 hbApp.run( function( $rootScope, $location, $cookieStore ) {
 
+  // TODO: What if cookies are set wrong, e.g. JSON.parse("MAINNET")
+  // Things could break without us knowing
+  // Should force clear every now and then
   $rootScope.global = {
     isOnLink: function( path ) {
       return path === $location.path();
