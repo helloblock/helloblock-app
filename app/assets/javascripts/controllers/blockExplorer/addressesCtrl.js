@@ -1,4 +1,4 @@
-hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams, HelloBlock ) {
+hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams, $location, HelloBlock ) {
 
   var defaultAddress = "mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo"
 
@@ -45,6 +45,7 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
 
   }, function( err ) {
     console.log( "error!", err )
+    $location.path( '/testnet/' )
   } )
 
   // Infinite Scrolling
@@ -55,12 +56,10 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
   }
 
   $scope.loadMoreTransactions = function() {
-    console.log( 'hit tx!' )
     $scope.limit.transactions += 5
   }
 
   $scope.loadMoreUnspents = function() {
-    console.log( 'hit unspent!' )
     $scope.limit.unspents += 5
   }
 

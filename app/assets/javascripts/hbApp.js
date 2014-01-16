@@ -128,6 +128,10 @@ var QueryValidator = {
     return cryptocoin.Address.validate( query )
   },
   transaction: function( query ) {
+    if ( query[ 0 ] === "0" ) {
+      return false
+    }
+
     if ( query.length !== 64 ) {
       return false
     }
@@ -139,7 +143,7 @@ var QueryValidator = {
     return true
   },
   block: function( query ) {
-    if ( query.match( /^\d+$/ ) && query > 0 ) {
+    if ( query.match( /^\d+$/ ) && parseInt( query ) > 0 ) {
       return true
     }
 
