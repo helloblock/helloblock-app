@@ -1,21 +1,9 @@
 'use strict';
 
-var PusherClient = new Pusher( '1cca9695fd809ce4bbab' );
-
-// Pusher.log = function( message ) {
-//   if ( window.console && window.console.log ) {
-//     window.console.log( message );
-//   }
-// };
-
-Pusher.beep = function() {
-  var file = "/beep.wav";
-  ( new Audio( file ) ).play()
-}
-
 var hbApp = angular.module( 'hbApp', [
   'ngRoute',
   'ngResource',
+  'ngCookies',
   'ui.bootstrap',
   'ui.select2',
   'infinite-scroll'
@@ -25,14 +13,33 @@ hbApp.config( function( $locationProvider ) {
   $locationProvider.html5Mode( true );
 } )
 
-hbApp.run( function( $rootScope, $location ) {
+var PusherClient = new Pusher( '1cca9695fd809ce4bbab' );
+
+hbApp.run( function( $rootScope, $location, $cookieStore ) {
+  console.log( $cookieStore )
+  debugger
+
   $rootScope.global = {
     isOnLink: function( path ) {
-      return path === $location.path()
+      return path === $location.path();
     },
-    language: "curl",
+    language: $cookieStore.get( 'language' ) || "curl",
     setLanguage: function( name ) {
       $rootScope.global.language = name;
+      $cookieStore.put( 'language', name );
+    },
+    // 1 is on, 2 is off
+    sound: $cookieStore.get( 'sound' ) || 1,
+    toggleSound: function() {
+      var state = $rootScope.global.sound === 1 ? 2 : 1;
+      $rootScope.global.sound = state;
+      $cookieStore.put( 'sound', state );
+    },
+    mode: "TESTNET",
+    setMode: function( mode ) {
+      $rootScope.global.mode = mode;
+      // $cookieStore.put( 'mode', mode );
+      $location.path( "/" + mode.toLowerCase() )
     }
   }
 
@@ -56,6 +63,19 @@ hbApp.run( function( $rootScope, $location ) {
       $location.path( "/testnet" ).search( {
         error: 'true'
       } )
+    }
+  }
+
+  // Pusher.log = function( message ) {
+  //   if ( window.console && window.console.log ) {
+  //     window.console.log( message );
+  //   }
+  // };
+
+  Pusher.beep = function() {
+    if ( $rootScope.global.sound === true ) {
+      var file = "/beep.wav";
+      ( new Audio( file ) ).play()
     }
   }
 

@@ -20,6 +20,7 @@
 //= require angular
 //= require angular-route
 //= require angular-resource
+//= require angular-cookies
 //= require angular-ui-select2
 //= require angular-ui-bootstrap-tpls
 //= require spin.min

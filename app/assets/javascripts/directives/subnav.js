@@ -1,11 +1,12 @@
-hbApp.directive( 'subnav', function() {
+hbApp.directive( 'subnav', function( $rootScope ) {
 
-	return {
-		restrict: "E",
-		scope: {
-			selected: "="
-		},
-		templateUrl: "/templates/components/_subnav.html",
-		transclude: true
-	}
+  return {
+    restrict: "E",
+    scope: {
+      selected: "=",
+      global: "="
+    },
+    templateUrl: "/templates/components/_subnav.html",
+    transclude: true
+  }
 } );

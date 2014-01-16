@@ -4,13 +4,28 @@
       <ul class="nav navbar-nav navbar-left">
         <li class="dropdown dropdown-small no-left active">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            TESTNET <b class="caret"></b>
+            {{global.mode}} <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="#">TESTNET</a></li>
+            <li>
+              <a href="#" ng-click="global.setMode('TESTNET')">TESTNET</a>
+            </li>
             <div class="divider"></div>
-            <li><a href="#">MAINNET</a></li>
+            <li>
+              <a href="#" ng-click="global.setMode('MAINNET')">MAINNET</a>
+            </li>
           </ul>
+        </li>
+        <li>
+          <a href="" class='no-highlight sound'
+          ng-click="global.toggleSound()">
+            <span class='text-success' ng-show="global.sound === 1">
+              <i class="fa fa-volume-up"></i>
+            </span>
+            <span class="text-default-force" ng-show="global.sound === 2">
+              <i class="fa fa-volume-off"></i>
+            </span>
+          </a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
