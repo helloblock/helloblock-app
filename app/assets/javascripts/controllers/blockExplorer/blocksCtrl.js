@@ -23,7 +23,9 @@ hbApp.controller( "blockExplorer/blocksCtrl", function( $scope, $routeParams, He
     $scope.block.index = data.block_height;
     $scope.block = $.extend( {}, $scope.block, data );
   }, function( err ) {
-    console.log( err )
+    $location.path( "/testnet" ).search( {
+      error: 'true'
+    } )
   } )
 
   // Infinite Scrolling

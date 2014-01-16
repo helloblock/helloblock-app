@@ -1,4 +1,4 @@
-hbApp.controller( "blockExplorer/homeCtrl", function( $scope, HelloBlock ) {
+hbApp.controller( "blockExplorer/homeCtrl", function( $scope, $routeParams, HelloBlock ) {
 
   // Defaults
   $scope.transactions = {
@@ -11,6 +11,12 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, HelloBlock ) {
 
   $scope.getinfo = {
     latest: []
+  }
+
+  $scope.hasError = function() {
+    if ( $routeParams.error === 'true' ) {
+      return true
+    }
   }
 
   var blockChannel = PusherClient.subscribe( 'blocks' );

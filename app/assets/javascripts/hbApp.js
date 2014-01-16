@@ -38,8 +38,6 @@ hbApp.run( function( $rootScope, $location ) {
 
   $rootScope.bigSearch = {
     query: function( query ) {
-      this.error.show = false
-
       if ( QueryValidator.address( query ) ) {
         $location.path( "/testnet/addresses/" + query )
         return;
@@ -55,12 +53,9 @@ hbApp.run( function( $rootScope, $location ) {
         return;
       }
 
-      // Error Handling
-      this.error.show = true
-      $location.path( "/testnet" )
-    },
-    error: {
-      show: false
+      $location.path( "/testnet" ).search( {
+        error: 'true'
+      } )
     }
   }
 

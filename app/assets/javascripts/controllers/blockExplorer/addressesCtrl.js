@@ -47,7 +47,9 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
 
   }, function( err ) {
     console.log( "error!", err )
-    $location.path( '/testnet/' )
+    $location.path( "/testnet" ).search( {
+      error: 'true'
+    } )
   } )
 
   // Infinite Scrolling

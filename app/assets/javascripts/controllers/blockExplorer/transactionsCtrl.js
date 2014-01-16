@@ -1,4 +1,4 @@
-hbApp.controller( "blockExplorer/transactionsCtrl", function( $scope, $routeParams, HelloBlock ) {
+hbApp.controller( "blockExplorer/transactionsCtrl", function( $scope, $routeParams, $location, HelloBlock ) {
 
   var defaultTxHash = "6f9e9570881e781db8c137c84c111a138e4a022e6b2def5e2a1589a802fe25f3"
 
@@ -18,6 +18,9 @@ hbApp.controller( "blockExplorer/transactionsCtrl", function( $scope, $routePara
 
   }, function( err ) {
     console.log( "error", err )
+    $location.path( "/testnet" ).search( {
+      error: 'true'
+    } )
   } )
 
   // Should this be in main API?
