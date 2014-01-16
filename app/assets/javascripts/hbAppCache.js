@@ -330,15 +330,19 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    </div>\n" +
     "    <waitspin ng-show=\"!address.hash160\"></waitspin>\n" +
     "    <div class=\"col-md-4 text-center\">\n" +
-    "      <img src=\"http://identicoin.herokuapp.com/address/{{address.base58}}\" height=\"220\" class='address-identicoin'>\n" +
+    "      <img bind-once src=\"http://identicoin.herokuapp.com/address/{{address.base58}}\" height=\"220\" class='address-identicoin'>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-8\">\n" +
     "      <table class=\"table table-bordered table-address\" ng-show=\"address.hash160\">\n" +
     "        <tbody>\n" +
-    "          <!-- <tr>\n" +
+    "          <tr>\n" +
     "            <td><strong>Base58</strong></td>\n" +
-    "            <td>{{address.base58}}</td>\n" +
-    "          </tr> -->\n" +
+    "            <td bind-once>\n" +
+    "              <a bind-once href=\"/testnet/addresses/{{address.base58}}\">\n" +
+    "                {{address.base58}}\n" +
+    "              </a>\n" +
+    "            </td>\n" +
+    "          </tr>\n" +
     "          <tr>\n" +
     "            <td><strong>Hash160</strong></td>\n" +
     "            <td>{{address.hash160}}</td>\n" +
