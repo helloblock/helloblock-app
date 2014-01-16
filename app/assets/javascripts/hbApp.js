@@ -16,8 +16,6 @@ hbApp.config( function( $locationProvider ) {
 var PusherClient = new Pusher( '1cca9695fd809ce4bbab' );
 
 hbApp.run( function( $rootScope, $location, $cookieStore ) {
-  console.log( $cookieStore )
-  debugger
 
   $rootScope.global = {
     isOnLink: function( path ) {
