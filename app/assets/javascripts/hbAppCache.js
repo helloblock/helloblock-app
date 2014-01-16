@@ -199,11 +199,11 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<table class=\"table table-striped table-transactions\">\n" +
     "  <tr>\n" +
     "    <td class=\"text-center\">\n" +
-    "      <span class=\"h5 pull-left\">\n" +
+    "      <span class=\"h5 pull-left unselectable\">\n" +
     "        TX HASH:\n" +
     "      </span>\n" +
-    "      <span class='h5'>\n" +
-    "        <a href=\"/testnet/transactions/{{tx.tx_hash}}\">{{tx.tx_hash}}</a>\n" +
+    "      <span class='h5 pull-left'>\n" +
+    "        <a href=\"/testnet/transactions/{{tx.tx_hash}}\"> {{tx.tx_hash}}</a>\n" +
     "      </span>\n" +
     "      <span class=\"pull-right\">\n" +
     "        <span class=\"label label-lg\" confirmations=\"{{tx.confirmations}}\"></span>\n" +
