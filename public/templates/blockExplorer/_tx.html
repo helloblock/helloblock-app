@@ -59,9 +59,15 @@
       </span>
     </div>
     <div class="col-md-5 addresses">
+      <div class="text-center" ng-show="tx.out[0].address === null">
+        <br>
+        <img src="http://audiosex.pro/uploads/profile/photo-6577.jpg" height="80">
+        <span class="h3">STRANGE OUTPUT</span>
+      </div>
       <table
         ng-repeat="o in tx.out"
         class="table table-bordered"
+        ng-show="tx.out[0].address !== null"
         >
         <tbody>
           <tr>

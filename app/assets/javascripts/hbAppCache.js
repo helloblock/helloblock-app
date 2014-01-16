@@ -257,9 +257,15 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      </span>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-5 addresses\">\n" +
+    "      <div class=\"text-center\" ng-show=\"tx.out[0].address === null\">\n" +
+    "        <br>\n" +
+    "        <img src=\"http://audiosex.pro/uploads/profile/photo-6577.jpg\" height=\"80\">\n" +
+    "        <span class=\"h3\">STRANGE OUTPUT</span>\n" +
+    "      </div>\n" +
     "      <table\n" +
     "        ng-repeat=\"o in tx.out\"\n" +
     "        class=\"table table-bordered\"\n" +
+    "        ng-show=\"tx.out[0].address !== null\"\n" +
     "        >\n" +
     "        <tbody>\n" +
     "          <tr>\n" +
@@ -899,7 +905,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            </tr>\n" +
     "            <tr>\n" +
     "              <td rowspan=\"1\">scriptPubKey: </td>\n" +
-    "              <td>\n" +
+    "              <td class=\"break\">\n" +
     "                <span class=\"h5\">\n" +
     "                  {{o.scriptPubKey}}\n" +
     "                </span>\n" +
