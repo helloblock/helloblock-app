@@ -71,7 +71,7 @@ hbApp.run( function( $rootScope, $location, $cookieStore ) {
   // };
 
   Pusher.beep = function() {
-    if ( $rootScope.global.sound === true ) {
+    if ( $rootScope.global.sound === 1 ) {
       var file = "/beep.wav";
       ( new Audio( file ) ).play()
     }
