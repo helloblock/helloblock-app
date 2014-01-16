@@ -297,7 +297,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/blockExplorer/addresses.html',
-    "<subnav selected=\"'addresses'\"></subnav>\n" +
+    "<subnav selected=\"'addresses'\" global=\"global\"></subnav>\n" +
     "<div class=\"centerpiece-alt text-center\">\n" +
     "  <div class=\"container\">\n" +
     "    <form ng-submit=\"bigSearch.query(address.base58)\">\n" +
@@ -408,7 +408,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/blockExplorer/blocks.html',
-    "<subnav selected=\"'blocks'\"></subnav>\n" +
+    "<subnav selected=\"'blocks'\" global=\"global\"></subnav>\n" +
     "<div class=\"centerpiece-alt text-center\">\n" +
     "  <div class=\"container\">\n" +
     "    <div class=\"col-md-4\">\n" +
@@ -513,7 +513,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/blockExplorer/home.html',
-    "<subnav selected=\"'latest'\"></subnav>\n" +
+    "<subnav selected=\"'latest'\" global=\"global\"></subnav>\n" +
     "<!-- <br><br><br><br> -->\n" +
     "<div class=\"centerpiece-alt\">\n" +
     "  <form ng-submit=\"bigSearch.query(query)\">\n" +
@@ -630,109 +630,13 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/blockExplorer/test.html',
-    "<div timeago='1389764347'></div>\n" +
-    "{{log()}}\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n" +
-    "<div class=\"space\"></div>\n"
+    "<subnav></subnav>\n" +
+    "{{global}}\n"
   );
 
 
   $templateCache.put('/templates/blockExplorer/transactions.html',
-    "<subnav selected=\"'transactions'\"></subnav>\n" +
+    "<subnav selected=\"'transactions'\" global=\"global\"></subnav>\n" +
     "<div class=\"centerpiece-alt text-center\">\n" +
     "  <div class=\"container\">\n" +
     "    <form ng-submit=\"bigSearch.query(transaction.tx_hash)\">\n" +
@@ -933,7 +837,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/blockExplorer/unconfirmed.html',
-    "<subnav selected=\"'unconfirmed'\"></subnav>\n" +
+    "<subnav selected=\"'unconfirmed'\" global=\"global\"></subnav>\n" +
     "<div class=\"centerpiece-alt text-center\">\n" +
     "  <div class=\"container\">\n" +
     "    <div class=\"h1 text-center white\">\n" +
@@ -1136,13 +1040,28 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <ul class=\"nav navbar-nav navbar-left\">\n" +
     "        <li class=\"dropdown dropdown-small no-left active\">\n" +
     "          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
-    "            TESTNET <b class=\"caret\"></b>\n" +
+    "            {{global.mode}} <b class=\"caret\"></b>\n" +
     "          </a>\n" +
     "          <ul class=\"dropdown-menu\">\n" +
-    "            <li><a href=\"#\">TESTNET</a></li>\n" +
+    "            <li>\n" +
+    "              <a href=\"#\" ng-click=\"global.setMode('TESTNET')\">TESTNET</a>\n" +
+    "            </li>\n" +
     "            <div class=\"divider\"></div>\n" +
-    "            <li><a href=\"#\">MAINNET</a></li>\n" +
+    "            <li>\n" +
+    "              <a href=\"#\" ng-click=\"global.setMode('MAINNET')\">MAINNET</a>\n" +
+    "            </li>\n" +
     "          </ul>\n" +
+    "        </li>\n" +
+    "        <li>\n" +
+    "          <a href=\"\" class='no-highlight sound'\n" +
+    "          ng-click=\"global.toggleSound()\">\n" +
+    "            <span class='text-success' ng-show=\"global.sound === 1\">\n" +
+    "              <i class=\"fa fa-volume-up\"></i>\n" +
+    "            </span>\n" +
+    "            <span class=\"text-default-force\" ng-show=\"global.sound === 2\">\n" +
+    "              <i class=\"fa fa-volume-off\"></i>\n" +
+    "            </span>\n" +
+    "          </a>\n" +
     "        </li>\n" +
     "      </ul>\n" +
     "      <ul class=\"nav navbar-nav navbar-right\">\n" +
