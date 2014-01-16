@@ -23,17 +23,17 @@ hbApp.controller( "blockExplorer/blocksCtrl", function( $scope, $routeParams, He
     $scope.block.index = data.block_height;
     $scope.block = $.extend( {}, $scope.block, data );
   }, function( err ) {
-
+    console.log( err )
   } )
 
   // Infinite Scrolling
 
-  $scope.limit = {
+  $scope.limitTo = {
     transactions: 5,
   }
 
   $scope.loadMoreTransactions = function() {
-    $scope.limit.transactions += 5
+    $scope.limitTo.transactions += 5
   }
 
 } )

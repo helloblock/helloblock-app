@@ -93,7 +93,7 @@
   </div>
   <br>
   <div infinite-scroll="loadMoreTransactions()">
-    <span ng-repeat="tx in block.transactions| limitTo:limit.transactions">
+    <span ng-repeat="tx in block.transactions| limitTo:limitTo.transactions">
         <div ng-include="'/templates/blockExplorer/_tx.html'"></div>
       </span>
   </div>
