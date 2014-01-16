@@ -95,11 +95,16 @@
       <td class='no-top'>
       <br>
       <div class="col-md-5">
+        <div class="text-center" ng-show="transaction.in[0].prev_out.tx_hash === null">
+          <br>
+          <span class="h3">NEWLY GENERATED COINS</span>
+        </div>
         <table
           ng-repeat="i in transaction.in"
+          ng-show="i.prev_out.tx_hash !== null"
           class="
             table table-bordered table-io"
-            ng-repeat="o in transaction.out">
+          >
           <tbody>
             <tr>
               <td>n (index): </td>
@@ -139,6 +144,7 @@
         </table>
       </div>
       <div class="col-md-2 text-center">
+        <br>
         <i class="fa fa-arrow-circle-right fa-4x text-gray-light"></i>
       </div>
       <div class="col-md-5 addresses">

@@ -16,9 +16,15 @@
     <td>
     <br>
     <div class="col-md-5">
+      <div class="text-center" ng-show="tx.in[0].prev_out.tx_hash === null">
+        <br>
+        <span class="h3">NEWLY GENERATED COINS</span>
+      </div>
       <table
         class="table table-bordered"
-        ng-repeat="i in tx.in">
+        ng-repeat="i in tx.in"
+        ng-show="i.prev_out.tx_hash !== null"
+        >
         <tbody>
           <tr>
             <td rowspan="2" class='text-center n-index'>
@@ -45,6 +51,7 @@
       </table>
     </div>
     <div class="col-md-2 text-center">
+      <br>
       <span class="text-gray-light" direction="{{tx.estimated_tx_direction}}">
         <i class="fa fa-arrow-circle-right fa-4x"></i>
       </span>
