@@ -84,7 +84,9 @@
   </div>
   <div class="col-md-6">
     <div class="h3 text-gray text-center">Latest Transactions
-      <span class='h5'>(see all)</span>
+      <span class='h5'>
+        <a href="/testnet/unconfirmed">(see all)</a>
+      </span>
     </div>
     <br>
     <waitspin ng-show="transactions.latest.length === 0" left='250'></waitspin>
