@@ -39,6 +39,9 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
       Pusher.beep();
 
       var tx = res.message
+      // TODO
+      // tx.direction
+      // tx.result
 
       $scope.$apply( function() {
         $scope.address.transactions.unshift( tx )

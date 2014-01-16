@@ -201,6 +201,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <td class=\"text-center\">\n" +
     "      <span class=\"h5 pull-left\">\n" +
     "        TX HASH:\n" +
+    "      </span>\n" +
+    "      <span class='h5'>\n" +
     "        <a href=\"/testnet/transactions/{{tx.tx_hash}}\">{{tx.tx_hash}}</a>\n" +
     "      </span>\n" +
     "      <span class=\"pull-right\">\n" +
@@ -370,7 +372,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <tab heading=\"All Transactions\">\n" +
     "      <br>\n" +
     "      <div infinite-scroll=\"loadMoreTransactions()\">\n" +
-    "        <span ng-repeat=\"tx in address.transactions | limitTo:limit.transactions\">\n" +
+    "        <span ng-repeat=\"tx in address.transactions | limitTo:limitTo.transactions\">\n" +
     "          <div ng-include=\"'/templates/blockExplorer/_tx.html'\"></div>\n" +
     "        </span>\n" +
     "      </div>\n" +
@@ -379,7 +381,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <tab heading=\"Unspent Outputs\">\n" +
     "      <br>\n" +
     "      <div infinite-scroll=\"loadMoreUnspents()\">\n" +
-    "        <span ng-repeat=\"tx in address.unspent_transactions | limitTo:limit.unspents\">\n" +
+    "        <span ng-repeat=\"tx in address.unspent_transactions | limitTo:limitTo.unspents\">\n" +
     "          <div ng-include=\"'/templates/blockExplorer/_tx.html'\"></div>\n" +
     "        </span>\n" +
     "      </div>\n" +
@@ -487,7 +489,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  </div>\n" +
     "  <br>\n" +
     "  <div infinite-scroll=\"loadMoreTransactions()\">\n" +
-    "    <span ng-repeat=\"tx in block.transactions| limitTo:limit.transactions\">\n" +
+    "    <span ng-repeat=\"tx in block.transactions| limitTo:limitTo.transactions\">\n" +
     "        <div ng-include=\"'/templates/blockExplorer/_tx.html'\"></div>\n" +
     "      </span>\n" +
     "  </div>\n" +
@@ -502,11 +504,11 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<div class=\"centerpiece-alt\">\n" +
     "  <form ng-submit=\"bigSearch.query(query)\">\n" +
     "    <div class=\"container\">\n" +
-    "      <div ng-show=\"bigSearch.error.show\">\n" +
+    "      <div ng-show=\"hasError()\">\n" +
     "        <div class=\"alert alert-danger alert-danger-light text-center\">\n" +
     "          <a class=\"close\" data-dismiss=\"alert\" href=\"#\" aria-hidden=\"true\">&times;</a>\n" +
     "          <span class=\"h4\">\n" +
-    "            Please ensure your query is an address, transaction hash or block height\n" +
+    "            Please ensure your query is a valid address, transaction hash or block height/hash\n" +
     "          </span>\n" +
     "        </div>\n" +
     "      </div>\n" +
@@ -930,7 +932,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  <waitspin ng-show=\"transactions.unconfirmed.length === 0\"></waitspin>\n" +
     "  <br>\n" +
     "  <div infinite-scroll=\"loadMoreTransactions()\">\n" +
-    "    <span ng-repeat=\"tx in transactions.unconfirmed | limitTo:limit.unconfirmed\">\n" +
+    "    <span ng-repeat=\"tx in transactions.unconfirmed | limitTo:limitTo.unconfirmed\">\n" +
     "      <div ng-include=\"'/templates/blockExplorer/_tx.html'\"></div>\n" +
     "    </span>\n" +
     "  </div>\n" +
