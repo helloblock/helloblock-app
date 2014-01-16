@@ -3,19 +3,19 @@
   <div class="container">
     <div class="col-md-4">
       <a
-        href="/testnet/blocks/{{block.block_height - 1}}"
+        href="/testnet/blocks/{{block.index - 1}}"
         class="btn btn-default btn-block btn-hover">
         <span class='h3'>PREVIOUS</span>
       </a>
     </div>
     <div class="col-md-4">
-      <form ng-submit="bigSearch.query(block.block_height)">
-        <input class='h2 big-input' spellcheck="false" ng-model="block.block_height">
+      <form ng-submit="bigSearch.query(block.index)">
+        <input class='h2 big-input' spellcheck="false" ng-model="block.index">
       </form>
     </div>
     <div class="col-md-4">
       <a
-        href="/testnet/blocks/{{block.block_height + 1}}"
+        href="/testnet/blocks/{{block.index + 1}}"
         class="btn btn-default btn-block btn-hover">
         <span class='h3'>NEXT</span>
       </a>

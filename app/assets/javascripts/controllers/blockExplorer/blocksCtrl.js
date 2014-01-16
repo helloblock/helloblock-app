@@ -1,7 +1,6 @@
 hbApp.controller( "blockExplorer/blocksCtrl", function( $scope, $routeParams, HelloBlock ) {
 
-  var defaultIdentifer = 168058
-  var identifier;
+  var identifier = 168058
 
   if ( $routeParams.identifier ) {
     if ( $routeParams.identifier.match( /^\d+$/ ) ) {
@@ -12,14 +11,17 @@ hbApp.controller( "blockExplorer/blocksCtrl", function( $scope, $routeParams, He
   }
 
   $scope.block = {
-    identifier: identifier || defaultIdentifer,
+    index: identifier,
+    identifier: identifier,
     transactions: []
   }
 
   HelloBlock.Blocks.get( {
     identifier: $scope.block.identifier
   }, function( res ) {
-    $scope.block = $.extend( {}, $scope.block, res[ "data" ][ "block" ] );
+    var data = res[ "data" ][ "block" ]
+    $scope.block.index = data.block_height;
+    $scope.block = $.extend( {}, $scope.block, data );
   }, function( err ) {
 
   } )
