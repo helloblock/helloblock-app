@@ -541,7 +541,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    </div>\n" +
     "  </form>\n" +
     "</div>\n" +
-    "<div class=\"container container-stats\">\n" +
+    "<!-- <div class=\"container container-stats\">\n" +
     "  <div class=\"row stats\">\n" +
     "    <div class=\"col-md-3\">\n" +
     "      <span class=\"label label-info\">Nodes Connected:</span>\n" +
@@ -560,7 +560,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <span class='h6'>1,535,733</span>\n" +
     "    </div>\n" +
     "  </div>\n" +
-    "</div>\n" +
+    "</div> -->\n" +
     "<br><br>\n" +
     "<div class=\"wide-container row\">\n" +
     "  <div class=\"col-md-6\">\n" +
