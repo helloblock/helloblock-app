@@ -27,7 +27,7 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
 
     // Callback: Lvl 2
     HelloBlock.Transactions.get( {
-      "tx_hash[]": unspents_tx_hashes
+      tx_hashes: unspents_tx_hashes
     }, function( res ) {
 
       $scope.address.unspent_transactions = res.data.transactions
@@ -132,7 +132,7 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
 
         // Callback: Lvl 2
         HelloBlock.Transactions.get( {
-          "tx_hash[]": unspents_tx_hashes
+          tx_hashes: unspents_tx_hashes
         }, function( res ) {
 
           if ( res.data.transactions.length > 0 ) {
