@@ -88,14 +88,25 @@ hbApp.config( function( $routeProvider ) {
     templateUrl: "/templates/landing.html"
   } )
 
-  $routeProvider.when( "/docs", {
-    templateUrl: "/templates/docs.html",
-    controller: "docsCtrl"
-  } )
+  Route.namespace( "/docs", "docs", function( url, name ) {
+    $routeProvider.when( url, {
+      redirectTo: name + "/tutorials"
+    } )
 
-  $routeProvider.when( "/explorer", {
-    templateUrl: "/templates/explorer.html",
-    controller: "explorerCtrl"
+    $routeProvider.when( url + "/ref", {
+      templateUrl: "/templates/" + name + "/ref.html",
+      controller: name + "/refCtrl"
+    } )
+
+    $routeProvider.when( url + "/explorer", {
+      templateUrl: "/templates/" + name + "/explorer.html",
+      controller: name + "/explorerCtrl"
+    } )
+
+    $routeProvider.when( url + "/tutorials", {
+      templateUrl: "/templates/" + name + "/tutorials.html",
+      controller: name + "/tutorialsCtrl"
+    } )
   } )
 
   Route.namespace( "/testnet", "blockExplorer", function( url, name ) {

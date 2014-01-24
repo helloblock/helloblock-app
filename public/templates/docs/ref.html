@@ -15,7 +15,7 @@
           ng-repeat="s in general"
           spy="{{s.name}}"
         >
-          <a href="/docs/#{{s.name}}">{{s.name.capitalize()}}</a>
+          <a href="/docs/ref#{{s.name}}">{{s.name.capitalize()}}</a>
           <ul class="nav">
             <li ng-repeat="sub in s.subs.slice(1)" spy="{{sub.id}}">
               <span class='sub'>
@@ -36,7 +36,7 @@
           ng-repeat="s in resources"
           spy="{{s.name}}"
         >
-          <a href="/docs/#{{s.name}}">{{s.name.capitalize()}}</a>
+          <a href="/docs/ref#{{s.name}}">{{s.name.capitalize()}}</a>
           <ul class="nav">
             <li ng-repeat="sub in s.subs.slice(1)" spy="{{sub.id}}">
               <span class='sub'>
@@ -81,20 +81,20 @@
               <br>
               <div
                 ng-if="sub.name !== undefined"
-                ng-include="docsUrl(s.name, sub.file, 'description')">
+                ng-include="refUrl(s.name, sub.file, 'description')">
               </div>
             </div>
             <div class="col-md-6 section-example">
               <div ng-show="global.language === 'curl'">
                 <div
                   ng-if="sub.name !== undefined"
-                  ng-include="docsUrl(s.name, sub.file, 'curl')">
+                  ng-include="refUrl(s.name, sub.file, 'curl')">
                 </div>
               </div>
               <div ng-show="global.language === 'ruby'">
                 <div
                   ng-if="sub.name !== undefined"
-                  ng-include="docsUrl(s.name, sub.file, 'ruby')">
+                  ng-include="refUrl(s.name, sub.file, 'ruby')">
                 </div>
               </div>
             </div>
@@ -102,11 +102,8 @@
         </span>
       </span>
     </div>
-    <!-- <div class="blank">
-      <br><br><br><br><br><br><br><br><br>
-      <br><br><br><br><br><br><br><br><br>
-      <br><br><br><br><br><br><br><br><br>
-    </div> -->
+    <div class="space-big"></div>
   </div>
 
 </div>
+
