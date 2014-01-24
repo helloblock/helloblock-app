@@ -224,7 +224,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              </a>\n" +
     "            </td>\n" +
     "            <td rowspan=\"2\" class='text-center'>\n" +
-    "              <img ng-src=\"http://identicoin.herokuapp.com/address/{{i.prev_out.address}}\" width=\"48\">\n" +
+    "              <img ng-src=\"https://identicoin.herokuapp.com/address/{{i.prev_out.address}}\" width=\"48\">\n" +
     "            </td>\n" +
     "            <td>\n" +
     "              <span class=\"h6\">\n" +
@@ -264,7 +264,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              n: {{o.n}}\n" +
     "            </td>\n" +
     "            <td rowspan=\"2\" class='text-center'>\n" +
-    "              <img ng-src=\"http://identicoin.herokuapp.com/address/{{o.address}}\" width=\"48\">\n" +
+    "              <img ng-src=\"https://identicoin.herokuapp.com/address/{{o.address}}\" width=\"48\">\n" +
     "            </td>\n" +
     "            <td>\n" +
     "              <span class=\"h6\">\n" +
@@ -749,7 +749,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              <td>Address: </td>\n" +
     "              <td>\n" +
     "                <img\n" +
-    "                  ng-src=\"http://identicoin.herokuapp.com/address/{{i.prev_out.address}}\"\n" +
+    "                  ng-src=\"https://identicoin.herokuapp.com/address/{{i.prev_out.address}}\"\n" +
     "                  width=\"16\">\n" +
     "                <span class=\"h5\"><a href=\"/testnet/addresses/{{i.prev_out.address}}\">{{i.prev_out.address}}</a></span>\n" +
     "              </td>\n" +
@@ -789,7 +789,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            <tr>\n" +
     "              <td>Address: </td>\n" +
     "              <td>\n" +
-    "                <img src=\"http://identicoin.herokuapp.com/address/{{o.address}}\" width=\"16\">\n" +
+    "                <img src=\"https://identicoin.herokuapp.com/address/{{o.address}}\" width=\"16\">\n" +
     "                <span class=\"h5\"><a href=\"/testnet/addresses/{{o.address}}\">{{o.address}}</a></span>\n" +
     "              </td>\n" +
     "            </tr>\n" +
