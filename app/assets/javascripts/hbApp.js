@@ -22,7 +22,7 @@ hbApp.run( function( $rootScope, $location, $cookieStore ) {
   // Should force clear every now and then
   $rootScope.global = {
     isOnLink: function( path ) {
-      return path === $location.path();
+      return path === $location.path().split( "/" )[ 1 ];
     },
     language: $cookieStore.get( 'language' ) || "curl",
     setLanguage: function( name ) {

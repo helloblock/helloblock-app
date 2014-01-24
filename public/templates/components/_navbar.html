@@ -14,14 +14,13 @@
     </div>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li>
+        <li ng-class="{'active': global.isOnLink('docs')}">
           <a href="/docs">
             <i class="fa fa-book"></i>
             <span>Documentation</span>
           </a>
         </li>
-        <li>
-        <li>
+        <li ng-class="{'active': global.isOnLink('testnet')}">
           <a href="/testnet">
             <i class="fa fa-bars"></i>
             <span>Block Explorer</span>
