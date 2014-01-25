@@ -59,9 +59,15 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
 
   // Infinite Scrolling
 
+  $scope.finished = {
+    transactions: false,
+    unspents: false
+  }
+
   $scope.limitTo = {
     transactions: 5,
-    unspents: 5
+    unspents: 5,
+    end: false
   }
 
   $scope.offset = {
@@ -72,6 +78,10 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
   $scope.fetching = false
 
   $scope.loadMoreTransactions = function() {
+    if ( $scope.finished.transactions ) {
+      return;
+    }
+
     $scope.limitTo.transactions += 5
 
     if ( $scope.limitTo.transactions >= $scope.offset.transactions ) {
@@ -93,6 +103,8 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
             res.data.transactions );
           $scope.offset.transactions = $scope.limitTo.transactions;
           $scope.offset.transactions += 50;
+        } else {
+          $scope.finished.transactions = true;
         }
 
         $scope.fetching = false;
@@ -105,6 +117,10 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
   }
 
   $scope.loadMoreUnspents = function() {
+    if ( $scope.finished.unspents ) {
+      return;
+    }
+
     $scope.limitTo.unspents += 5
 
     if ( $scope.limitTo.unspents >= $scope.offset.unspents ) {
@@ -127,6 +143,7 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
 
         if ( unspents_tx_hashes.length === 0 ) {
           $scope.fetching = false;
+          $scope.finished.unspents = true;
           return;
         }
 
@@ -140,6 +157,8 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
               res.data.transactions )
             $scope.offset.unspents = $scope.limitTo.unspents
             $scope.offset.unspents += 50
+          } else {
+            $scope.finished.unspents = true;
           }
 
           $scope.fetching = false;
