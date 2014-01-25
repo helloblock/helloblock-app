@@ -824,20 +824,21 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "</div>\n" +
     "<br>\n" +
     "<div class=\"container\">\n" +
-    "  <form ng-submit=\"submitHex()\">\n" +
+    "  <form>\n" +
     "    <div>\n" +
     "      <textarea\n" +
     "        class='big-input big-input-hex h4'\n" +
     "        spellcheck=\"false\"\n" +
     "        rows='5'\n" +
+    "        ng-model=\"rawTransaction.hex\"\n" +
     "        placeholder=\"Copy/paste a raw transaction hex here ...\"\n" +
     "        selected></textarea>\n" +
     "    </div>\n" +
     "    <div class=\"pull-right\">\n" +
-    "      <button class='btn btn-warning'>\n" +
+    "      <button class='btn btn-warning' ng-click=\"decodeHex()\">\n" +
     "        DECODE\n" +
     "      </button>\n" +
-    "      <button class='btn btn-danger'>\n" +
+    "      <button class='btn btn-danger' ng-click=\"propagateHex()\">\n" +
     "        PROPAGATE\n" +
     "      </button>\n" +
     "    </div>\n" +
@@ -845,22 +846,21 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  <div class=\"space\"></div>\n" +
     "</div>\n" +
     "<br>\n" +
-    "<div class=\"transaction-decoded\" ng-show=\"true\">\n" +
+    "<div class=\"transaction-decoded\">\n" +
     "  <div class=\"container\">\n" +
-    "    <div class=\"alert alert-danger alert-danger-light text-center\">\n" +
-    "      <a class=\"close\" data-dismiss=\"alert\" href=\"#\" aria-hidden=\"true\">&times;</a>\n" +
-    "      <span class=\"h4\">\n" +
-    "        Here is an error alert message\n" +
-    "      </span>\n" +
-    "    </div>\n" +
-    "    <div class=\"alert alert-success text-center\">\n" +
-    "      <a class=\"close\" data-dismiss=\"alert\" href=\"#\" aria-hidden=\"true\">&times;</a>\n" +
-    "      <span class=\"h4\">\n" +
-    "        Transaction hex is valid and ready to be propagated!\n" +
-    "      </span>\n" +
-    "    </div>\n" +
+    "    <span ng-repeat=\"alert in alertsArray\">\n" +
+    "      <div class=\"alert {{alert.css}} text-center\" fade-timeout='{{alert.fade}}'>\n" +
+    "        <a class=\"close\" data-dismiss=\"alert\" href=\"#\" aria-hidden=\"true\">&times;</a>\n" +
+    "        <span class=\"h4\">\n" +
+    "          {{alert.message}}\n" +
+    "        </span>\n" +
+    "      </div>\n" +
+    "    </span>\n" +
     "  </div>\n" +
-    "  <div ng-include=\"'/templates/blockExplorer/_full_tx.html'\"></div>\n" +
+    "  <waitspin left=\"620%\" ng-if=\"sending\"></waitspin>\n" +
+    "  <div ng-show=\"!!transaction && !sending\">\n" +
+    "    <div ng-include=\"'/templates/blockExplorer/_full_tx.html'\"></div>\n" +
+    "  </div>\n" +
     "\n" +
     "</div>\n"
   );
