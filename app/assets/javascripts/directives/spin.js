@@ -46,8 +46,8 @@ hbApp.directive( "waitspin", function() {
 				hwaccel: false,
 				className: 'spinner',
 				zIndex: 2e9,
-				top: '50%',
-				left: '500%'
+				top: attrs.top || '50%',
+				left: attrs.left || '500%'
 			};
 
 			if ( attrs.left !== undefined ) {

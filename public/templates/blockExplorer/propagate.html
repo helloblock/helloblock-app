@@ -8,20 +8,21 @@
 </div>
 <br>
 <div class="container">
-  <form ng-submit="submitHex()">
+  <form>
     <div>
       <textarea
         class='big-input big-input-hex h4'
         spellcheck="false"
         rows='5'
+        ng-model="rawTransaction.hex"
         placeholder="Copy/paste a raw transaction hex here ..."
         selected></textarea>
     </div>
     <div class="pull-right">
-      <button class='btn btn-warning'>
+      <button class='btn btn-warning' ng-click="decodeHex()">
         DECODE
       </button>
-      <button class='btn btn-danger'>
+      <button class='btn btn-danger' ng-click="propagateHex()">
         PROPAGATE
       </button>
     </div>
@@ -29,21 +30,20 @@
   <div class="space"></div>
 </div>
 <br>
-<div class="transaction-decoded" ng-show="true">
+<div class="transaction-decoded">
   <div class="container">
-    <div class="alert alert-danger alert-danger-light text-center">
-      <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
-      <span class="h4">
-        Here is an error alert message
-      </span>
-    </div>
-    <div class="alert alert-success text-center">
-      <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
-      <span class="h4">
-        Transaction hex is valid and ready to be propagated!
-      </span>
-    </div>
+    <span ng-repeat="alert in alertsArray">
+      <div class="alert {{alert.css}} text-center" fade-timeout='{{alert.fade}}'>
+        <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+        <span class="h4">
+          {{alert.message}}
+        </span>
+      </div>
+    </span>
   </div>
-  <div ng-include="'/templates/blockExplorer/_full_tx.html'"></div>
+  <waitspin left="620%" ng-if="sending"></waitspin>
+  <div ng-show="!!transaction && !sending">
+    <div ng-include="'/templates/blockExplorer/_full_tx.html'"></div>
+  </div>
 
 </div>

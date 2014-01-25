@@ -10,6 +10,7 @@ hbApp.factory( "HelloBlock", function( $resource ) {
     AddressTransactions: $resource( BASE + "/addresses/:address/transactions" ),
     AddressUnspents: $resource( BASE + "/addresses/:address/unspents" ),
     Transactions: $resource( BASE + "/transactions/:tx_hash" ),
+    TransactionsDecode: $resource( BASE + "/transactions/decode" ),
     Blocks: $resource( BASE + "/blocks/:identifier" )
   }
 
