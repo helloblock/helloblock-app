@@ -141,9 +141,9 @@ hbApp.config( function( $routeProvider ) {
       controller: name + "/blocksCtrl"
     } )
 
-    $routeProvider.when( url + "/unconfirmed", {
-      templateUrl: "/templates/" + name + "/unconfirmed.html",
-      controller: name + "/unconfirmedCtrl"
+    $routeProvider.when( url + "/propagate", {
+      templateUrl: "/templates/" + name + "/propagate.html",
+      controller: name + "/propagateCtrl"
     } )
 
     $routeProvider.when( url + "/test", {

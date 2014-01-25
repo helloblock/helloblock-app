@@ -105,6 +105,11 @@
 	&.has-warning:focus {
 		outline: 1px solid @brand-warning;
 	}
+
+	&.big-input-hex {
+		height: 150px;
+		text-align: left;
+	}
 }
 
 .amount, .nowrap {
@@ -117,9 +122,13 @@
 
 .centerpiece-alt {
 	background-image: url("/assets/landing-bg.jpg");
-	padding-top: 75px;
-	padding-bottom: 75px;
-	min-height: 210px;
+	padding-top: 35px;
+	padding-bottom: 35px;
+	min-height: 130px;
+
+	.heading {
+		padding-top: 10px;
+	}
 
 	form {
 		display: inline;
