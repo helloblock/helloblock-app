@@ -35,6 +35,7 @@ hbApp.controller( "blockExplorer/propagateCtrl", function( $scope, HelloBlock, $
       hex: $scope.rawTransaction.hex
     }, function( res ) {
       console.log( res )
+      Pusher.beep();
       Alerts.addSuccess( "Propagation successful! " )
 
       // Hack; need to wait for db to write
