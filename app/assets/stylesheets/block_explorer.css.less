@@ -109,6 +109,14 @@
 	&.big-input-hex {
 		height: 150px;
 		text-align: left;
+
+		&::-webkit-input-placeholder {
+			padding: 0px;
+		}
+
+		&::-moz-placeholder {
+			padding: 0px;
+		}
 	}
 }
 
@@ -195,7 +203,7 @@ table {
 
 		&.table-transactions-lg {
 			td {
-				font-size: 13px;
+				font-size: 15px;
 			}
 		}
 
@@ -223,4 +231,11 @@ table {
 .table-tight {
 	padding-left: 30px;
 	padding-right: 30px;
+}
+
+.propagate {
+	ul.nav.nav-tabs {
+		margin: 0 auto;
+		max-width: 1170px;
+	}
 }

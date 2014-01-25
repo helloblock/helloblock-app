@@ -10,9 +10,13 @@
 <div class="container">
   <form ng-submit="submitHex()">
     <div>
-      <textarea class='big-input big-input-hex h4' spellcheck="false" rows='5' selected></textarea>
+      <textarea
+        class='big-input big-input-hex h4'
+        spellcheck="false"
+        rows='5'
+        placeholder="Copy/paste a raw transaction hex here ..."
+        selected></textarea>
     </div>
-    <br>
     <div class="pull-right">
       <button class='btn btn-warning'>
         DECODE
@@ -23,16 +27,21 @@
     </div>
   </form>
   <div class="space"></div>
-  <tabset>
-    <tab heading="Table">
-      <br>
-    </tab>
-    <tab heading="JSON">
+</div>
+<tabset class='propagate'>
+  <tab heading="Table">
+    <br>
+    <div ng-show="true">
+      <div ng-include="'/templates/blockExplorer/_full_tx.html'"></div>
+    </div>
+  </tab>
+  <tab heading="JSON">
+    <div class="container">
       <pre>
         <code>
 
         </code>
       </pre>
-    </tab>
-  </tabset>
-</div>
+    </div>
+  </tab>
+</tabset>
