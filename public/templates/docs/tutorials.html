@@ -11,23 +11,23 @@
             </h5>
           </div>
         </li>
-        <li>
-          <a href="/docs/tutorials">
+        <li ng-class="{'active': currentTutorial == 'getting-started'}">
+          <a href="/docs/tutorials/getting-started">
             Getting Started
           </a>
         </li>
-        <li>
+        <li ng-class="{'active': currentTutorial == 'send-transaction'}">
           <a href="/docs/tutorials/send-transaction">
             Send a transaction
           </a>
         </li>
-        <li>
-          <a href="/docs/tutorials">
+        <li ng-class="{'active': currentTutorial == 'wallet'}">
+          <a href="/docs/tutorials/wallet">
             Build a wallet
           </a>
         </li>
-        <li>
-          <a href="/docs/tutorials">
+        <li ng-class="{'active': currentTutorial == 'testing'}">
+          <a href="/docs/tutorials/testing">
             Testing
           </a>
         </li>
@@ -37,6 +37,13 @@
 
   <div class="col-md-10">
 
+    <!-- ng-repeat necessary to prevent recursive ng-include overflow -->
+    <span ng-repeat="tutorial in tutorials">
+      <div ng-if="currentTutorial === tutorial.file">
+        <div ng-include="tutorialUrl(tutorial.file)">
+        </div>
+      </div>
+    </span>
   </div>
 
 

@@ -250,7 +250,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <div class=\"col-md-5 addresses\">\n" +
     "      <div class=\"text-center\" ng-show=\"tx.out[0].address === null\">\n" +
     "        <br>\n" +
-    "        <img src=\"http://audiosex.pro/uploads/profile/photo-6577.jpg\" height=\"80\">\n" +
+    "        <!-- <img src=\"http://audiosex.pro/uploads/profile/photo-6577.jpg\" height=\"80\"> -->\n" +
     "        <span class=\"h3\">STRANGE OUTPUT</span>\n" +
     "      </div>\n" +
     "      <table\n" +
@@ -1245,7 +1245,6 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              </span>\n" +
     "            </li>\n" +
     "          </ul>\n" +
-    "        </li>\n" +
     "        </li>\n" +
     "        <li>\n" +
     "          <div class=\"title\">\n" +
@@ -2414,7 +2413,66 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('/templates/docs/tutorials.html',
     "<docnav selected=\"'tutorial'\"></docnav>\n" +
-    "<h1 class='text-center'>TUTORIALS</h1>\n"
+    "<div id=\"docs\">\n" +
+    "  <!-- SIDEBAR -->\n" +
+    "  <div class=\"col-md-2\">\n" +
+    "    <div class=\"bs-sidebar static\">\n" +
+    "      <ul class=\"nav bs-sidenav\">\n" +
+    "        <li>\n" +
+    "          <div class=\"title\">\n" +
+    "            <h5>\n" +
+    "              <strong>Tutorials</strong>\n" +
+    "            </h5>\n" +
+    "          </div>\n" +
+    "        </li>\n" +
+    "        <li ng-class=\"{'active': currentTutorial == 'getting-started'}\">\n" +
+    "          <a href=\"/docs/tutorials/getting-started\">\n" +
+    "            Getting Started\n" +
+    "          </a>\n" +
+    "        </li>\n" +
+    "        <li ng-class=\"{'active': currentTutorial == 'send-transaction'}\">\n" +
+    "          <a href=\"/docs/tutorials/send-transaction\">\n" +
+    "            Send a transaction\n" +
+    "          </a>\n" +
+    "        </li>\n" +
+    "        <li ng-class=\"{'active': currentTutorial == 'wallet'}\">\n" +
+    "          <a href=\"/docs/tutorials/wallet\">\n" +
+    "            Build a wallet\n" +
+    "          </a>\n" +
+    "        </li>\n" +
+    "        <li ng-class=\"{'active': currentTutorial == 'testing'}\">\n" +
+    "          <a href=\"/docs/tutorials/testing\">\n" +
+    "            Testing\n" +
+    "          </a>\n" +
+    "        </li>\n" +
+    "      </ul>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "\n" +
+    "  <div class=\"col-md-10\">\n" +
+    "\n" +
+    "    <!-- ng-repeat necessary to prevent recursive ng-include overflow -->\n" +
+    "    <span ng-repeat=\"tutorial in tutorials\">\n" +
+    "      <div ng-if=\"currentTutorial === tutorial.file\">\n" +
+    "        <div ng-include=\"tutorialUrl(tutorial.file)\">\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "    </span>\n" +
+    "  </div>\n" +
+    "\n" +
+    "\n" +
+    "</div>\n" +
+    "\n"
+  );
+
+
+  $templateCache.put('/templates/docs/tutorials/getting-started.html',
+    "<h1 class='text-center'>Getting Started</h1>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/tutorials/send-transaction.html',
+    "<h1 class='text-center'>Send a Transaction</h1>\n"
   );
 
 

@@ -90,7 +90,7 @@ hbApp.config( function( $routeProvider ) {
 
   Route.namespace( "/docs", "docs", function( url, name ) {
     $routeProvider.when( url, {
-      redirectTo: name + "/tutorials"
+      redirectTo: name + "/tutorials/"
     } )
 
     $routeProvider.when( url + "/ref", {
@@ -103,10 +103,11 @@ hbApp.config( function( $routeProvider ) {
       controller: name + "/explorerCtrl"
     } )
 
-    $routeProvider.when( url + "/tutorials/", {
+    $routeProvider.when( url + "/tutorials/:tutorial?", {
       templateUrl: "/templates/" + name + "/tutorials.html",
       controller: name + "/tutorialsCtrl"
     } )
+
   } )
 
   Route.namespace( "/testnet", "blockExplorer", function( url, name ) {
@@ -143,9 +144,9 @@ hbApp.config( function( $routeProvider ) {
 
   } )
 
-  $routeProvider.otherwise( {
-    redirectTo: '/'
-  } );
+  // $routeProvider.otherwise( {
+  //   redirectTo: '/'
+  // } );
 
 } )
 
