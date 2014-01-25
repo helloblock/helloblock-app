@@ -8,10 +8,10 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  <title>The page you were looking for doesn't exist (404)</title>\n" +
     "  <style>\n" +
     "  body {\n" +
-    "    background-color: #EFEFEF;\n" +
-    "    color: #2E2F30;\n" +
+    "    /*background-color: #EFEFEF;*/\n" +
+    "    /*color: #2E2F30;*/\n" +
     "    text-align: center;\n" +
-    "    font-family: arial, sans-serif;\n" +
+    "    /*font-family: arial, sans-serif;*/\n" +
     "  }\n" +
     "\n" +
     "  div.dialog {\n" +
@@ -38,14 +38,14 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    width: 33em;\n" +
     "    margin: 0 auto 1em;\n" +
     "    padding: 1em 0;\n" +
-    "    background-color: #F7F7F7;\n" +
+    "    /*background-color: #F7F7F7;*/\n" +
     "    border: 1px solid #CCC;\n" +
     "    border-right-color: #999;\n" +
     "    border-bottom-color: #999;\n" +
     "    border-bottom-left-radius: 4px;\n" +
     "    border-bottom-right-radius: 4px;\n" +
     "    border-top-color: #DADADA;\n" +
-    "    color: #666;\n" +
+    "    /*color: #666;*/\n" +
     "    box-shadow:0 3px 8px rgba(50, 50, 50, 0.17);\n" +
     "  }\n" +
     "  </style>\n" +
@@ -57,7 +57,6 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <h1>The page you were looking for doesn't exist.</h1>\n" +
     "    <p>You may have mistyped the address or the page may have moved.</p>\n" +
     "  </div>\n" +
-    "  <p>If you are the application owner check the logs for more information.</p>\n" +
     "</body>\n" +
     "</html>\n"
   );
@@ -2425,24 +2424,10 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            </h5>\n" +
     "          </div>\n" +
     "        </li>\n" +
-    "        <li ng-class=\"{'active': currentTutorial == 'getting-started'}\">\n" +
-    "          <a href=\"/docs/tutorials/getting-started\">\n" +
-    "            Getting Started\n" +
-    "          </a>\n" +
-    "        </li>\n" +
-    "        <li ng-class=\"{'active': currentTutorial == 'send-transaction'}\">\n" +
-    "          <a href=\"/docs/tutorials/send-transaction\">\n" +
-    "            Send a transaction\n" +
-    "          </a>\n" +
-    "        </li>\n" +
-    "        <li ng-class=\"{'active': currentTutorial == 'wallet'}\">\n" +
-    "          <a href=\"/docs/tutorials/wallet\">\n" +
-    "            Build a wallet\n" +
-    "          </a>\n" +
-    "        </li>\n" +
-    "        <li ng-class=\"{'active': currentTutorial == 'testing'}\">\n" +
-    "          <a href=\"/docs/tutorials/testing\">\n" +
-    "            Testing\n" +
+    "        <li ng-repeat=\"t in tutorials\"\n" +
+    "          ng-class=\"{'active': currentTutorial == t.file}\">\n" +
+    "          <a href=\"/docs/tutorials/{{t.file}}\">\n" +
+    "            {{t.name}}\n" +
     "          </a>\n" +
     "        </li>\n" +
     "      </ul>\n" +
@@ -2452,9 +2437,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  <div class=\"col-md-10\">\n" +
     "\n" +
     "    <!-- ng-repeat necessary to prevent recursive ng-include overflow -->\n" +
-    "    <span ng-repeat=\"tutorial in tutorials\">\n" +
-    "      <div ng-if=\"currentTutorial === tutorial.file\">\n" +
-    "        <div ng-include=\"tutorialUrl(tutorial.file)\">\n" +
+    "    <span ng-repeat=\"t in tutorials\">\n" +
+    "      <div ng-if=\"currentTutorial === t.file\">\n" +
+    "        <div ng-include=\"tutorialUrl(t.file)\">\n" +
     "        </div>\n" +
     "      </div>\n" +
     "    </span>\n" +
@@ -2583,18 +2568,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/test.html',
-    "<br><br><br>\n" +
-    "<div class=\"container\">\n" +
-    "  <div class=\"col-md-4\">\n" +
-    "    <select ui-select2 ng-model=\"select2\" data-placeholder=\"Pick a number\">\n" +
-    "      <option value=\"\"></option>\n" +
-    "      <option value=\"one\">First</option>\n" +
-    "      <option value=\"two\">Second</option>\n" +
-    "      <option value=\"three\">Third</option>\n" +
-    "    </select>\n" +
-    "  </div>\n" +
-    "</div>\n" +
-    "<br><br><br>\n"
+    ""
   );
 
 }]);
