@@ -103,7 +103,7 @@ hbApp.config( function( $routeProvider ) {
       controller: name + "/explorerCtrl"
     } )
 
-    $routeProvider.when( url + "/tutorials", {
+    $routeProvider.when( url + "/tutorials/", {
       templateUrl: "/templates/" + name + "/tutorials.html",
       controller: name + "/tutorialsCtrl"
     } )
