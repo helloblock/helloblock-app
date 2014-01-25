@@ -88,6 +88,11 @@ hbApp.config( function( $routeProvider ) {
     templateUrl: "/templates/landing.html"
   } )
 
+  $routeProvider.when( "/test", {
+    templateUrl: "/templates/test.html",
+    controller: "testCtrl"
+  } )
+
   Route.namespace( "/docs", "docs", function( url, name ) {
     $routeProvider.when( url, {
       redirectTo: name + "/tutorials/"
@@ -103,7 +108,7 @@ hbApp.config( function( $routeProvider ) {
       controller: name + "/explorerCtrl"
     } )
 
-    $routeProvider.when( url + "/tutorials/:tutorial?", {
+    $routeProvider.when( url + "/tutorials/:tutorial_file?", {
       templateUrl: "/templates/" + name + "/tutorials.html",
       controller: name + "/tutorialsCtrl"
     } )
@@ -144,9 +149,9 @@ hbApp.config( function( $routeProvider ) {
 
   } )
 
-  // $routeProvider.otherwise( {
-  //   redirectTo: '/'
-  // } );
+  $routeProvider.otherwise( {
+    templateUrl: "/404.html",
+  } );
 
 } )
 

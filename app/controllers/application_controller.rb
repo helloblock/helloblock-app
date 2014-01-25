@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
     render layout: false
   end
 
+  def unfound_assets
+    puts "Caught unfound assets"
+    render nothing: true, status: 404
+  end
+
   protected
 
   def set_csrf_cookie_for_ng

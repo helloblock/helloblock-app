@@ -1,6 +1,6 @@
 hbApp.controller( "docs/tutorialsCtrl", function( $scope, $routeParams ) {
 
-  $scope.currentTutorial = $routeParams.tutorial || 'getting-started'
+  $scope.currentTutorial = $routeParams.tutorial_file || 'getting-started'
 
   $scope.tutorials = [ {
     name: "Getting Started",
@@ -8,7 +8,13 @@ hbApp.controller( "docs/tutorialsCtrl", function( $scope, $routeParams ) {
   }, {
     name: "Sending a Transaction",
     file: "send-transaction"
-  }, ]
+  }, {
+    name: "Building a Wallet",
+    file: "wallet"
+  }, {
+    name: "Testing with testnet",
+    file: "testing"
+  } ]
 
   $scope.tutorialUrl = function( tutorial ) {
     var base = "/templates/docs/tutorials"
