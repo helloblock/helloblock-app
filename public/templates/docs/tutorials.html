@@ -1,13 +1,13 @@
 <docnav selected="'tutorial'"></docnav>
-<div id="docs">
+<div id="docs" class='container'>
   <!-- SIDEBAR -->
-  <div class="col-md-2">
-    <div class="bs-sidebar static">
+  <div class="col-md-3">
+    <div class="bs-sidebar">
       <ul class="nav bs-sidenav">
         <li>
           <div class="title">
             <h5>
-              <strong>Tutorials</strong>
+              <strong><em>Tutorials</em></strong>
             </h5>
           </div>
         </li>
@@ -21,17 +21,9 @@
     </div>
   </div>
 
-  <div class="col-md-10">
-
-    <!-- ng-repeat necessary to prevent recursive ng-include overflow -->
-    <span ng-repeat="t in tutorials">
-      <div ng-if="currentTutorial === t.file">
-        <div ng-include="tutorialUrl(t.file)">
-        </div>
-      </div>
-    </span>
+  <div class="col-md-8">
+    <div ng-include="tutorialUrl(currentTutorial)"></div>
   </div>
-
 
 </div>
 
