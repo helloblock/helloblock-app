@@ -2412,15 +2412,15 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('/templates/docs/tutorials.html',
     "<docnav selected=\"'tutorial'\"></docnav>\n" +
-    "<div id=\"docs\">\n" +
+    "<div id=\"docs\" class='container'>\n" +
     "  <!-- SIDEBAR -->\n" +
-    "  <div class=\"col-md-2\">\n" +
-    "    <div class=\"bs-sidebar static\">\n" +
+    "  <div class=\"col-md-3\">\n" +
+    "    <div class=\"bs-sidebar\">\n" +
     "      <ul class=\"nav bs-sidenav\">\n" +
     "        <li>\n" +
     "          <div class=\"title\">\n" +
     "            <h5>\n" +
-    "              <strong>Tutorials</strong>\n" +
+    "              <strong><em>Tutorials</em></strong>\n" +
     "            </h5>\n" +
     "          </div>\n" +
     "        </li>\n" +
@@ -2434,17 +2434,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    </div>\n" +
     "  </div>\n" +
     "\n" +
-    "  <div class=\"col-md-10\">\n" +
-    "\n" +
-    "    <!-- ng-repeat necessary to prevent recursive ng-include overflow -->\n" +
-    "    <span ng-repeat=\"t in tutorials\">\n" +
-    "      <div ng-if=\"currentTutorial === t.file\">\n" +
-    "        <div ng-include=\"tutorialUrl(t.file)\">\n" +
-    "        </div>\n" +
-    "      </div>\n" +
-    "    </span>\n" +
+    "  <div class=\"col-md-8\">\n" +
+    "    <div ng-include=\"tutorialUrl(currentTutorial)\"></div>\n" +
     "  </div>\n" +
-    "\n" +
     "\n" +
     "</div>\n" +
     "\n"
@@ -2452,7 +2444,131 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/tutorials/getting-started.html',
-    "<h1 class='text-center'>Getting Started</h1>\n"
+    "<h1 class='text-center'>Getting Started</h1>\n" +
+    "\n" +
+    "<h3>Lorem</h3>\n" +
+    "<p>\n" +
+    "  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n" +
+    "  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n" +
+    "  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n" +
+    "  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n" +
+    "  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n" +
+    "  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n" +
+    "</p>\n" +
+    "<br>\n" +
+    "<h3>SubTitle</h3>\n" +
+    "<blockquote>\n" +
+    "  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n" +
+    "  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n" +
+    "  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n" +
+    "  consequat.\n" +
+    "</p>\n" +
+    "</blockquote>\n" +
+    "<div class=\"code-sample\">\n" +
+    "  <tabset>\n" +
+    "    <tab heading=\"ruby\">\n" +
+    "      <pre>\n" +
+    "        <code class=\"ruby\" hljs>\n" +
+    "# Writing a comment\n" +
+    "hex = \"123456789\"\n" +
+    "\n" +
+    "HelloBlock::Transaction.propagate({\n" +
+    "  hex: hex,\n" +
+    "  meta: \"blah\"\n" +
+    "})\n" +
+    "        </code>\n" +
+    "      </pre>\n" +
+    "    </tab>\n" +
+    "    <tab heading=\"javascript\">\n" +
+    "      <pre>\n" +
+    "        <code class=\"javascript\" hljs>\n" +
+    "// Writing a comment\n" +
+    "var hex = \"123456789\"\n" +
+    "\n" +
+    "HelloBlock.Transaction.propagate({\n" +
+    "  hex: hex,\n" +
+    "  meta: \"blah\"\n" +
+    "})\n" +
+    "        </code>\n" +
+    "      </pre>\n" +
+    "    </tab>\n" +
+    "  </tabset>\n" +
+    "</div>\n" +
+    "<br>\n" +
+    "<h3>Subtitle</h3>\n" +
+    "<h4>Sub-subtitle</h4>\n" +
+    "<p>\n" +
+    "  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n" +
+    "  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n" +
+    "  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n" +
+    "  <code class=\"single\">https://api.helloblock.com/</code>. Duis aute irure dolor in reprehenderit in voluptate velit esse\n" +
+    "  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n" +
+    "  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n" +
+    "</p>\n" +
+    "\n" +
+    "<table class=\"table table-bordered\">\n" +
+    "  <thead>\n" +
+    "    <tr>\n" +
+    "      <th>Keyword</th>\n" +
+    "      <th>Value</th>\n" +
+    "    </tr>\n" +
+    "  </thead>\n" +
+    "  <tbody>\n" +
+    "    <tr>\n" +
+    "      <td>Thing</td>\n" +
+    "      <td>1231231231232</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>Thing</td>\n" +
+    "      <td>1231231231232</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>Thing</td>\n" +
+    "      <td>1231231231232</td>\n" +
+    "    </tr>\n" +
+    "  </tbody>\n" +
+    "</table>\n" +
+    "<div class=\"code-sample\">\n" +
+    "  <pre>\n" +
+    "    <code class=\"javascript\" hljs>\n" +
+    "{\n" +
+    "  stats: \"success\",\n" +
+    "  message: \"good job dude\",\n" +
+    "  data: {\n" +
+    "    a: 1,\n" +
+    "    b: 1,\n" +
+    "    c: 1,\n" +
+    "  }\n" +
+    "}\n" +
+    "    </code>\n" +
+    "  </pre>\n" +
+    "</div>\n" +
+    "<br>\n" +
+    "<h3>Subtitle</h3>\n" +
+    "<h4>Sub-subtitle</h4>\n" +
+    "<p>\n" +
+    "  <ol>\n" +
+    "    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n" +
+    "    tempor </li>\n" +
+    "    <li>incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n" +
+    "    quis nostrud exercitation ullamco laboris nisi ut aliquip ex.</li>\n" +
+    "    <li> ea commodo\n" +
+    "    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n" +
+    "    cillum dolore eu fugiat.</li>\n" +
+    "  </ol>\n" +
+    "</p>\n" +
+    "\n" +
+    "<h4>Sub-subtitle</h4>\n" +
+    "<p>\n" +
+    "  <ul>\n" +
+    "    <li>Point one</li>\n" +
+    "    <li>Point two</li>\n" +
+    "    <li>Point three</li>\n" +
+    "  </ul>\n" +
+    "</p>\n" +
+    "\n" +
+    "\n" +
+    "<div class=\"space-big\"></div>\n"
   );
 
 
