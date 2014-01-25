@@ -14,13 +14,15 @@ hbApp.controller( "docs/tutorialsCtrl", function( $scope, $routeParams ) {
   }, {
     name: "Testing with testnet",
     file: "testing"
+  }, {
+    name: "Blockchain.info Testnet",
+    file: "blockchain-info-testnet"
   } ]
 
   $scope.tutorialUrl = function( tutorial ) {
     var base = "/templates/docs/tutorials"
     var tutorial = "/" + tutorial + ".html"
     var url = base + tutorial;
-    console.log( url )
     return url;
   }
 } )

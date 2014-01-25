@@ -52,12 +52,12 @@
     <div class="col-md-6">
       <table class="table table-bordered table-summary">
         <tr>
-          <td>Size: </td>
-          <td>{{transaction.tx_size}} KB</td>
-        </tr>
-        <tr>
           <td>Block Height: </td>
           <td><a href="/testnet/blocks/{{transaction.block_height}}">{{transaction.block_height}}</a></td>
+        </tr>
+        <tr>
+          <td>Received Time: </td>
+          <td utc="{{transaction.estimated_time}}"></td>
         </tr>
         <tr>
           <td>Confirmations: </td>
@@ -65,21 +65,25 @@
             <span class="label" verbose="true" confirmations="{{transaction.confirmations}}"></span>
           </td>
         </tr>
+        <tr>
+          <td>Size: </td>
+          <td>{{transaction.tx_size}} KB</td>
+        </tr>
       </table>
     </div>
     <div class="col-md-6">
       <table class="table table-bordered table-summary">
         <tr>
-          <td>Received Time: </td>
-          <td utc="{{transaction.estimated_time}}"></td>
-        </tr>
-        <tr>
           <td>Total Inputs: </td>
-          <td to-btc="{{transaction.total_inputs}}"></td>
+          <td to-btc="{{transaction.total_inputs_value}}"></td>
         </tr>
         <tr>
           <td>Total Outputs: </td>
-          <td to-btc="{{transaction.total_outputs}}"></td>
+          <td to-btc="{{transaction.total_outputs_value}}"></td>
+        </tr>
+        <tr>
+          <td>Fees: </td>
+          <td to-btc="{{transaction.fees}}"></td>
         </tr>
       </table>
     </div>
@@ -90,7 +94,7 @@
   <div class="h3 text-center text-gray">
     INPUTS/OUTPUTS
   </div>
-  <table class="table table-transactions">
+  <table class="table table-transactions table-transactions-lg">
     <tr>
       <td class='no-top'>
       <br>
@@ -107,22 +111,12 @@
           >
           <tbody>
             <tr>
-              <td>n (index): </td>
-              <td>
-                <span class="h5">
-                  <a href="/testnet/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}">
-                    {{i.prev_out.n}}
-                  </a>
-                </span>
-              </td>
-            </tr>
-            <tr>
               <td>Address: </td>
               <td>
                 <img
                   ng-src="https://identicoin.herokuapp.com/address/{{i.prev_out.address}}"
                   width="16">
-                <span class="h5"><a href="/testnet/addresses/{{i.prev_out.address}}">{{i.prev_out.address}}</a></span>
+                <span><a href="/testnet/addresses/{{i.prev_out.address}}">{{i.prev_out.address}}</a></span>
               </td>
             </tr>
             <tr>
@@ -131,13 +125,35 @@
               </td>
               <td>
                 <span class="label label-default">SPENT</span>
-                <span class="h5 amount" to-btc="{{i.prev_out.value}}"></span>
+                <span class="amount" to-btc="{{i.prev_out.value}}"></span>
+              </td>
+            </tr>
+            <tr>
+              <td>n (index): </td>
+              <td>
+                <span>
+                  <a href="/testnet/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}">
+                    {{i.prev_out.n}}
+                  </a>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                TX Hash:
+              </td>
+              <td class='break'>
+                <span class="amount break">
+                  <a href="/testnet/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}">
+                    {{i.prev_out.tx_hash}}
+                  </a>
+                </span>
               </td>
             </tr>
             <tr>
               <td class='text-center'>ScriptSig: </td>
               <td class='break'>
-                <span class="h5">{{i.scriptSig}}</span>
+                <span>{{i.scriptSig}}</span>
               </td>
             </tr>
           </tbody>
@@ -155,13 +171,13 @@
           <tbody>
             <tr>
               <td>n (index): </td>
-              <td><span class="h5">{{o.n}}</span></td>
+              <td><span>{{o.n}}</span></td>
             </tr>
             <tr>
               <td>Address: </td>
               <td>
                 <img src="https://identicoin.herokuapp.com/address/{{o.address}}" width="16">
-                <span class="h5"><a href="/testnet/addresses/{{o.address}}">{{o.address}}</a></span>
+                <span><a href="/testnet/addresses/{{o.address}}">{{o.address}}</a></span>
               </td>
             </tr>
             <tr>
@@ -170,20 +186,20 @@
               </td>
               <td>
                 <span class="label" spent="{{o.spent}}"></span>
-                <span class="h5 amount" to-btc="{{o.value}}"></span>
+                <span class="amount" to-btc="{{o.value}}"></span>
               </td>
             </tr>
             <tr>
               <td rowspan="1">scriptPubKey: </td>
               <td class="break">
-                <span class="h5">
+                <span>
                   {{o.scriptPubKey}}
                 </span>
               </td>
             </tr>
             <!-- <tr>
               <td>
-                <span class="h5">
+                <span>
                   TODO: Parsed
                 </span>
               </td>

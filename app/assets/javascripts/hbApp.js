@@ -15,7 +15,7 @@ hbApp.config( function( $locationProvider ) {
 
 var PusherClient = new Pusher( '1cca9695fd809ce4bbab' );
 
-hbApp.run( function( $rootScope, $location, $cookieStore ) {
+hbApp.run( function( $rootScope, $location, $cookieStore, $anchorScroll ) {
 
   // TODO: What if cookies are set wrong, e.g. JSON.parse("MAINNET")
   // Things could break without us knowing
@@ -43,6 +43,10 @@ hbApp.run( function( $rootScope, $location, $cookieStore ) {
       $location.path( "/" + mode.toLowerCase() )
     }
   }
+
+  $rootScope.$on( '$routeChangeSuccess', function( next, current ) {
+    $anchorScroll();
+  } );
 
   $rootScope.bigSearch = {
     query: function( query ) {

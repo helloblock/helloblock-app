@@ -7,30 +7,3 @@
 <p>It is designed to have predictable, resource-oriented URLs and meaningful HTTP response codes to indicate API errors. We support cross-origin resource sharing to allow client-side web application communication. The codebase is open source.</p>
 <p>This is the API we’ve always wanted. We hope you will love it too.</p>
 <br>
-<h4>Why?</h4>
-<br>
-<p>Bitcoin is programmable currency. However, the developer infrastructure around Bitcoin is underwhelming.</p>
-
-<p>Writing automated tests for Bitcoin transactions are a pain because setting up testnet (an alternative blockchain used for testing) can take a few days. This is because you need to download/parse it into a queriable format. Doing this is only becoming exponentially more difficult as the blockchain grows in size.</p>
-
-<p>As a result, many developers, including ourselves, chose to simulate transactions using real Bitcoins. This meant we paid a 0.0001 BTC TX fee for every test and occasionally even lost all our Bitcoins due to bugs or accidentally clearing our private keys!</p>
-
-<p>This leads to test anxiety where we just leave a bunch of “TODO” comments everywhere in our code. And, of course these “TODOs” really mean “Never going to happen”.</p>
-
-<p>This inevitably introduces bugs into our system. Worst of all, these are often mission critical bugs where real money is being moved around.</p>
-
-<p>HelloBlock provides testnet support and was built with testnet in mind from Day One.</p>
-
-<br>
-<h4>Why don’t I just use Blockchain.info?</h4>
-<br>
-<p>Blockchain.info has built a great consumer application, but it’s not for developers. They’ve made it clear that the API is not their core business, nor do they plan to support testnet (bitcoin talk link).</p>
-
-<p>What’s worse is their API response structures often change randomly without any prior announcements. Strings can become integers, attribute names can change, actual 400 errors come back with 200 response codes etc. This means they can’t be relied upon for any production critical applications. We’ve learnt this the hard way.</p>
-
-<br>
-<h4>Why don’t I just host my own node?</h4>
-<br>
-<p>At some stage, we’ve all said “Screw it, I’m just going to host my own node”. Four days later, when we realize we’re not even 1/3rd of the way there and our node keeps failing randomly, we come crawling back to blockchain.info.</p>
-
-<br><br><br>
