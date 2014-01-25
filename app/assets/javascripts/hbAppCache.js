@@ -185,6 +185,200 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('/templates/blockExplorer/_full_tx.html',
+    "<br>\n" +
+    "<div class=\"h1 text-center\">\n" +
+    "  TRANSACTION:\n" +
+    "</div>\n" +
+    "<br>\n" +
+    "<waitspin ng-show=\"!transaction.tx_hash\"></waitspin>\n" +
+    "<div class=\"container\" ng-show=\"transaction.tx_hash\">\n" +
+    "  <div class=\"h3 text-center text-gray\">\n" +
+    "    SUMMARY\n" +
+    "  </div>\n" +
+    "  <span class=\"pull-right view-json\">\n" +
+    "    <a href='#'>View as JSON</a>\n" +
+    "  </span>\n" +
+    "  <br>\n" +
+    "  <div class=\"row\">\n" +
+    "    <div class=\"col-md-12 table-tight\">\n" +
+    "      <table class=\"table table-bordered table-summary table-overview\">\n" +
+    "        <tbody>\n" +
+    "          <tr>\n" +
+    "            <td>Transaction Hash: </td>\n" +
+    "            <td>{{transaction.tx_hash}}</td>\n" +
+    "          </tr>\n" +
+    "          <tr>\n" +
+    "            <td>Block Hash: </td>\n" +
+    "            <td>{{transaction.block_hash}}</td>\n" +
+    "          </tr>\n" +
+    "        </tbody>\n" +
+    "      </table>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "  <div class=\"col-md-6\">\n" +
+    "    <table class=\"table table-bordered table-summary\">\n" +
+    "      <tr>\n" +
+    "        <td>Block Height: </td>\n" +
+    "        <td><a href=\"/testnet/blocks/{{transaction.block_height}}\">{{transaction.block_height}}</a></td>\n" +
+    "      </tr>\n" +
+    "      <tr>\n" +
+    "        <td>Received Time: </td>\n" +
+    "        <td utc=\"{{transaction.estimated_time}}\"></td>\n" +
+    "      </tr>\n" +
+    "      <tr>\n" +
+    "        <td>Confirmations: </td>\n" +
+    "        <td>\n" +
+    "          <span class=\"label\" verbose=\"true\" confirmations=\"{{transaction.confirmations}}\"></span>\n" +
+    "        </td>\n" +
+    "      </tr>\n" +
+    "      <tr>\n" +
+    "        <td>Size: </td>\n" +
+    "        <td>{{transaction.tx_size}} KB</td>\n" +
+    "      </tr>\n" +
+    "    </table>\n" +
+    "  </div>\n" +
+    "  <div class=\"col-md-6\">\n" +
+    "    <table class=\"table table-bordered table-summary\">\n" +
+    "      <tr>\n" +
+    "        <td>Total Inputs: </td>\n" +
+    "        <td to-btc=\"{{transaction.total_inputs_value}}\"></td>\n" +
+    "      </tr>\n" +
+    "      <tr>\n" +
+    "        <td>Total Outputs: </td>\n" +
+    "        <td to-btc=\"{{transaction.total_outputs_value}}\"></td>\n" +
+    "      </tr>\n" +
+    "      <tr>\n" +
+    "        <td>Fees: </td>\n" +
+    "        <td to-btc=\"{{transaction.fees}}\"></td>\n" +
+    "      </tr>\n" +
+    "    </table>\n" +
+    "  </div>\n" +
+    "</div>\n" +
+    "<br><br>\n" +
+    "<div class=\"wide-container\">\n" +
+    "  <div class=\"h3 text-center text-gray\">\n" +
+    "    INPUTS/OUTPUTS\n" +
+    "  </div>\n" +
+    "  <table class=\"table table-transactions table-transactions-lg\">\n" +
+    "    <tr>\n" +
+    "      <td class='no-top'>\n" +
+    "        <br>\n" +
+    "        <div class=\"col-md-6\">\n" +
+    "          <div class=\"text-center\" ng-show=\"transaction.in[0].prev_out.tx_hash === null\">\n" +
+    "            <br>\n" +
+    "            <span class=\"h3\">NEWLY GENERATED COINS</span>\n" +
+    "          </div>\n" +
+    "          <table\n" +
+    "          ng-repeat=\"i in transaction.in\"\n" +
+    "          ng-show=\"i.prev_out.tx_hash !== null\"\n" +
+    "          class=\"\n" +
+    "          table table-bordered table-io\"\n" +
+    "          >\n" +
+    "          <tbody>\n" +
+    "            <tr>\n" +
+    "              <td>Address: </td>\n" +
+    "              <td>\n" +
+    "                <img\n" +
+    "                ng-src=\"https://identicoin.herokuapp.com/address/{{i.prev_out.address}}\"\n" +
+    "                width=\"16\">\n" +
+    "                <span><a href=\"/testnet/addresses/{{i.prev_out.address}}\">{{i.prev_out.address}}</a></span>\n" +
+    "              </td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>\n" +
+    "                Amount:\n" +
+    "              </td>\n" +
+    "              <td>\n" +
+    "                <span class=\"label label-default\">SPENT</span>\n" +
+    "                <span class=\"amount\" to-btc=\"{{i.prev_out.value}}\"></span>\n" +
+    "              </td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>n (index): </td>\n" +
+    "              <td>\n" +
+    "                <span>\n" +
+    "                  <a href=\"/testnet/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}\">\n" +
+    "                    {{i.prev_out.n}}\n" +
+    "                  </a>\n" +
+    "                </span>\n" +
+    "              </td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>\n" +
+    "                TX Hash:\n" +
+    "              </td>\n" +
+    "              <td class=''>\n" +
+    "                <span class=\"amount\">\n" +
+    "                  <a href=\"/testnet/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}\">\n" +
+    "                    {{i.prev_out.tx_hash}}\n" +
+    "                  </a>\n" +
+    "                </span>\n" +
+    "              </td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td class='text-center'>ScriptSig: </td>\n" +
+    "              <td class='break'>\n" +
+    "                <span>{{i.scriptSig}}</span>\n" +
+    "              </td>\n" +
+    "            </tr>\n" +
+    "          </tbody>\n" +
+    "        </table>\n" +
+    "      </div>\n" +
+    "      <div class=\"col-md-1 text-center\">\n" +
+    "        <br>\n" +
+    "        <i class=\"fa fa-arrow-circle-right fa-4x text-gray-light\"></i>\n" +
+    "      </div>\n" +
+    "      <div class=\"col-md-5 addresses\">\n" +
+    "        <table\n" +
+    "        ng-repeat=\"o in transaction.out\"\n" +
+    "        class=\"table table-bordered table-io\"\n" +
+    "        ng-class=\"{'table-highlighted': transaction.n === o.n}\">\n" +
+    "        <tbody>\n" +
+    "          <tr>\n" +
+    "            <td>n (index): </td>\n" +
+    "            <td><span>{{o.n}}</span></td>\n" +
+    "          </tr>\n" +
+    "          <tr>\n" +
+    "            <td>Address: </td>\n" +
+    "            <td>\n" +
+    "              <img src=\"https://identicoin.herokuapp.com/address/{{o.address}}\" width=\"16\">\n" +
+    "              <span><a href=\"/testnet/addresses/{{o.address}}\">{{o.address}}</a></span>\n" +
+    "            </td>\n" +
+    "          </tr>\n" +
+    "          <tr>\n" +
+    "            <td>\n" +
+    "              Amount:\n" +
+    "            </td>\n" +
+    "            <td>\n" +
+    "              <span class=\"label\" spent=\"{{o.spent}}\"></span>\n" +
+    "              <span class=\"amount\" to-btc=\"{{o.value}}\"></span>\n" +
+    "            </td>\n" +
+    "          </tr>\n" +
+    "          <tr>\n" +
+    "            <td rowspan=\"1\">scriptPubKey: </td>\n" +
+    "            <td class=\"break\">\n" +
+    "              <span>\n" +
+    "                {{o.scriptPubKey}}\n" +
+    "              </span>\n" +
+    "            </td>\n" +
+    "          </tr>\n" +
+    "          <!-- <tr>\n" +
+    "            <td>\n" +
+    "              <span>\n" +
+    "                TODO: Parsed\n" +
+    "              </span>\n" +
+    "            </td>\n" +
+    "          </tr> -->\n" +
+    "        </tbody>\n" +
+    "      </table>\n" +
+    "    </div>\n" +
+    "  </td>\n" +
+    "</tr>\n" +
+    "</table>\n"
+  );
+
+
   $templateCache.put('/templates/blockExplorer/_tx.html',
     "<table class=\"table table-striped table-transactions\">\n" +
     "  <tr>\n" +
@@ -619,6 +813,59 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('/templates/blockExplorer/propagate.html',
+    "<subnav selected=\"'propagate'\" global=\"global\"></subnav>\n" +
+    "<div class=\"centerpiece-alt text-center\">\n" +
+    "  <div class=\"container heading\">\n" +
+    "    <div class=\"h1 text-center white\">\n" +
+    "        PROPAGATE/DECODE TRANSACTIONS\n" +
+    "      </div>\n" +
+    "  </div>\n" +
+    "</div>\n" +
+    "<br>\n" +
+    "<div class=\"container\">\n" +
+    "  <form ng-submit=\"submitHex()\">\n" +
+    "    <div>\n" +
+    "      <textarea\n" +
+    "        class='big-input big-input-hex h4'\n" +
+    "        spellcheck=\"false\"\n" +
+    "        rows='5'\n" +
+    "        placeholder=\"Copy/paste a raw transaction hex here ...\"\n" +
+    "        selected></textarea>\n" +
+    "    </div>\n" +
+    "    <div class=\"pull-right\">\n" +
+    "      <button class='btn btn-warning'>\n" +
+    "        DECODE\n" +
+    "      </button>\n" +
+    "      <button class='btn btn-danger'>\n" +
+    "        PROPAGATE\n" +
+    "      </button>\n" +
+    "    </div>\n" +
+    "  </form>\n" +
+    "  <div class=\"space\"></div>\n" +
+    "</div>\n" +
+    "<br>\n" +
+    "<div class=\"transaction-decoded\" ng-show=\"true\">\n" +
+    "  <div class=\"container\">\n" +
+    "    <div class=\"alert alert-danger alert-danger-light text-center\">\n" +
+    "      <a class=\"close\" data-dismiss=\"alert\" href=\"#\" aria-hidden=\"true\">&times;</a>\n" +
+    "      <span class=\"h4\">\n" +
+    "        Here is an error alert message\n" +
+    "      </span>\n" +
+    "    </div>\n" +
+    "    <div class=\"alert alert-success text-center\">\n" +
+    "      <a class=\"close\" data-dismiss=\"alert\" href=\"#\" aria-hidden=\"true\">&times;</a>\n" +
+    "      <span class=\"h4\">\n" +
+    "        Transaction hex is valid and ready to be propagated!\n" +
+    "      </span>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "  <div ng-include=\"'/templates/blockExplorer/_full_tx.html'\"></div>\n" +
+    "\n" +
+    "</div>\n"
+  );
+
+
   $templateCache.put('/templates/blockExplorer/test.html',
     "<subnav></subnav>\n" +
     "{{global}}\n"
@@ -646,183 +893,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    </form>\n" +
     "  </div>\n" +
     "</div>\n" +
-    "<div class=\"container\">\n" +
-    "  <br>\n" +
-    "  <div class=\"h1 text-center\">\n" +
-    "    TRANSACTION:\n" +
-    "  </div>\n" +
-    "  <br>\n" +
-    "  <waitspin ng-show=\"!transaction.tx_hash\"></waitspin>\n" +
-    "  <div class=\"row\" ng-show=\"transaction.tx_hash\">\n" +
-    "    <div class=\"h3 text-center text-gray\">\n" +
-    "      SUMMARY\n" +
-    "    </div>\n" +
-    "    <span class=\"pull-right view-json\">\n" +
-    "      <a href='#'>View as JSON</a>\n" +
-    "    </span>\n" +
-    "    <br>\n" +
-    "    <div class=\"row\">\n" +
-    "      <div class=\"col-md-12 table-tight\">\n" +
-    "        <table class=\"table table-bordered table-summary table-overview\">\n" +
-    "          <tbody>\n" +
-    "            <tr>\n" +
-    "              <td>Transaction Hash: </td>\n" +
-    "              <td>{{transaction.tx_hash}}</td>\n" +
-    "            </tr>\n" +
-    "            <tr>\n" +
-    "              <td>Block Hash: </td>\n" +
-    "              <td>{{transaction.block_hash}}</td>\n" +
-    "            </tr>\n" +
-    "          </tbody>\n" +
-    "        </table>\n" +
-    "      </div>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-md-6\">\n" +
-    "      <table class=\"table table-bordered table-summary\">\n" +
-    "        <tr>\n" +
-    "          <td>Size: </td>\n" +
-    "          <td>{{transaction.tx_size}} KB</td>\n" +
-    "        </tr>\n" +
-    "        <tr>\n" +
-    "          <td>Block Height: </td>\n" +
-    "          <td><a href=\"/testnet/blocks/{{transaction.block_height}}\">{{transaction.block_height}}</a></td>\n" +
-    "        </tr>\n" +
-    "        <tr>\n" +
-    "          <td>Confirmations: </td>\n" +
-    "          <td>\n" +
-    "            <span class=\"label\" verbose=\"true\" confirmations=\"{{transaction.confirmations}}\"></span>\n" +
-    "          </td>\n" +
-    "        </tr>\n" +
-    "      </table>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-md-6\">\n" +
-    "      <table class=\"table table-bordered table-summary\">\n" +
-    "        <tr>\n" +
-    "          <td>Received Time: </td>\n" +
-    "          <td utc=\"{{transaction.estimated_time}}\"></td>\n" +
-    "        </tr>\n" +
-    "        <tr>\n" +
-    "          <td>Total Inputs: </td>\n" +
-    "          <td to-btc=\"{{transaction.total_inputs}}\"></td>\n" +
-    "        </tr>\n" +
-    "        <tr>\n" +
-    "          <td>Total Outputs: </td>\n" +
-    "          <td to-btc=\"{{transaction.total_outputs}}\"></td>\n" +
-    "        </tr>\n" +
-    "      </table>\n" +
-    "    </div>\n" +
-    "  </div>\n" +
-    "  <br><br>\n" +
-    "</div>\n" +
-    "<div class=\"wide-container\">\n" +
-    "  <div class=\"h3 text-center text-gray\">\n" +
-    "    INPUTS/OUTPUTS\n" +
-    "  </div>\n" +
-    "  <table class=\"table table-transactions\">\n" +
-    "    <tr>\n" +
-    "      <td class='no-top'>\n" +
-    "      <br>\n" +
-    "      <div class=\"col-md-5\">\n" +
-    "        <div class=\"text-center\" ng-show=\"transaction.in[0].prev_out.tx_hash === null\">\n" +
-    "          <br>\n" +
-    "          <span class=\"h3\">NEWLY GENERATED COINS</span>\n" +
-    "        </div>\n" +
-    "        <table\n" +
-    "          ng-repeat=\"i in transaction.in\"\n" +
-    "          ng-show=\"i.prev_out.tx_hash !== null\"\n" +
-    "          class=\"\n" +
-    "            table table-bordered table-io\"\n" +
-    "          >\n" +
-    "          <tbody>\n" +
-    "            <tr>\n" +
-    "              <td>n (index): </td>\n" +
-    "              <td>\n" +
-    "                <span class=\"h5\">\n" +
-    "                  <a href=\"/testnet/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}\">\n" +
-    "                    {{i.prev_out.n}}\n" +
-    "                  </a>\n" +
-    "                </span>\n" +
-    "              </td>\n" +
-    "            </tr>\n" +
-    "            <tr>\n" +
-    "              <td>Address: </td>\n" +
-    "              <td>\n" +
-    "                <img\n" +
-    "                  ng-src=\"https://identicoin.herokuapp.com/address/{{i.prev_out.address}}\"\n" +
-    "                  width=\"16\">\n" +
-    "                <span class=\"h5\"><a href=\"/testnet/addresses/{{i.prev_out.address}}\">{{i.prev_out.address}}</a></span>\n" +
-    "              </td>\n" +
-    "            </tr>\n" +
-    "            <tr>\n" +
-    "              <td>\n" +
-    "                Amount:\n" +
-    "              </td>\n" +
-    "              <td>\n" +
-    "                <span class=\"label label-default\">SPENT</span>\n" +
-    "                <span class=\"h5 amount\" to-btc=\"{{i.prev_out.value}}\"></span>\n" +
-    "              </td>\n" +
-    "            </tr>\n" +
-    "            <tr>\n" +
-    "              <td class='text-center'>ScriptSig: </td>\n" +
-    "              <td class='break'>\n" +
-    "                <span class=\"h5\">{{i.scriptSig}}</span>\n" +
-    "              </td>\n" +
-    "            </tr>\n" +
-    "          </tbody>\n" +
-    "        </table>\n" +
-    "      </div>\n" +
-    "      <div class=\"col-md-2 text-center\">\n" +
-    "        <br>\n" +
-    "        <i class=\"fa fa-arrow-circle-right fa-4x text-gray-light\"></i>\n" +
-    "      </div>\n" +
-    "      <div class=\"col-md-5 addresses\">\n" +
-    "        <table\n" +
-    "          ng-repeat=\"o in transaction.out\"\n" +
-    "          class=\"table table-bordered table-io\"\n" +
-    "          ng-class=\"{'table-highlighted': transaction.n === o.n}\">\n" +
-    "          <tbody>\n" +
-    "            <tr>\n" +
-    "              <td>n (index): </td>\n" +
-    "              <td><span class=\"h5\">{{o.n}}</span></td>\n" +
-    "            </tr>\n" +
-    "            <tr>\n" +
-    "              <td>Address: </td>\n" +
-    "              <td>\n" +
-    "                <img src=\"https://identicoin.herokuapp.com/address/{{o.address}}\" width=\"16\">\n" +
-    "                <span class=\"h5\"><a href=\"/testnet/addresses/{{o.address}}\">{{o.address}}</a></span>\n" +
-    "              </td>\n" +
-    "            </tr>\n" +
-    "            <tr>\n" +
-    "              <td>\n" +
-    "                Amount:\n" +
-    "              </td>\n" +
-    "              <td>\n" +
-    "                <span class=\"label\" spent=\"{{o.spent}}\"></span>\n" +
-    "                <span class=\"h5 amount\" to-btc=\"{{o.value}}\"></span>\n" +
-    "              </td>\n" +
-    "            </tr>\n" +
-    "            <tr>\n" +
-    "              <td rowspan=\"1\">scriptPubKey: </td>\n" +
-    "              <td class=\"break\">\n" +
-    "                <span class=\"h5\">\n" +
-    "                  {{o.scriptPubKey}}\n" +
-    "                </span>\n" +
-    "              </td>\n" +
-    "            </tr>\n" +
-    "            <!-- <tr>\n" +
-    "              <td>\n" +
-    "                <span class=\"h5\">\n" +
-    "                  TODO: Parsed\n" +
-    "                </span>\n" +
-    "              </td>\n" +
-    "            </tr> -->\n" +
-    "          </tbody>\n" +
-    "        </table>\n" +
-    "      </div>\n" +
-    "      </td>\n" +
-    "    </tr>\n" +
-    "  </table>\n" +
-    "</div>\n"
+    "<div ng-include=\"'/templates/blockExplorer/_full_tx.html'\"></div>\n"
   );
 
 
@@ -830,6 +901,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<subnav selected=\"'unconfirmed'\" global=\"global\"></subnav>\n" +
     "<div class=\"centerpiece-alt text-center\">\n" +
     "  <div class=\"container\">\n" +
+    "    <br>\n" +
     "    <div class=\"h1 text-center white\">\n" +
     "        UNCONFIRMED TRANSACTIONS\n" +
     "      </div>\n" +
@@ -1097,9 +1169,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            Blocks\n" +
     "          </a>\n" +
     "        </li>\n" +
-    "        <li ng-class=\"{'active': selected == 'unconfirmed'}\">\n" +
-    "          <a href=\"/testnet/unconfirmed\">\n" +
-    "            Unconfirmed\n" +
+    "        <li ng-class=\"{'active': selected == 'propagate'}\">\n" +
+    "          <a href=\"/testnet/propagate\">\n" +
+    "            Propagate\n" +
     "          </a>\n" +
     "        </li>\n" +
     "      </ul>\n" +
@@ -1240,7 +1312,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          <ul class=\"nav\">\n" +
     "            <li ng-repeat=\"sub in s.subs.slice(1)\" spy=\"{{sub.id}}\">\n" +
     "              <span class='sub'>\n" +
-    "                <a href=\"/docs#{{sub.id}}\">{{sub.name.capitalize()}}</a>\n" +
+    "                <a href=\"/docs/ref#{{sub.id}}\">{{sub.name.capitalize()}}</a>\n" +
     "              </span>\n" +
     "            </li>\n" +
     "          </ul>\n" +
@@ -1260,7 +1332,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          <ul class=\"nav\">\n" +
     "            <li ng-repeat=\"sub in s.subs.slice(1)\" spy=\"{{sub.id}}\">\n" +
     "              <span class='sub'>\n" +
-    "                <a href=\"/docs#{{sub.id}}\">{{sub.name.capitalize()}}</a>\n" +
+    "                <a href=\"/docs/ref#{{sub.id}}\">{{sub.name.capitalize()}}</a>\n" +
     "              </span>\n" +
     "            </li>\n" +
     "          </ul>\n" +
@@ -1863,7 +1935,11 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "<p>It is designed to have predictable, resource-oriented URLs and meaningful HTTP response codes to indicate API errors. We support cross-origin resource sharing to allow client-side web application communication. The codebase is open source.</p>\n" +
     "<p>This is the API we’ve always wanted. We hope you will love it too.</p>\n" +
-    "<br>\n" +
+    "<br>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/introduction/intro/_other.html',
     "<h4>Why?</h4>\n" +
     "<br>\n" +
     "<p>Bitcoin is programmable currency. However, the developer infrastructure around Bitcoin is underwhelming.</p>\n" +

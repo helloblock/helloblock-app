@@ -28,20 +28,22 @@
   </form>
   <div class="space"></div>
 </div>
-<tabset class='propagate'>
-  <tab heading="Table">
-    <br>
-    <div ng-show="true">
-      <div ng-include="'/templates/blockExplorer/_full_tx.html'"></div>
+<br>
+<div class="transaction-decoded" ng-show="true">
+  <div class="container">
+    <div class="alert alert-danger alert-danger-light text-center">
+      <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+      <span class="h4">
+        Here is an error alert message
+      </span>
     </div>
-  </tab>
-  <tab heading="JSON">
-    <div class="container">
-      <pre>
-        <code>
+    <div class="alert alert-success text-center">
+      <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+      <span class="h4">
+        Transaction hex is valid and ready to be propagated!
+      </span>
+    </div>
+  </div>
+  <div ng-include="'/templates/blockExplorer/_full_tx.html'"></div>
 
-        </code>
-      </pre>
-    </div>
-  </tab>
-</tabset>
+</div>
