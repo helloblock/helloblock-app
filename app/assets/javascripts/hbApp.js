@@ -27,8 +27,10 @@ hbApp.run( function( $rootScope, $location ) {
 } )
 
 // TODO
-var PusherClient = new Pusher( '1cca9695fd809ce4bbab' );
-// var PusherClient = new Pusher( '65caf238df447929cecd' );
+var PusherClients = {
+  mainnet: new Pusher( '65caf238df447929cecd' ),
+  testnet: new Pusher( '1cca9695fd809ce4bbab' )
+}
 
 hbApp.run( function( $rootScope, $location, $cookieStore, $anchorScroll ) {
 

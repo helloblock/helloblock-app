@@ -23,8 +23,8 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, $routeParams, $roo
 
   var listLimit = 20;
 
-  var blockChannel = PusherClient.subscribe( 'blocks' );
-  var transactionsChannel = PusherClient.subscribe( 'transactions' );
+  var blockChannel = PusherClients[ explorerMode ].subscribe( 'blocks' );
+  var transactionsChannel = PusherClients[ explorerMode ].subscribe( 'transactions' );
 
   HelloBlock[ explorerMode ].Blocks.get( {
     identifier: "latest",
@@ -74,8 +74,8 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, $routeParams, $roo
   } )
 
   $scope.$on( "$destroy", function() {
-    PusherClient.unsubscribe( "blocks" )
-    PusherClient.unsubscribe( "transactions" )
+    PusherClients[ explorerMode ].unsubscribe( "blocks" )
+    PusherClients[ explorerMode ].unsubscribe( "transactions" )
   } )
 
 } )

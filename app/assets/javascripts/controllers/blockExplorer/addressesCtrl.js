@@ -13,7 +13,7 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
     unspents: []
   }
 
-  var addressChannel = PusherClient.subscribe( 'addresses' );
+  var addressChannel = PusherClients[ explorerMode ].subscribe( 'addresses' );
 
   // Callback: Lvl 1
   HelloBlock[ explorerMode ].Addresses.get( {
@@ -178,7 +178,7 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
   }
 
   $scope.$on( "$destroy", function() {
-    PusherClient.unsubscribe( "addresses" )
+    PusherClients[ explorerMode ].unsubscribe( "addresses" )
   } )
 
 } )
