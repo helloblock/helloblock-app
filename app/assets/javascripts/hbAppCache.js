@@ -220,7 +220,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <table class=\"table table-bordered table-summary\">\n" +
     "      <tr>\n" +
     "        <td>Block Height: </td>\n" +
-    "        <td><a href=\"/testnet/blocks/{{transaction.block_height}}\">{{transaction.block_height}}</a></td>\n" +
+    "        <td><a href=\"/{{global.mode}}/blocks/{{transaction.block_height}}\">{{transaction.block_height}}</a></td>\n" +
     "      </tr>\n" +
     "      <tr>\n" +
     "        <td>Received Time: </td>\n" +
@@ -282,7 +282,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "                <img\n" +
     "                ng-src=\"https://identicoin.herokuapp.com/address/{{i.prev_out.address}}\"\n" +
     "                width=\"16\">\n" +
-    "                <span><a href=\"/testnet/addresses/{{i.prev_out.address}}\">{{i.prev_out.address}}</a></span>\n" +
+    "                <span><a href=\"/{{global.mode}}/addresses/{{i.prev_out.address}}\">{{i.prev_out.address}}</a></span>\n" +
     "              </td>\n" +
     "            </tr>\n" +
     "            <tr>\n" +
@@ -298,7 +298,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              <td>n (index): </td>\n" +
     "              <td>\n" +
     "                <span>\n" +
-    "                  <a href=\"/testnet/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}\">\n" +
+    "                  <a href=\"/{{global.mode}}/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}\">\n" +
     "                    {{i.prev_out.n}}\n" +
     "                  </a>\n" +
     "                </span>\n" +
@@ -310,7 +310,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              </td>\n" +
     "              <td class=''>\n" +
     "                <span class=\"amount\">\n" +
-    "                  <a href=\"/testnet/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}\">\n" +
+    "                  <a href=\"/{{global.mode}}/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}\">\n" +
     "                    {{i.prev_out.tx_hash}}\n" +
     "                  </a>\n" +
     "                </span>\n" +
@@ -343,7 +343,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            <td>Address: </td>\n" +
     "            <td>\n" +
     "              <img src=\"https://identicoin.herokuapp.com/address/{{o.address}}\" width=\"16\">\n" +
-    "              <span><a href=\"/testnet/addresses/{{o.address}}\">{{o.address}}</a></span>\n" +
+    "              <span><a href=\"/{{global.mode}}/addresses/{{o.address}}\">{{o.address}}</a></span>\n" +
     "            </td>\n" +
     "          </tr>\n" +
     "          <tr>\n" +
@@ -387,7 +387,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        TX HASH:\n" +
     "      </span>\n" +
     "      <span class='h5 pull-left'>\n" +
-    "        <a href=\"/testnet/transactions/{{tx.tx_hash}}\"> {{tx.tx_hash}}</a>\n" +
+    "        <a href=\"/{{global.mode}}/transactions/{{tx.tx_hash}}\"> {{tx.tx_hash}}</a>\n" +
     "      </span>\n" +
     "      <span class=\"pull-right\">\n" +
     "        <span class=\"label label-lg\" confirmations=\"{{tx.confirmations}}\"></span>\n" +
@@ -412,7 +412,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        <tbody>\n" +
     "          <tr>\n" +
     "            <td rowspan=\"2\" class='text-center n-index'>\n" +
-    "              <a href=\"/testnet/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}\">\n" +
+    "              <a href=\"/{{global.mode}}/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}\">\n" +
     "                n: {{i.prev_out.n}}\n" +
     "              </a>\n" +
     "            </td>\n" +
@@ -421,7 +421,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            </td>\n" +
     "            <td>\n" +
     "              <span class=\"h6\">\n" +
-    "                <a href=\"/testnet/addresses/{{i.prev_out.address}}\">{{i.prev_out.address}}</a>\n" +
+    "                <a href=\"/{{global.mode}}/addresses/{{i.prev_out.address}}\">{{i.prev_out.address}}</a>\n" +
     "              </span>\n" +
     "              </td>\n" +
     "          </tr>\n" +
@@ -461,7 +461,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            </td>\n" +
     "            <td>\n" +
     "              <span class=\"h6\">\n" +
-    "                <a href=\"/testnet/addresses/{{o.address}}\">{{o.address}}</a>\n" +
+    "                <a href=\"/{{global.mode}}/addresses/{{o.address}}\">{{o.address}}</a>\n" +
     "              </span>\n" +
     "            </td>\n" +
     "          </tr>\n" +
@@ -522,7 +522,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          <tr>\n" +
     "            <td><strong>Base58</strong></td>\n" +
     "            <td bind-once>\n" +
-    "              <a bind-once href=\"/testnet/addresses/{{address.base58}}\">\n" +
+    "              <a bind-once href=\"/{{global.mode}}/addresses/{{address.base58}}\">\n" +
     "                {{address.base58}}\n" +
     "              </a>\n" +
     "            </td>\n" +
@@ -597,7 +597,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  <div class=\"container\">\n" +
     "    <div class=\"col-md-4\">\n" +
     "      <a\n" +
-    "        href=\"/testnet/blocks/{{block.index - 1}}\"\n" +
+    "        href=\"/{{global.mode}}/blocks/{{block.index - 1}}\"\n" +
     "        class=\"btn btn-default btn-block btn-hover\">\n" +
     "        <span class='h3'>PREVIOUS</span>\n" +
     "      </a>\n" +
@@ -609,7 +609,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    </div>\n" +
     "    <div class=\"col-md-4\">\n" +
     "      <a\n" +
-    "        href=\"/testnet/blocks/{{block.index + 1}}\"\n" +
+    "        href=\"/{{global.mode}}/blocks/{{block.index + 1}}\"\n" +
     "        class=\"btn btn-default btn-block btn-hover\">\n" +
     "        <span class='h3'>NEXT</span>\n" +
     "      </a>\n" +
@@ -763,7 +763,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <tbody>\n" +
     "        <tr ng-repeat=\"block in blocks.latest\">\n" +
     "          <td class='text-center'>\n" +
-    "            <a href=\"/testnet/blocks/{{block.block_height}}\">{{block.block_height}}</a>\n" +
+    "            <a href=\"/{{global.mode}}/blocks/{{block.block_height}}\">{{block.block_height}}</a>\n" +
     "          </td>\n" +
     "          <td class='text-center'>\n" +
     "            <span class='h6'>{{block.tx_n}}</span>\n" +
@@ -795,7 +795,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <tbody>\n" +
     "        <tr ng-repeat=\"tx in transactions.latest\">\n" +
     "          <td>\n" +
-    "            <a href=\"/testnet/transactions/{{tx.tx_hash}}\">{{tx.tx_hash}}</a>\n" +
+    "            <a href=\"/{{global.mode}}/transactions/{{tx.tx_hash}}\">{{tx.tx_hash}}</a>\n" +
     "          </td>\n" +
     "          <td>\n" +
     "            <span class='h6 nowrap' live='true' timeago=\"{{tx.estimated_time}}\"></span>\n" +

@@ -32,7 +32,7 @@
     <table class="table table-bordered table-summary">
       <tr>
         <td>Block Height: </td>
-        <td><a href="/testnet/blocks/{{transaction.block_height}}">{{transaction.block_height}}</a></td>
+        <td><a href="/{{global.mode}}/blocks/{{transaction.block_height}}">{{transaction.block_height}}</a></td>
       </tr>
       <tr>
         <td>Received Time: </td>
@@ -94,7 +94,7 @@
                 <img
                 ng-src="https://identicoin.herokuapp.com/address/{{i.prev_out.address}}"
                 width="16">
-                <span><a href="/testnet/addresses/{{i.prev_out.address}}">{{i.prev_out.address}}</a></span>
+                <span><a href="/{{global.mode}}/addresses/{{i.prev_out.address}}">{{i.prev_out.address}}</a></span>
               </td>
             </tr>
             <tr>
@@ -110,7 +110,7 @@
               <td>n (index): </td>
               <td>
                 <span>
-                  <a href="/testnet/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}">
+                  <a href="/{{global.mode}}/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}">
                     {{i.prev_out.n}}
                   </a>
                 </span>
@@ -122,7 +122,7 @@
               </td>
               <td class=''>
                 <span class="amount">
-                  <a href="/testnet/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}">
+                  <a href="/{{global.mode}}/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}">
                     {{i.prev_out.tx_hash}}
                   </a>
                 </span>
@@ -155,7 +155,7 @@
             <td>Address: </td>
             <td>
               <img src="https://identicoin.herokuapp.com/address/{{o.address}}" width="16">
-              <span><a href="/testnet/addresses/{{o.address}}">{{o.address}}</a></span>
+              <span><a href="/{{global.mode}}/addresses/{{o.address}}">{{o.address}}</a></span>
             </td>
           </tr>
           <tr>

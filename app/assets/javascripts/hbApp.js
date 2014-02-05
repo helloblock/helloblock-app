@@ -26,7 +26,6 @@ hbApp.run( function( $rootScope, $location ) {
   };
 } )
 
-// TODO
 var PusherClients = {
   mainnet: new Pusher( '65caf238df447929cecd' ),
   testnet: new Pusher( '1cca9695fd809ce4bbab' )

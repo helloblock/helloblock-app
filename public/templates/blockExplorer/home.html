@@ -64,7 +64,7 @@
       <tbody>
         <tr ng-repeat="block in blocks.latest">
           <td class='text-center'>
-            <a href="/testnet/blocks/{{block.block_height}}">{{block.block_height}}</a>
+            <a href="/{{global.mode}}/blocks/{{block.block_height}}">{{block.block_height}}</a>
           </td>
           <td class='text-center'>
             <span class='h6'>{{block.tx_n}}</span>
@@ -96,7 +96,7 @@
       <tbody>
         <tr ng-repeat="tx in transactions.latest">
           <td>
-            <a href="/testnet/transactions/{{tx.tx_hash}}">{{tx.tx_hash}}</a>
+            <a href="/{{global.mode}}/transactions/{{tx.tx_hash}}">{{tx.tx_hash}}</a>
           </td>
           <td>
             <span class='h6 nowrap' live='true' timeago="{{tx.estimated_time}}"></span>

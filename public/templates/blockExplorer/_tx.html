@@ -5,7 +5,7 @@
         TX HASH:
       </span>
       <span class='h5 pull-left'>
-        <a href="/testnet/transactions/{{tx.tx_hash}}"> {{tx.tx_hash}}</a>
+        <a href="/{{global.mode}}/transactions/{{tx.tx_hash}}"> {{tx.tx_hash}}</a>
       </span>
       <span class="pull-right">
         <span class="label label-lg" confirmations="{{tx.confirmations}}"></span>
@@ -30,7 +30,7 @@
         <tbody>
           <tr>
             <td rowspan="2" class='text-center n-index'>
-              <a href="/testnet/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}">
+              <a href="/{{global.mode}}/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}">
                 n: {{i.prev_out.n}}
               </a>
             </td>
@@ -39,7 +39,7 @@
             </td>
             <td>
               <span class="h6">
-                <a href="/testnet/addresses/{{i.prev_out.address}}">{{i.prev_out.address}}</a>
+                <a href="/{{global.mode}}/addresses/{{i.prev_out.address}}">{{i.prev_out.address}}</a>
               </span>
               </td>
           </tr>
@@ -79,7 +79,7 @@
             </td>
             <td>
               <span class="h6">
-                <a href="/testnet/addresses/{{o.address}}">{{o.address}}</a>
+                <a href="/{{global.mode}}/addresses/{{o.address}}">{{o.address}}</a>
               </span>
             </td>
           </tr>
