@@ -1,9 +1,14 @@
-hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams, $location, HelloBlock ) {
+hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams, $location, $rootScope, HelloBlock ) {
 
-  var defaultAddress = "mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo"
+  var explorerMode = $rootScope.global.mode;
+
+  var defaultAddresses = {
+    testnet: "mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo",
+    mainnet: "1KJbvJXiV6AguiuBzif1ZzpX67pBCUuf7T"
+  }
 
   $scope.address = {
-    base58: $routeParams.address || defaultAddress,
+    base58: $routeParams.address || defaultAddresses[ explorerMode ],
     transactions: [],
     unspents: []
   }
@@ -11,7 +16,7 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
   var addressChannel = PusherClient.subscribe( 'addresses' );
 
   // Callback: Lvl 1
-  HelloBlock.Addresses.get( {
+  HelloBlock[ explorerMode ].Addresses.get( {
     address: $scope.address.base58,
     limit: 50,
     offset: 0
@@ -26,7 +31,7 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
     } )
 
     // Callback: Lvl 2
-    HelloBlock.Transactions.get( {
+    HelloBlock[ explorerMode ].Transactions.get( {
       tx_hashes: unspents_tx_hashes
     }, function( res ) {
 
@@ -92,7 +97,7 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
       $scope.fetching = true;
 
       // Callback: Lvl 1
-      HelloBlock.AddressTransactions.get( {
+      HelloBlock[ explorerMode ].AddressTransactions.get( {
         address: $scope.address.base58,
         limit: 50,
         offset: $scope.limitTo.transactions
@@ -131,7 +136,7 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
       $scope.fetching = true;
 
       // Callback: Lvl 1
-      HelloBlock.AddressUnspents.get( {
+      HelloBlock[ explorerMode ].AddressUnspents.get( {
         address: $scope.address.base58,
         limit: 50,
         offset: $scope.limitTo.unspents
@@ -148,7 +153,7 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
         }
 
         // Callback: Lvl 2
-        HelloBlock.Transactions.get( {
+        HelloBlock[ explorerMode ].Transactions.get( {
           tx_hashes: unspents_tx_hashes
         }, function( res ) {
 

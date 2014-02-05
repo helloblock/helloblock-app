@@ -1,4 +1,6 @@
-hbApp.controller( "blockExplorer/homeCtrl", function( $scope, $routeParams, HelloBlock ) {
+hbApp.controller( "blockExplorer/homeCtrl", function( $scope, $routeParams, $rootScope, HelloBlock ) {
+
+  var explorerMode = $rootScope.global.mode;
 
   // Defaults
   $scope.transactions = {
@@ -15,14 +17,16 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, $routeParams, Hell
 
   $scope.hasError = function() {
     if ( $routeParams.error === 'true' ) {
-      return true
+      return true;
     }
-  }
+  };
+
+  var listLimit = 20;
 
   var blockChannel = PusherClient.subscribe( 'blocks' );
   var transactionsChannel = PusherClient.subscribe( 'transactions' );
 
-  HelloBlock.Blocks.get( {
+  HelloBlock[ explorerMode ].Blocks.get( {
     identifier: "latest",
     limit: 20
   }, function( res ) {
@@ -30,12 +34,14 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, $routeParams, Hell
 
     // Callback Level 2
     blockChannel.bind( 'latest', function( res ) {
-      Pusher.beep();
-
       var block = res.message
 
       $scope.$apply( function() {
         $scope.blocks.latest.unshift( block )
+
+        if ( $scope.blocks.latest.length >= listLimit ) {
+          $scope.blocks.latest.pop();
+        }
       } )
     } );
 
@@ -44,7 +50,7 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, $routeParams, Hell
   } )
 
   // Callback Level 1
-  HelloBlock.Transactions.get( {
+  HelloBlock[ explorerMode ].Transactions.get( {
     tx_hash: "latest",
     limit: 20
   }, function( res ) {
@@ -52,12 +58,14 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, $routeParams, Hell
 
     // Callback Level 2
     transactionsChannel.bind( 'unconfirmed', function( res ) {
-      Pusher.beep();
-
       var tx = res.message
 
       $scope.$apply( function() {
         $scope.transactions.latest.unshift( tx )
+
+        if ( $scope.transactions.latest.length >= listLimit ) {
+          $scope.transactions.latest.pop();
+        }
       } )
     } );
 

@@ -1,17 +1,29 @@
-hbApp.factory( "HelloBlock", function( $resource ) {
+hbApp.factory( "HelloBlock", function( $resource, $rootScope ) {
 
-  var BASE = "https://nodejshelloblock.herokuapp.com/v1"
+  var explorerModes = [ {
+    name: "mainnet",
+    url: "https://mainnet-helloblock-production.herokuapp.com/v1"
+  }, {
+    name: "testnet",
+    url: "https://testnet-helloblock-production.herokuapp.com/v1"
+  } ]
 
-  return {
-    Addresses: $resource( BASE + "/addresses/:address", {
-      transactions: true,
-      unspents: true
-    } ),
-    AddressTransactions: $resource( BASE + "/addresses/:address/transactions" ),
-    AddressUnspents: $resource( BASE + "/addresses/:address/unspents" ),
-    Transactions: $resource( BASE + "/transactions/:tx_hash" ),
-    TransactionsDecode: $resource( BASE + "/transactions/decode" ),
-    Blocks: $resource( BASE + "/blocks/:identifier" )
-  }
+  var ENDPOINTS = {};
+
+  explorerModes.forEach( function( mode ) {
+    ENDPOINTS[ mode.name ] = {
+      Addresses: $resource( mode.url + "/addresses/:address", {
+        transactions: true,
+        unspents: true
+      } ),
+      AddressTransactions: $resource( mode.url + "/addresses/:address/transactions" ),
+      AddressUnspents: $resource( mode.url + "/addresses/:address/unspents" ),
+      Transactions: $resource( mode.url + "/transactions/:tx_hash" ),
+      TransactionsDecode: $resource( mode.url + "/transactions/decode" ),
+      Blocks: $resource( mode.url + "/blocks/:identifier" )
+    }
+  } )
+
+  return ENDPOINTS;
 
 } )

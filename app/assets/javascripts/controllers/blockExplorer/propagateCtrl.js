@@ -1,4 +1,6 @@
-hbApp.controller( "blockExplorer/propagateCtrl", function( $scope, HelloBlock, $timeout ) {
+hbApp.controller( "blockExplorer/propagateCtrl", function( $scope, HelloBlock, $rootScope, $timeout ) {
+
+  var explorerMode = $rootScope.global.mode;
 
   $scope.rawTransaction = {
     hex: undefined
@@ -12,7 +14,7 @@ hbApp.controller( "blockExplorer/propagateCtrl", function( $scope, HelloBlock, $
       return;
     }
 
-    HelloBlock.TransactionsDecode.get( {
+    HelloBlock[ explorerMode ].TransactionsDecode.get( {
       hex: $scope.rawTransaction.hex
     }, function( res ) {
       Alerts.addSuccess( "Decoding Successful" )
@@ -31,7 +33,7 @@ hbApp.controller( "blockExplorer/propagateCtrl", function( $scope, HelloBlock, $
     }
 
     $scope.sending = true;
-    HelloBlock.Transactions.save( {
+    HelloBlock[ explorerMode ].Transactions.save( {
       hex: $scope.rawTransaction.hex
     }, function( res ) {
       console.log( res )
@@ -80,7 +82,7 @@ hbApp.controller( "blockExplorer/propagateCtrl", function( $scope, HelloBlock, $
   }
 
   var updateTransaction = function( txHash ) {
-    HelloBlock.Transactions.get( {
+    HelloBlock[ explorerMode ].Transactions.get( {
       tx_hash: txHash
     }, function( res ) {
       $scope.transaction = res.data.transaction

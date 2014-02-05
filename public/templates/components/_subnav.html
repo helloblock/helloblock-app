@@ -4,15 +4,15 @@
       <ul class="nav navbar-nav navbar-left">
         <li class="dropdown dropdown-small no-left active">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            {{global.mode}} <b class="caret"></b>
+            {{global.mode.toUpperCase()}} <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a href="#" ng-click="global.setMode('TESTNET')">TESTNET</a>
+              <a href="#" ng-click="global.setMode('testnet')">TESTNET</a>
             </li>
             <div class="divider"></div>
             <li>
-              <a href="#" ng-click="global.setMode('MAINNET')">MAINNET</a>
+              <a href="#" ng-click="global.setMode('mainnet')">MAINNET</a>
             </li>
           </ul>
         </li>

@@ -1,6 +1,8 @@
-hbApp.controller( "blockExplorer/blocksCtrl", function( $scope, $routeParams, $location, HelloBlock ) {
+hbApp.controller( "blockExplorer/blocksCtrl", function( $scope, $routeParams, $location, $rootScope, HelloBlock ) {
 
-  var identifier = 168058
+  var explorerMode = $rootScope.global.mode;
+
+  var identifier = 168058;
 
   if ( $routeParams.identifier ) {
     if ( $routeParams.identifier.match( /^\d+$/ ) ) {
@@ -16,7 +18,7 @@ hbApp.controller( "blockExplorer/blocksCtrl", function( $scope, $routeParams, $l
     transactions: []
   }
 
-  HelloBlock.Blocks.get( {
+  HelloBlock[ explorerMode ].Blocks.get( {
     identifier: $scope.block.identifier
   }, function( res ) {
     var data = res[ "data" ][ "block" ]
