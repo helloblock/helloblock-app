@@ -782,11 +782,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    </table>\n" +
     "  </div>\n" +
     "  <div class=\"col-md-6\">\n" +
-    "    <div class=\"h3 text-gray text-center\">Latest Transactions\n" +
-    "      <span class='h5'>\n" +
-    "        <a href=\"/testnet/unconfirmed\">(see all)</a>\n" +
-    "      </span>\n" +
-    "    </div>\n" +
+    "    <div class=\"h3 text-gray text-center\">Latest Transactions</div>\n" +
     "    <br>\n" +
     "    <waitspin ng-show=\"transactions.latest.length === 0\" left='250'></waitspin>\n" +
     "    <table class=\"table table-latest\">\n" +
@@ -1124,15 +1120,15 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <ul class=\"nav navbar-nav navbar-left\">\n" +
     "        <li class=\"dropdown dropdown-small no-left active\">\n" +
     "          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
-    "            {{global.mode}} <b class=\"caret\"></b>\n" +
+    "            {{global.mode.toUpperCase()}} <b class=\"caret\"></b>\n" +
     "          </a>\n" +
     "          <ul class=\"dropdown-menu\">\n" +
     "            <li>\n" +
-    "              <a href=\"#\" ng-click=\"global.setMode('TESTNET')\">TESTNET</a>\n" +
+    "              <a href=\"#\" ng-click=\"global.setMode('testnet')\">TESTNET</a>\n" +
     "            </li>\n" +
     "            <div class=\"divider\"></div>\n" +
     "            <li>\n" +
-    "              <a href=\"#\" ng-click=\"global.setMode('MAINNET')\">MAINNET</a>\n" +
+    "              <a href=\"#\" ng-click=\"global.setMode('mainnet')\">MAINNET</a>\n" +
     "            </li>\n" +
     "          </ul>\n" +
     "        </li>\n" +
