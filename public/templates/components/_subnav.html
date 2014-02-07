@@ -30,27 +30,27 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class='no-left' ng-class="{'active': selected == 'latest'}">
-          <a href="/testnet/">
+          <a href="/{{global.mode}}/">
             Latest
           </a>
         </li>
         <li ng-class="{'active': selected == 'addresses'}">
-          <a href="/testnet/addresses">
+          <a href="/{{global.mode}}/addresses">
             Addresses
           </a>
         </li>
         <li ng-class="{'active': selected == 'transactions'}">
-          <a href="/testnet/transactions">
+          <a href="/{{global.mode}}/transactions">
             Transactions
           </a>
         </li>
         <li ng-class="{'active': selected == 'blocks'}">
-          <a href="/testnet/blocks">
+          <a href="/{{global.mode}}/blocks">
             Blocks
           </a>
         </li>
         <li ng-class="{'active': selected == 'propagate'}">
-          <a href="/testnet/propagate">
+          <a href="/{{global.mode}}/propagate">
             Propagate
           </a>
         </li>
