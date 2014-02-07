@@ -1,6 +1,8 @@
 <subnav selected="'latest'" global="global"></subnav>
 <!-- <br><br><br><br> -->
 <div class="centerpiece-alt">
+  <div class='h1 text-center white'>{{global.mode.toUpperCase()}}</div>
+  <br>
   <form ng-submit="bigSearch.query(query)">
     <div class="container">
       <div ng-show="hasError()">
