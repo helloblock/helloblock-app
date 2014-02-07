@@ -234,7 +234,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      </tr>\n" +
     "      <tr>\n" +
     "        <td>Size: </td>\n" +
-    "        <td>{{transaction.tx_size}} KB</td>\n" +
+    "        <td>{{transaction.tx_size}} Bytes</td>\n" +
     "      </tr>\n" +
     "    </table>\n" +
     "  </div>\n" +
@@ -483,6 +483,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   $templateCache.put('/templates/blockExplorer/addresses.html',
     "<subnav selected=\"'addresses'\" global=\"global\"></subnav>\n" +
     "<div class=\"centerpiece-alt text-center\">\n" +
+    "  <div class='h1 white'>{{global.mode.toUpperCase()}}</div>\n" +
+    "  <br>\n" +
     "  <div class=\"container\">\n" +
     "    <form ng-submit=\"bigSearch.query(address.base58)\">\n" +
     "      <div class=\"input-group\">\n" +
@@ -594,6 +596,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   $templateCache.put('/templates/blockExplorer/blocks.html',
     "<subnav selected=\"'blocks'\" global=\"global\"></subnav>\n" +
     "<div class=\"centerpiece-alt text-center\">\n" +
+    "  <div class='h1 white'>{{global.mode.toUpperCase()}}</div>\n" +
+    "  <br>\n" +
     "  <div class=\"container\">\n" +
     "    <div class=\"col-md-4\">\n" +
     "      <a\n" +
@@ -700,6 +704,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<subnav selected=\"'latest'\" global=\"global\"></subnav>\n" +
     "<!-- <br><br><br><br> -->\n" +
     "<div class=\"centerpiece-alt\">\n" +
+    "  <div class='h1 text-center white'>{{global.mode.toUpperCase()}}</div>\n" +
+    "  <br>\n" +
     "  <form ng-submit=\"bigSearch.query(query)\">\n" +
     "    <div class=\"container\">\n" +
     "      <div ng-show=\"hasError()\">\n" +
@@ -814,7 +820,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<div class=\"centerpiece-alt text-center\">\n" +
     "  <div class=\"container heading\">\n" +
     "    <div class=\"h1 text-center white\">\n" +
-    "        PROPAGATE/DECODE TRANSACTIONS\n" +
+    "        PROPAGATE/DECODE TRANSACTIONS [{{global.mode.toUpperCase()}}]\n" +
     "      </div>\n" +
     "  </div>\n" +
     "</div>\n" +
@@ -871,6 +877,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   $templateCache.put('/templates/blockExplorer/transactions.html',
     "<subnav selected=\"'transactions'\" global=\"global\"></subnav>\n" +
     "<div class=\"centerpiece-alt text-center\">\n" +
+    "  <div class='h1 white'>{{global.mode.toUpperCase()}}</div>\n" +
+    "  <br>\n" +
     "  <div class=\"container\">\n" +
     "    <form ng-submit=\"bigSearch.query(transaction.tx_hash)\">\n" +
     "      <div class=\"input-group\">\n" +
@@ -1146,27 +1154,27 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      </ul>\n" +
     "      <ul class=\"nav navbar-nav navbar-right\">\n" +
     "        <li class='no-left' ng-class=\"{'active': selected == 'latest'}\">\n" +
-    "          <a href=\"/testnet/\">\n" +
+    "          <a href=\"/{{global.mode}}/\">\n" +
     "            Latest\n" +
     "          </a>\n" +
     "        </li>\n" +
     "        <li ng-class=\"{'active': selected == 'addresses'}\">\n" +
-    "          <a href=\"/testnet/addresses\">\n" +
+    "          <a href=\"/{{global.mode}}/addresses\">\n" +
     "            Addresses\n" +
     "          </a>\n" +
     "        </li>\n" +
     "        <li ng-class=\"{'active': selected == 'transactions'}\">\n" +
-    "          <a href=\"/testnet/transactions\">\n" +
+    "          <a href=\"/{{global.mode}}/transactions\">\n" +
     "            Transactions\n" +
     "          </a>\n" +
     "        </li>\n" +
     "        <li ng-class=\"{'active': selected == 'blocks'}\">\n" +
-    "          <a href=\"/testnet/blocks\">\n" +
+    "          <a href=\"/{{global.mode}}/blocks\">\n" +
     "            Blocks\n" +
     "          </a>\n" +
     "        </li>\n" +
     "        <li ng-class=\"{'active': selected == 'propagate'}\">\n" +
-    "          <a href=\"/testnet/propagate\">\n" +
+    "          <a href=\"/{{global.mode}}/propagate\">\n" +
     "            Propagate\n" +
     "          </a>\n" +
     "        </li>\n" +
@@ -2756,7 +2764,10 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/test.html',
-    ""
+    "TEST PAGE\n" +
+    "<div class=\"test\">\n" +
+    "\n" +
+    "</div>\n"
   );
 
 }]);
