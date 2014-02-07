@@ -13,7 +13,7 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
     unspents: []
   }
 
-  var addressChannel = PusherClients[ explorerMode ].subscribe( 'addresses' );
+  var addressesChannel = io.connect( Socket.URL[ explorerMode ] + '/addresses' )
 
   // Callback: Lvl 1
   HelloBlock[ explorerMode ].Addresses.get( {
@@ -42,10 +42,10 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
     } )
 
     // Callback: Lvl 2
-    addressChannel.bind( $scope.address.base58, function( res ) {
-      Pusher.beep();
+    addressesChannel.on( $scope.address.base58, function( data ) {
+      Socket.beep();
 
-      var tx = res.message
+      var tx = data.message
       // TODO
       // tx.direction
       // tx.result
@@ -178,7 +178,7 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
   }
 
   $scope.$on( "$destroy", function() {
-    PusherClients[ explorerMode ].unsubscribe( "addresses" )
+    addressesChannel.socket.disconnect()
   } )
 
 } )

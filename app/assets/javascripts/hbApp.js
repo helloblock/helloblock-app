@@ -26,9 +26,12 @@ hbApp.run( function( $rootScope, $location ) {
   };
 } )
 
-var PusherClients = {
-  mainnet: new Pusher( '65caf238df447929cecd' ),
-  testnet: new Pusher( '1cca9695fd809ce4bbab' )
+var Socket = {
+  URL: {
+    mainnet: "https://mainnet-helloblock-socket.herokuapp.com:443",
+    testnet: "https://testnet-helloblock-socket.herokuapp.com:443"
+  },
+  beep: null
 }
 
 hbApp.run( function( $rootScope, $location, $cookieStore, $anchorScroll ) {
@@ -86,12 +89,7 @@ hbApp.run( function( $rootScope, $location, $cookieStore, $anchorScroll ) {
     }
   }
 
-  // Pusher.log = function( message ) {
-  //   if ( window.console && window.console.log ) {
-  //     window.console.log( message );
-  //   }
-  // };
-  Pusher.beep = function() {
+  Socket.beep = function() {
     if ( $rootScope.global.sound === 1 ) {
       var file = "/beep.wav";
       ( new Audio( file ) ).play()

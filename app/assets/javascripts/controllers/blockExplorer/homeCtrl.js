@@ -23,8 +23,8 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, $routeParams, $roo
 
   var listLimit = 20;
 
-  var blockChannel = PusherClients[ explorerMode ].subscribe( 'blocks' );
-  var transactionsChannel = PusherClients[ explorerMode ].subscribe( 'transactions' );
+  var blocksChannel = io.connect( Socket.URL[ explorerMode ] + '/blocks' )
+  var transactionsChannel = io.connect( Socket.URL[ explorerMode ] + '/transactions' )
 
   HelloBlock[ explorerMode ].Blocks.get( {
     identifier: "latest",
@@ -33,8 +33,8 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, $routeParams, $roo
     $scope.blocks.latest = res.data.blocks
 
     // Callback Level 2
-    blockChannel.bind( 'latest', function( res ) {
-      var block = res.message
+    blocksChannel.on( "latest", function( data ) {
+      var block = data.message
 
       $scope.$apply( function() {
         $scope.blocks.latest.unshift( block )
@@ -43,7 +43,7 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, $routeParams, $roo
           $scope.blocks.latest.pop();
         }
       } )
-    } );
+    } )
 
   }, function( err ) {
     console.log( err )
@@ -57,8 +57,8 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, $routeParams, $roo
     $scope.transactions.latest = res.data.transactions
 
     // Callback Level 2
-    transactionsChannel.bind( 'unconfirmed', function( res ) {
-      var tx = res.message
+    transactionsChannel.on( "latest", function( data ) {
+      var tx = data.message
 
       $scope.$apply( function() {
         $scope.transactions.latest.unshift( tx )
@@ -67,15 +67,15 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, $routeParams, $roo
           $scope.transactions.latest.pop();
         }
       } )
-    } );
+    } )
 
   }, function( err ) {
     console.log( err )
   } )
 
   $scope.$on( "$destroy", function() {
-    PusherClients[ explorerMode ].unsubscribe( "blocks" )
-    PusherClients[ explorerMode ].unsubscribe( "transactions" )
+    transactionsChannel.socket.disconnect()
+    blocksChannel.socket.disconnect()
   } )
 
 } )
