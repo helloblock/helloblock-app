@@ -2659,9 +2659,18 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('/templates/landing.html',
     "<div id=\"landing\">\n" +
+    "  <div ng-show=\"emailSuccess()\" class='alert-message'>\n" +
+    "    <div class=\"alert alert-success text-center\">\n" +
+    "      <a class=\"close\" data-dismiss=\"alert\" href=\"#\" aria-hidden=\"true\">&times;</a>\n" +
+    "      <span class=\"h4\">\n" +
+    "        Thank you, we will be in touch shortly!\n" +
+    "      </span>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
     "  <div class=\"centerpiece\">\n" +
     "    <div class=\"container\">\n" +
-    "      <br><br><br>\n" +
+    "      <br>\n" +
+    "      <br><br>\n" +
     "      <h1 class='main-title text-center white'>\n" +
     "        <strong>Stop writing tests using real coins</strong>\n" +
     "      </h1>\n" +
@@ -2685,10 +2694,10 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        <br>\n" +
     "        <i class=\"fa fa-copy fa-4x\"></i>\n" +
     "        <h2>\n" +
-    "          Mirrors Blockchain.info\n" +
+    "          Blockchain.info Mirror\n" +
     "        </h2>\n" +
     "        <p class='lead lead-smaller'>\n" +
-    "          Provides a testing environment for developers using blockchain.info in production\n" +
+    "          Provides separate testnet mirror which follows the Blockchain.info API conventions\n" +
     "        </p>\n" +
     "      </div>\n" +
     "      <div class=\"feature col-md-4 text-center\">\n" +
@@ -2748,13 +2757,41 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        <br>\n" +
     "        <div class=\"row text-center\">\n" +
     "          <a class=\"btn btn-success btn-lg\" href=\"/docs/tutorials\">\n" +
-    "            <!-- TODO: should be explorer -->\n" +
     "            Getting Started\n" +
     "          </a>\n" +
     "        </div>\n" +
     "\n" +
     "      </div>\n" +
     "    </div>\n" +
+    "    <br><br><br>\n" +
+    "    <div class=\"row\">\n" +
+    "      <!-- <h1 class='text-center'>Quick Start</h1> -->\n" +
+    "      <div class=\"col-md-8 col-md-offset-2\">\n" +
+    "        <blockquote>\n" +
+    "          <p class=\"lead\">\n" +
+    "            To access the Testnet3 Faucet, lift the API Rate Limit, and stay up to date, please leave your e-mail.\n" +
+    "          </p>\n" +
+    "        </blockquote>\n" +
+    "        <form ng-submit=\"User.signUp(User.email)\">\n" +
+    "          <div class=\"input-group\">\n" +
+    "              <input\n" +
+    "                class='h3 big-input'\n" +
+    "                spellcheck=\"false\"\n" +
+    "                type=\"email\"\n" +
+    "                name=\"email\"\n" +
+    "                ng-model=\"User.email\"\n" +
+    "                ng-minlength=\"4\"\n" +
+    "                required\n" +
+    "                >\n" +
+    "              <span class=\"input-group-btn\">\n" +
+    "                <button class=\"btn btn-success btn-block btn-search\">\n" +
+    "                  <span class=\"h4\">Sign Up</span>\n" +
+    "                </button>\n" +
+    "              </span>\n" +
+    "          </div>\n" +
+    "        </form>\n" +
+    "\n" +
+    "      </div>\n" +
     "\n" +
     "  </div>\n" +
     "\n" +

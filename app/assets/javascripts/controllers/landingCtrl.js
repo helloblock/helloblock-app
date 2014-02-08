@@ -15,7 +15,6 @@ hbApp.controller( "landingCtrl", function( $scope, $http, $location, $routeParam
 			$http.post( "/email", {
 				email: email
 			} ).success( function() {
-				console.log( 'succes' )
 				$location.path( "/" ).search( {
 					email_success: 'true'
 				} )
