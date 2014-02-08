@@ -1,7 +1,16 @@
 <div id="landing">
+  <div ng-show="emailSuccess()" class='alert-message'>
+    <div class="alert alert-success text-center">
+      <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+      <span class="h4">
+        Thank you, we will be in touch shortly!
+      </span>
+    </div>
+  </div>
   <div class="centerpiece">
     <div class="container">
-      <br><br><br>
+      <br>
+      <br><br>
       <h1 class='main-title text-center white'>
         <strong>Stop writing tests using real coins</strong>
       </h1>
@@ -25,10 +34,10 @@
         <br>
         <i class="fa fa-copy fa-4x"></i>
         <h2>
-          Mirrors Blockchain.info
+          Blockchain.info Mirror
         </h2>
         <p class='lead lead-smaller'>
-          Provides a testing environment for developers using blockchain.info in production
+          Provides separate testnet mirror which follows the Blockchain.info API conventions
         </p>
       </div>
       <div class="feature col-md-4 text-center">
@@ -88,13 +97,41 @@
         <br>
         <div class="row text-center">
           <a class="btn btn-success btn-lg" href="/docs/tutorials">
-            <!-- TODO: should be explorer -->
             Getting Started
           </a>
         </div>
 
       </div>
     </div>
+    <br><br><br>
+    <div class="row">
+      <!-- <h1 class='text-center'>Quick Start</h1> -->
+      <div class="col-md-8 col-md-offset-2">
+        <blockquote>
+          <p class="lead">
+            To access the Testnet3 Faucet, lift the API Rate Limit, and stay up to date, please leave your e-mail.
+          </p>
+        </blockquote>
+        <form ng-submit="User.signUp(User.email)">
+          <div class="input-group">
+              <input
+                class='h3 big-input'
+                spellcheck="false"
+                type="email"
+                name="email"
+                ng-model="User.email"
+                ng-minlength="4"
+                required
+                >
+              <span class="input-group-btn">
+                <button class="btn btn-success btn-block btn-search">
+                  <span class="h4">Sign Up</span>
+                </button>
+              </span>
+          </div>
+        </form>
+
+      </div>
 
   </div>
 

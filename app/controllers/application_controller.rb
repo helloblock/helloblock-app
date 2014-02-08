@@ -15,6 +15,20 @@ class ApplicationController < ActionController::Base
     render nothing: true, status: 404
   end
 
+  def save_email
+    email = Email.new({
+      email: params[:email],
+      ip_address: request.remote_ip
+    })
+    if email.save
+
+    else
+      # TODO
+    end
+
+    render nothing: true
+  end
+
   protected
 
   def set_csrf_cookie_for_ng

@@ -74,8 +74,8 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, $routeParams, $roo
   } )
 
   $scope.$on( "$destroy", function() {
-    transactionsChannel.socket.disconnect()
-    blocksChannel.socket.disconnect()
+    // transactionsChannel.socket.disconnect()
+    // blocksChannel.socket.disconnect()
   } )
 
 } )

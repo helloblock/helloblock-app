@@ -1,6 +1,8 @@
 Helloblock::Application.routes.draw do
   root to: "application#index"
 
+  post "/email" => "application#save_email"
+
   # Static Assets normally served before this
   # By the time it hits this, it's too late, unfound
   get "/templates" => "application#unfound_assets"

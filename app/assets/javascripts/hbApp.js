@@ -101,7 +101,8 @@ hbApp.run( function( $rootScope, $location, $cookieStore, $anchorScroll ) {
 hbApp.config( function( $routeProvider ) {
 
   $routeProvider.when( "/", {
-    templateUrl: "/templates/landing.html"
+    templateUrl: "/templates/landing.html",
+    controller: "landingCtrl"
   } )
 
   $routeProvider.when( "/test", {
