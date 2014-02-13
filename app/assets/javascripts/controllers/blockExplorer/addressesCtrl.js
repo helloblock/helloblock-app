@@ -57,7 +57,7 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
 
   }, function( err ) {
     console.log( "error!", err )
-    $location.path( "/testnet" ).search( {
+    $location.path( "/" + explorerMode ).search( {
       error: 'true'
     } )
   } )

@@ -1047,7 +1047,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      </button>\n" +
     "      <a class=\"navbar-brand\" href=\"/\">\n" +
     "        <span ng-non-bindable>\n" +
-    "          Hello, block!\n" +
+    "          Hello, block! [BETA]\n" +
     "        </span>\n" +
     "      </a>\n" +
     "    </div>\n" +
@@ -2526,7 +2526,13 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   $templateCache.put('/templates/docs/tutorials/getting-started.html',
     "<h1 class='text-center'>Getting Started</h1>\n" +
     "\n" +
-    "<h3>Lorem</h3>\n" +
+    "<h3>Introduction</h3>\n" +
+    "<blockquote>\n" +
+    "  <p>Hey there, you've come here a bit early but we're really exciting to share the open source API we've build. All the endpoints work and we're writing up the docs now.</p>\n" +
+    "  <p>In the mean time, shoot me an e-mail and let's discuss how we can help. scott@helloblock.io</p>\n" +
+    "</blockquote>\n" +
+    "\n" +
+    "<!-- <h3>Lorem</h3>\n" +
     "<p>\n" +
     "  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n" +
     "  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n" +
@@ -2648,7 +2654,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "</p>\n" +
     "\n" +
     "\n" +
-    "<div class=\"space-big\"></div>\n"
+    "<div class=\"space-big\"></div>\n" +
+    " -->\n"
   );
 
 

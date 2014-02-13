@@ -25,7 +25,7 @@ hbApp.controller( "blockExplorer/blocksCtrl", function( $scope, $routeParams, $l
     $scope.block.index = data.block_height;
     $scope.block = $.extend( {}, $scope.block, data );
   }, function( err ) {
-    $location.path( "/testnet" ).search( {
+    $location.path( "/" + explorerMode ).search( {
       error: 'true'
     } )
   } )
