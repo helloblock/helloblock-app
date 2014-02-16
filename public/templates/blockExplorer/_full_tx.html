@@ -92,7 +92,7 @@
               <td>Address: </td>
               <td>
                 <img
-                ng-src="http://www.gravatar.com/avatar/{{i.prev_out.address}}?d=identicon"
+                ng-src="http://www.gravatar.com/avatar/{{i.prev_out.hash160}}?d=identicon&s=16"
                 width="16">
                 <span><a href="/{{global.mode}}/addresses/{{i.prev_out.address}}">{{i.prev_out.address}}</a></span>
               </td>
@@ -154,7 +154,7 @@
           <tr>
             <td>Address: </td>
             <td>
-              <img src="http://www.gravatar.com/avatar/{{o.address}}?d=identicon" width="16">
+              <img src="http://www.gravatar.com/avatar/{{o.hash160}}?d=identicon&s=16" width="16">
               <span><a href="/{{global.mode}}/addresses/{{o.address}}">{{o.address}}</a></span>
             </td>
           </tr>
