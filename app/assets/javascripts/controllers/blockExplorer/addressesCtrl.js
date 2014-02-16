@@ -1,4 +1,4 @@
-hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams, $location, $rootScope, HelloBlock ) {
+hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams, $location, $rootScope, HelloBlock, HelloBlockSocket ) {
 
   var explorerMode = $rootScope.global.mode;
 
@@ -13,7 +13,9 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
     unspents: []
   }
 
-  var addressesChannel = io.connect( Socket.URL[ explorerMode ] + '/addresses' )
+  var addressesChannel = io.connect( HelloBlockSocket.URL[ explorerMode ] + '/addresses', {
+    'force new connection': true
+  } )
 
   // Callback: Lvl 1
   HelloBlock[ explorerMode ].Addresses.get( {
@@ -35,6 +37,8 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
       tx_hashes: unspents_tx_hashes
     }, function( res ) {
 
+      Socket.beep();
+
       $scope.address.unspent_transactions = res.data.transactions
 
     }, function( err ) {
@@ -43,7 +47,7 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
 
     // Callback: Lvl 2
     addressesChannel.on( $scope.address.base58, function( data ) {
-      Socket.beep();
+      HelloBlockSocket.beep();
 
       var tx = data.message
       // TODO
@@ -178,7 +182,7 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
   }
 
   $scope.$on( "$destroy", function() {
-    addressesChannel.socket.removeAllListeners();
+    addressesChannel.socket.disconnect();
   } )
 
 } )

@@ -1,4 +1,4 @@
-hbApp.controller( "blockExplorer/homeCtrl", function( $scope, $routeParams, $rootScope, HelloBlock ) {
+hbApp.controller( "blockExplorer/homeCtrl", function( $scope, $routeParams, $rootScope, HelloBlock, HelloBlockSocket ) {
 
   var explorerMode = $rootScope.global.mode;
 
@@ -23,8 +23,12 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, $routeParams, $roo
 
   var listLimit = 20;
 
-  var blocksChannel = io.connect( Socket.URL[ explorerMode ] + '/blocks' )
-  var transactionsChannel = io.connect( Socket.URL[ explorerMode ] + '/transactions' )
+  var blocksChannel = io.connect( HelloBlockSocket.URL[ explorerMode ] + '/blocks', {
+    'force new connection': true
+  } )
+  var transactionsChannel = io.connect( HelloBlockSocket.URL[ explorerMode ] + '/transactions', {
+    'force new connection': true
+  } )
 
   HelloBlock[ explorerMode ].Blocks.get( {
     identifier: "latest",
@@ -58,6 +62,7 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, $routeParams, $roo
 
     // Callback Level 2
     transactionsChannel.on( "latest", function( data ) {
+
       var tx = data.message
 
       $scope.$apply( function() {
@@ -74,8 +79,8 @@ hbApp.controller( "blockExplorer/homeCtrl", function( $scope, $routeParams, $roo
   } )
 
   $scope.$on( "$destroy", function() {
-    // transactionsChannel.socket.disconnect()
-    // blocksChannel.socket.disconnect()
+    transactionsChannel.socket.disconnect();
+    blocksChannel.socket.disconnect();
   } )
 
 } )

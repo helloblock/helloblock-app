@@ -26,14 +26,6 @@ hbApp.run( function( $rootScope, $location ) {
   };
 } )
 
-var Socket = {
-  URL: {
-    mainnet: "https://mainnet-helloblock-socket.herokuapp.com:443",
-    testnet: "https://testnet-helloblock-socket.herokuapp.com:443"
-  },
-  beep: null
-}
-
 hbApp.run( function( $rootScope, $location, $cookieStore, $anchorScroll ) {
 
   // TODO: What if cookies are set wrong, e.g. JSON.parse("MAINNET")
@@ -86,13 +78,6 @@ hbApp.run( function( $rootScope, $location, $cookieStore, $anchorScroll ) {
       $location.path( "/" + explorerMode ).search( {
         error: 'true'
       } )
-    }
-  }
-
-  Socket.beep = function() {
-    if ( $rootScope.global.sound === 1 ) {
-      var file = "/beep.wav";
-      ( new Audio( file ) ).play()
     }
   }
 

@@ -33,7 +33,7 @@
     </div>
     <waitspin ng-show="!address.hash160"></waitspin>
     <div class="col-md-4 text-center">
-      <img bind-once src="https://identicoin.herokuapp.com/address/{{address.base58}}" height="220" class='address-identicoin'>
+      <img bind-once src="http://www.gravatar.com/avatar/{{address.base58}}?d=identicon" height="220" class='address-identicoin'>
     </div>
     <div class="col-md-8">
       <table class="table table-bordered table-address" ng-show="address.hash160">
