@@ -197,7 +197,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    SUMMARY\n" +
     "  </div>\n" +
     "  <span class=\"pull-right view-json\">\n" +
-    "    <a href='#'>View as JSON</a>\n" +
+    "    <a href='https://{{global.mode}}.helloblock.io/v1/transactions/{{transaction.tx_hash}}'>View as JSON</a>\n" +
     "  </span>\n" +
     "  <br>\n" +
     "  <div class=\"row\">\n" +
@@ -511,7 +511,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  <div class=\"row\">\n" +
     "    <div class=\"container\">\n" +
     "      <span class=\"pull-right\">\n" +
-    "        <a href='#'>View as JSON</a>\n" +
+    "        <a href='https://{{global.mode}}.helloblock.io/v1/addresses/{{address.base58}}'>View as JSON</a>\n" +
     "      </span>\n" +
     "    </div>\n" +
     "    <waitspin ng-show=\"!address.hash160\"></waitspin>\n" +
@@ -632,7 +632,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  <waitspin ng-show=\"!block.block_height\"></waitspin>\n" +
     "  <div class=\"col-md-8 col-md-offset-2\">\n" +
     "    <span class=\"pull-right view-json\">\n" +
-    "      <a href='#'>View as JSON</a>\n" +
+    "      <a href='https://{{global.mode}}.helloblock.io/v1/blocks/{{block.index}}'>View as JSON</a>\n" +
     "    </span>\n" +
     "    <br>\n" +
     "    <table\n" +
