@@ -280,7 +280,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              <td>Address: </td>\n" +
     "              <td>\n" +
     "                <img\n" +
-    "                ng-src=\"https://www.gravatar.com/avatar/{{i.prev_out.hash160}}?d=identicon&s=16\"\n" +
+    "                ng-secure=\"https://www.gravatar.com/avatar/{{i.prev_out.hash160}}?d=identicon&s=16\"\n" +
     "                width=\"16\">\n" +
     "                <span><a href=\"/{{global.mode}}/addresses/{{i.prev_out.address}}\">{{i.prev_out.address}}</a></span>\n" +
     "              </td>\n" +
@@ -342,7 +342,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          <tr>\n" +
     "            <td>Address: </td>\n" +
     "            <td>\n" +
-    "              <img src=\"https://www.gravatar.com/avatar/{{o.hash160}}?d=identicon&s=16\" width=\"16\">\n" +
+    "              <img src=\"https://secure.gravatar.com/avatar/{{o.hash160}}?d=identicon&s=16\" width=\"16\">\n" +
     "              <span><a href=\"/{{global.mode}}/addresses/{{o.address}}\">{{o.address}}</a></span>\n" +
     "            </td>\n" +
     "          </tr>\n" +
@@ -417,7 +417,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              </a>\n" +
     "            </td>\n" +
     "            <td rowspan=\"2\" class='text-center'>\n" +
-    "              <img ng-src=\"https://www.gravatar.com/avatar/{{i.prev_out.hash160}}?d=identicon&s=48\" width=\"48\">\n" +
+    "              <img ng-src=\"https://secure.gravatar.com/avatar/{{i.prev_out.hash160}}?d=identicon&s=48\" width=\"48\">\n" +
     "            </td>\n" +
     "            <td>\n" +
     "              <span class=\"h6\">\n" +
@@ -457,7 +457,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              n: {{o.n}}\n" +
     "            </td>\n" +
     "            <td rowspan=\"2\" class='text-center'>\n" +
-    "              <img ng-src=\"https://www.gravatar.com/avatar/{{o.hash160}}?d=identicon&s=48\" width=\"48\">\n" +
+    "              <img ng-src=\"https://secure.gravatar.com/avatar/{{o.hash160}}?d=identicon&s=48\" width=\"48\">\n" +
     "            </td>\n" +
     "            <td>\n" +
     "              <span class=\"h6\">\n" +
@@ -516,7 +516,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    </div>\n" +
     "    <waitspin ng-show=\"!address.hash160\"></waitspin>\n" +
     "    <div class=\"col-md-4 text-center\">\n" +
-    "      <img src=\"https://www.gravatar.com/avatar/{{address.hash160}}?d=identicon&s=220\" height=\"220\" class='address-identicoin' ng-show=\"address.hash160\">\n" +
+    "      <img src=\"https://secure.gravatar.com/avatar/{{address.hash160}}?d=identicon&s=220\" height=\"220\" class='address-identicoin' ng-show=\"address.hash160\">\n" +
     "    </div>\n" +
     "    <div class=\"col-md-8\">\n" +
     "      <table class=\"table table-bordered table-address\" ng-show=\"address.hash160\">\n" +
