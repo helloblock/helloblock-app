@@ -98,6 +98,7 @@
       <tbody>
         <tr ng-repeat="tx in transactions.latest">
           <td>
+            <clipboard clip-copy="{{tx.tx_hash}}"></clipboard>
             <a href="/{{global.mode}}/transactions/{{tx.tx_hash}}">{{tx.tx_hash}}</a>
           </td>
           <td>

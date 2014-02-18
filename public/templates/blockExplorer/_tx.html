@@ -5,6 +5,7 @@
         TX HASH:
       </span>
       <span class='h5 pull-left'>
+        <clipboard clip-copy="{{tx.tx_hash}}"></clipboard>
         <a href="/{{global.mode}}/transactions/{{tx.tx_hash}}"> {{tx.tx_hash}}</a>
       </span>
       <span class="pull-right">
@@ -18,14 +19,14 @@
     <td>
     <br>
     <div class="col-md-5">
-      <div class="text-center" ng-show="tx.in[0].prev_out.tx_hash === null">
+      <div class="text-center" ng-show="tx.in[0].prev_out.hash160 === null">
         <br>
         <span class="h3">NEWLY GENERATED COINS</span>
       </div>
       <table
         class="table table-bordered"
         ng-repeat="i in tx.in"
-        ng-show="i.prev_out.tx_hash !== null"
+        ng-show="i.prev_out.hash160 !== null"
         >
         <tbody>
           <tr>
@@ -39,6 +40,7 @@
             </td>
             <td>
               <span class="h6">
+                <clipboard clip-copy="{{i.prev_out.address}}"></clipboard>
                 <a href="/{{global.mode}}/addresses/{{i.prev_out.hash160}}">{{i.prev_out.address}}</a>
               </span>
               </td>
@@ -61,7 +63,6 @@
     <div class="col-md-5 addresses">
       <div class="text-center" ng-show="tx.out[0].address === null">
         <br>
-        <!-- <img src="http://audiosex.pro/uploads/profile/photo-6577.jpg" height="80"> -->
         <span class="h3">STRANGE OUTPUT</span>
       </div>
       <table
@@ -79,6 +80,7 @@
             </td>
             <td>
               <span class="h6">
+                <clipboard clip-copy="{{o.address}}"></clipboard>
                 <a href="/{{global.mode}}/addresses/{{o.address}}">{{o.address}}</a>
               </span>
             </td>

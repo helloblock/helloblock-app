@@ -34,7 +34,7 @@
     SUMMARY:
   </div>
   <waitspin ng-show="!block.block_height"></waitspin>
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-10 col-md-offset-1">
     <span class="pull-right view-json">
       <a href='https://{{global.mode}}.helloblock.io/v1/blocks/{{block.index}}'>View as JSON</a>
     </span>
@@ -48,7 +48,12 @@
       </tr>
       <tr>
         <td>Block Hash: </td>
-        <td>{{block.block_hash}}</td>
+        <td>
+          <div>
+            <clipboard clip-copy="{{block.block_hash}}"></clipboard>
+            <span>{{block.block_hash}}</span>
+          </div>
+        </td>
       </tr>
       <tr>
         <td>Block Time: </td>
@@ -66,7 +71,10 @@
       </tr>
       <tr>
         <td>Merkle Root: </td>
-        <td>{{block.merkle_root}}</td>
+        <td>
+          <clipboard clip-copy="{{block.merkle_root}}"></clipboard>
+          <span>{{block.merkle_root}}</span>
+        </td>
       </tr>
       <tr>
         <td>Nonce: </td>
@@ -96,8 +104,7 @@
   <br>
   <div infinite-scroll="loadMoreTransactions()">
     <span ng-repeat="tx in block.transactions| limitTo:limitTo.transactions">
-        <div ng-include="'/templates/blockExplorer/_tx.html'"></div>
-      </span>
+      <div ng-include="'/templates/blockExplorer/_tx.html'"></div>
+    </span>
   </div>
-
 </div>

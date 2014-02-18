@@ -160,7 +160,7 @@ table {
 		font-weight: 200;
 
 		td:nth-of-type(1) {
-      width: 40%;
+      // width: 40%;
       text-align: right;
       white-space: nowrap;
 		}
@@ -175,7 +175,7 @@ table {
 	&.table-address {
 		margin: 0 auto;
 		width: 100%;
-		font-size: 14px;
+		font-size: 16px;
 		font-weight: 200;
 
 		td:nth-of-type(1) {
@@ -242,21 +242,25 @@ table {
 }
 
 clipboard {
-	border: 1px solid @gray;
+	border: 1px solid @gray-light;
 	color: @gray;
-	background-color: @gray-lighter; // lighten(@brand-warning, 40%);
+	background-color: @gray-lighter;
 	padding: 3px;
 	cursor: pointer;
+
+	span.tiny {
+		font-size: 8px;
+	}
 }
 
 clipboard:hover, .zeroclipboard-is-hover {
-	color: lighten(@brand-success, 20%);
-	border-color: lighten(@brand-success, 20%);
-	background-color: lighten(@brand-success, 45%);
+	color: white;
+	border-color: @gray;
+	background-color: @gray-light;
 }
 
 clipboard:active, .zeroclipboard-is-active {
-	color: @brand-success;
+	color: white;//@brand-success;
 	border-color: @brand-success;
-	background-color: lighten(@brand-success, 40%);
+	background-color: lighten(@brand-success, 20%);
 }

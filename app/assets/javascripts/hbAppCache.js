@@ -206,11 +206,17 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        <tbody>\n" +
     "          <tr>\n" +
     "            <td>Transaction Hash: </td>\n" +
-    "            <td>{{transaction.tx_hash}}</td>\n" +
+    "            <td>\n" +
+    "              <clipboard clip-copy=\"{{transaction.tx_hash}}\"></clipboard>\n" +
+    "              <span>{{transaction.tx_hash}}</span>\n" +
+    "            </td>\n" +
     "          </tr>\n" +
     "          <tr>\n" +
     "            <td>Block Hash: </td>\n" +
-    "            <td>{{transaction.block_hash}}</td>\n" +
+    "            <td>\n" +
+    "              <clipboard clip-copy=\"{{transaction.block_hash}}\"></clipboard>\n" +
+    "              <span>{{transaction.block_hash}}</span>\n" +
+    "            </td>\n" +
     "          </tr>\n" +
     "        </tbody>\n" +
     "      </table>\n" +
@@ -279,8 +285,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            <tr>\n" +
     "              <td>Address: </td>\n" +
     "              <td>\n" +
+    "                <clipboard clip-copy=\"{{i.prev_out.address}}\"></clipboard>\n" +
     "                <img\n" +
-    "                ng-secure=\"https://www.gravatar.com/avatar/{{i.prev_out.hash160}}?d=identicon&s=16\"\n" +
+    "                ng-src=\"https://secure.gravatar.com/avatar/{{i.prev_out.hash160}}?d=identicon&s=16\"\n" +
     "                width=\"16\">\n" +
     "                <span><a href=\"/{{global.mode}}/addresses/{{i.prev_out.address}}\">{{i.prev_out.address}}</a></span>\n" +
     "              </td>\n" +
@@ -310,6 +317,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              </td>\n" +
     "              <td class=''>\n" +
     "                <span class=\"amount\">\n" +
+    "                  <clipboard clip-copy=\"{{i.prev_out.tx_hash}}\"></clipboard>\n" +
     "                  <a href=\"/{{global.mode}}/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}\">\n" +
     "                    {{i.prev_out.tx_hash}}\n" +
     "                  </a>\n" +
@@ -319,6 +327,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            <tr>\n" +
     "              <td class='text-center'>ScriptSig: </td>\n" +
     "              <td class='break'>\n" +
+    "                <clipboard clip-copy=\"{{i.scriptSig}}\"></clipboard>\n" +
     "                <span>{{i.scriptSig}}</span>\n" +
     "              </td>\n" +
     "            </tr>\n" +
@@ -342,6 +351,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          <tr>\n" +
     "            <td>Address: </td>\n" +
     "            <td>\n" +
+    "              <clipboard clip-copy=\"{{o.address}}\"></clipboard>\n" +
     "              <img src=\"https://secure.gravatar.com/avatar/{{o.hash160}}?d=identicon&s=16\" width=\"16\">\n" +
     "              <span><a href=\"/{{global.mode}}/addresses/{{o.address}}\">{{o.address}}</a></span>\n" +
     "            </td>\n" +
@@ -358,6 +368,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          <tr>\n" +
     "            <td rowspan=\"1\">scriptPubKey: </td>\n" +
     "            <td class=\"break\">\n" +
+    "              <clipboard clip-copy=\"{{o.scriptPubKey}}\"></clipboard>\n" +
     "              <span>\n" +
     "                {{o.scriptPubKey}}\n" +
     "              </span>\n" +
@@ -387,6 +398,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        TX HASH:\n" +
     "      </span>\n" +
     "      <span class='h5 pull-left'>\n" +
+    "        <clipboard clip-copy=\"{{tx.tx_hash}}\"></clipboard>\n" +
     "        <a href=\"/{{global.mode}}/transactions/{{tx.tx_hash}}\"> {{tx.tx_hash}}</a>\n" +
     "      </span>\n" +
     "      <span class=\"pull-right\">\n" +
@@ -400,14 +412,14 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <td>\n" +
     "    <br>\n" +
     "    <div class=\"col-md-5\">\n" +
-    "      <div class=\"text-center\" ng-show=\"tx.in[0].prev_out.tx_hash === null\">\n" +
+    "      <div class=\"text-center\" ng-show=\"tx.in[0].prev_out.hash160 === null\">\n" +
     "        <br>\n" +
     "        <span class=\"h3\">NEWLY GENERATED COINS</span>\n" +
     "      </div>\n" +
     "      <table\n" +
     "        class=\"table table-bordered\"\n" +
     "        ng-repeat=\"i in tx.in\"\n" +
-    "        ng-show=\"i.prev_out.tx_hash !== null\"\n" +
+    "        ng-show=\"i.prev_out.hash160 !== null\"\n" +
     "        >\n" +
     "        <tbody>\n" +
     "          <tr>\n" +
@@ -421,6 +433,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            </td>\n" +
     "            <td>\n" +
     "              <span class=\"h6\">\n" +
+    "                <clipboard clip-copy=\"{{i.prev_out.address}}\"></clipboard>\n" +
     "                <a href=\"/{{global.mode}}/addresses/{{i.prev_out.hash160}}\">{{i.prev_out.address}}</a>\n" +
     "              </span>\n" +
     "              </td>\n" +
@@ -443,7 +456,6 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <div class=\"col-md-5 addresses\">\n" +
     "      <div class=\"text-center\" ng-show=\"tx.out[0].address === null\">\n" +
     "        <br>\n" +
-    "        <!-- <img src=\"http://audiosex.pro/uploads/profile/photo-6577.jpg\" height=\"80\"> -->\n" +
     "        <span class=\"h3\">STRANGE OUTPUT</span>\n" +
     "      </div>\n" +
     "      <table\n" +
@@ -461,6 +473,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            </td>\n" +
     "            <td>\n" +
     "              <span class=\"h6\">\n" +
+    "                <clipboard clip-copy=\"{{o.address}}\"></clipboard>\n" +
     "                <a href=\"/{{global.mode}}/addresses/{{o.address}}\">{{o.address}}</a>\n" +
     "              </span>\n" +
     "            </td>\n" +
@@ -524,6 +537,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          <tr>\n" +
     "            <td><strong>Base58</strong></td>\n" +
     "            <td bind-once>\n" +
+    "              <clipboard clip-copy=\"{{address.base58}}\"></clipboard>\n" +
     "              <a bind-once href=\"/{{global.mode}}/addresses/{{address.base58}}\">\n" +
     "                {{address.base58}}\n" +
     "              </a>\n" +
@@ -531,7 +545,12 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          </tr>\n" +
     "          <tr>\n" +
     "            <td><strong>Hash160</strong></td>\n" +
-    "            <td>{{address.hash160}}</td>\n" +
+    "            <td>\n" +
+    "              <clipboard clip-copy=\"{{address.hash160}}\"></clipboard>\n" +
+    "              <span>\n" +
+    "                {{address.hash160}}\n" +
+    "              </span>\n" +
+    "            </td>\n" +
     "          </tr>\n" +
     "          <tr>\n" +
     "            <td><strong># Transactions</strong></td>\n" +
@@ -630,7 +649,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    SUMMARY:\n" +
     "  </div>\n" +
     "  <waitspin ng-show=\"!block.block_height\"></waitspin>\n" +
-    "  <div class=\"col-md-8 col-md-offset-2\">\n" +
+    "  <div class=\"col-md-10 col-md-offset-1\">\n" +
     "    <span class=\"pull-right view-json\">\n" +
     "      <a href='https://{{global.mode}}.helloblock.io/v1/blocks/{{block.index}}'>View as JSON</a>\n" +
     "    </span>\n" +
@@ -644,7 +663,12 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      </tr>\n" +
     "      <tr>\n" +
     "        <td>Block Hash: </td>\n" +
-    "        <td>{{block.block_hash}}</td>\n" +
+    "        <td>\n" +
+    "          <div>\n" +
+    "            <clipboard clip-copy=\"{{block.block_hash}}\"></clipboard>\n" +
+    "            <span>{{block.block_hash}}</span>\n" +
+    "          </div>\n" +
+    "        </td>\n" +
     "      </tr>\n" +
     "      <tr>\n" +
     "        <td>Block Time: </td>\n" +
@@ -662,7 +686,10 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      </tr>\n" +
     "      <tr>\n" +
     "        <td>Merkle Root: </td>\n" +
-    "        <td>{{block.merkle_root}}</td>\n" +
+    "        <td>\n" +
+    "          <clipboard clip-copy=\"{{block.merkle_root}}\"></clipboard>\n" +
+    "          <span>{{block.merkle_root}}</span>\n" +
+    "        </td>\n" +
     "      </tr>\n" +
     "      <tr>\n" +
     "        <td>Nonce: </td>\n" +
@@ -692,10 +719,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  <br>\n" +
     "  <div infinite-scroll=\"loadMoreTransactions()\">\n" +
     "    <span ng-repeat=\"tx in block.transactions| limitTo:limitTo.transactions\">\n" +
-    "        <div ng-include=\"'/templates/blockExplorer/_tx.html'\"></div>\n" +
-    "      </span>\n" +
+    "      <div ng-include=\"'/templates/blockExplorer/_tx.html'\"></div>\n" +
+    "    </span>\n" +
     "  </div>\n" +
-    "\n" +
     "</div>\n"
   );
 
@@ -801,6 +827,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <tbody>\n" +
     "        <tr ng-repeat=\"tx in transactions.latest\">\n" +
     "          <td>\n" +
+    "            <clipboard clip-copy=\"{{tx.tx_hash}}\"></clipboard>\n" +
     "            <a href=\"/{{global.mode}}/transactions/{{tx.tx_hash}}\">{{tx.tx_hash}}</a>\n" +
     "          </td>\n" +
     "          <td>\n" +
@@ -2811,6 +2838,11 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "TEST PAGE\n" +
     "<div class=\"test\">\n" +
     "\n" +
+    "</div>\n" +
+    "<div class=\"pull-right\">\n" +
+    "  <span class='clip-copy' clip-copy=\"tester\">\n" +
+    "    <i class=\"fa fa-copy\"></i>\n" +
+    "  </span>\n" +
     "</div>\n"
   );
 

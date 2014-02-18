@@ -41,19 +41,19 @@
           <tr>
             <td><strong>Base58</strong></td>
             <td bind-once>
+              <clipboard clip-copy="{{address.base58}}"></clipboard>
               <a bind-once href="/{{global.mode}}/addresses/{{address.base58}}">
                 {{address.base58}}
               </a>
-              <clipboard clip-copy="{{address.base58}}"></clipboard>
             </td>
           </tr>
           <tr>
             <td><strong>Hash160</strong></td>
             <td>
+              <clipboard clip-copy="{{address.hash160}}"></clipboard>
               <span>
                 {{address.hash160}}
               </span>
-              <clipboard clip-copy="{{address.hash160}}"></clipboard>
             </td>
           </tr>
           <tr>

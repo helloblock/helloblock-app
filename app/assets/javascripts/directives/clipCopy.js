@@ -1,7 +1,7 @@
 hbApp.directive( 'clipboard', function() {
 	return {
 		restrict: 'E',
-		template: '<i class="fa fa-copy"></i>',
+		template: '<i class="fa fa-copy"><span class="tiny"> Copy</span></i>',
 		link: function( scope, element, attrs ) {
 			// Create the clip object
 			var clip = new ZeroClipboard( element );

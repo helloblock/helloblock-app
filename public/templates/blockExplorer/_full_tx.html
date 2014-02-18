@@ -18,11 +18,17 @@
         <tbody>
           <tr>
             <td>Transaction Hash: </td>
-            <td>{{transaction.tx_hash}}</td>
+            <td>
+              <clipboard clip-copy="{{transaction.tx_hash}}"></clipboard>
+              <span>{{transaction.tx_hash}}</span>
+            </td>
           </tr>
           <tr>
             <td>Block Hash: </td>
-            <td>{{transaction.block_hash}}</td>
+            <td>
+              <clipboard clip-copy="{{transaction.block_hash}}"></clipboard>
+              <span>{{transaction.block_hash}}</span>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -91,8 +97,9 @@
             <tr>
               <td>Address: </td>
               <td>
+                <clipboard clip-copy="{{i.prev_out.address}}"></clipboard>
                 <img
-                ng-secure="https://www.gravatar.com/avatar/{{i.prev_out.hash160}}?d=identicon&s=16"
+                ng-src="https://secure.gravatar.com/avatar/{{i.prev_out.hash160}}?d=identicon&s=16"
                 width="16">
                 <span><a href="/{{global.mode}}/addresses/{{i.prev_out.address}}">{{i.prev_out.address}}</a></span>
               </td>
@@ -122,6 +129,7 @@
               </td>
               <td class=''>
                 <span class="amount">
+                  <clipboard clip-copy="{{i.prev_out.tx_hash}}"></clipboard>
                   <a href="/{{global.mode}}/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}">
                     {{i.prev_out.tx_hash}}
                   </a>
@@ -131,6 +139,7 @@
             <tr>
               <td class='text-center'>ScriptSig: </td>
               <td class='break'>
+                <clipboard clip-copy="{{i.scriptSig}}"></clipboard>
                 <span>{{i.scriptSig}}</span>
               </td>
             </tr>
@@ -154,6 +163,7 @@
           <tr>
             <td>Address: </td>
             <td>
+              <clipboard clip-copy="{{o.address}}"></clipboard>
               <img src="https://secure.gravatar.com/avatar/{{o.hash160}}?d=identicon&s=16" width="16">
               <span><a href="/{{global.mode}}/addresses/{{o.address}}">{{o.address}}</a></span>
             </td>
@@ -170,6 +180,7 @@
           <tr>
             <td rowspan="1">scriptPubKey: </td>
             <td class="break">
+              <clipboard clip-copy="{{o.scriptPubKey}}"></clipboard>
               <span>
                 {{o.scriptPubKey}}
               </span>
