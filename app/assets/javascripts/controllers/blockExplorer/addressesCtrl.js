@@ -17,31 +17,15 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
     'force new connection': true
   } )
 
+  // Addresses, loading /transactions and /unspents separate to improve performance
   // Callback: Lvl 1
   HelloBlock[ explorerMode ].Addresses.get( {
     address: $scope.address.base58,
-    limit: 50,
-    offset: 0
+    transactions: false,
+    unspents: false
   }, function( res ) {
 
     $scope.address = $.extend( {}, $scope.address, res.data.address );
-
-    if ( $scope.address.unspents.length === 0 ) return;
-
-    var unspents_tx_hashes = $scope.address.unspents.map( function( i ) {
-      return i.tx_hash;
-    } )
-
-    // Callback: Lvl 2
-    HelloBlock[ explorerMode ].Transactions.get( {
-      tx_hashes: unspents_tx_hashes
-    }, function( res ) {
-
-      $scope.address.unspent_transactions = res.data.transactions
-
-    }, function( err ) {
-      console.log( "error!", err )
-    } )
 
     // Callback: Lvl 2
     addressesChannel.on( $scope.address.base58, function( data ) {
@@ -64,6 +48,51 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
     } )
   } )
 
+  // Address Transactions
+  HelloBlock[ explorerMode ].AddressTransactions.get( {
+    address: $scope.address.base58,
+    limit: 20,
+    offset: 0,
+  }, function( res ) {
+
+    $scope.address.transactions = res.data.transactions
+
+  }, function( err ) {
+    console.log( "error!", err )
+    $location.path( "/" + explorerMode ).search( {
+      error: 'true'
+    } )
+  } )
+
+  // Address Unspents
+  HelloBlock[ explorerMode ].AddressUnspents.get( {
+    address: $scope.address.base58,
+    limit: 20,
+    offset: 0,
+  }, function( res ) {
+
+    var unspents_tx_hashes = res.data.unspents.map( function( i ) {
+      return i.tx_hash;
+    } )
+
+    // Callback: Lvl 2
+    HelloBlock[ explorerMode ].Transactions.get( {
+      tx_hashes: unspents_tx_hashes
+    }, function( res ) {
+
+      $scope.address.unspents = res.data.transactions
+
+    }, function( err ) {
+      console.log( "error!", err )
+    } )
+
+  }, function( err ) {
+    console.log( "error!", err )
+    $location.path( "/" + explorerMode ).search( {
+      error: 'true'
+    } )
+  } )
+
   // Infinite Scrolling
 
   $scope.finished = {
@@ -71,15 +100,9 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
     unspents: false
   }
 
-  $scope.limitTo = {
-    transactions: 5,
-    unspents: 5,
-    end: false
-  }
-
   $scope.offset = {
-    transactions: 50,
-    unspents: 50
+    transactions: 20,
+    unspents: 20
   }
 
   $scope.fetching = false
@@ -89,38 +112,33 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
       return;
     }
 
-    $scope.limitTo.transactions += 5
+    if ( $scope.fetching === true ) {
+      return;
+    }
 
-    if ( $scope.limitTo.transactions >= $scope.offset.transactions ) {
-      if ( $scope.fetching === true ) {
-        return;
+    $scope.fetching = true;
+    console.log( "fetching ... " )
+    // Callback: Lvl 1
+    HelloBlock[ explorerMode ].AddressTransactions.get( {
+      address: $scope.address.base58,
+      limit: 20,
+      offset: $scope.offset.transactions
+    }, function( res ) {
+
+      if ( res.data.transactions.length > 0 ) {
+        $scope.address.transactions = $scope.address.transactions.concat(
+          res.data.transactions );
+        $scope.offset.transactions += 20;
+      } else {
+        $scope.finished.transactions = true;
       }
 
-      $scope.fetching = true;
+      $scope.fetching = false;
 
-      // Callback: Lvl 1
-      HelloBlock[ explorerMode ].AddressTransactions.get( {
-        address: $scope.address.base58,
-        limit: 50,
-        offset: $scope.limitTo.transactions
-      }, function( res ) {
-
-        if ( res.data.transactions.length > 0 ) {
-          $scope.address.transactions = $scope.address.transactions.concat(
-            res.data.transactions );
-          $scope.offset.transactions = $scope.limitTo.transactions;
-          $scope.offset.transactions += 50;
-        } else {
-          $scope.finished.transactions = true;
-        }
-
-        $scope.fetching = false;
-
-      }, function( err ) {
-        console.log( err )
-        $scope.fetching = false;
-      } )
-    }
+    }, function( err ) {
+      console.log( err )
+      $scope.fetching = false;
+    } )
   }
 
   $scope.loadMoreUnspents = function() {
@@ -128,55 +146,50 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
       return;
     }
 
-    $scope.limitTo.unspents += 5
+    if ( $scope.fetching === true ) {
+      return;
+    }
 
-    if ( $scope.limitTo.unspents >= $scope.offset.unspents ) {
-      if ( $scope.fetching === true ) {
+    $scope.fetching = true;
+    console.log( "fetching ... " )
+    // Callback: Lvl 1
+    HelloBlock[ explorerMode ].AddressUnspents.get( {
+      address: $scope.address.base58,
+      limit: 20,
+      offset: $scope.limitTo.unspents
+    }, function( res ) {
+
+      var unspents_tx_hashes = res.data.unspents.map( function( i ) {
+        return i.tx_hash;
+      } )
+
+      if ( unspents_tx_hashes.length === 0 ) {
+        $scope.fetching = false;
+        $scope.finished.unspents = true;
         return;
       }
 
-      $scope.fetching = true;
-
-      // Callback: Lvl 1
-      HelloBlock[ explorerMode ].AddressUnspents.get( {
-        address: $scope.address.base58,
-        limit: 50,
-        offset: $scope.limitTo.unspents
+      // Callback: Lvl 2
+      HelloBlock[ explorerMode ].Transactions.get( {
+        tx_hashes: unspents_tx_hashes
       }, function( res ) {
 
-        var unspents_tx_hashes = res.data.unspents.map( function( i ) {
-          return i.tx_hash;
-        } )
-
-        if ( unspents_tx_hashes.length === 0 ) {
-          $scope.fetching = false;
+        if ( res.data.transactions.length > 0 ) {
+          $scope.address.unspents = $scope.address.unspents.concat(
+            res.data.transactions )
+          $scope.offset.unspents += 20
+        } else {
           $scope.finished.unspents = true;
-          return;
         }
 
-        // Callback: Lvl 2
-        HelloBlock[ explorerMode ].Transactions.get( {
-          tx_hashes: unspents_tx_hashes
-        }, function( res ) {
+        $scope.fetching = false;
 
-          if ( res.data.transactions.length > 0 ) {
-            $scope.address.unspent_transactions = $scope.address.unspent_transactions.concat(
-              res.data.transactions )
-            $scope.offset.unspents = $scope.limitTo.unspents
-            $scope.offset.unspents += 50
-          } else {
-            $scope.finished.unspents = true;
-          }
-
-          $scope.fetching = false;
-
-        }, function( err ) {
-          console.log( "error!", err )
-        } )
       }, function( err ) {
-        console.log( err )
+        console.log( "error!", err )
       } )
-    }
+    }, function( err ) {
+      console.log( err )
+    } )
   }
 
   $scope.$on( "$destroy", function() {

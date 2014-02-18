@@ -587,7 +587,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <tab heading=\"All Transactions\">\n" +
     "      <br>\n" +
     "      <div infinite-scroll=\"loadMoreTransactions()\">\n" +
-    "        <span ng-repeat=\"tx in address.transactions | limitTo:limitTo.transactions\">\n" +
+    "        <span ng-repeat=\"tx in address.transactions\">\n" +
     "          <div ng-include=\"'/templates/blockExplorer/_tx.html'\"></div>\n" +
     "        </span>\n" +
     "      </div>\n" +
@@ -596,7 +596,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <tab heading=\"Unspent Outputs\">\n" +
     "      <br>\n" +
     "      <div infinite-scroll=\"loadMoreUnspents()\">\n" +
-    "        <span ng-repeat=\"tx in address.unspent_transactions | limitTo:limitTo.unspents\">\n" +
+    "        <span ng-repeat=\"tx in address.unspents\">\n" +
     "          <div ng-include=\"'/templates/blockExplorer/_tx.html'\"></div>\n" +
     "        </span>\n" +
     "      </div>\n" +
