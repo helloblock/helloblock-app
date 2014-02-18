@@ -37,8 +37,6 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
       tx_hashes: unspents_tx_hashes
     }, function( res ) {
 
-      Socket.beep();
-
       $scope.address.unspent_transactions = res.data.transactions
 
     }, function( err ) {

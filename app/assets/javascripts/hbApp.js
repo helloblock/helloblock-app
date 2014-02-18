@@ -81,6 +81,14 @@ hbApp.run( function( $rootScope, $location, $cookieStore, $anchorScroll ) {
     }
   }
 
+  // ClipBoard
+  ZeroClipboard.config( {
+    moviePath: '//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/1.3.2/ZeroClipboard.swf',
+    trustedDomains: [ "*" ],
+    allowScriptAccess: "always",
+    forceHandCursor: true
+  } );
+
 } )
 
 hbApp.config( function( $routeProvider ) {
