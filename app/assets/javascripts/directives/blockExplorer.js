@@ -1,6 +1,6 @@
 var SATOSHI = 100000000
 
-var WATCHED = "address + block.transactions + transaction + transactions"
+var WATCHED = "address + block + transaction + transactions"
 
 hbApp.directive( "toBtc", function() {
 	return function( $scope, element, attrs ) {

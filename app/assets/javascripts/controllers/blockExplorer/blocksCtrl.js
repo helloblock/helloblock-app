@@ -19,7 +19,8 @@ hbApp.controller( "blockExplorer/blocksCtrl", function( $scope, $routeParams, $l
   }
 
   HelloBlock[ explorerMode ].Blocks.get( {
-    identifier: $scope.block.identifier
+    identifier: $scope.block.identifier,
+    transactions: false
   }, function( res ) {
     var data = res[ "data" ][ "block" ]
     $scope.block.index = data.block_height;
@@ -30,8 +31,17 @@ hbApp.controller( "blockExplorer/blocksCtrl", function( $scope, $routeParams, $l
     } )
   } )
 
-  // Infinite Scrolling
+  HelloBlock[ explorerMode ].BlockTransactions.get( {
+    identifier: $scope.block.identifier
+  }, function( res ) {
+    $scope.block.transactions = res.data.transactions
+  }, function( err ) {
+    $location.path( "/" + explorerMode ).search( {
+      error: 'true'
+    } )
+  } )
 
+  // Fake Infinite Scrolling
   $scope.limitTo = {
     transactions: 5,
   }
