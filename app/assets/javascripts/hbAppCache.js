@@ -2706,11 +2706,13 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <br>\n" +
     "      <br><br>\n" +
     "      <h1 class='main-title text-center white'>\n" +
-    "        <strong>Stop writing tests using real coins</strong>\n" +
+    "        <strong>\n" +
+    "          Focus on building Bitcoin apps, not infrastructure.\n" +
+    "        </strong>\n" +
     "      </h1>\n" +
     "      <br>\n" +
     "      <h2 class='text-center white'>\n" +
-    "        Get started with the testnet blockchain API\n" +
+    "        Get started with the Blockchain Data API\n" +
     "      </h2>\n" +
     "      <br><br><br>\n" +
     "      <div class=\"row text-center\">\n" +
