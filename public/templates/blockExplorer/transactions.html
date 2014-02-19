@@ -3,13 +3,13 @@
   <div class='h1 white'>{{global.mode.toUpperCase()}}</div>
   <br>
   <div class="container">
-    <form ng-submit="bigSearch.query(transaction.tx_hash)">
+    <form ng-submit="bigSearch.query(transaction.txHash)">
       <div class="input-group">
           <input
             class='h3 big-input'
             spellcheck="false"
             name="query"
-            ng-model="transaction.tx_hash"
+            ng-model="transaction.txHash"
             >
           <span class="input-group-btn">
             <button class="btn btn-success btn-block btn-search">

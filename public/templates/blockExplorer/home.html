@@ -66,19 +66,19 @@
       <tbody>
         <tr ng-repeat="block in blocks.latest">
           <td class='text-center'>
-            <a href="/{{global.mode}}/blocks/{{block.block_height}}">{{block.block_height}}</a>
+            <a href="/{{global.mode}}/blocks/{{block.blockHeight}}">{{block.blockHeight}}</a>
           </td>
           <td class='text-center'>
-            <span class='h6'>{{block.tx_n}}</span>
+            <span class='h6'>{{block.transactionsCount}}</span>
           </td>
           <td>
             <span class="label label-success amount label-lg">
-              <span to-btc="{{block.total_outputs}}"></span>
+              <span to-btc="{{block.totalOutputsValue}}"></span>
             </span>
 
           </td>
           <td class='text-center'>
-            <span class='h6' live='true' timeago="{{block.block_time}}"></span>
+            <span class='h6' live='true' timeago="{{block.blockTime}}"></span>
           </td>
         </tr>
       </tbody>
@@ -98,11 +98,11 @@
       <tbody>
         <tr ng-repeat="tx in transactions.latest">
           <td>
-            <clipboard clip-copy="{{tx.tx_hash}}"></clipboard>
-            <a href="/{{global.mode}}/transactions/{{tx.tx_hash}}">{{tx.tx_hash}}</a>
+            <clipboard clip-copy="{{tx.txHash}}"></clipboard>
+            <a href="/{{global.mode}}/transactions/{{tx.txHash}}">{{tx.txHash}}</a>
           </td>
           <td>
-            <span class='h6 nowrap' live='true' timeago="{{tx.estimated_time}}"></span>
+            <span class='h6 nowrap' live='true' timeago="{{tx.estimatedTxTime}}"></span>
           </td>
         </tr>
       </tbody>

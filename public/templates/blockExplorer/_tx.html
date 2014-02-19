@@ -5,13 +5,13 @@
         TX HASH:
       </span>
       <span class='h5 pull-left'>
-        <clipboard clip-copy="{{tx.tx_hash}}"></clipboard>
-        <a href="/{{global.mode}}/transactions/{{tx.tx_hash}}"> {{tx.tx_hash}}</a>
+        <clipboard clip-copy="{{tx.txHash}}"></clipboard>
+        <a href="/{{global.mode}}/transactions/{{tx.txHash}}"> {{tx.txHash}}</a>
       </span>
       <span class="pull-right">
         <span class="label label-lg" confirmations="{{tx.confirmations}}"></span>
-        <span class="label label-lg label-default amount" utc="{{tx.estimated_time}}"></span>
-        <span class="label label-lg label-success amount" to-btc="{{tx.estimated_tx_value}}"></span>
+        <span class="label label-lg label-default amount" utc="{{tx.estimatedTxTime}}"></span>
+        <span class="label label-lg label-success amount" to-btc="{{tx.estimatedTxValue}}"></span>
       </span>
     </td>
   </tr>
@@ -19,36 +19,36 @@
     <td>
     <br>
     <div class="col-md-5">
-      <div class="text-center" ng-show="tx.in[0].prev_out.hash160 === null">
+      <div class="text-center" ng-show="tx.inputs[0].prevOut.hash160 === null">
         <br>
         <span class="h3">NEWLY GENERATED COINS</span>
       </div>
       <table
         class="table table-bordered"
-        ng-repeat="i in tx.in"
-        ng-show="i.prev_out.hash160 !== null"
+        ng-repeat="i in tx.inputs"
+        ng-show="i.prevOut.hash160 !== null"
         >
         <tbody>
           <tr>
             <td rowspan="2" class='text-center n-index'>
-              <a href="/{{global.mode}}/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}">
-                n: {{i.prev_out.n}}
+              <a href="/{{global.mode}}/transactions/{{i.prevOut.txHash}}?n={{i.prevOut.index}}">
+                n: {{i.prevOut.index}}
               </a>
             </td>
             <td rowspan="2" class='text-center'>
-              <img ng-src="https://secure.gravatar.com/avatar/{{i.prev_out.hash160}}?d=identicon&s=48" width="48">
+              <img ng-src="https://secure.gravatar.com/avatar/{{i.prevOut.hash160}}?d=identicon&s=48" width="48">
             </td>
             <td>
               <span class="h6">
-                <clipboard clip-copy="{{i.prev_out.address}}"></clipboard>
-                <a href="/{{global.mode}}/addresses/{{i.prev_out.hash160}}">{{i.prev_out.address}}</a>
+                <clipboard clip-copy="{{i.prevOut.address}}"></clipboard>
+                <a href="/{{global.mode}}/addresses/{{i.prevOut.hash160}}">{{i.prevOut.address}}</a>
               </span>
               </td>
           </tr>
           <tr>
             <td>
               <span class="label label-default">SPENT</span>
-              <span class="h6 amount" to-btc="{{i.prev_out.value}}"></span>
+              <span class="h6 amount" to-btc="{{i.prevOut.value}}"></span>
             </td>
           </tr>
         </tbody>
@@ -56,24 +56,24 @@
     </div>
     <div class="col-md-2 text-center">
       <br>
-      <span class="text-gray-light" direction="{{tx.estimated_tx_direction}}">
+      <span class="text-gray-light" direction="{{tx.estimatedTxDirection}}">
         <i class="fa fa-arrow-circle-right fa-4x"></i>
       </span>
     </div>
     <div class="col-md-5 addresses">
-      <div class="text-center" ng-show="tx.out[0].address === null">
+      <div class="text-center" ng-show="tx.outputs[0].address === null">
         <br>
         <span class="h3">STRANGE OUTPUT</span>
       </div>
       <table
-        ng-repeat="o in tx.out"
+        ng-repeat="o in tx.outputs"
         class="table table-bordered"
-        ng-show="tx.out[0].address !== null"
+        ng-show="tx.outputs[0].address !== null"
         >
         <tbody>
           <tr>
             <td rowspan="2" class='text-center n-index'>
-              n: {{o.n}}
+              n: {{o.index}}
             </td>
             <td rowspan="2" class='text-center'>
               <img ng-src="https://secure.gravatar.com/avatar/{{o.hash160}}?d=identicon&s=48" width="48">

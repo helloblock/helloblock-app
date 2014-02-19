@@ -72,12 +72,12 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
   }, function( res ) {
 
     var unspents_tx_hashes = res.data.unspents.map( function( i ) {
-      return i.tx_hash;
+      return i.txHash;
     } )
 
     // Callback: Lvl 2
     HelloBlock[ explorerMode ].Transactions.get( {
-      tx_hashes: unspents_tx_hashes
+      txHashes: unspents_tx_hashes
     }, function( res ) {
 
       $scope.address.unspents = res.data.transactions
@@ -160,7 +160,7 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
     }, function( res ) {
 
       var unspents_tx_hashes = res.data.unspents.map( function( i ) {
-        return i.tx_hash;
+        return i.txHash;
       } )
 
       if ( unspents_tx_hashes.length === 0 ) {
@@ -171,7 +171,7 @@ hbApp.controller( "blockExplorer/addressesCtrl", function( $scope, $routeParams,
 
       // Callback: Lvl 2
       HelloBlock[ explorerMode ].Transactions.get( {
-        tx_hashes: unspents_tx_hashes
+        txHashes: unspents_tx_hashes
       }, function( res ) {
 
         if ( res.data.transactions.length > 0 ) {

@@ -23,7 +23,7 @@ hbApp.controller( "blockExplorer/blocksCtrl", function( $scope, $routeParams, $l
     transactions: false
   }, function( res ) {
     var data = res[ "data" ][ "block" ]
-    $scope.block.index = data.block_height;
+    $scope.block.index = data.blockHeight;
     $scope.block = $.extend( {}, $scope.block, data );
   }, function( err ) {
     $location.path( "/" + explorerMode ).search( {

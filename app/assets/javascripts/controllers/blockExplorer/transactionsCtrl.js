@@ -8,12 +8,12 @@ hbApp.controller( "blockExplorer/transactionsCtrl", function( $scope, $routePara
   }
 
   $scope.transaction = {
-    tx_hash: $routeParams.tx_hash || defaultTxHashes[ explorerMode ],
-    n: parseInt( $routeParams.n )
+    txHash: $routeParams.txHash || defaultTxHashes[ explorerMode ],
+    index: parseInt( $routeParams.index )
   }
 
   HelloBlock[ explorerMode ].Transactions.get( {
-    tx_hash: $scope.transaction.tx_hash
+    txHash: $scope.transaction.txHash
   }, function( res ) {
 
     $scope.transaction = $.extend( {}, $scope.transaction, res.data.transaction );

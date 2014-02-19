@@ -14,7 +14,7 @@
         class='big-input big-input-hex h4'
         spellcheck="false"
         rows='5'
-        ng-model="rawTransaction.hex"
+        ng-model="rawTransaction.rawTxHex"
         placeholder="Copy/paste a raw transaction hex here ..."
         selected></textarea>
     </div>
@@ -43,6 +43,7 @@
   </div>
   <waitspin left="620%" ng-if="sending"></waitspin>
   <div ng-show="!!transaction && !sending">
+    {{transaction}}
     <div ng-include="'/templates/blockExplorer/_full_tx.html'"></div>
   </div>
 

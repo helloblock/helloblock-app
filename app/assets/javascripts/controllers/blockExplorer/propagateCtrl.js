@@ -3,46 +3,47 @@ hbApp.controller( "blockExplorer/propagateCtrl", function( $scope, HelloBlock, $
   var explorerMode = $rootScope.global.mode;
 
   $scope.rawTransaction = {
-    hex: undefined
+    rawTxHex: undefined
   }
 
   $scope.sending = false;
 
   $scope.decodeHex = function() {
-    if ( !$scope.rawTransaction.hex ) {
+    if ( !$scope.rawTransaction.rawTxHex ) {
       Alerts.addDanger( "Hex can't be blank" )
       return;
     }
 
+    $scope.sending = true;
     HelloBlock[ explorerMode ].TransactionsDecode.get( {
-      hex: $scope.rawTransaction.hex
+      rawTxHex: $scope.rawTransaction.rawTxHex
     }, function( res ) {
       Alerts.addSuccess( "Decoding Successful" )
 
       $scope.transaction = res.data.transaction
-
+      $scope.sending = false;
     }, function( err ) {
-      Alerts.addDanger( "Something went wrong" )
+      Alerts.addDanger( "Something went wrong" );
+      $scope.sending = false;
     } )
   }
 
   $scope.propagateHex = function() {
-    if ( !$scope.rawTransaction.hex ) {
+    if ( !$scope.rawTransaction.rawTxHex ) {
       Alerts.addDanger( "Hex can't be blank" )
       return;
     }
 
     $scope.sending = true;
     HelloBlock[ explorerMode ].Transactions.save( {
-      hex: $scope.rawTransaction.hex
+      rawTxHex: $scope.rawTransaction.rawTxHex
     }, function( res ) {
-      console.log( res )
       Socket.beep();
       Alerts.addSuccess( "Propagation successful! " )
 
       // Hack; need to wait for db to write
       $timeout( function() {
-        updateTransaction( res.data.tx_hash );
+        updateTransaction( res.data.txHash );
         $scope.sending = false;
       }, 2000 )
 
@@ -83,7 +84,7 @@ hbApp.controller( "blockExplorer/propagateCtrl", function( $scope, HelloBlock, $
 
   var updateTransaction = function( txHash ) {
     HelloBlock[ explorerMode ].Transactions.get( {
-      tx_hash: txHash
+      txHash: txHash
     }, function( res ) {
       $scope.transaction = res.data.transaction
     } )

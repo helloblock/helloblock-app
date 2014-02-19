@@ -3,13 +3,13 @@
   TRANSACTION:
 </div>
 <br>
-<waitspin ng-show="!transaction.tx_hash"></waitspin>
-<div class="container" ng-show="transaction.tx_hash">
+<waitspin ng-show="!transaction.txHash"></waitspin>
+<div class="container" ng-show="transaction.txHash">
   <div class="h3 text-center text-gray">
     SUMMARY
   </div>
   <span class="pull-right view-json">
-    <a href='https://{{global.mode}}.helloblock.io/v1/transactions/{{transaction.tx_hash}}'>View as JSON</a>
+    <a href='https://{{global.mode}}.helloblock.io/v1/transactions/{{transaction.txHash}}'>View as JSON</a>
   </span>
   <br>
   <div class="row">
@@ -19,15 +19,15 @@
           <tr>
             <td>Transaction Hash: </td>
             <td>
-              <clipboard clip-copy="{{transaction.tx_hash}}"></clipboard>
-              <span>{{transaction.tx_hash}}</span>
+              <clipboard clip-copy="{{transaction.txHash}}"></clipboard>
+              <span>{{transaction.txHash}}</span>
             </td>
           </tr>
           <tr>
             <td>Block Hash: </td>
             <td>
-              <clipboard clip-copy="{{transaction.block_hash}}"></clipboard>
-              <span>{{transaction.block_hash}}</span>
+              <clipboard clip-copy="{{transaction.blockHash}}"></clipboard>
+              <span>{{transaction.blockHash}}</span>
             </td>
           </tr>
         </tbody>
@@ -38,11 +38,11 @@
     <table class="table table-bordered table-summary">
       <tr>
         <td>Block Height: </td>
-        <td><a href="/{{global.mode}}/blocks/{{transaction.block_height}}">{{transaction.block_height}}</a></td>
+        <td><a href="/{{global.mode}}/blocks/{{transaction.blockHeight}}">{{transaction.blockHeight}}</a></td>
       </tr>
       <tr>
         <td>Received Time: </td>
-        <td utc="{{transaction.estimated_time}}"></td>
+        <td utc="{{transaction.estimatedTxTime}}"></td>
       </tr>
       <tr>
         <td>Confirmations: </td>
@@ -52,7 +52,7 @@
       </tr>
       <tr>
         <td>Size: </td>
-        <td>{{transaction.tx_size}} Bytes</td>
+        <td>{{transaction.size}} Bytes</td>
       </tr>
     </table>
   </div>
@@ -60,11 +60,11 @@
     <table class="table table-bordered table-summary">
       <tr>
         <td>Total Inputs: </td>
-        <td to-btc="{{transaction.total_inputs_value}}"></td>
+        <td to-btc="{{transaction.totalInputsValue}}"></td>
       </tr>
       <tr>
         <td>Total Outputs: </td>
-        <td to-btc="{{transaction.total_outputs_value}}"></td>
+        <td to-btc="{{transaction.totalOutputsValue}}"></td>
       </tr>
       <tr>
         <td>Fees: </td>
@@ -83,13 +83,13 @@
       <td class='no-top'>
         <br>
         <div class="col-md-6">
-          <div class="text-center" ng-show="transaction.in[0].prev_out.tx_hash === null">
+          <div class="text-center" ng-show="transaction.inputs[0].prevOut.txHash === null">
             <br>
             <span class="h3">NEWLY GENERATED COINS</span>
           </div>
           <table
-          ng-repeat="i in transaction.in"
-          ng-show="i.prev_out.tx_hash !== null"
+          ng-repeat="i in transaction.inputs"
+          ng-show="i.prevOut.txHash !== null"
           class="
           table table-bordered table-io"
           >
@@ -97,11 +97,11 @@
             <tr>
               <td>Address: </td>
               <td>
-                <clipboard clip-copy="{{i.prev_out.address}}"></clipboard>
+                <clipboard clip-copy="{{i.prevOut.address}}"></clipboard>
                 <img
-                ng-src="https://secure.gravatar.com/avatar/{{i.prev_out.hash160}}?d=identicon&s=16"
+                ng-src="https://secure.gravatar.com/avatar/{{i.prevOut.hash160}}?d=identicon&s=16"
                 width="16">
-                <span><a href="/{{global.mode}}/addresses/{{i.prev_out.address}}">{{i.prev_out.address}}</a></span>
+                <span><a href="/{{global.mode}}/addresses/{{i.prevOut.address}}">{{i.prevOut.address}}</a></span>
               </td>
             </tr>
             <tr>
@@ -110,15 +110,15 @@
               </td>
               <td>
                 <span class="label label-default">SPENT</span>
-                <span class="amount" to-btc="{{i.prev_out.value}}"></span>
+                <span class="amount" to-btc="{{i.prevOut.value}}"></span>
               </td>
             </tr>
             <tr>
               <td>n (index): </td>
               <td>
                 <span>
-                  <a href="/{{global.mode}}/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}">
-                    {{i.prev_out.n}}
+                  <a href="/{{global.mode}}/transactions/{{i.prevOut.txHash}}?n={{i.prevOut.index}}">
+                    {{i.prevOut.index}}
                   </a>
                 </span>
               </td>
@@ -129,9 +129,9 @@
               </td>
               <td class=''>
                 <span class="amount">
-                  <clipboard clip-copy="{{i.prev_out.tx_hash}}"></clipboard>
-                  <a href="/{{global.mode}}/transactions/{{i.prev_out.tx_hash}}?n={{i.prev_out.n}}">
-                    {{i.prev_out.tx_hash}}
+                  <clipboard clip-copy="{{i.prevOut.txHash}}"></clipboard>
+                  <a href="/{{global.mode}}/transactions/{{i.prevOut.txHash}}?n={{i.prevOut.index}}">
+                    {{i.prevOut.txHash}}
                   </a>
                 </span>
               </td>
@@ -152,13 +152,13 @@
       </div>
       <div class="col-md-5 addresses">
         <table
-        ng-repeat="o in transaction.out"
+        ng-repeat="o in transaction.outputs"
         class="table table-bordered table-io"
-        ng-class="{'table-highlighted': transaction.n === o.n}">
+        ng-class="{'table-highlighted': transaction.index === o.index}">
         <tbody>
           <tr>
             <td>n (index): </td>
-            <td><span>{{o.n}}</span></td>
+            <td><span>{{o.index}}</span></td>
           </tr>
           <tr>
             <td>Address: </td>

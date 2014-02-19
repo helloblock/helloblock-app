@@ -8,7 +8,7 @@ hbApp.controller( "blockExplorer/unconfirmedCtrl", function( $scope, HelloBlock 
 
   // Callback: Lvl 1
   HelloBlock.Transactions.get( {
-    tx_hash: "latest",
+    txHash: "latest",
     limit: 100
   }, function( res ) {
 
@@ -38,7 +38,7 @@ hbApp.controller( "blockExplorer/unconfirmedCtrl", function( $scope, HelloBlock 
   }
 
   $scope.$on( "$destroy", function() {
-    PusherClient.unsubscribe( "transactions" )
+    // PusherClient.unsubscribe( "transactions" )
   } )
 
 } )
