@@ -140,7 +140,7 @@ hbApp.config( function( $routeProvider ) {
         controller: serviceName + "/addressesCtrl"
       } )
 
-      $routeProvider.when( explorerMode + "/transactions/:tx_hash?", {
+      $routeProvider.when( explorerMode + "/transactions/:txHash?", {
         templateUrl: "/templates/" + serviceName + "/transactions.html",
         controller: serviceName + "/transactionsCtrl"
       } )
