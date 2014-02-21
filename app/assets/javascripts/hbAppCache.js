@@ -434,7 +434,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            <td>\n" +
     "              <span class=\"h6\">\n" +
     "                <clipboard clip-copy=\"{{i.prevOut.address}}\"></clipboard>\n" +
-    "                <a href=\"/{{global.mode}}/addresses/{{i.prevOut.hash160}}\">{{i.prevOut.address}}</a>\n" +
+    "                <a href=\"/{{global.mode}}/addresses/{{i.prevOut.address}}\">{{i.prevOut.address}}</a>\n" +
     "              </span>\n" +
     "              </td>\n" +
     "          </tr>\n" +
