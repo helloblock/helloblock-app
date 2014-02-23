@@ -83,13 +83,13 @@
       <td class='no-top'>
         <br>
         <div class="col-md-6">
-          <div class="text-center" ng-show="transaction.inputs[0].prevOut.txHash === null">
+          <div class="text-center" ng-show="transaction.inputs[0].txHash === null">
             <br>
             <span class="h3">NEWLY GENERATED COINS</span>
           </div>
           <table
           ng-repeat="i in transaction.inputs"
-          ng-show="i.prevOut.txHash !== null"
+          ng-show="i.txHash !== null"
           class="
           table table-bordered table-io"
           >
@@ -97,11 +97,11 @@
             <tr>
               <td>Address: </td>
               <td>
-                <clipboard clip-copy="{{i.prevOut.address}}"></clipboard>
+                <clipboard clip-copy="{{i.address}}"></clipboard>
                 <img
-                ng-src="https://secure.gravatar.com/avatar/{{i.prevOut.hash160}}?d=identicon&s=16"
+                ng-src="https://secure.gravatar.com/avatar/{{i.hash160}}?d=identicon&s=16"
                 width="16">
-                <span><a href="/{{global.mode}}/addresses/{{i.prevOut.address}}">{{i.prevOut.address}}</a></span>
+                <span><a href="/{{global.mode}}/addresses/{{i.address}}">{{i.address}}</a></span>
               </td>
             </tr>
             <tr>
@@ -110,15 +110,15 @@
               </td>
               <td>
                 <span class="label label-default">SPENT</span>
-                <span class="amount" to-btc="{{i.prevOut.value}}"></span>
+                <span class="amount" to-btc="{{i.value}}"></span>
               </td>
             </tr>
             <tr>
               <td>n (index): </td>
               <td>
                 <span>
-                  <a href="/{{global.mode}}/transactions/{{i.prevOut.txHash}}?n={{i.prevOut.index}}">
-                    {{i.prevOut.index}}
+                  <a href="/{{global.mode}}/transactions/{{i.txHash}}?n={{i.index}}">
+                    {{i.index}}
                   </a>
                 </span>
               </td>
@@ -129,9 +129,9 @@
               </td>
               <td class=''>
                 <span class="amount">
-                  <clipboard clip-copy="{{i.prevOut.txHash}}"></clipboard>
-                  <a href="/{{global.mode}}/transactions/{{i.prevOut.txHash}}?n={{i.prevOut.index}}">
-                    {{i.prevOut.txHash}}
+                  <clipboard clip-copy="{{i.txHash}}"></clipboard>
+                  <a href="/{{global.mode}}/transactions/{{i.txHash}}?n={{i.index}}">
+                    {{i.txHash}}
                   </a>
                 </span>
               </td>

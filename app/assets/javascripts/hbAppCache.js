@@ -271,13 +271,13 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <td class='no-top'>\n" +
     "        <br>\n" +
     "        <div class=\"col-md-6\">\n" +
-    "          <div class=\"text-center\" ng-show=\"transaction.inputs[0].prevOut.txHash === null\">\n" +
+    "          <div class=\"text-center\" ng-show=\"transaction.inputs[0].txHash === null\">\n" +
     "            <br>\n" +
     "            <span class=\"h3\">NEWLY GENERATED COINS</span>\n" +
     "          </div>\n" +
     "          <table\n" +
     "          ng-repeat=\"i in transaction.inputs\"\n" +
-    "          ng-show=\"i.prevOut.txHash !== null\"\n" +
+    "          ng-show=\"i.txHash !== null\"\n" +
     "          class=\"\n" +
     "          table table-bordered table-io\"\n" +
     "          >\n" +
@@ -285,11 +285,11 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            <tr>\n" +
     "              <td>Address: </td>\n" +
     "              <td>\n" +
-    "                <clipboard clip-copy=\"{{i.prevOut.address}}\"></clipboard>\n" +
+    "                <clipboard clip-copy=\"{{i.address}}\"></clipboard>\n" +
     "                <img\n" +
-    "                ng-src=\"https://secure.gravatar.com/avatar/{{i.prevOut.hash160}}?d=identicon&s=16\"\n" +
+    "                ng-src=\"https://secure.gravatar.com/avatar/{{i.hash160}}?d=identicon&s=16\"\n" +
     "                width=\"16\">\n" +
-    "                <span><a href=\"/{{global.mode}}/addresses/{{i.prevOut.address}}\">{{i.prevOut.address}}</a></span>\n" +
+    "                <span><a href=\"/{{global.mode}}/addresses/{{i.address}}\">{{i.address}}</a></span>\n" +
     "              </td>\n" +
     "            </tr>\n" +
     "            <tr>\n" +
@@ -298,15 +298,15 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              </td>\n" +
     "              <td>\n" +
     "                <span class=\"label label-default\">SPENT</span>\n" +
-    "                <span class=\"amount\" to-btc=\"{{i.prevOut.value}}\"></span>\n" +
+    "                <span class=\"amount\" to-btc=\"{{i.value}}\"></span>\n" +
     "              </td>\n" +
     "            </tr>\n" +
     "            <tr>\n" +
     "              <td>n (index): </td>\n" +
     "              <td>\n" +
     "                <span>\n" +
-    "                  <a href=\"/{{global.mode}}/transactions/{{i.prevOut.txHash}}?n={{i.prevOut.index}}\">\n" +
-    "                    {{i.prevOut.index}}\n" +
+    "                  <a href=\"/{{global.mode}}/transactions/{{i.txHash}}?n={{i.index}}\">\n" +
+    "                    {{i.index}}\n" +
     "                  </a>\n" +
     "                </span>\n" +
     "              </td>\n" +
@@ -317,9 +317,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              </td>\n" +
     "              <td class=''>\n" +
     "                <span class=\"amount\">\n" +
-    "                  <clipboard clip-copy=\"{{i.prevOut.txHash}}\"></clipboard>\n" +
-    "                  <a href=\"/{{global.mode}}/transactions/{{i.prevOut.txHash}}?n={{i.prevOut.index}}\">\n" +
-    "                    {{i.prevOut.txHash}}\n" +
+    "                  <clipboard clip-copy=\"{{i.txHash}}\"></clipboard>\n" +
+    "                  <a href=\"/{{global.mode}}/transactions/{{i.txHash}}?n={{i.index}}\">\n" +
+    "                    {{i.txHash}}\n" +
     "                  </a>\n" +
     "                </span>\n" +
     "              </td>\n" +
@@ -412,36 +412,36 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <td>\n" +
     "    <br>\n" +
     "    <div class=\"col-md-5\">\n" +
-    "      <div class=\"text-center\" ng-show=\"tx.inputs[0].prevOut.hash160 === null\">\n" +
+    "      <div class=\"text-center\" ng-show=\"tx.inputs[0].hash160 === null\">\n" +
     "        <br>\n" +
     "        <span class=\"h3\">NEWLY GENERATED COINS</span>\n" +
     "      </div>\n" +
     "      <table\n" +
     "        class=\"table table-bordered\"\n" +
     "        ng-repeat=\"i in tx.inputs\"\n" +
-    "        ng-show=\"i.prevOut.hash160 !== null\"\n" +
+    "        ng-show=\"i.hash160 !== null\"\n" +
     "        >\n" +
     "        <tbody>\n" +
     "          <tr>\n" +
     "            <td rowspan=\"2\" class='text-center n-index'>\n" +
-    "              <a href=\"/{{global.mode}}/transactions/{{i.prevOut.txHash}}?n={{i.prevOut.index}}\">\n" +
-    "                n: {{i.prevOut.index}}\n" +
+    "              <a href=\"/{{global.mode}}/transactions/{{i.txHash}}?n={{i.index}}\">\n" +
+    "                n: {{i.index}}\n" +
     "              </a>\n" +
     "            </td>\n" +
     "            <td rowspan=\"2\" class='text-center'>\n" +
-    "              <img ng-src=\"https://secure.gravatar.com/avatar/{{i.prevOut.hash160}}?d=identicon&s=48\" width=\"48\">\n" +
+    "              <img ng-src=\"https://secure.gravatar.com/avatar/{{i.hash160}}?d=identicon&s=48\" width=\"48\">\n" +
     "            </td>\n" +
     "            <td>\n" +
     "              <span class=\"h6\">\n" +
-    "                <clipboard clip-copy=\"{{i.prevOut.address}}\"></clipboard>\n" +
-    "                <a href=\"/{{global.mode}}/addresses/{{i.prevOut.address}}\">{{i.prevOut.address}}</a>\n" +
+    "                <clipboard clip-copy=\"{{i.address}}\"></clipboard>\n" +
+    "                <a href=\"/{{global.mode}}/addresses/{{i.address}}\">{{i.address}}</a>\n" +
     "              </span>\n" +
     "              </td>\n" +
     "          </tr>\n" +
     "          <tr>\n" +
     "            <td>\n" +
     "              <span class=\"label label-default\">SPENT</span>\n" +
-    "              <span class=\"h6 amount\" to-btc=\"{{i.prevOut.value}}\"></span>\n" +
+    "              <span class=\"h6 amount\" to-btc=\"{{i.value}}\"></span>\n" +
     "            </td>\n" +
     "          </tr>\n" +
     "        </tbody>\n" +

@@ -19,36 +19,36 @@
     <td>
     <br>
     <div class="col-md-5">
-      <div class="text-center" ng-show="tx.inputs[0].prevOut.hash160 === null">
+      <div class="text-center" ng-show="tx.inputs[0].hash160 === null">
         <br>
         <span class="h3">NEWLY GENERATED COINS</span>
       </div>
       <table
         class="table table-bordered"
         ng-repeat="i in tx.inputs"
-        ng-show="i.prevOut.hash160 !== null"
+        ng-show="i.hash160 !== null"
         >
         <tbody>
           <tr>
             <td rowspan="2" class='text-center n-index'>
-              <a href="/{{global.mode}}/transactions/{{i.prevOut.txHash}}?n={{i.prevOut.index}}">
-                n: {{i.prevOut.index}}
+              <a href="/{{global.mode}}/transactions/{{i.txHash}}?n={{i.index}}">
+                n: {{i.index}}
               </a>
             </td>
             <td rowspan="2" class='text-center'>
-              <img ng-src="https://secure.gravatar.com/avatar/{{i.prevOut.hash160}}?d=identicon&s=48" width="48">
+              <img ng-src="https://secure.gravatar.com/avatar/{{i.hash160}}?d=identicon&s=48" width="48">
             </td>
             <td>
               <span class="h6">
-                <clipboard clip-copy="{{i.prevOut.address}}"></clipboard>
-                <a href="/{{global.mode}}/addresses/{{i.prevOut.address}}">{{i.prevOut.address}}</a>
+                <clipboard clip-copy="{{i.address}}"></clipboard>
+                <a href="/{{global.mode}}/addresses/{{i.address}}">{{i.address}}</a>
               </span>
               </td>
           </tr>
           <tr>
             <td>
               <span class="label label-default">SPENT</span>
-              <span class="h6 amount" to-btc="{{i.prevOut.value}}"></span>
+              <span class="h6 amount" to-btc="{{i.value}}"></span>
             </td>
           </tr>
         </tbody>
