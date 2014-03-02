@@ -121,6 +121,20 @@ hbApp.controller("docs/refCtrl", function($scope) {
       folder: "stats",
       id: "faucet-stats"
     }]
+  }, {
+    resource: "streaming",
+    subs: [{
+      name: "",
+      folder: "intro",
+      id: "streaming-intro"
+    }]
+  }, {
+    resource: "blockchain.info",
+    subs: [{
+      name: "",
+      folder: "intro",
+      id: "blockchain.info-intro"
+    }]
   }]
 
   $scope.sections = $scope.general.concat($scope.resources)
