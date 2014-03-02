@@ -11,10 +11,7 @@
             </h5>
           </div>
         </li>
-        <li
-          ng-repeat="s in general"
-          spy="{{s.resource}}"
-        >
+        <li ng-repeat="s in general" spy="{{s.resource}}">
           <a href="/docs/ref#{{s.resource}}">{{s.resource.capitalize()}}</a>
           <ul class="nav">
             <li ng-repeat="sub in s.subs.slice(1)" spy="{{sub.id}}">
@@ -31,13 +28,10 @@
             </h5>
           </div>
         </li>
-        <li
-          ng-repeat="s in resources"
-          spy="{{s.resource}}"
-        >
+        <li ng-repeat="s in resources" spy="{{s.resource}}">
           <a href="/docs/ref#{{s.resource}}">{{s.resource.capitalize()}}</a>
           <ul class="nav">
-            <li ng-repeat="sub in s.subs.slice(1)" spy="{{sub.id}}">
+            <li ng-repeat="sub in s.subs.slice(1)" spy="{{sub.id}}" id="sidebar-{{sub.id}}">
               <span class='sub'>
                 <a href="/docs/ref#{{sub.id}}">{{sub.name.capitalize()}}</a>
               </span>

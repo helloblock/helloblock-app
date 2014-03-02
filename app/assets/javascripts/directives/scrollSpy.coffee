@@ -4,6 +4,8 @@ hbApp.directive 'spy', ($location) ->
   link: (scope, elem, attrs, scrollSpy) ->
     attrs.spyClass ?= "active"
 
+    $(".bs-sidenav ul.nav").hide()
+
     scrollSpy.addSpy
       id: attrs.spy
       in: -> elem.addClass attrs.spyClass,
@@ -27,8 +29,9 @@ hbApp.directive 'scrollSpy', ($window, $timeout) ->
           unless spyElems[spy.id]?
             spyElems[spy.id] = elem.find('#'+spy.id)
 
-    $($window).scroll ->
+    $(window).scroll ->
       highlightSpy = null
+
       for spy in scope.spies
         spy.out()
 
@@ -40,16 +43,21 @@ hbApp.directive 'scrollSpy', ($window, $timeout) ->
           else
             spyElems[spy.id]
 
-        # if spyElems[spy.id] is undefined
-        #   return
 
         # the element could still not exist, so we check first to avoid errors
         if spyElems[spy.id].length isnt 0
-          if (pos = spyElems[spy.id].offset().top) - $window.scrollY <= 0
+          pos = spyElems[spy.id].offset().top
+          if pos - $window.scrollY <= 0
             spy.pos = pos
+
             highlightSpy ?= spy
+
             if highlightSpy.pos < spy.pos
               highlightSpy = spy
 
+              $(".bs-sidenav ul.nav").hide()
+              $(".bs-sidenav ul.nav #sidebar-" + spy.id).parent().show()
 
-      highlightSpy?.in()
+
+      if highlightSpy
+        highlightSpy.in()
