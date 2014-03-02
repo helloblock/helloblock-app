@@ -62,6 +62,13 @@
         </a>
         <a
           class="btn btn-sm btn-default"
+          ng-class="{'btn-primary': global.language === 'nodejs'}"
+          ng-click="global.setLanguage('nodejs')"
+        >
+          Node.js
+        </a>
+        <a
+          class="btn btn-sm btn-default"
           ng-class="{'btn-primary': global.language === 'ruby'}"
           ng-click="global.setLanguage('ruby')"
         >
@@ -88,6 +95,12 @@
                 <div
                   ng-if="sub.name !== undefined"
                   ng-include="refUrl(s.name, sub.file, 'curl')">
+                </div>
+              </div>
+              <div ng-show="global.language === 'nodejs'">
+                <div
+                  ng-if="sub.name !== undefined"
+                  ng-include="refUrl(s.name, sub.file, 'nodejs')">
                 </div>
               </div>
               <div ng-show="global.language === 'ruby'">
