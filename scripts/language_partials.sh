@@ -8,6 +8,6 @@ do
 
   for SUBFOLDER in $SUBFOLDERS
   do
-    rm "$DIR/$FOLDER/$SUBFOLDER/_$1.html"
+    touch "$DIR/$FOLDER/$SUBFOLDER/_$1.html"
   done
 done

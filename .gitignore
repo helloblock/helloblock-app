@@ -23,4 +23,4 @@ public/assets
 *.DS_Store
 /node_modules
 /bower_components
-notes
+notes*

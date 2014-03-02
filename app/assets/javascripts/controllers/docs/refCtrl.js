@@ -1,30 +1,30 @@
-hbApp.controller( "docs/refCtrl", function( $scope ) {
+hbApp.controller("docs/refCtrl", function($scope) {
 
-  $scope.refUrl = function( resource, sub, partial ) {
+  $scope.refUrl = function(resource, sub, partial) {
     return '/templates/docs/ref/' + resource + '/' + sub + '/_' + partial + '.html'
   }
 
   // Sidebar Structure, link with main content
   // Break into 2 and then recombine
-  $scope.general = [ {
+  $scope.general = [{
     name: "introduction",
-    subs: [ {
+    subs: [{
       name: "",
       file: "intro",
       id: "introduction-intro"
-    } ]
+    }]
   }, {
     name: "errors",
-    subs: [ {
+    subs: [{
       name: "",
       file: "intro",
       id: "errors-intro"
-    } ]
-  } ]
+    }]
+  }]
 
-  $scope.resources = [ {
+  $scope.resources = [{
     name: "addresses",
-    subs: [ {
+    subs: [{
       name: "",
       file: "intro",
       id: "addresses-intro"
@@ -36,21 +36,14 @@ hbApp.controller( "docs/refCtrl", function( $scope ) {
       name: "Retrieve multiple Addresses",
       file: "batch",
       id: "addresses-batch"
-    } ]
-  }, {
-    name: "unspents",
-    subs: [ {
-      name: "",
-      file: "intro",
-      id: "unspents-intro"
     }, {
-      name: "Retrieve Unspent Outputs",
-      file: "multiple",
-      id: "unspents-multiple"
-    } ]
+      name: "Retrieve unspents",
+      file: "unspents",
+      id: "addresses-unspents"
+    }]
   }, {
     name: "transactions",
-    subs: [ {
+    subs: [{
       name: "",
       file: "intro",
       id: "transactions-intro"
@@ -66,10 +59,10 @@ hbApp.controller( "docs/refCtrl", function( $scope ) {
       name: "Propagate a Transaction",
       file: "post",
       id: "transactions-post"
-    } ]
+    }]
   }, {
     name: "blocks",
-    subs: [ {
+    subs: [{
       name: "intro",
       file: "intro",
       id: "blocks-intro"
@@ -77,9 +70,9 @@ hbApp.controller( "docs/refCtrl", function( $scope ) {
       name: "Retrieve a Block",
       file: "single",
       id: "blocks-single"
-    } ]
+    }]
   }, ]
 
-  $scope.sections = $scope.general.concat( $scope.resources )
+  $scope.sections = $scope.general.concat($scope.resources)
 
-} )
+})

@@ -1,10 +1,10 @@
-hbApp.controller( "docs/explorerCtrl", function( $scope, $http, Definitions, UrlBuilder ) {
+hbApp.controller("docs/explorerCtrl", function($scope, $http, Definitions, UrlBuilder) {
   // REQUEST, options
 
   $scope.options = {
     selected: {
       index: "0",
-      mode: "api"
+      mode: "testnet"
     },
     definitions: Definitions() // API Method Definitions
   }
@@ -17,36 +17,36 @@ hbApp.controller( "docs/explorerCtrl", function( $scope, $http, Definitions, Url
     body: {}
   }
 
-  $scope.submitRequest = function( force ) {
+  $scope.submitRequest = function(force) {
     $scope.response = {}
     $scope.response.loading = true
 
-    var def = $scope.options.definitions[ $scope.options.selected.index ]
+    var def = $scope.options.definitions[$scope.options.selected.index]
 
-    if ( force ) {
+    if (force) {
       $scope.updateUrl()
     }
 
-    $http( {
+    $http({
       method: def.method,
       url: $scope.request.url
-    } ).
-    success( function( data, status, config ) {
+    }).
+    success(function(data, status, config) {
       $scope.response = {
         code: status,
         css: "success",
-        body: angular.toJson( data, true ),
+        body: angular.toJson(data, true),
         loading: false
       }
-    } ).
-    error( function( data, status, config ) {
+    }).
+    error(function(data, status, config) {
       $scope.response = {
         code: status,
         css: "danger",
-        body: angular.toJson( data, true ),
+        body: angular.toJson(data, true),
         loading: false
       }
-    } )
+    })
 
   }
 
@@ -58,21 +58,21 @@ hbApp.controller( "docs/explorerCtrl", function( $scope, $http, Definitions, Url
     }
   }
 
-  $scope.$watch( "options", function() {
+  $scope.$watch("options", function() {
     $scope.updateUrl();
-  }, true )
+  }, true)
 
   $scope.updateUrl = function() {
     $scope.request.url = $scope.buildUrl()
   }
 
   $scope.buildUrl = function() {
-    var def = $scope.options.definitions[ $scope.options.selected.index ];
+    var def = $scope.options.definitions[$scope.options.selected.index];
     return UrlBuilder.build(
       $scope.options.selected.mode,
       def.name,
       def.parameters,
-      def.batch )
+      def.batch)
   }
 
   // HELPERS
@@ -82,4 +82,4 @@ hbApp.controller( "docs/explorerCtrl", function( $scope, $http, Definitions, Url
     minimumResultsForSearch: -1
   };
 
-} )
+})
