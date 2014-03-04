@@ -3,27 +3,38 @@
 <p><strong>Request Parameters</strong></p>
 <table class="table table-bordered table-docs">
   <tbody>
+    <thead>
+      <tr>
+        <td>Param Name</td>
+        <td>Default Value</td>
+        <td>Type</td>
+        <td>Required</td>
+      </tr>
+    </thead>
     <tr>
-      <td>tx_hash: </td>
-      <td><em>string</em> <span class='label label-primary'>REQUIRED</span></td>
+      <td>txHash: </td>
+      <td></td>
+      <td><em>string</em></td>
+      <td><span class='label label-primary'>REQUIRED</span></td>
+    </tr>
+    <tr>
+      <td>rawTxHex: </td>
+      <td>false</td>
+      <td><em>boolean</em></td>
+      <td><span class='label label-warning'>OPTIONAL</span></td>
     </tr>
   </tbody>
 </table>
-
 <br>
-<p><strong>Response Attributes</strong></p>
+<p><strong>Response Attributes for Transaction</strong></p>
 <table class="table table-bordered table-docs table-condensed">
   <tbody>
     <tr>
-      <td>hash: </td>
+      <td>txHash: </td>
       <td><em>string</em></td>
     </tr>
     <tr>
-      <td>ver: </td>
-      <td><em>integer</em></td>
-    </tr>
-    <tr>
-      <td>lock_time: </td>
+      <td>version: </td>
       <td><em>integer</em></td>
     </tr>
     <tr>
@@ -31,55 +42,61 @@
       <td><em>integer</em></td>
     </tr>
     <tr>
-      <td>tx_id: </td>
+      <td>blockHash: </td>
+      <td><em>string</em></td>
+    </tr>
+    <tr>
+      <td>blockHeight: </td>
       <td><em>integer</em></td>
     </tr>
     <tr>
-      <td>vin_sz: </td>
+      <td>blockTime: </td>
       <td><em>integer</em></td>
     </tr>
     <tr>
-      <td>in: </td>
+      <td>estimatedTxTime: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>confirmations: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>inputsCount: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>outputsCount: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>inputs: </td>
       <td><p><em>array</em> of Input Objects</p>
         <table class='table table-bordered table-condensed table-docs'>
           <tbody>
             <tr>
-              <td>prev_out:</td>
-              <td>
-                <table class='table table-bordered table-condensed table-docs'>
-                  <tbody>
-                    <tr>
-                      <td>n</td>
-                      <td><em>integer</em></td>
-                    </tr>
-                    <tr>
-                      <td>hash</td>
-                      <td><em>string</em></td>
-                    </tr>
-                    <tr>
-                      <td>tx_id</td>
-                      <td><em>integer</em></td>
-                    </tr>
-                    <tr>
-                      <td>value</td>
-                      <td><em>integer</em></td>
-                    </tr>
-                    <tr>
-                      <td>address</td>
-                      <td><em>string</em></td>
-                    </tr>
-                    <tr>
-                      <td>hash160</td>
-                      <td><em>string</em></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
-              <tr>
-                <td>scriptSig</td>
-                <td><em>string</em></td>
-              </tr>
-              </td>
+              <td>index</td>
+              <td><em>integer</em></td>
+            </tr>
+            <tr>
+              <td>txHash</td>
+              <td><em>string</em></td>
+            </tr>
+            <tr>
+              <td>value</td>
+              <td><em>integer</em></td>
+            </tr>
+            <tr>
+              <td>address</td>
+              <td><em>string</em></td>
+            </tr>
+            <tr>
+              <td>hash160</td>
+              <td><em>string</em></td>
+            </tr>
+            <tr>
+              <td>scriptSig</td>
+              <td><em>string</em></td>
             </tr>
           </tbody>
         </table>
@@ -92,7 +109,7 @@
         <table class='table table-bordered table-condensed table-docs'>
           <tbody>
             <tr>
-              <td>n</td>
+              <td>index</td>
               <td><em>integer</em></td>
             </tr>
             <tr>
@@ -105,15 +122,35 @@
             </tr>
             <tr>
               <td>spent</td>
-              <td><em>integer</em></td>
+              <td><em>boolean</em></td>
             </tr>
             <tr>
               <td>address</td>
               <td><em>string</em></td>
             </tr>
+            <tr>
+              <td>hash160</td>
+              <td><em>string</em></td>
+            </tr>
+            <tr>
+              <td>type</td>
+              <td><em>string</em></td>
+            </tr>
           </tbody>
         </table>
       </td>
+    </tr>
+    <tr>
+      <td>totalInputsValue: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>totalOutputsValue: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>fees: </td>
+      <td><em>integer</em></td>
     </tr>
   </tbody>
 </table>

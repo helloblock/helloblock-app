@@ -3,24 +3,39 @@
 <p><strong>Request Parameters</strong></p>
 <table class="table table-bordered table-docs">
   <tbody>
+    <thead>
+      <tr>
+        <td>Param Name</td>
+        <td>Default Value</td>
+        <td>Type</td>
+        <td>Required</td>
+      </tr>
+    </thead>
     <tr>
-      <td>tx_hashes=[]: </td>
+      <td>txHashes: </td>
+      <td></td>
       <td>
-        <em>array of</em> <em>strings</em><span class='label label-primary'>REQUIRED</span>
-        <br><br>
+        <em>array</em> of <em>strings</em>
         <div>
           Repeat for multiple transactions, e.g.
         </div>
         <div>
-          "tx_hashes[]=<em>&</em>tx_hashes[]=<em>&</em>tx_hashes[]=c"
+          "txHashes[]=a&txHashes[]=b&txHashes[]=c"
         </div>
       </td>
+      <td><span class='label label-primary'>REQUIRED</span></td>
+    </tr>
+    <tr>
+      <td>rawTxHex: </td>
+      <td>false</td>
+      <td><em>boolean</em></td>
+      <td><span class='label label-warning'>OPTIONAL</span></td>
     </tr>
   </tbody>
 </table>
 
 <br>
-<p><strong>Response Attributes</strong></p>
+<p><strong>Response Attributes for Transactions</strong></p>
 <p>
   Returns <em>array</em> of Transaction Objects
 </p>
