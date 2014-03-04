@@ -5,70 +5,79 @@
 <p><strong>Request Parameters</strong></p>
 <table class="table table-bordered table-docs">
   <tbody>
+    <thead>
+      <tr>
+        <td>Param Name</td>
+        <td>Default Value</td>
+        <td>Type</td>
+        <td>Required</td>
+      </tr>
+    </thead>
     <tr>
-      <td>addresses[]: </td>
-      <td>
-        <em>string</em> <span class='label label-primary'>REQUIRED</span>
-        <br><br>
-        <div>
-          Repeat for multiple addresses, e.g.
-        </div>
-        <div>
-          "addresses[]=<em>&</em>addresses[]=<em>&</em>addresses[]=c"
-        </div>
-      </td>
+      <td>addresses: </td>
+      <td></td>
+      <td><em>array</em> of <em>strings</em></td>
+      <td><span class='label label-primary'>REQUIRED</span></td>
     </tr>
     <tr>
-      <td>txs: </td>
-      <td>
-        <em>boolean</em> <span class='label label-warning'>OPTIONAL</span> default: true</td>
+      <td>limit: </td>
+      <td>20</td>
+      <td><em>integer</em></td>
+      <td><span class='label label-warning'>OPTIONAL</span></td>
     </tr>
     <tr>
-      <td>wallet: </td>
-      <td>
-        <em>boolean</em> <span class='label label-warning'>OPTIONAL</span> default: true</td>
-    </tr>
-    <tr>
-      <td>info: </td>
-      <td>
-        <em>boolean</em> <span class='label label-warning'>OPTIONAL</span> default: true</td>
+      <td>offset: </td>
+      <td>0</td>
+      <td><em>integer</em></td>
+      <td><span class='label label-warning'>OPTIONAL</span></td>
     </tr>
   </tbody>
 </table>
 
 <br>
-<p><strong>Response Attributes</strong></p>
+<p><strong>Response Attributes for Wallet</strong></p>
 <table class="table table-bordered table-docs table-condensed">
   <tbody>
     <tr>
-      <td>wallet <span class='label label-warning'>OPTIONAL</span>: </td>
+      <td>summary: </td>
       <td>
-        <p>Wallet Object</p>
-        <table class='table table-bordered table-condensed table-docs'>
+        <table class="table table-bordered table-docs table-condensed">
           <tbody>
             <tr>
-              <td>tx_n</td>
-              <td><em>integer</em></td>
+              <td>transactionsCount</td>
+              <td>
+                <em>integer</em>
+                <div>
+                  transactions for all addresses
+                </div>
+              </td>
             </tr>
             <tr>
-              <td>total_received_n</td>
-              <td><em>integer</em></td>
+              <td>totalReceivedValue</td>
+              <td>
+                <em>integer</em>
+                <div>
+                  totalReceivedValue for all addresses
+                </div>
+              </td>
             </tr>
             <tr>
-              <td>total_received</td>
-              <td><em>integer</em></td>
-            </tr>
-            <tr>
-              <td>total_sent_n</td>
-              <td><em>integer</em></td>
-            </tr>
-            <tr>
-              <td>total_sent</td>
-              <td><em>integer</em></td>
+              <td>totalSentValue</td>
+              <td>
+                <em>integer</em>
+                <div>
+                  totalSentValue for all addresses
+                </div>
+              </td>
             </tr>
             <tr>
               <td>balance</td>
-              <td><em>integer</em></td>
+              <td>
+                <em>integer</em>
+                <div>
+                  balance for all addresses
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -76,50 +85,28 @@
     </tr>
     <tr>
       <td>addresses: </td>
-      <td>
-        <p><em>array</em> of Address Objects</p>
-      </td>
+      <td><em>array</em> of <em>Address Objects</em></td>
     </tr>
     <tr>
-      <td>txs <span class='label label-warning'>OPTIONAL</span>: </td>
+      <td>exchangeRates: </td>
       <td>
-        <p><em>array</em> of Transaction Objects</p>
-      </td>
-    </tr>
-    <tr>
-      <td>info <span class='label label-warning'>OPTIONAL</span>: </td>
-      <td>
-        <p>Info Object</p>
-        <table class='table table-bordered table-condensed table-docs'>
+        <table class="table table-bordered table-docs table-condensed">
           <tbody>
             <tr>
-              <td>tx_n</td>
-              <td><em>integer</em></td>
-            </tr>
-            <tr>
-              <td>total_received_n</td>
-              <td><em>integer</em></td>
-            </tr>
-            <tr>
-              <td>total_received</td>
-              <td><em>integer</em></td>
-            </tr>
-            <tr>
-              <td>total_sent_n</td>
-              <td><em>integer</em></td>
-            </tr>
-            <tr>
-              <td>total_sent</td>
-              <td><em>integer</em></td>
-            </tr>
-            <tr>
-              <td>balance</td>
-              <td><em>integer</em></td>
+              <td>BTCUSD</td>
+              <td><em>Object</em> of exchange rates</td>
             </tr>
           </tbody>
         </table>
       </td>
     </tr>
-
+    <tr>
+      <td>latestBlock: </td>
+      <td><em>Block Object</em></td>
+    </tr>
+    <tr>
+      <td>transactions: </td>
+      <td><em>array</em> of <em>Transaction Objects</em></td>
+    </tr>
   </tbody>
 </table>

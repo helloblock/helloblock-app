@@ -76,10 +76,6 @@ hbApp.controller("docs/refCtrl", function($scope) {
       folder: "single",
       id: "blocks-single"
     }, {
-      name: "Retrieve transactions",
-      folder: "transactions",
-      id: "blocks-transactions"
-    }, {
       name: "Retrieve latest",
       folder: "latest",
       id: "blocks-latest"

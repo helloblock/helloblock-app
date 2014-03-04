@@ -1,20 +1,38 @@
-<br><br><br><br><br><br>
+<br><br><br><br><br>
 <div class="h5 title">DEFINITION</div>
 <pre>
   <code class="bash" hljs>
-GET https://api.helloblock.io/v1/blocks/<span class='text-primary'>&lt;block_height&gt;</span>
+GET https://testnet.helloblock.io/v1/blocks/<span class='text-primary'>&lt;blockId&gt;</span>?param=value
   </code>
 </pre>
 <div class="h5 title">EXAMPLE REQUEST</div>
-<pre>
+<pre class="curl">
   <code class="bash" hljs>
-$ curl https://api.helloblock.io/v1/blocks/<span class='text-primary'>100000</span>
+$ curl https://testnet.helloblock.io/v1/blocks/<span class='text-primary'>123123</span>?limit=20
   </code>
-</pre>
 </pre>
 <div class="h5 title">EXAMPLE RESPONSE</div>
 <pre>
   <code class="javascript" hljs>
-TO DO
+{
+  "status": "success",
+  "data": {
+    "block": {
+      "blockHeight": 100000,
+      "blockHash": "000000000003ba27aa200b1cecaad478d2b00432346c3f1f3986da1afd33e506",
+      "blockTime": 1293623863,
+      "previousBlockHash": "000000000002d01c1fccc21636b607dfd930d31d01c3a62104612a1719011250",
+      "bits": 453281356,
+      "version": 1,
+      "merkleRootHash": "f3e94742aca4b5ef85488dc37c06c3282295ffec960994b2c0d5ac2a25a95766",
+      "nonce": 274148111,
+      "totalInputsValue": 5301000000,
+      "totalOutputsValue": 10301000000,
+      "transactionsCount": 4,
+      "confirmations": 188855,
+      "transactions": [ ... Transaaction Objects ]
+    }
+  }
+}
   </code>
 </pre>

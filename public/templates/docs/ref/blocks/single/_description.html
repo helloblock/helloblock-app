@@ -3,28 +3,94 @@
 <p><strong>Request Parameters</strong></p>
 <table class="table table-bordered table-docs">
   <tbody>
+    <thead>
+      <tr>
+        <td>Param Name</td>
+        <td>Default Value</td>
+        <td>Type</td>
+        <td>Required</td>
+      </tr>
+    </thead>
     <tr>
-      <td>block_height: </td>
-      <td><em>integer</em> <span class='label label-primary'>REQUIRED</span></td>
+      <td>blockId: </td>
+      <td></td>
+      <td>
+        <em>string</em>
+        <div>Block Height or Block Hash</div>
+      </td>
+      <td><span class='label label-primary'>REQUIRED</span></td>
     </tr>
     <tr>
-      <td>txs: </td>
-      <td><em>boolean</em> <span class='label label-warning'>OPTIONAL</span></td>
+      <td>limit: </td>
+      <td>20</td>
+      <td><em>integer</em></td>
+      <td><span class='label label-warning'>OPTIONAL</span></td>
+    </tr>
+    <tr>
+      <td>offset: </td>
+      <td>0</td>
+      <td><em>integer</em></td>
+      <td><span class='label label-warning'>OPTIONAL</span></td>
+    </tr>
+    <tr>
+      <td>transactions: </td>
+      <td>true</td>
+      <td><em>boolean</em></td>
+      <td><span class='label label-warning'>OPTIONAL</span></td>
     </tr>
   </tbody>
 </table>
-
 <br>
-<p><strong>Response Attributes</strong></p>
+<p><strong>Response Attributes for Address</strong></p>
 <table class="table table-bordered table-docs table-condensed">
   <tbody>
     <tr>
-      <td>TODO: </td>
+      <td>blockHeight: </td>
       <td><em>integer</em></td>
     </tr>
     <tr>
-      <td>TODO: </td>
+      <td>blockHash: </td>
+      <td><em>string</em></td>
+    </tr>
+    <tr>
+      <td>blockTime: </td>
       <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>previousBlockHash: </td>
+      <td><em>string</em></td>
+    </tr>
+    <tr>
+      <td>bits: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>version: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>merkleRootHash: </td>
+      <td><em>string</em></td>
+    </tr>
+    <tr>
+      <td>totalInputsValue: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>totalOutputsValue: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>transactionsCount: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>confirmations: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>transactions: </td>
+      <td><em>array</em> of Transaction Objects</td>
     </tr>
   </tbody>
 </table>
