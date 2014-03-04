@@ -1,0 +1,78 @@
+<h3>Retrieve Unspent Outputs</h3>
+<br>
+<p>Batch gets and returns the unspent outputs for multiple addresses.</p>
+<br>
+<p><strong>Request Parameters</strong></p>
+<table class="table table-bordered table-docs">
+  <tbody>
+    <thead>
+      <tr>
+        <td>Param Name</td>
+        <td>Default Value</td>
+        <td>Type</td>
+        <td>Required</td>
+      </tr>
+    </thead>
+    <tr>
+      <td>addresses: </td>
+      <td></td>
+      <td><em>array</em> of <em>strings</em></td>
+      <td><span class='label label-primary'>REQUIRED</span></td>
+    </tr>
+    <tr>
+      <td>limit: </td>
+      <td>20</td>
+      <td><em>integer</em></td>
+      <td><span class='label label-warning'>OPTIONAL</span></td>
+    </tr>
+    <tr>
+      <td>offset: </td>
+      <td>0</td>
+      <td><em>integer</em></td>
+      <td><span class='label label-warning'>OPTIONAL</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+<p><strong>Response Attributes for Unspents</strong></p>
+<table class="table table-bordered table-docs table-condensed">
+  <tbody>
+    <tr>
+      <td>confirmations: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>blockHeight: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>txHash: </td>
+      <td><em>string</em></td>
+    </tr>
+    <tr>
+      <td>index: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>scriptPubKey: </td>
+      <td><em>string</em></td>
+    </tr>
+    <tr>
+      <td>type: </td>
+      <td><em>string</em></td>
+    </tr>
+    <tr>
+      <td>value: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>hash160: </td>
+      <td><em>string</em></td>
+    </tr>
+    <tr>
+      <td>address: </td>
+      <td><em>string</em></td>
+    </tr>
+  </tbody>
+</table>

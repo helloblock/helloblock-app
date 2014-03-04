@@ -1,0 +1,125 @@
+<h3>Retrieve Transactions</h3>
+<br>
+<p>Batch gets and returns the transactions for multiple addresses.</p>
+<br>
+<p><strong>Request Parameters</strong></p>
+<table class="table table-bordered table-docs">
+  <tbody>
+    <thead>
+      <tr>
+        <td>Param Name</td>
+        <td>Default Value</td>
+        <td>Type</td>
+        <td>Required</td>
+      </tr>
+    </thead>
+    <tr>
+      <td>addresses: </td>
+      <td></td>
+      <td><em>array</em> of <em>strings</em></td>
+      <td><span class='label label-primary'>REQUIRED</span></td>
+    </tr>
+    <tr>
+      <td>limit: </td>
+      <td>20</td>
+      <td><em>integer</em></td>
+      <td><span class='label label-warning'>OPTIONAL</span></td>
+    </tr>
+    <tr>
+      <td>offset: </td>
+      <td>0</td>
+      <td><em>integer</em></td>
+      <td><span class='label label-warning'>OPTIONAL</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+<p><strong>Response Attributes for Transactions</strong></p>
+<table class="table table-bordered table-docs table-condensed">
+  <tbody>
+    <tr>
+      <td>txHash: </td>
+      <td><em>string</em></td>
+    </tr>
+    <tr>
+      <td>version: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>size: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>blockHash: </td>
+      <td><em>string</em></td>
+    </tr>
+    <tr>
+      <td>blockHeight: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>blockTime: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>estimatedTxTime: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>confirmations: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>inputsCount: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>outputsCount: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>inputs: </td>
+      <td><em>array</em> of input <em>objects</em> (see below)</td>
+    </tr>
+    <tr>
+      <td>inputs: </td>
+      <td><em>array</em> of output <em>objects</em> (see below)</td>
+    </tr>
+    <tr>
+      <td>totalInputsValue: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>totalOutputsValue: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>fees: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>estimatedTxDirection: </td>
+      <td>
+        <div>
+          <em>string</em>
+        </div>
+        <div>
+          Related to address/es given
+        </div>
+        <div>
+          "incoming" || "outgoing"
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>estimatedTxValue: </td>
+      <td>
+        <em>integer</em>
+        <div>
+          Related to address/es given
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

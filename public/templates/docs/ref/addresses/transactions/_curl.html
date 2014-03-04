@@ -1,0 +1,72 @@
+<br><br><br><br><br>
+<div class="h5 title">DEFINITION</div>
+<pre>
+  <code class="bash" hljs>
+GET https://testnet.helloblock.io/v1/addresses/transactions?addresses=<span class='text-primary'>&lt;address&gt;</span>
+  </code>
+</pre>
+<div class="h5 title">EXAMPLE REQUEST</div>
+<pre class="curl">
+  <code class="bash" hljs>
+$ curl https://testnet.helloblock.io/v1/addresses/transactions?addresses=<span class='text-primary'>mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L</span>&addresses=<span class='text-primary'>mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo</span>&limit=10
+  </code>
+</pre>
+<div class="h5 title">EXAMPLE RESPONSE</div>
+<pre>
+  <code class="javascript" hljs>
+{
+  "status": "success",
+  "data": {
+    "transactions": [
+    {
+      "txHash": "7045d95d7c5f265e906dd74ad094296c85c7259003d7ef1c0cd95d51f27e8088",
+      "version": 1,
+      "size": 258,
+      "blockHash": "000000000031c83fc78bf850f2f305c47ee7ee5a6e0fc3c605243dc0cd84a4f3",
+      "blockHeight": 191787,
+      "blockTime": 1393130965,
+      "estimatedTxTime": 1393124914,
+      "confirmations": 10717,
+      "inputsCount": 1,
+      "outputsCount": 2,
+      "inputs": [
+        {
+        "index": 1,
+        "txHash": "99bc6992e517dd4fedc17db8df7e9d4055b13c67dbf48ecaae714e0b95eec597",
+        "value": 429782704,
+        "address": "mzPkw5EdvHCntC2hrhRXSqwHLHpLWzSZiL",
+        "hash160": "cf0dfe6e0fa6ea5dda32c58ff699071b672e1faf",
+        "scriptSig": "48304502207163c442e56a1c0f6129b167cd4db2a555ec728e1cc5a06fec5034fa4cf5b71a022100eea4c3ff39640e7b6a37dcb2fdafa067aa5412e266278ac29fe752a0781bf997014104e1934263e84e202ebffca95246b63c18c07cd369c4f02de76dbd1db89e6255dacb3ab1895af0422e24e1d1099e80f01b899cfcdf9b947575352dbc1af57466b5"
+        }
+      ],
+      "outputs": [
+        {
+        "index": 0,
+        "value": 10000,
+        "scriptPubKey": "76a914652c453e3f8768d6d6e1f2985cb8939db91a4e0588ac",
+        "spent": false,
+        "address": "mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo",
+        "hash160": "652c453e3f8768d6d6e1f2985cb8939db91a4e05",
+        "type": "pubkeyhash"
+        },
+        {
+        "index": 1,
+        "value": 429762704,
+        "scriptPubKey": "76a914cf0dfe6e0fa6ea5dda32c58ff699071b672e1faf88ac",
+        "spent": true,
+        "address": "mzPkw5EdvHCntC2hrhRXSqwHLHpLWzSZiL",
+        "hash160": "cf0dfe6e0fa6ea5dda32c58ff699071b672e1faf",
+        "type": "pubkeyhash"
+        }
+      ],
+      "totalInputsValue": 429782704,
+      "totalOutputsValue": 429772704,
+      "fees": 10000,
+      "estimatedTxDirection": "incoming",
+      "estimatedTxValue": 10000
+    },
+    ... More Transaction Objects
+  }
+}
+  </code>
+</pre>

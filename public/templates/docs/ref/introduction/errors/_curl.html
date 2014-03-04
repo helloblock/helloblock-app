@@ -1,0 +1,27 @@
+<br><br><br><br><br>
+<div class="h5 title">RESPONSE CODE SUMMARY</div>
+<pre>
+  <code class="javascript" hljs>
+200 OK            -   Everything worked as expected.
+400 Bad Request   -   Often missing a required parameter.
+404 Not Found     -   The requested item does not exist.
+500 Server Error  -   Something went wrong on Hello Block servers.
+  </code>
+</pre>
+<div class="h5 title">EXAMPLE RESPONSE</div>
+<pre>
+  <code class="javascript" hljs>
+CODE: 400
+
+BODY:
+
+{
+  "status": "fail",
+  "message": "There is 1 invalid address",
+  "details": [
+    "mvaRDyLUeF4CP7Lu9umbU3FxehyC5nU"
+  ]
+}
+
+  </code>
+</pre>
