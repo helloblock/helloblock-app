@@ -1,11 +1,21 @@
 <h3>Propagate a Transaction</h3>
 <br>
-<p><strong>Arguments</strong></p>
+<p><strong>Body Parameters</strong></p>
 <table class="table table-bordered table-docs">
   <tbody>
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Default Value</td>
+        <td>Type</td>
+        <td>Required</td>
+      </tr>
+    </thead>
     <tr>
-      <td>tx_hex: </td>
-      <td><em>string</em> <span class='label label-primary'>REQUIRED</span></td>
+      <td>rawTxHex: </td>
+      <td></td>
+      <td><em>string</em></td>
+      <td><span class='label label-primary'>REQUIRED</span></td>
     </tr>
   </tbody>
 </table>
@@ -15,13 +25,13 @@
 <table class="table table-bordered table-docs table-condensed">
   <tbody>
     <tr>
-      <td>message: </td>
+      <td>txHash: </td>
       <td>
         <em>string</em>
       </td>
     </tr>
     <tr>
-      <td>tx_hash: </td>
+      <td>rawTxHex: </td>
       <td>
         <em>string</em>
       </td>

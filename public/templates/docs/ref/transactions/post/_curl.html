@@ -2,22 +2,27 @@
 <div class="h5 title">DEFINITION</div>
 <pre>
   <code class="bash" hljs>
-POST https://api.helloblock.io/v1/transactions/
+POST https://testnet.helloblock.io/v1/transactions/
   </code>
 </pre>
 <div class="h5 title">EXAMPLE REQUEST</div>
 <pre>
   <code class="bash" hljs>
-$ curl -X POST https://api.helloblock.io/v1/transactions \
- - d "tx_hex=<span class='text-primary'>TODO</span>"
+$ curl -X POST https://testnet.helloblock.io/v1/transactions \
+ -d "rawTxHex=<span class='text-primary'>0100000001ec71e2ceac8476bea21fbc4a97062c000f07def6c8ef8d9171fb1a5e113418e0010000008c493046022100e6f39b4393794ef03b0f9dc71395e0835a211015b42ab4329cb6a6c1c8b3c6ea022100f1ccae451f35e5c5ad25a8f7e7b5e778bafc4dc69dd560fab1cbadbb88767916014104e1934263e84e202ebffca95246b63c18c07cd369c4f02de76dbd1db89e6255dacb3ab1895af0422e24e1d1099e80f01b899cfcdf9b947575352dbc1af57466b5ffffffff0210270000000000001976a914652c453e3f8768d6d6e1f2985cb8939db91a4e0588ace065f81f000000001976a914cf0dfe6e0fa6ea5dda32c58ff699071b672e1faf88ac00000000</span>"
   </code>
 </pre>
 <div class="h5 title">EXAMPLE RESPONSE</div>
 <pre>
   <code class="javascript" hljs>
 {
-  "message": "Transaction propagation has been successful."
-  "tx_hash": TODO
+  "status": "success",
+  "data": {
+    "transaction": {
+      "txHash": "005cd997f92d11afc621b2eabdc5eea952d31da1cb27a05dc5e34d611bed1496",
+      "rawTxHex": "0100000001ec71e2ceac8476bea21fbc4a97062c000f07def6c8ef8d9171fb1a5e113418e0010000008c493046022100e6f39b4393794ef03b0f9dc71395e0835a211015b42ab4329cb6a6c1c8b3c6ea022100f1ccae451f35e5c5ad25a8f7e7b5e778bafc4dc69dd560fab1cbadbb88767916014104e1934263e84e202ebffca95246b63c18c07cd369c4f02de76dbd1db89e6255dacb3ab1895af0422e24e1d1099e80f01b899cfcdf9b947575352dbc1af57466b5ffffffff0210270000000000001976a914652c453e3f8768d6d6e1f2985cb8939db91a4e0588ace065f81f000000001976a914cf0dfe6e0fa6ea5dda32c58ff699071b672e1faf88ac00000000"
+    }
+  }
 }
   </code>
 </pre>
