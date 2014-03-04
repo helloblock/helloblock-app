@@ -1332,37 +1332,14 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        <li>\n" +
     "          <div class=\"title\">\n" +
     "            <h5>\n" +
-    "              <strong>General</strong>\n" +
-    "            </h5>\n" +
-    "          </div>\n" +
-    "        </li>\n" +
-    "        <li\n" +
-    "          ng-repeat=\"s in general\"\n" +
-    "          spy=\"{{s.name}}\"\n" +
-    "        >\n" +
-    "          <a href=\"/docs/ref#{{s.name}}\">{{s.name.capitalize()}}</a>\n" +
-    "          <ul class=\"nav\">\n" +
-    "            <li ng-repeat=\"sub in s.subs.slice(1)\" spy=\"{{sub.id}}\">\n" +
-    "              <span class='sub'>\n" +
-    "                <a href=\"/docs/ref#{{sub.id}}\">{{sub.name.capitalize()}}</a>\n" +
-    "              </span>\n" +
-    "            </li>\n" +
-    "          </ul>\n" +
-    "        </li>\n" +
-    "        <li>\n" +
-    "          <div class=\"title\">\n" +
-    "            <h5>\n" +
     "              <strong>Reference</strong>\n" +
     "            </h5>\n" +
     "          </div>\n" +
     "        </li>\n" +
-    "        <li\n" +
-    "          ng-repeat=\"s in resources\"\n" +
-    "          spy=\"{{s.name}}\"\n" +
-    "        >\n" +
-    "          <a href=\"/docs/ref#{{s.name}}\">{{s.name.capitalize()}}</a>\n" +
+    "        <li ng-repeat=\"s in sections\" spy=\"{{s.resource}}\" id=\"resource-{{s.resource}}\">\n" +
+    "          <a href=\"/docs/ref#{{s.resource}}\">{{s.resource.capitalize()}}</a>\n" +
     "          <ul class=\"nav\">\n" +
-    "            <li ng-repeat=\"sub in s.subs.slice(1)\" spy=\"{{sub.id}}\">\n" +
+    "            <li ng-repeat=\"sub in s.subs.slice(1)\" spy=\"{{sub.id}}\" id=\"sidebar-{{sub.id}}\">\n" +
     "              <span class='sub'>\n" +
     "                <a href=\"/docs/ref#{{sub.id}}\">{{sub.name.capitalize()}}</a>\n" +
     "              </span>\n" +
@@ -1387,6 +1364,13 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        </a>\n" +
     "        <a\n" +
     "          class=\"btn btn-sm btn-default\"\n" +
+    "          ng-class=\"{'btn-primary': global.language === 'nodejs'}\"\n" +
+    "          ng-click=\"global.setLanguage('nodejs')\"\n" +
+    "        >\n" +
+    "          Node.js\n" +
+    "        </a>\n" +
+    "        <a\n" +
+    "          class=\"btn btn-sm btn-default\"\n" +
     "          ng-class=\"{'btn-primary': global.language === 'ruby'}\"\n" +
     "          ng-click=\"global.setLanguage('ruby')\"\n" +
     "        >\n" +
@@ -1397,7 +1381,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "    <!-- METHOD -->\n" +
     "    <div class=\"sections\">\n" +
-    "      <span ng-repeat=\"s in sections\" id=\"{{s.name}}\">\n" +
+    "      <span ng-repeat=\"s in sections\" id=\"{{s.resource}}\">\n" +
     "        <div class=\"line\" ng-cloak></div>\n" +
     "        <span ng-repeat=\"sub in s.subs\" id=\"{{sub.id}}\">\n" +
     "          <div class=\"row section\">\n" +
@@ -1405,20 +1389,26 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              <br>\n" +
     "              <div\n" +
     "                ng-if=\"sub.name !== undefined\"\n" +
-    "                ng-include=\"refUrl(s.name, sub.file, 'description')\">\n" +
+    "                ng-include=\"refUrl(s.resource, sub.folder, 'description')\">\n" +
     "              </div>\n" +
     "            </div>\n" +
     "            <div class=\"col-md-6 section-example\">\n" +
     "              <div ng-show=\"global.language === 'curl'\">\n" +
     "                <div\n" +
     "                  ng-if=\"sub.name !== undefined\"\n" +
-    "                  ng-include=\"refUrl(s.name, sub.file, 'curl')\">\n" +
+    "                  ng-include=\"refUrl(s.resource, sub.folder, 'curl')\">\n" +
+    "                </div>\n" +
+    "              </div>\n" +
+    "              <div ng-show=\"global.language === 'nodejs'\">\n" +
+    "                <div\n" +
+    "                  ng-if=\"sub.name !== undefined\"\n" +
+    "                  ng-include=\"refUrl(s.resource, sub.folder, 'nodejs')\">\n" +
     "                </div>\n" +
     "              </div>\n" +
     "              <div ng-show=\"global.language === 'ruby'\">\n" +
     "                <div\n" +
     "                  ng-if=\"sub.name !== undefined\"\n" +
-    "                  ng-include=\"refUrl(s.name, sub.file, 'ruby')\">\n" +
+    "                  ng-include=\"refUrl(s.resource, sub.folder, 'ruby')\">\n" +
     "                </div>\n" +
     "              </div>\n" +
     "            </div>\n" +
@@ -1431,206 +1421,6 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "</div>\n" +
     "\n"
-  );
-
-
-  $templateCache.put('/templates/docs/ref/addresses/batch/_curl.html',
-    "<br><br><br><br><br>\n" +
-    "<div class=\"h5 title\">DEFINITION</div>\n" +
-    "<pre>\n" +
-    "  <code class=\"bash\" hljs>\n" +
-    "GET https://api.helloblock.io/v1/addresses?addresses[]=<span class=\"text-primary\">&lt;address&gt;</span></code>\n" +
-    "</pre>\n" +
-    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
-    "<pre class='curl'>\n" +
-    "  <code class=\"bash\" hljs>\n" +
-    "$ curl https://api.helloblock.io/v1/addresses?&addresses[]=<span class='text-primary'>mu1izpJmF7CHnbVcH59f1PqfvXnmiBEMq8</span>&addresses[]=<span class='text-primary'>mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3</span>&addresses[]=<span class='text-primary'>n1Fr4r3wEcbXZGQJaqJkFRiMpYLAsk81RX</span>&tx=true&wallet=true&info=true\n" +
-    "  </code>\n" +
-    "</pre>\n" +
-    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
-    "<pre>\n" +
-    "  <code class=\"javascript\" hljs>\n" +
-    "{\n" +
-    "  \"wallet\": {\n" +
-    "    \"tx_n\": 6,\n" +
-    "    \"total_received_n\": 2,\n" +
-    "    \"total_received\": 8565778,\n" +
-    "    \"total_sent_n\": 3,\n" +
-    "    \"total_sent\": 8565778,\n" +
-    "    \"balance\": 0\n" +
-    "  },\n" +
-    "  \"addresses\": [ {\n" +
-    "    \"total_received\": 4122889,\n" +
-    "    \"total_received_n\": 1,\n" +
-    "    \"total_sent\": 4122889,\n" +
-    "    \"total_sent_n\": 1,\n" +
-    "    \"tx_n\": 2,\n" +
-    "    \"balance\": 0,\n" +
-    "    \"address\": \"mu1izpJmF7CHnbVcH59f1PqfvXnmiBEMq8\",\n" +
-    "    \"hash160\": \"940a991f8dd0f8d7609cb8e3f07235d3a136413a\"\n" +
-    "  }, {\n" +
-    "    \"total_received\": 100000,\n" +
-    "    \"total_received_n\": 1,\n" +
-    "    \"total_sent\": 100000,\n" +
-    "    \"total_sent_n\": 1,\n" +
-    "    \"tx_n\": 2,\n" +
-    "    \"balance\": 0,\n" +
-    "    \"address\": \"mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3\",\n" +
-    "    \"hash160\": \"a0a5226c2e376c929d800a070399e5a3d0277c6e\"\n" +
-    "  }, {\n" +
-    "    \"total_received\": 4342889,\n" +
-    "    \"total_received_n\": 1,\n" +
-    "    \"total_sent\": 4342889,\n" +
-    "    \"total_sent_n\": 1,\n" +
-    "    \"tx_n\": 2,\n" +
-    "    \"balance\": 0,\n" +
-    "    \"address\": \"n1Fr4r3wEcbXZGQJaqJkFRiMpYLAsk81RX\",\n" +
-    "    \"hash160\": \"d88713de7b1d0837e728de5d5e62399f5e6e145e\"\n" +
-    "  } ],\n" +
-    "  \"txs\": [\n" +
-    "    ... Transaction Objects\n" +
-    "  ],\n" +
-    "  \"info\": [\n" +
-    "    TODO\n" +
-    "  ]\n" +
-    "}\n" +
-    "\n" +
-    "  </code>\n" +
-    "</pre>\n"
-  );
-
-
-  $templateCache.put('/templates/docs/ref/addresses/batch/_description.html',
-    "<h3>Retrieve multiple Addresses</h3>\n" +
-    "<br>\n" +
-    "<p>Gets and returns data for multiple addresses.</p>\n" +
-    "<br>\n" +
-    "<p><strong>Request Parameters</strong></p>\n" +
-    "<table class=\"table table-bordered table-docs\">\n" +
-    "  <tbody>\n" +
-    "    <tr>\n" +
-    "      <td>addresses[]: </td>\n" +
-    "      <td>\n" +
-    "        <em>string</em> <span class='label label-primary'>REQUIRED</span>\n" +
-    "        <br><br>\n" +
-    "        <div>\n" +
-    "          Repeat for multiple addresses, e.g.\n" +
-    "        </div>\n" +
-    "        <div>\n" +
-    "          \"addresses[]=<em>&</em>addresses[]=<em>&</em>addresses[]=c\"\n" +
-    "        </div>\n" +
-    "      </td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>txs: </td>\n" +
-    "      <td>\n" +
-    "        <em>boolean</em> <span class='label label-warning'>OPTIONAL</span> default: true</td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>wallet: </td>\n" +
-    "      <td>\n" +
-    "        <em>boolean</em> <span class='label label-warning'>OPTIONAL</span> default: true</td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>info: </td>\n" +
-    "      <td>\n" +
-    "        <em>boolean</em> <span class='label label-warning'>OPTIONAL</span> default: true</td>\n" +
-    "    </tr>\n" +
-    "  </tbody>\n" +
-    "</table>\n" +
-    "\n" +
-    "<br>\n" +
-    "<p><strong>Response Attributes</strong></p>\n" +
-    "<table class=\"table table-bordered table-docs table-condensed\">\n" +
-    "  <tbody>\n" +
-    "    <tr>\n" +
-    "      <td>wallet <span class='label label-warning'>OPTIONAL</span>: </td>\n" +
-    "      <td>\n" +
-    "        <p>Wallet Object</p>\n" +
-    "        <table class='table table-bordered table-condensed table-docs'>\n" +
-    "          <tbody>\n" +
-    "            <tr>\n" +
-    "              <td>tx_n</td>\n" +
-    "              <td><em>integer</em></td>\n" +
-    "            </tr>\n" +
-    "            <tr>\n" +
-    "              <td>total_received_n</td>\n" +
-    "              <td><em>integer</em></td>\n" +
-    "            </tr>\n" +
-    "            <tr>\n" +
-    "              <td>total_received</td>\n" +
-    "              <td><em>integer</em></td>\n" +
-    "            </tr>\n" +
-    "            <tr>\n" +
-    "              <td>total_sent_n</td>\n" +
-    "              <td><em>integer</em></td>\n" +
-    "            </tr>\n" +
-    "            <tr>\n" +
-    "              <td>total_sent</td>\n" +
-    "              <td><em>integer</em></td>\n" +
-    "            </tr>\n" +
-    "            <tr>\n" +
-    "              <td>balance</td>\n" +
-    "              <td><em>integer</em></td>\n" +
-    "            </tr>\n" +
-    "          </tbody>\n" +
-    "        </table>\n" +
-    "      </td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>addresses: </td>\n" +
-    "      <td>\n" +
-    "        <p><em>array</em> of Address Objects</p>\n" +
-    "      </td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>txs <span class='label label-warning'>OPTIONAL</span>: </td>\n" +
-    "      <td>\n" +
-    "        <p><em>array</em> of Transaction Objects</p>\n" +
-    "      </td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>info <span class='label label-warning'>OPTIONAL</span>: </td>\n" +
-    "      <td>\n" +
-    "        <p>Info Object</p>\n" +
-    "        <table class='table table-bordered table-condensed table-docs'>\n" +
-    "          <tbody>\n" +
-    "            <tr>\n" +
-    "              <td>tx_n</td>\n" +
-    "              <td><em>integer</em></td>\n" +
-    "            </tr>\n" +
-    "            <tr>\n" +
-    "              <td>total_received_n</td>\n" +
-    "              <td><em>integer</em></td>\n" +
-    "            </tr>\n" +
-    "            <tr>\n" +
-    "              <td>total_received</td>\n" +
-    "              <td><em>integer</em></td>\n" +
-    "            </tr>\n" +
-    "            <tr>\n" +
-    "              <td>total_sent_n</td>\n" +
-    "              <td><em>integer</em></td>\n" +
-    "            </tr>\n" +
-    "            <tr>\n" +
-    "              <td>total_sent</td>\n" +
-    "              <td><em>integer</em></td>\n" +
-    "            </tr>\n" +
-    "            <tr>\n" +
-    "              <td>balance</td>\n" +
-    "              <td><em>integer</em></td>\n" +
-    "            </tr>\n" +
-    "          </tbody>\n" +
-    "        </table>\n" +
-    "      </td>\n" +
-    "    </tr>\n" +
-    "\n" +
-    "  </tbody>\n" +
-    "</table>\n"
-  );
-
-
-  $templateCache.put('/templates/docs/ref/addresses/batch/_ruby.html',
-    "<code>RUBY</code>\n"
   );
 
 
@@ -1649,6 +1439,11 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('/templates/docs/ref/addresses/intro/_nodejs.html',
+    ""
+  );
+
+
   $templateCache.put('/templates/docs/ref/addresses/intro/_ruby.html',
     "<code>RUBY</code>\n"
   );
@@ -1659,30 +1454,34 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<div class=\"h5 title\">DEFINITION</div>\n" +
     "<pre>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "GET https://api.helloblock.io/v1/addresses/<span class='text-primary'>&lt;address&gt;</span>\n" +
+    "GET https://testnet.helloblock.io/v1/addresses/<span class='text-primary'>&lt;address&gt;</span>?param=value\n" +
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
     "<pre class=\"curl\">\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "$ curl https://api.helloblock.io/v1/addresses/<span class='text-primary'>n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK</span>?txs=true\n" +
+    "$ curl https://testnet.helloblock.io/v1/addresses/<span class='text-primary'>mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L</span>?limit=20\n" +
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
     "<pre>\n" +
     "  <code class=\"javascript\" hljs>\n" +
     "{\n" +
-    "  \"total_received\": 100000,\n" +
-    "  \"total_received_n\": 1,\n" +
-    "  \"total_sent\": 100000,\n" +
-    "  \"total_sent_n\": 1,\n" +
-    "  \"tx_n\": 2,\n" +
-    "  \"balance\": 0,\n" +
-    "  \"address\": \"n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK\",\n" +
-    "  \"hash160\": \"e18424c2562c495e16c4a67d9bf803116158be6e\"\n" +
-    "  \"txs\": [\n" +
-    "    ... Transaction Objects\n" +
-    "  ]\n" +
+    "  \"status\": \"success\",\n" +
+    "  \"data\": {\n" +
+    "    \"address\": {\n" +
+    "      \"totalReceivedValue\": 573211091000,\n" +
+    "      \"totalReceivedCount\": 318,\n" +
+    "      \"totalSentValue\": 573204032000,\n" +
+    "      \"totalSentCount\": 315,\n" +
+    "      \"balance\": 7059000,\n" +
+    "      \"transactionsCount\": 320,\n" +
+    "      \"address\": \"mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L\",\n" +
+    "      \"hash160\": \"a5319d469e1ddd9558bd558a50e95f74b3da58c9\",\n" +
+    "      \"unspents\": [ ... Unspent Objects ],\n" +
+    "      \"transactions\": [ ... Transaction Objects ]\n" +
+    "    }\n" +
+    "  }\n" +
     "}\n" +
     "  </code>\n" +
     "</pre>\n"
@@ -1697,43 +1496,73 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<p><strong>Request Parameters</strong></p>\n" +
     "<table class=\"table table-bordered table-docs\">\n" +
     "  <tbody>\n" +
+    "    <thead>\n" +
+    "      <tr>\n" +
+    "        <td>Param Name</td>\n" +
+    "        <td>Default Value</td>\n" +
+    "        <td>Type</td>\n" +
+    "        <td>Required</td>\n" +
+    "      </tr>\n" +
+    "    </thead>\n" +
     "    <tr>\n" +
     "      <td>address: </td>\n" +
-    "      <td><em>string</em> <span class='label label-primary'>REQUIRED</span></td>\n" +
+    "      <td></td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "      <td><span class='label label-primary'>REQUIRED</span></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>txs: </td>\n" +
-    "      <td><em>boolean</em> <span class='label label-warning'>OPTIONAL</span></td>\n" +
+    "      <td>limit: </td>\n" +
+    "      <td>20</td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>offset: </td>\n" +
+    "      <td>0</td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>transactions: </td>\n" +
+    "      <td>true</td>\n" +
+    "      <td><em>boolean</em></td>\n" +
+    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>unspents: </td>\n" +
+    "      <td>true</td>\n" +
+    "      <td><em>boolean</em></td>\n" +
+    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
     "</table>\n" +
     "\n" +
     "<br>\n" +
-    "<p><strong>Response Attributes</strong></p>\n" +
+    "<p><strong>Response Attributes for Address</strong></p>\n" +
     "<table class=\"table table-bordered table-docs table-condensed\">\n" +
     "  <tbody>\n" +
     "    <tr>\n" +
-    "      <td>total_received: </td>\n" +
+    "      <td>totalReceivedValue: </td>\n" +
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>total_received_n: </td>\n" +
+    "      <td>totalReceivedCount: </td>\n" +
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>total_sent: </td>\n" +
+    "      <td>totalSentValue: </td>\n" +
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>total_sent_n: </td>\n" +
-    "      <td><em>integer</em></td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>tx_n: </td>\n" +
+    "      <td>totalSentCount: </td>\n" +
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
     "      <td>balance: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>transactionsCount: </td>\n" +
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
@@ -1742,10 +1571,14 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    </tr>\n" +
     "    <tr>\n" +
     "      <td>hash160: </td>\n" +
-    "      <td><em>string</em> (hash160)</td>\n" +
+    "      <td><em>string</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>txs: </td>\n" +
+    "      <td>unspents: </td>\n" +
+    "      <td><em>array</em> of Transaction Objects</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>transactions: </td>\n" +
     "      <td><em>array</em> of Transaction Objects</td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
@@ -1753,8 +1586,383 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('/templates/docs/ref/addresses/single/_nodejs.html',
+    ""
+  );
+
+
   $templateCache.put('/templates/docs/ref/addresses/single/_ruby.html',
     "<code>RUBY</code>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/addresses/transactions/_curl.html',
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "GET https://testnet.helloblock.io/v1/addresses/transactions?addresses=<span class='text-primary'>&lt;address&gt;</span>\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "$ curl https://testnet.helloblock.io/v1/addresses/transactions?addresses=<span class='text-primary'>mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L</span>&addresses=<span class='text-primary'>mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo</span>&limit=10\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "{\n" +
+    "  \"status\": \"success\",\n" +
+    "  \"data\": {\n" +
+    "    \"transactions\": [\n" +
+    "    {\n" +
+    "      \"txHash\": \"7045d95d7c5f265e906dd74ad094296c85c7259003d7ef1c0cd95d51f27e8088\",\n" +
+    "      \"version\": 1,\n" +
+    "      \"size\": 258,\n" +
+    "      \"blockHash\": \"000000000031c83fc78bf850f2f305c47ee7ee5a6e0fc3c605243dc0cd84a4f3\",\n" +
+    "      \"blockHeight\": 191787,\n" +
+    "      \"blockTime\": 1393130965,\n" +
+    "      \"estimatedTxTime\": 1393124914,\n" +
+    "      \"confirmations\": 10717,\n" +
+    "      \"inputsCount\": 1,\n" +
+    "      \"outputsCount\": 2,\n" +
+    "      \"inputs\": [\n" +
+    "        {\n" +
+    "        \"index\": 1,\n" +
+    "        \"txHash\": \"99bc6992e517dd4fedc17db8df7e9d4055b13c67dbf48ecaae714e0b95eec597\",\n" +
+    "        \"value\": 429782704,\n" +
+    "        \"address\": \"mzPkw5EdvHCntC2hrhRXSqwHLHpLWzSZiL\",\n" +
+    "        \"hash160\": \"cf0dfe6e0fa6ea5dda32c58ff699071b672e1faf\",\n" +
+    "        \"scriptSig\": \"48304502207163c442e56a1c0f6129b167cd4db2a555ec728e1cc5a06fec5034fa4cf5b71a022100eea4c3ff39640e7b6a37dcb2fdafa067aa5412e266278ac29fe752a0781bf997014104e1934263e84e202ebffca95246b63c18c07cd369c4f02de76dbd1db89e6255dacb3ab1895af0422e24e1d1099e80f01b899cfcdf9b947575352dbc1af57466b5\"\n" +
+    "        }\n" +
+    "      ],\n" +
+    "      \"outputs\": [\n" +
+    "        {\n" +
+    "        \"index\": 0,\n" +
+    "        \"value\": 10000,\n" +
+    "        \"scriptPubKey\": \"76a914652c453e3f8768d6d6e1f2985cb8939db91a4e0588ac\",\n" +
+    "        \"spent\": false,\n" +
+    "        \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\",\n" +
+    "        \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\",\n" +
+    "        \"type\": \"pubkeyhash\"\n" +
+    "        },\n" +
+    "        {\n" +
+    "        \"index\": 1,\n" +
+    "        \"value\": 429762704,\n" +
+    "        \"scriptPubKey\": \"76a914cf0dfe6e0fa6ea5dda32c58ff699071b672e1faf88ac\",\n" +
+    "        \"spent\": true,\n" +
+    "        \"address\": \"mzPkw5EdvHCntC2hrhRXSqwHLHpLWzSZiL\",\n" +
+    "        \"hash160\": \"cf0dfe6e0fa6ea5dda32c58ff699071b672e1faf\",\n" +
+    "        \"type\": \"pubkeyhash\"\n" +
+    "        }\n" +
+    "      ],\n" +
+    "      \"totalInputsValue\": 429782704,\n" +
+    "      \"totalOutputsValue\": 429772704,\n" +
+    "      \"fees\": 10000,\n" +
+    "      \"estimatedTxDirection\": \"incoming\",\n" +
+    "      \"estimatedTxValue\": 10000\n" +
+    "    },\n" +
+    "    ... More Transaction Objects\n" +
+    "  }\n" +
+    "}\n" +
+    "  </code>\n" +
+    "</pre>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/addresses/transactions/_description.html',
+    "<h3>Retrieve Transactions</h3>\n" +
+    "<br>\n" +
+    "<p>Batch gets and returns the transactions for multiple addresses.</p>\n" +
+    "<br>\n" +
+    "<p><strong>Request Parameters</strong></p>\n" +
+    "<table class=\"table table-bordered table-docs\">\n" +
+    "  <tbody>\n" +
+    "    <thead>\n" +
+    "      <tr>\n" +
+    "        <td>Param Name</td>\n" +
+    "        <td>Default Value</td>\n" +
+    "        <td>Type</td>\n" +
+    "        <td>Required</td>\n" +
+    "      </tr>\n" +
+    "    </thead>\n" +
+    "    <tr>\n" +
+    "      <td>addresses: </td>\n" +
+    "      <td></td>\n" +
+    "      <td><em>array</em> of <em>strings</em></td>\n" +
+    "      <td><span class='label label-primary'>REQUIRED</span></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>limit: </td>\n" +
+    "      <td>20</td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>offset: </td>\n" +
+    "      <td>0</td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
+    "    </tr>\n" +
+    "  </tbody>\n" +
+    "</table>\n" +
+    "\n" +
+    "<br>\n" +
+    "<p><strong>Response Attributes for Transactions</strong></p>\n" +
+    "<table class=\"table table-bordered table-docs table-condensed\">\n" +
+    "  <tbody>\n" +
+    "    <tr>\n" +
+    "      <td>txHash: </td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>version: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>size: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>blockHash: </td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>blockHeight: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>blockTime: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>estimatedTxTime: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>confirmations: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>inputsCount: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>outputsCount: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>inputs: </td>\n" +
+    "      <td><em>array</em> of input <em>objects</em> (see below)</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>inputs: </td>\n" +
+    "      <td><em>array</em> of output <em>objects</em> (see below)</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>totalInputsValue: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>totalOutputsValue: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>fees: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>estimatedTxDirection: </td>\n" +
+    "      <td>\n" +
+    "        <div>\n" +
+    "          <em>string</em>\n" +
+    "        </div>\n" +
+    "        <div>\n" +
+    "          Related to address/es given\n" +
+    "        </div>\n" +
+    "        <div>\n" +
+    "          \"incoming\" || \"outgoing\"\n" +
+    "        </div>\n" +
+    "      </td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>estimatedTxValue: </td>\n" +
+    "      <td>\n" +
+    "        <em>integer</em>\n" +
+    "        <div>\n" +
+    "          Related to address/es given\n" +
+    "        </div>\n" +
+    "      </td>\n" +
+    "    </tr>\n" +
+    "  </tbody>\n" +
+    "</table>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/addresses/transactions/_nodejs.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/addresses/transactions/_ruby.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/addresses/unspents/_curl.html',
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "GET https://testnet.helloblock.io/v1/addresses/unspents?addresses=<span class='text-primary'>&lt;address&gt;</span>\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "$ curl https://testnet.helloblock.io/v1/addresses/unspents?addresses=<span class='text-primary'>mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L</span>&addresses=<span class='text-primary'>mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo</span>&limit=10\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "{\n" +
+    "  \"status\": \"success\",\n" +
+    "  \"data\": {\n" +
+    "    \"unspents\": [\n" +
+    "    {\n" +
+    "      \"confirmations\": 19117,\n" +
+    "      \"blockHeight\": 183387,\n" +
+    "      \"txHash\": \"244ab8fbd2bd2959fb00cf3ea06ab192965c9a77d889246b2b3c8480ae259639\",\n" +
+    "      \"index\": 1,\n" +
+    "      \"scriptPubKey\": \"76a914a5319d469e1ddd9558bd558a50e95f74b3da58c988ac\",\n" +
+    "      \"type\": \"pubkeyhash\",\n" +
+    "      \"value\": 7039000,\n" +
+    "      \"hash160\": \"a5319d469e1ddd9558bd558a50e95f74b3da58c9\",\n" +
+    "      \"address\": \"mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L\"\n" +
+    "    },\n" +
+    "    ... More Unspent Objects\n" +
+    "    ]\n" +
+    "  }\n" +
+    "}\n" +
+    "  </code>\n" +
+    "</pre>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/addresses/unspents/_description.html',
+    "<h3>Retrieve Unspent Outputs</h3>\n" +
+    "<br>\n" +
+    "<p>Batch gets and returns the unspent outputs for multiple addresses.</p>\n" +
+    "<br>\n" +
+    "<p><strong>Request Parameters</strong></p>\n" +
+    "<table class=\"table table-bordered table-docs\">\n" +
+    "  <tbody>\n" +
+    "    <thead>\n" +
+    "      <tr>\n" +
+    "        <td>Param Name</td>\n" +
+    "        <td>Default Value</td>\n" +
+    "        <td>Type</td>\n" +
+    "        <td>Required</td>\n" +
+    "      </tr>\n" +
+    "    </thead>\n" +
+    "    <tr>\n" +
+    "      <td>addresses: </td>\n" +
+    "      <td></td>\n" +
+    "      <td><em>array</em> of <em>strings</em></td>\n" +
+    "      <td><span class='label label-primary'>REQUIRED</span></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>limit: </td>\n" +
+    "      <td>20</td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>offset: </td>\n" +
+    "      <td>0</td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
+    "    </tr>\n" +
+    "  </tbody>\n" +
+    "</table>\n" +
+    "\n" +
+    "<br>\n" +
+    "<p><strong>Response Attributes for Unspents</strong></p>\n" +
+    "<table class=\"table table-bordered table-docs table-condensed\">\n" +
+    "  <tbody>\n" +
+    "    <tr>\n" +
+    "      <td>confirmations: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>blockHeight: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>txHash: </td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>index: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>scriptPubKey: </td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>type: </td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>value: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>hash160: </td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>address: </td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "    </tr>\n" +
+    "  </tbody>\n" +
+    "</table>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/addresses/unspents/_nodejs.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/addresses/unspents/_ruby.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/blockchain.info/intro/_curl.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/blockchain.info/intro/_description.html',
+    "<h2>Blockchain.info Mirror</h2>\n" +
+    "\n" +
+    "<h3>Docs coming soon ...</h3>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/blockchain.info/intro/_nodejs.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/blockchain.info/intro/_ruby.html',
+    ""
   );
 
 
@@ -1773,30 +1981,123 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('/templates/docs/ref/blocks/intro/_nodejs.html',
+    ""
+  );
+
+
   $templateCache.put('/templates/docs/ref/blocks/intro/_ruby.html',
     "<code>RUBY</code>\n"
   );
 
 
-  $templateCache.put('/templates/docs/ref/blocks/single/_curl.html',
-    "<br><br><br><br><br><br>\n" +
+  $templateCache.put('/templates/docs/ref/blocks/latest/_curl.html',
+    "<br><br><br><br><br>\n" +
     "<div class=\"h5 title\">DEFINITION</div>\n" +
     "<pre>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "GET https://api.helloblock.io/v1/blocks/<span class='text-primary'>&lt;block_height&gt;</span>\n" +
+    "GET https://testnet.helloblock.io/v1/blocks/latest?param=value\n" +
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
-    "<pre>\n" +
+    "<pre class='curl'>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "$ curl https://api.helloblock.io/v1/blocks/<span class='text-primary'>100000</span>\n" +
+    "$ curl https://testnet.helloblock.io/v1/blocks/latest?limit=5\n" +
     "  </code>\n" +
-    "</pre>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
     "<pre>\n" +
     "  <code class=\"javascript\" hljs>\n" +
-    "TO DO\n" +
+    "... as above\n" +
+    "  </code>\n" +
+    "</pre>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/blocks/latest/_description.html',
+    "<h3>Retrieve latest Blocks</h3>\n" +
+    "<br>\n" +
+    "<p><strong>Request Parameters</strong></p>\n" +
+    "<table class=\"table table-bordered table-docs\">\n" +
+    "  <tbody>\n" +
+    "    <thead>\n" +
+    "      <tr>\n" +
+    "        <td>Param Name</td>\n" +
+    "        <td>Default Value</td>\n" +
+    "        <td>Type</td>\n" +
+    "        <td>Required</td>\n" +
+    "      </tr>\n" +
+    "    </thead>\n" +
+    "    <tr>\n" +
+    "      <td>limit: </td>\n" +
+    "      <td>20</td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>offset: </td>\n" +
+    "      <td>0</td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
+    "    </tr>\n" +
+    "  </tbody>\n" +
+    "</table>\n" +
+    "\n" +
+    "<br>\n" +
+    "<p><strong>Response Attributes for Blocks</strong></p>\n" +
+    "<p>\n" +
+    "  Returns <em>array</em> of Block Objects\n" +
+    "</p>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/blocks/latest/_nodejs.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/blocks/latest/_ruby.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/blocks/single/_curl.html',
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "GET https://testnet.helloblock.io/v1/blocks/<span class='text-primary'>&lt;blockId&gt;</span>?param=value\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "$ curl https://testnet.helloblock.io/v1/blocks/<span class='text-primary'>123123</span>?limit=20\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "{\n" +
+    "  \"status\": \"success\",\n" +
+    "  \"data\": {\n" +
+    "    \"block\": {\n" +
+    "      \"blockHeight\": 100000,\n" +
+    "      \"blockHash\": \"000000000003ba27aa200b1cecaad478d2b00432346c3f1f3986da1afd33e506\",\n" +
+    "      \"blockTime\": 1293623863,\n" +
+    "      \"previousBlockHash\": \"000000000002d01c1fccc21636b607dfd930d31d01c3a62104612a1719011250\",\n" +
+    "      \"bits\": 453281356,\n" +
+    "      \"version\": 1,\n" +
+    "      \"merkleRootHash\": \"f3e94742aca4b5ef85488dc37c06c3282295ffec960994b2c0d5ac2a25a95766\",\n" +
+    "      \"nonce\": 274148111,\n" +
+    "      \"totalInputsValue\": 5301000000,\n" +
+    "      \"totalOutputsValue\": 10301000000,\n" +
+    "      \"transactionsCount\": 4,\n" +
+    "      \"confirmations\": 188855,\n" +
+    "      \"transactions\": [ ... Transaaction Objects ]\n" +
+    "    }\n" +
+    "  }\n" +
+    "}\n" +
     "  </code>\n" +
     "</pre>\n"
   );
@@ -1808,31 +2109,102 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<p><strong>Request Parameters</strong></p>\n" +
     "<table class=\"table table-bordered table-docs\">\n" +
     "  <tbody>\n" +
+    "    <thead>\n" +
+    "      <tr>\n" +
+    "        <td>Param Name</td>\n" +
+    "        <td>Default Value</td>\n" +
+    "        <td>Type</td>\n" +
+    "        <td>Required</td>\n" +
+    "      </tr>\n" +
+    "    </thead>\n" +
     "    <tr>\n" +
-    "      <td>block_height: </td>\n" +
-    "      <td><em>integer</em> <span class='label label-primary'>REQUIRED</span></td>\n" +
+    "      <td>blockId: </td>\n" +
+    "      <td></td>\n" +
+    "      <td>\n" +
+    "        <em>string</em>\n" +
+    "        <div>Block Height or Block Hash</div>\n" +
+    "      </td>\n" +
+    "      <td><span class='label label-primary'>REQUIRED</span></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>txs: </td>\n" +
-    "      <td><em>boolean</em> <span class='label label-warning'>OPTIONAL</span></td>\n" +
+    "      <td>limit: </td>\n" +
+    "      <td>20</td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>offset: </td>\n" +
+    "      <td>0</td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>transactions: </td>\n" +
+    "      <td>true</td>\n" +
+    "      <td><em>boolean</em></td>\n" +
+    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
     "</table>\n" +
-    "\n" +
     "<br>\n" +
-    "<p><strong>Response Attributes</strong></p>\n" +
+    "<p><strong>Response Attributes for Address</strong></p>\n" +
     "<table class=\"table table-bordered table-docs table-condensed\">\n" +
     "  <tbody>\n" +
     "    <tr>\n" +
-    "      <td>TODO: </td>\n" +
+    "      <td>blockHeight: </td>\n" +
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>TODO: </td>\n" +
+    "      <td>blockHash: </td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>blockTime: </td>\n" +
     "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>previousBlockHash: </td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>bits: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>version: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>merkleRootHash: </td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>totalInputsValue: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>totalOutputsValue: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>transactionsCount: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>confirmations: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>transactions: </td>\n" +
+    "      <td><em>array</em> of Transaction Objects</td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
     "</table>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/blocks/single/_nodejs.html',
+    ""
   );
 
 
@@ -1841,7 +2213,89 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/templates/docs/ref/errors/intro/_curl.html',
+  $templateCache.put('/templates/docs/ref/faucet/intro/_curl.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/faucet/intro/_description.html',
+    "<h2>Faucet (TESTNET)</h2>\n" +
+    "\n" +
+    "<h3>Docs coming soon ...</h3>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/faucet/intro/_nodejs.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/faucet/intro/_ruby.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/faucet/single/_curl.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/faucet/single/_description.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/faucet/single/_nodejs.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/faucet/single/_ruby.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/faucet/stats/_curl.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/faucet/stats/_description.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/faucet/stats/_nodejs.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/faucet/stats/_ruby.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/faucet/withdrawal/_curl.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/faucet/withdrawal/_description.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/faucet/withdrawal/_nodejs.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/faucet/withdrawal/_ruby.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/introduction/errors/_curl.html',
     "<br><br><br><br><br>\n" +
     "<div class=\"h5 title\">RESPONSE CODE SUMMARY</div>\n" +
     "<pre>\n" +
@@ -1855,31 +2309,15 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
     "<pre>\n" +
     "  <code class=\"javascript\" hljs>\n" +
-    "CODE: 404\n" +
+    "CODE: 400\n" +
     "\n" +
     "BODY:\n" +
     "\n" +
     "{\n" +
-    "  \"details\": {\n" +
-    "    \"transactions\": [\n" +
-    "      \"6f9e9570881e781db8c137c84c111a138e4a022e6b2def5e2a1589a802fe25f\"\n" +
-    "    ]\n" +
-    "  },\n" +
-    "  \"error\": \"No Transaction Found!\",\n" +
-    "  \"inspect\": \"#&lt;Errs::User::NotFound: Errs::User::NotFound&gt;\",\n" +
-    "  \"contribute\": \"Help us improve fix bugs by reporting issues: https://github.com/BitcoinMafia/bitcoin_api/issues\",\n" +
-    "  \"backtrace\": [\n" +
-    "    \"/app/app/controllers/v1/blockchain_controller.rb:54:in `transaction'\",\n" +
-    "    \"/app/vendor/bundle/ruby/2.0.0/gems/actionpack-4.0.2/lib/abstract_controller/base.rb:189:in `process_action'\",\n" +
-    "    \"/app/vendor/bundle/ruby/2.0.0/gems/actionpack-4.0.2/lib/action_controller/metal/rendering.rb:10:in `process_action'\",\n" +
-    "    \"/app/vendor/bundle/ruby/2.0.0/gems/actionpack-4.0.2/lib/abstract_controller/callbacks.rb:18:in `block in process_action'\",\n" +
-    "    \"/app/vendor/bundle/ruby/2.0.0/gems/activesupport-4.0.2/lib/active_support/callbacks.rb:403:in `_run__3997361222176426458__process_action__callbacks'\",\n" +
-    "    \"/app/vendor/bundle/ruby/2.0.0/gems/activesupport-4.0.2/lib/active_support/callbacks.rb:80:in `run_callbacks'\",\n" +
-    "    \"/app/vendor/bundle/ruby/2.0.0/gems/actionpack-4.0.2/lib/abstract_controller/callbacks.rb:17:in `process_action'\",\n" +
-    "    \"/app/vendor/bundle/ruby/2.0.0/gems/actionpack-4.0.2/lib/action_controller/metal/rescue.rb:29:in `process_action'\",\n" +
-    "    \"/app/vendor/bundle/ruby/2.0.0/gems/actionpack-4.0.2/lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'\",\n" +
-    "    \"/app/vendor/bundle/ruby/2.0.0/gems/activesupport-4.0.2/lib/active_support/notifications.rb:159:in `block in instrument'\",\n" +
-    "    \"Ignored backtrace after 10 lines\"\n" +
+    "  \"status\": \"fail\",\n" +
+    "  \"message\": \"There is 1 invalid address\",\n" +
+    "  \"details\": [\n" +
+    "    \"mvaRDyLUeF4CP7Lu9umbU3FxehyC5nU\"\n" +
     "  ]\n" +
     "}\n" +
     "\n" +
@@ -1888,34 +2326,26 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/templates/docs/ref/errors/intro/_description.html',
-    "<h2>Errors</h2>\n" +
+  $templateCache.put('/templates/docs/ref/introduction/errors/_description.html',
+    "<h3>Errors</h3>\n" +
     "<br><br>\n" +
     "<p>\n" +
-    "  Conventional HTTP response codes are used to indicate success or failure of an API request. Codes in the 2xx range indicate success, codes in the 4xx range indicate an error that resulted from the provided information (e.g. a required parameter was missing, a charge failed, etc.), and codes in the 5xx range indicate an error with Hello Block's servers.\n" +
+    "  Conventional HTTP response codes are used to indicate success or failure of an API request. Codes in the 2xx range indicate success, codes in the 4xx range indicate an error that resulted from the provided information (e.g. a required parameter was missing), and codes in the 5xx range indicate an error with Hello Block's servers.\n" +
     "</p>\n" +
     "<br>\n" +
     "<p><strong>Response Attributes</strong></p>\n" +
     "<table class=\"table table-bordered table-docs table-condensed\">\n" +
     "  <tbody>\n" +
     "    <tr>\n" +
+    "      <td>status: </td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>message: </td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
     "      <td>details: </td>\n" +
-    "      <td><em>object</em></td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>error: </td>\n" +
-    "      <td><em>string</em></td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>inspect: </td>\n" +
-    "      <td><em>string</em></td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>contribute: </td>\n" +
-    "      <td><em>string</em></td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>backtrace: </td>\n" +
     "      <td><em>array</em> of <em>strings</em></td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
@@ -1923,36 +2353,41 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/templates/docs/ref/errors/intro/_ruby.html',
+  $templateCache.put('/templates/docs/ref/introduction/errors/_nodejs.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/introduction/errors/_ruby.html',
     "<code>RUBY</code>\n"
   );
 
 
   $templateCache.put('/templates/docs/ref/introduction/intro/_curl.html',
-    "<br><br><br><br>\n" +
+    "<br><br>\n" +
     "<pre>\n" +
     "  <code class=\"bash\" hljs>\n" +
     "echo \"Hello, block!\"\n" +
     "  </code>\n" +
     "</pre>\n" +
-    "<div class=\"h4 white\">ENVIRONMENT ENDPOINTS</div>\n" +
+    "<div class=\"h4 white\">BLOCKCHAIN ENDPOINTS</div>\n" +
     "<br><br>\n" +
-    "<div class=\"h5 title\">MAINNET (production)</div>\n" +
+    "<div class=\"h5 title\">PRODUCTION</div>\n" +
     "<pre>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "    https://<span class='text-primary'>api</span>.helloblock.io/v1/\n" +
+    "    https://<span class='text-primary'>mainnet</span>.helloblock.io/v1/\n" +
     "  </code>\n" +
     "</pre>\n" +
-    "<div class=\"h5 title\">TESTNET (development)</div>\n" +
+    "<div class=\"h5 title\">DEVELOPMENT</div>\n" +
     "<pre>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "    https://<span class='text-primary'>test</span>.helloblock.io/v1/\n" +
+    "    https://<span class='text-primary'>testnet</span>.helloblock.io/v1/\n" +
     "  </code>\n" +
     "</pre>\n" +
-    "<div class=\"h5 title\">TESTNET - blockchain.info mirror (development)</div>\n" +
+    "<div class=\"h5 title\">DEVELOPMENT (blockchain.info mirror)</div>\n" +
     "<pre>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "    https://<span class='text-primary'>test</span>.helloblock.io/<span class='text-primary'>b</span>/\n" +
+    "    https://<span class='text-primary'>testnet</span>.helloblock.io/<span class='text-primary'>b</span>/\n" +
     "  </code>\n" +
     "</pre>\n"
   );
@@ -1960,8 +2395,6 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('/templates/docs/ref/introduction/intro/_description.html',
     "<h2>Introduction</h2>\n" +
-    "<br>\n" +
-    "<h4>What is HelloBlock?</h4>\n" +
     "<br>\n" +
     "<p>HelloBlock provides node hosting for both MainNet and TestNet, and give HTTPS access to Blockchain Data through a RESTful JSON API.</p>\n" +
     "\n" +
@@ -1971,34 +2404,17 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/templates/docs/ref/introduction/intro/_other.html',
-    "<h4>Why?</h4>\n" +
-    "<br>\n" +
-    "<p>Bitcoin is programmable currency. However, the developer infrastructure around Bitcoin is underwhelming.</p>\n" +
+  $templateCache.put('/templates/docs/ref/introduction/intro/_nodejs.html',
+    "<br><br>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "$ npm install helloblock-js --save\n" +
     "\n" +
-    "<p>Writing automated tests for Bitcoin transactions are a pain because setting up testnet (an alternative blockchain used for testing) can take a few days. This is because you need to download/parse it into a queriable format. Doing this is only becoming exponentially more difficult as the blockchain grows in size.</p>\n" +
+    "console.log(\"Docs in progress...Please visit <a href=\"https://github.com/helloblock/helloblock-js\">https://github.com/helloblock-js/</a>\")\n" +
     "\n" +
-    "<p>As a result, many developers, including ourselves, chose to simulate transactions using real Bitcoins. This meant we paid a 0.0001 BTC TX fee for every test and occasionally even lost all our Bitcoins due to bugs or accidentally clearing our private keys!</p>\n" +
     "\n" +
-    "<p>This leads to test anxiety where we just leave a bunch of “TODO” comments everywhere in our code. And, of course these “TODOs” really mean “Never going to happen”.</p>\n" +
-    "\n" +
-    "<p>This inevitably introduces bugs into our system. Worst of all, these are often mission critical bugs where real money is being moved around.</p>\n" +
-    "\n" +
-    "<p>HelloBlock provides testnet support and was built with testnet in mind from Day One.</p>\n" +
-    "\n" +
-    "<br>\n" +
-    "<h4>Why don’t I just use Blockchain.info?</h4>\n" +
-    "<br>\n" +
-    "<p>Blockchain.info has built a great consumer application, but it’s not for developers. They’ve made it clear that the API is not their core business, nor do they plan to support testnet (bitcoin talk link).</p>\n" +
-    "\n" +
-    "<p>What’s worse is their API response structures often change randomly without any prior announcements. Strings can become integers, attribute names can change, actual 400 errors come back with 200 response codes etc. This means they can’t be relied upon for any production critical applications. We’ve learnt this the hard way.</p>\n" +
-    "\n" +
-    "<br>\n" +
-    "<h4>Why don’t I just host my own node?</h4>\n" +
-    "<br>\n" +
-    "<p>At some stage, we’ve all said “Screw it, I’m just going to host my own node”. Four days later, when we realize we’re not even 1/3rd of the way there and our node keeps failing randomly, we come crawling back to blockchain.info.</p>\n" +
-    "\n" +
-    "<br><br><br>\n"
+    "  </code>\n" +
+    "</pre>\n"
   );
 
 
@@ -2014,72 +2430,158 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('/templates/docs/ref/introduction/response/_curl.html',
+    "<br><br>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "CODE: 200\n" +
+    "\n" +
+    "BODY:\n" +
+    "\n" +
+    "{\n" +
+    "  \"status\": \"success\",\n" +
+    "  \"data\": {\n" +
+    "    \"resource\": {\n" +
+    "      \"id\" : 1,\n" +
+    "      \"attribute\" : \"Description\",\n" +
+    "      \"body\" : \"Useful information\"\n" +
+    "    }\n" +
+    "  }\n" +
+    "}\n" +
+    "\n" +
+    "  </code>\n" +
+    "</pre>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/introduction/response/_description.html',
+    "<h3>Response Format</h3>\n" +
+    "<br><br>\n" +
+    "<p>\n" +
+    "  HelloBlock follows the <a target=\"_blank\" href=\"http://labs.omniti.com/labs/jsend\">JSend</a> response structure, ideal for RESTful APIs.\n" +
+    "</p>\n" +
+    "<br>\n" +
+    "<p><strong>Response Attributes</strong></p>\n" +
+    "<table class=\"table table-bordered table-docs table-condensed\">\n" +
+    "  <tbody>\n" +
+    "    <tr>\n" +
+    "      <td>status: </td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>data: </td>\n" +
+    "      <td><em>object</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>meta: </td>\n" +
+    "      <td>Potentially other meta data</td>\n" +
+    "    </tr>\n" +
+    "  </tbody>\n" +
+    "</table>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/introduction/response/_nodejs.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/introduction/response/_ruby.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/streaming/intro/_curl.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/streaming/intro/_description.html',
+    "<h2>Streaming</h2>\n" +
+    "\n" +
+    "<h3>Docs coming soon ...</h3>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/streaming/intro/_nodejs.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/streaming/intro/_ruby.html',
+    ""
+  );
+
+
   $templateCache.put('/templates/docs/ref/transactions/batch/_curl.html',
     "<br><br><br><br><br>\n" +
     "<div class=\"h5 title\">DEFINITION</div>\n" +
     "<pre>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "GET https://api.helloblock.io/v1/transactions?tx_hashes[]=<span class=\"text-primary\">&lt;tx_hash&gt;</span></code>\n" +
+    "GET https://testnet.helloblock.io/v1/transactions?txHashes=<span class=\"text-primary\">&lt;txHash&gt;</span></code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
     "<pre class='curl'>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "$ curl https://api.helloblock.io/v1/transactions?tx_hashes[]=<span class='text-primary'>6f9e9570881e781db8c137c84c111a138e4a022e6b2def5e2a1589a802fe25f3</span>&tx_hashes[]=<span class='text-primary'>770e6e4c66fc61fb523e5aefe11780b26c8473638e7065ca726a6492ab7f6345</span>&tx_hashes[]=<span class='text-primary'>47bf46f92384002dc008696dac3437a2ca4a2696c21a3f6d1d789513e7b9a3f0</span>\n" +
+    "$ curl https://testnet.helloblock.io/v1/transactions?txHashes=<span class='text-primary'>6f9e9570881e781db8c137c84c111a138e4a022e6b2def5e2a1589a802fe25f3</span>&txHashes=<span class='text-primary'>770e6e4c66fc61fb523e5aefe11780b26c8473638e7065ca726a6492ab7f6345</span>&txHashes=<span class='text-primary'>47bf46f92384002dc008696dac3437a2ca4a2696c21a3f6d1d789513e7b9a3f0</span>\n" +
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
     "<pre>\n" +
     "  <code class=\"javascript\" hljs>\n" +
-    "[ {\n" +
-    "    \"time\": 1388684762,\n" +
-    "    \"block_hash\": \"00000000ba5b52e73bced6159bbd67602d0108816f4eaad8c669c4a78132c254\",\n" +
-    "    \"block_height\": 155064,\n" +
-    "    \"hash\": \"47bf46f92384002dc008696dac3437a2ca4a2696c21a3f6d1d789513e7b9a3f0\",\n" +
-    "    \"ver\": 1,\n" +
-    "    \"lock_time\": 0,\n" +
-    "    \"size\": 376,\n" +
-    "    \"tx_id\": 997342,\n" +
-    "    \"vin_sz\": 2,\n" +
-    "    \"vout_sz\": 2,\n" +
-    "    \"in\": [ {\n" +
-    "      \"prev_out\": {\n" +
-    "        \"n\": 0,\n" +
-    "        \"hash\": \"75b1129641016a1762110ec82b5ccb42bd34a1213485d2b93792ca7456eb983d\",\n" +
-    "        \"tx_id\": 996982,\n" +
-    "        \"value\": 100000,\n" +
-    "        \"address\": \"mk1caepuZCUNELK7P1t8cP8GtqZPcdzibr\",\n" +
-    "        \"hash160\": \"314c1c19a662147ebafee5841e10b629f0a680ef\"\n" +
-    "      },\n" +
-    "      \"scriptSig\": \"493046022100bce7fe3cc1120f524af14ff157c9558b218e2c7e1f9722955d7bd34d31ccadca022100f4aa43e73a64e5aeceeaf237c94ed7e4b478d64241c640028067393bd2688464012103ba3fa2f1d35c2d8acf7a66f997a140e8d2be69dc0d054a26b46c2f1d50b2366a\"\n" +
-    "    }, {\n" +
-    "      \"prev_out\": {\n" +
-    "        \"n\": 1,\n" +
-    "        \"hash\": \"212da0321924ca43ec6645e69ebb5404877cf7e51d1a2ebbb800d3cddbd0c0c9\",\n" +
-    "        \"tx_id\": 996979,\n" +
-    "        \"value\": 1030397,\n" +
-    "        \"address\": \"mnmZ2hevsK1pEnpCtywYH1Sn1qKXi9DRGi\",\n" +
-    "        \"hash160\": \"4f8bb314083164c857176c5ff6f29d14eb8f78a9\"\n" +
-    "      },\n" +
-    "      \"scriptSig\": \"493046022100bf9d8c0e0b470eff1721e4c0afadb5d7d28f2b68a9f3a315399ebc61bca7c0c3022100b30be2ea458f34b7e7a91845ac437a528f6444b85eb2fe0f2adc8022c59d133a012102088960746782c504b30f39ab8e02f5a0360c2b9f392091f7a46246f0fe18a72d\"\n" +
-    "    } ],\n" +
-    "    \"out\": [ {\n" +
-    "      \"n\": 0,\n" +
-    "      \"value\": 1020397,\n" +
-    "      \"scriptPubKey\": \"76a9143488c0786a4cc76c59dc509654831ba5b34a079988ac\",\n" +
-    "      \"spent\": true,\n" +
-    "      \"address\": \"mkJjFiLGTTZxc9gynVHZ3nam17aaQdZU75\"\n" +
-    "    }, {\n" +
-    "      \"n\": 1,\n" +
-    "      \"value\": 100000,\n" +
-    "      \"scriptPubKey\": \"76a914dfcb6c48e49b7a6d9d4f51e174f587a9b8ae33aa88ac\",\n" +
-    "      \"spent\": true,\n" +
-    "      \"address\": \"n1vGfugd2W27SkG5TZiWpmDzQrvtxAgFJw\"\n" +
-    "    } ]\n" +
-    "  },\n" +
-    "\n" +
-    "  ... etc\n" +
-    "\n" +
-    "]\n" +
+    "{\n" +
+    "  \"status\": \"success\",\n" +
+    "  \"data\": {\n" +
+    "    \"transactions\": [{\n" +
+    "      \"txHash\": \"770e6e4c66fc61fb523e5aefe11780b26c8473638e7065ca726a6492ab7f6345\",\n" +
+    "      \"version\": 1,\n" +
+    "      \"size\": 374,\n" +
+    "      \"blockHash\": \"00000000ba5b52e73bced6159bbd67602d0108816f4eaad8c669c4a78132c254\",\n" +
+    "      \"blockHeight\": 155064,\n" +
+    "      \"blockTime\": 1388685039,\n" +
+    "      \"estimatedTxTime\": 1388684762,\n" +
+    "      \"confirmations\": 47454,\n" +
+    "      \"inputsCount\": 2,\n" +
+    "      \"outputsCount\": 2,\n" +
+    "      \"inputs\": [{\n" +
+    "        \"index\": 0,\n" +
+    "        \"txHash\": \"51421800a059ef82a002e6b5b626e414683f5c1c977941365c1e3f70bde9a755\",\n" +
+    "        \"value\": 1008180,\n" +
+    "        \"address\": \"mwfwbACje3yuSyT3rFPW3aJFtJcWPT4mHa\",\n" +
+    "        \"hash160\": \"b1352ae996dea0f979973f363a4ff47d336f0553\",\n" +
+    "        \"scriptSig\": \"48304502203d0d93fc9dd9b7cbf9d84b7d8e689420bcac41aa99c57c217ed97c909da4ac2c022100dc0437b1e1a8061b56300a255b4d1be3e0b7f9bdd76ce2093a48cfbf35dc02000121030e37a66c5c9add8b0447e29ffed5c7a733295660c53dc22070f7b6214d2629d4\"\n" +
+    "      }, {\n" +
+    "        \"index\": 0,\n" +
+    "        \"txHash\": \"02a4547e9ec5ef423f4fa640f647e6677e8f6667c3570a183a74909ebe7d99d3\",\n" +
+    "        \"value\": 123000,\n" +
+    "        \"address\": \"mqgpWTNcn6ZJPEkysz83uTP9jvwWrb34cw\",\n" +
+    "        \"hash160\": \"6f8eeafa1e979a730994c644dc8484c9493271f3\",\n" +
+    "        \"scriptSig\": \"4830450221008deabc06fd13a35b2f3358a13b97390fd18cd620a19569936364689bbb67346502207cedb466487a865ca3d034244330619373d84ceac403783f630974f9bcf05d4801210259719c7bfad5ef7e921a00ca5d01271088b8c94e11ac4fe74f99b8e90e394560\"\n" +
+    "      }],\n" +
+    "      \"outputs\": [{\n" +
+    "        \"index\": 0,\n" +
+    "        \"value\": 1100000,\n" +
+    "        \"scriptPubKey\": \"76a914356b0d41679d2d41b516311176020302f6375a5c88ac\",\n" +
+    "        \"spent\": true,\n" +
+    "        \"address\": \"mkPQMJsumQzQLzuevNqb9t8N47xiMTh91z\",\n" +
+    "        \"hash160\": \"356b0d41679d2d41b516311176020302f6375a5c\",\n" +
+    "        \"type\": \"pubkeyhash\"\n" +
+    "      }, {\n" +
+    "        \"index\": 1,\n" +
+    "        \"value\": 21180,\n" +
+    "        \"scriptPubKey\": \"76a9140deba7da7d63a92a29ea78b2261e3f3c4c3cdc4988ac\",\n" +
+    "        \"spent\": false,\n" +
+    "        \"address\": \"mgnZPC3wyrKuRG1cJDphWt1Ze4n7MCcBhE\",\n" +
+    "        \"hash160\": \"0deba7da7d63a92a29ea78b2261e3f3c4c3cdc49\",\n" +
+    "        \"type\": \"pubkeyhash\"\n" +
+    "      }],\n" +
+    "      \"totalInputsValue\": 1131180,\n" +
+    "      \"totalOutputsValue\": 1121180,\n" +
+    "      \"fees\": 10000\n" +
+    "    }, ... ]\n" +
+    "  }\n" +
+    "}\n" +
     "  </code>\n" +
     "</pre>\n"
   );
@@ -2091,32 +2593,116 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<p><strong>Request Parameters</strong></p>\n" +
     "<table class=\"table table-bordered table-docs\">\n" +
     "  <tbody>\n" +
+    "    <thead>\n" +
+    "      <tr>\n" +
+    "        <td>Param Name</td>\n" +
+    "        <td>Default Value</td>\n" +
+    "        <td>Type</td>\n" +
+    "        <td>Required</td>\n" +
+    "      </tr>\n" +
+    "    </thead>\n" +
     "    <tr>\n" +
-    "      <td>tx_hashes=[]: </td>\n" +
+    "      <td>txHashes: </td>\n" +
+    "      <td></td>\n" +
     "      <td>\n" +
-    "        <em>array of</em> <em>strings</em><span class='label label-primary'>REQUIRED</span>\n" +
-    "        <br><br>\n" +
+    "        <em>array</em> of <em>strings</em>\n" +
     "        <div>\n" +
     "          Repeat for multiple transactions, e.g.\n" +
     "        </div>\n" +
     "        <div>\n" +
-    "          \"tx_hashes[]=<em>&</em>tx_hashes[]=<em>&</em>tx_hashes[]=c\"\n" +
+    "          \"txHashes[]=a&txHashes[]=b&txHashes[]=c\"\n" +
     "        </div>\n" +
     "      </td>\n" +
+    "      <td><span class='label label-primary'>REQUIRED</span></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>rawTxHex: </td>\n" +
+    "      <td>false</td>\n" +
+    "      <td><em>boolean</em></td>\n" +
+    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
     "</table>\n" +
     "\n" +
     "<br>\n" +
-    "<p><strong>Response Attributes</strong></p>\n" +
+    "<p><strong>Response Attributes for Transactions</strong></p>\n" +
     "<p>\n" +
     "  Returns <em>array</em> of Transaction Objects\n" +
     "</p>\n"
   );
 
 
+  $templateCache.put('/templates/docs/ref/transactions/batch/_nodejs.html',
+    ""
+  );
+
+
   $templateCache.put('/templates/docs/ref/transactions/batch/_ruby.html',
     "<code>RUBY</code>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/transactions/decode/_curl.html',
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "GET https://testnet.helloblock.io/v1/transactions/decode?rawTxHex=string\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "$ curl https://testnet.helloblock.io/v1/transactions/decode?rawTxHex=<span class='text-primary'>0100000001ec71e2ceac8476bea21fbc4a97062c000f07def6c8ef8d9171fb1a5e113418e0010000008c493046022100e6f39b4393794ef03b0f9dc71395e0835a211015b42ab4329cb6a6c1c8b3c6ea022100f1ccae451f35e5c5ad25a8f7e7b5e778bafc4dc69dd560fab1cbadbb88767916014104e1934263e84e202ebffca95246b63c18c07cd369c4f02de76dbd1db89e6255dacb3ab1895af0422e24e1d1099e80f01b899cfcdf9b947575352dbc1af57466b5ffffffff0210270000000000001976a914652c453e3f8768d6d6e1f2985cb8939db91a4e0588ace065f81f000000001976a914cf0dfe6e0fa6ea5dda32c58ff699071b672e1faf88ac00000000</span>\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "TODO\n" +
+    "  </code>\n" +
+    "</pre>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/transactions/decode/_description.html',
+    "<h3>Decode a Transaction</h3>\n" +
+    "<br>\n" +
+    "<p><strong>Request Parameters</strong></p>\n" +
+    "<table class=\"table table-bordered table-docs\">\n" +
+    "  <tbody>\n" +
+    "    <thead>\n" +
+    "      <tr>\n" +
+    "        <td>Param Name</td>\n" +
+    "        <td>Default Value</td>\n" +
+    "        <td>Type</td>\n" +
+    "        <td>Required</td>\n" +
+    "      </tr>\n" +
+    "    </thead>\n" +
+    "    <tr>\n" +
+    "      <td>rawTxHex: </td>\n" +
+    "      <td></td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "      <td><span class='label label-primary'>REQUIRED</span></td>\n" +
+    "    </tr>\n" +
+    "  </tbody>\n" +
+    "</table>\n" +
+    "\n" +
+    "<br>\n" +
+    "<p><strong>Response Attributes for Transactions</strong></p>\n" +
+    "<p>\n" +
+    "  Returns Transaction Object\n" +
+    "</p>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/transactions/decode/_nodejs.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/transactions/decode/_ruby.html',
+    ""
   );
 
 
@@ -2135,8 +2721,82 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('/templates/docs/ref/transactions/intro/_nodejs.html',
+    ""
+  );
+
+
   $templateCache.put('/templates/docs/ref/transactions/intro/_ruby.html',
     "<code>RUBY</code>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/transactions/latest/_curl.html',
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "GET https://testnet.helloblock.io/v1/transactions/latest?param=value\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class='curl'>\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "$ curl https://testnet.helloblock.io/v1/transactions/latest?limit=5\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "... as above\n" +
+    "  </code>\n" +
+    "</pre>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/transactions/latest/_description.html',
+    "<h3>Retrieve latest Transactions</h3>\n" +
+    "<br>\n" +
+    "<p><strong>Request Parameters</strong></p>\n" +
+    "<table class=\"table table-bordered table-docs\">\n" +
+    "  <tbody>\n" +
+    "    <thead>\n" +
+    "      <tr>\n" +
+    "        <td>Param Name</td>\n" +
+    "        <td>Default Value</td>\n" +
+    "        <td>Type</td>\n" +
+    "        <td>Required</td>\n" +
+    "      </tr>\n" +
+    "    </thead>\n" +
+    "    <tr>\n" +
+    "      <td>limit: </td>\n" +
+    "      <td>20</td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>offset: </td>\n" +
+    "      <td>0</td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
+    "    </tr>\n" +
+    "  </tbody>\n" +
+    "</table>\n" +
+    "\n" +
+    "<br>\n" +
+    "<p><strong>Response Attributes for Transactions</strong></p>\n" +
+    "<p>\n" +
+    "  Returns <em>array</em> of Transaction Objects\n" +
+    "</p>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/transactions/latest/_nodejs.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/transactions/latest/_ruby.html',
+    ""
   );
 
 
@@ -2145,22 +2805,27 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<div class=\"h5 title\">DEFINITION</div>\n" +
     "<pre>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "POST https://api.helloblock.io/v1/transactions/\n" +
+    "POST https://testnet.helloblock.io/v1/transactions/\n" +
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
     "<pre>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "$ curl -X POST https://api.helloblock.io/v1/transactions \\\n" +
-    " - d \"tx_hex=<span class='text-primary'>TODO</span>\"\n" +
+    "$ curl -X POST https://testnet.helloblock.io/v1/transactions \\\n" +
+    " -d \"rawTxHex=<span class='text-primary'>0100000001ec71e2ceac8476bea21fbc4a97062c000f07def6c8ef8d9171fb1a5e113418e0010000008c493046022100e6f39b4393794ef03b0f9dc71395e0835a211015b42ab4329cb6a6c1c8b3c6ea022100f1ccae451f35e5c5ad25a8f7e7b5e778bafc4dc69dd560fab1cbadbb88767916014104e1934263e84e202ebffca95246b63c18c07cd369c4f02de76dbd1db89e6255dacb3ab1895af0422e24e1d1099e80f01b899cfcdf9b947575352dbc1af57466b5ffffffff0210270000000000001976a914652c453e3f8768d6d6e1f2985cb8939db91a4e0588ace065f81f000000001976a914cf0dfe6e0fa6ea5dda32c58ff699071b672e1faf88ac00000000</span>\"\n" +
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
     "<pre>\n" +
     "  <code class=\"javascript\" hljs>\n" +
     "{\n" +
-    "  \"message\": \"Transaction propagation has been successful.\"\n" +
-    "  \"tx_hash\": TODO\n" +
+    "  \"status\": \"success\",\n" +
+    "  \"data\": {\n" +
+    "    \"transaction\": {\n" +
+    "      \"txHash\": \"005cd997f92d11afc621b2eabdc5eea952d31da1cb27a05dc5e34d611bed1496\",\n" +
+    "      \"rawTxHex\": \"0100000001ec71e2ceac8476bea21fbc4a97062c000f07def6c8ef8d9171fb1a5e113418e0010000008c493046022100e6f39b4393794ef03b0f9dc71395e0835a211015b42ab4329cb6a6c1c8b3c6ea022100f1ccae451f35e5c5ad25a8f7e7b5e778bafc4dc69dd560fab1cbadbb88767916014104e1934263e84e202ebffca95246b63c18c07cd369c4f02de76dbd1db89e6255dacb3ab1895af0422e24e1d1099e80f01b899cfcdf9b947575352dbc1af57466b5ffffffff0210270000000000001976a914652c453e3f8768d6d6e1f2985cb8939db91a4e0588ace065f81f000000001976a914cf0dfe6e0fa6ea5dda32c58ff699071b672e1faf88ac00000000\"\n" +
+    "    }\n" +
+    "  }\n" +
     "}\n" +
     "  </code>\n" +
     "</pre>\n"
@@ -2170,12 +2835,22 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   $templateCache.put('/templates/docs/ref/transactions/post/_description.html',
     "<h3>Propagate a Transaction</h3>\n" +
     "<br>\n" +
-    "<p><strong>Arguments</strong></p>\n" +
+    "<p><strong>Body Parameters</strong></p>\n" +
     "<table class=\"table table-bordered table-docs\">\n" +
     "  <tbody>\n" +
+    "    <thead>\n" +
+    "      <tr>\n" +
+    "        <td>Name</td>\n" +
+    "        <td>Default Value</td>\n" +
+    "        <td>Type</td>\n" +
+    "        <td>Required</td>\n" +
+    "      </tr>\n" +
+    "    </thead>\n" +
     "    <tr>\n" +
-    "      <td>tx_hex: </td>\n" +
-    "      <td><em>string</em> <span class='label label-primary'>REQUIRED</span></td>\n" +
+    "      <td>rawTxHex: </td>\n" +
+    "      <td></td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "      <td><span class='label label-primary'>REQUIRED</span></td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
     "</table>\n" +
@@ -2185,19 +2860,24 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<table class=\"table table-bordered table-docs table-condensed\">\n" +
     "  <tbody>\n" +
     "    <tr>\n" +
-    "      <td>message: </td>\n" +
+    "      <td>txHash: </td>\n" +
     "      <td>\n" +
     "        <em>string</em>\n" +
     "      </td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>tx_hash: </td>\n" +
+    "      <td>rawTxHex: </td>\n" +
     "      <td>\n" +
     "        <em>string</em>\n" +
     "      </td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
     "</table>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/transactions/post/_nodejs.html',
+    ""
   );
 
 
@@ -2211,50 +2891,62 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<div class=\"h5 title\">DEFINITION</div>\n" +
     "<pre>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "GET https://api.helloblock.io/v1/transactions/<span class='text-primary'>&lt;tx_hash&gt;</span>\n" +
+    "GET https://testnet.helloblock.io/v1/transactions/<span class='text-primary'>&lt;txHash&gt;</span>\n" +
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
     "<pre class='curl'>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "$ curl https://api.helloblock.io/v1/transactions/<span class='text-primary'>2542cd64e02d902975dc6e2e97797ceec5a84e8597c80d22a9e2dbd16e748738</span>\n" +
+    "$ curl https://testnet.helloblock.io/v1/transactions/<span class='text-primary'>2542cd64e02d902975dc6e2e97797ceec5a84e8597c80d22a9e2dbd16e748738</span>?rawTxHex=false\n" +
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
     "<pre>\n" +
     "  <code class=\"javascript\" hljs>\n" +
     "{\n" +
-    "  \"hash\": \"2542cd64e02d902975dc6e2e97797ceec5a84e8597c80d22a9e2dbd16e748738\",\n" +
-    "  \"ver\": 1,\n" +
-    "  \"lock_time\": 0,\n" +
-    "  \"size\": 226,\n" +
-    "  \"tx_id\": 994531,\n" +
-    "  \"vin_sz\": 1,\n" +
-    "  \"vout_sz\": 2,\n" +
-    "  \"in\": [ {\n" +
-    "    \"prev_out\": {\n" +
-    "      \"n\": 0,\n" +
-    "      \"hash\": \"ff9e7a02702ea393facf57d94f233e58a29a9d7c2f3080bf404b1ec5ec572eb2\",\n" +
-    "      \"tx_id\": 994520,\n" +
-    "      \"value\": 53022177768,\n" +
-    "      \"address\": \"mjswyggXrNJKdb1PHEfqrFxyefwFnn1q68\",\n" +
-    "      \"hash160\": \"2fd8f955587181fdf2caded0d41c8f52c084cee4\"\n" +
-    "    },\n" +
-    "    \"scriptSig\": \"483045022100cc3a4f04c04b3aa6c4c98632f72641112e027a0f2280351e5722449c658d4a6c0220074f0537f668d4049c7b0da91486d6d83a2f37a60512a1771aedc35c97f0e92b0121038708f0be6ec42ff5788c5cd51c87f245538c1ecf890c12774fe006b55797c114\"\n" +
-    "  } ],\n" +
-    "  \"out\": [ {\n" +
-    "    \"n\": 0,\n" +
-    "    \"value\": 46970000,\n" +
-    "    \"scriptPubKey\": \"76a9144465358b1c07d001a49216c466b6e8de5c708d9988ac\",\n" +
-    "    \"spent\": false,\n" +
-    "    \"address\": \"mmkbVEWhehm6mKUgV36K6oWX4BCZcp5by3\"\n" +
-    "  }, {\n" +
-    "    \"n\": 1,\n" +
-    "    \"value\": 52975207768,\n" +
-    "    \"scriptPubKey\": \"76a9146a0d58b53a6b6aef32d5907e237ad57e6d84d0d688ac\",\n" +
-    "    \"spent\": true,\n" +
-    "    \"address\": \"mqBhuiixrkwypkjNHFwSNYiFEtAiDr54gp\"\n" +
-    "  } ]\n" +
+    "  \"status\": \"success\",\n" +
+    "  \"data\": {\n" +
+    "    \"transaction\": {\n" +
+    "      \"txHash\": \"2542cd64e02d902975dc6e2e97797ceec5a84e8597c80d22a9e2dbd16e748738\",\n" +
+    "      \"version\": 1,\n" +
+    "      \"size\": 226,\n" +
+    "      \"blockHash\": \"00000000c9b0330dd0d02607962a37e0010644b060da244189ee0632fb851c89\",\n" +
+    "      \"blockHeight\": 154810,\n" +
+    "      \"blockTime\": 1388393306,\n" +
+    "      \"estimatedTxTime\": 1388393306,\n" +
+    "      \"confirmations\": 47707,\n" +
+    "      \"inputsCount\": 1,\n" +
+    "      \"outputsCount\": 2,\n" +
+    "      \"inputs\": [{\n" +
+    "        \"index\": 0,\n" +
+    "        \"txHash\": \"ff9e7a02702ea393facf57d94f233e58a29a9d7c2f3080bf404b1ec5ec572eb2\",\n" +
+    "        \"value\": 53022177768,\n" +
+    "        \"address\": \"mjswyggXrNJKdb1PHEfqrFxyefwFnn1q68\",\n" +
+    "        \"hash160\": \"2fd8f955587181fdf2caded0d41c8f52c084cee4\",\n" +
+    "        \"scriptSig\": \"483045022100cc3a4f04c04b3aa6c4c98632f72641112e027a0f2280351e5722449c658d4a6c0220074f0537f668d4049c7b0da91486d6d83a2f37a60512a1771aedc35c97f0e92b0121038708f0be6ec42ff5788c5cd51c87f245538c1ecf890c12774fe006b55797c114\"\n" +
+    "      }],\n" +
+    "      \"outputs\": [{\n" +
+    "        \"index\": 0,\n" +
+    "        \"value\": 46970000,\n" +
+    "        \"scriptPubKey\": \"76a9144465358b1c07d001a49216c466b6e8de5c708d9988ac\",\n" +
+    "        \"spent\": false,\n" +
+    "        \"address\": \"mmkbVEWhehm6mKUgV36K6oWX4BCZcp5by3\",\n" +
+    "        \"hash160\": \"4465358b1c07d001a49216c466b6e8de5c708d99\",\n" +
+    "        \"type\": \"pubkeyhash\"\n" +
+    "      }, {\n" +
+    "        \"index\": 1,\n" +
+    "        \"value\": 52975207768,\n" +
+    "        \"scriptPubKey\": \"76a9146a0d58b53a6b6aef32d5907e237ad57e6d84d0d688ac\",\n" +
+    "        \"spent\": true,\n" +
+    "        \"address\": \"mqBhuiixrkwypkjNHFwSNYiFEtAiDr54gp\",\n" +
+    "        \"hash160\": \"6a0d58b53a6b6aef32d5907e237ad57e6d84d0d6\",\n" +
+    "        \"type\": \"pubkeyhash\"\n" +
+    "      }],\n" +
+    "      \"totalInputsValue\": 53022177768,\n" +
+    "      \"totalOutputsValue\": 53022177768,\n" +
+    "      \"fees\": 0\n" +
+    "    }\n" +
+    "  }\n" +
     "}\n" +
     "  </code>\n" +
     "</pre>\n"
@@ -2267,27 +2959,38 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<p><strong>Request Parameters</strong></p>\n" +
     "<table class=\"table table-bordered table-docs\">\n" +
     "  <tbody>\n" +
+    "    <thead>\n" +
+    "      <tr>\n" +
+    "        <td>Param Name</td>\n" +
+    "        <td>Default Value</td>\n" +
+    "        <td>Type</td>\n" +
+    "        <td>Required</td>\n" +
+    "      </tr>\n" +
+    "    </thead>\n" +
     "    <tr>\n" +
-    "      <td>tx_hash: </td>\n" +
-    "      <td><em>string</em> <span class='label label-primary'>REQUIRED</span></td>\n" +
+    "      <td>txHash: </td>\n" +
+    "      <td></td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "      <td><span class='label label-primary'>REQUIRED</span></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>rawTxHex: </td>\n" +
+    "      <td>false</td>\n" +
+    "      <td><em>boolean</em></td>\n" +
+    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
     "</table>\n" +
-    "\n" +
     "<br>\n" +
-    "<p><strong>Response Attributes</strong></p>\n" +
+    "<p><strong>Response Attributes for Transaction</strong></p>\n" +
     "<table class=\"table table-bordered table-docs table-condensed\">\n" +
     "  <tbody>\n" +
     "    <tr>\n" +
-    "      <td>hash: </td>\n" +
+    "      <td>txHash: </td>\n" +
     "      <td><em>string</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>ver: </td>\n" +
-    "      <td><em>integer</em></td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>lock_time: </td>\n" +
+    "      <td>version: </td>\n" +
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
@@ -2295,55 +2998,61 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>tx_id: </td>\n" +
+    "      <td>blockHash: </td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>blockHeight: </td>\n" +
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>vin_sz: </td>\n" +
+    "      <td>blockTime: </td>\n" +
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>in: </td>\n" +
+    "      <td>estimatedTxTime: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>confirmations: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>inputsCount: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>outputsCount: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>inputs: </td>\n" +
     "      <td><p><em>array</em> of Input Objects</p>\n" +
     "        <table class='table table-bordered table-condensed table-docs'>\n" +
     "          <tbody>\n" +
     "            <tr>\n" +
-    "              <td>prev_out:</td>\n" +
-    "              <td>\n" +
-    "                <table class='table table-bordered table-condensed table-docs'>\n" +
-    "                  <tbody>\n" +
-    "                    <tr>\n" +
-    "                      <td>n</td>\n" +
-    "                      <td><em>integer</em></td>\n" +
-    "                    </tr>\n" +
-    "                    <tr>\n" +
-    "                      <td>hash</td>\n" +
-    "                      <td><em>string</em></td>\n" +
-    "                    </tr>\n" +
-    "                    <tr>\n" +
-    "                      <td>tx_id</td>\n" +
-    "                      <td><em>integer</em></td>\n" +
-    "                    </tr>\n" +
-    "                    <tr>\n" +
-    "                      <td>value</td>\n" +
-    "                      <td><em>integer</em></td>\n" +
-    "                    </tr>\n" +
-    "                    <tr>\n" +
-    "                      <td>address</td>\n" +
-    "                      <td><em>string</em></td>\n" +
-    "                    </tr>\n" +
-    "                    <tr>\n" +
-    "                      <td>hash160</td>\n" +
-    "                      <td><em>string</em></td>\n" +
-    "                    </tr>\n" +
-    "                  </tbody>\n" +
-    "                </table>\n" +
-    "              </td>\n" +
-    "              <tr>\n" +
-    "                <td>scriptSig</td>\n" +
-    "                <td><em>string</em></td>\n" +
-    "              </tr>\n" +
-    "              </td>\n" +
+    "              <td>index</td>\n" +
+    "              <td><em>integer</em></td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>txHash</td>\n" +
+    "              <td><em>string</em></td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>value</td>\n" +
+    "              <td><em>integer</em></td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>address</td>\n" +
+    "              <td><em>string</em></td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>hash160</td>\n" +
+    "              <td><em>string</em></td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>scriptSig</td>\n" +
+    "              <td><em>string</em></td>\n" +
     "            </tr>\n" +
     "          </tbody>\n" +
     "        </table>\n" +
@@ -2356,7 +3065,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        <table class='table table-bordered table-condensed table-docs'>\n" +
     "          <tbody>\n" +
     "            <tr>\n" +
-    "              <td>n</td>\n" +
+    "              <td>index</td>\n" +
     "              <td><em>integer</em></td>\n" +
     "            </tr>\n" +
     "            <tr>\n" +
@@ -2369,18 +3078,43 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            </tr>\n" +
     "            <tr>\n" +
     "              <td>spent</td>\n" +
-    "              <td><em>integer</em></td>\n" +
+    "              <td><em>boolean</em></td>\n" +
     "            </tr>\n" +
     "            <tr>\n" +
     "              <td>address</td>\n" +
+    "              <td><em>string</em></td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>hash160</td>\n" +
+    "              <td><em>string</em></td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>type</td>\n" +
     "              <td><em>string</em></td>\n" +
     "            </tr>\n" +
     "          </tbody>\n" +
     "        </table>\n" +
     "      </td>\n" +
     "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>totalInputsValue: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>totalOutputsValue: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>fees: </td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "    </tr>\n" +
     "  </tbody>\n" +
     "</table>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/transactions/single/_nodejs.html',
+    ""
   );
 
 
@@ -2401,6 +3135,11 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  Get unspent outputs for any given address or batch of addresses so you can build a transaction.\n" +
     "</p>\n" +
     "<br>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/unspents/intro/_nodejs.html',
+    ""
   );
 
 
@@ -2513,8 +3252,235 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('/templates/docs/ref/unspents/multiple/_nodejs.html',
+    ""
+  );
+
+
   $templateCache.put('/templates/docs/ref/unspents/multiple/_ruby.html',
     "<code>RUBY</code>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/wallet/batch/_curl.html',
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "GET https://testnet.helloblock.io/v1/wallet?addresses=<span class=\"text-primary\">&lt;address&gt;</span>\n" +
+    "</code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class='curl'>\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "$ curl https://testnet.helloblock.io/v1/wallet?&addresses=<span class='text-primary'>mu1izpJmF7CHnbVcH59f1PqfvXnmiBEMq8</span>&addresses=<span class='text-primary'>mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3</span>&addresses=<span class='text-primary'>n1Fr4r3wEcbXZGQJaqJkFRiMpYLAsk81RX</span>\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "{\n" +
+    "  \"status\": \"success\",\n" +
+    "  \"data\": {\n" +
+    "    \"summary\": {\n" +
+    "      \"transactionsCount\": 6,\n" +
+    "      \"totalReceivedValue\": 8565778,\n" +
+    "      \"totalSentValue\": 8565778,\n" +
+    "      \"balance\": 0\n" +
+    "    },\n" +
+    "    \"addresses\": [{\n" +
+    "      \"totalReceivedValue\": 4342889,\n" +
+    "      \"totalReceivedCount\": 1,\n" +
+    "      \"totalSentValue\": 4342889,\n" +
+    "      \"totalSentCount\": 1,\n" +
+    "      \"balance\": 0,\n" +
+    "      \"transactionsCount\": 2,\n" +
+    "      \"address\": \"n1Fr4r3wEcbXZGQJaqJkFRiMpYLAsk81RX\",\n" +
+    "      \"hash160\": \"d88713de7b1d0837e728de5d5e62399f5e6e145e\"\n" +
+    "    }, {\n" +
+    "      \"totalReceivedValue\": 4122889,\n" +
+    "      \"totalReceivedCount\": 1,\n" +
+    "      \"totalSentValue\": 4122889,\n" +
+    "      \"totalSentCount\": 1,\n" +
+    "      \"balance\": 0,\n" +
+    "      \"transactionsCount\": 2,\n" +
+    "      \"address\": \"mu1izpJmF7CHnbVcH59f1PqfvXnmiBEMq8\",\n" +
+    "      \"hash160\": \"940a991f8dd0f8d7609cb8e3f07235d3a136413a\"\n" +
+    "    }, {\n" +
+    "      \"totalReceivedValue\": 100000,\n" +
+    "      \"totalReceivedCount\": 1,\n" +
+    "      \"totalSentValue\": 100000,\n" +
+    "      \"totalSentCount\": 1,\n" +
+    "      \"balance\": 0,\n" +
+    "      \"transactionsCount\": 2,\n" +
+    "      \"address\": \"mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3\",\n" +
+    "      \"hash160\": \"a0a5226c2e376c929d800a070399e5a3d0277c6e\"\n" +
+    "    }],\n" +
+    "    \"exchangeRates\": {\n" +
+    "      \"BTCUSD\": {\n" +
+    "        \"bitstamp\": 689.68,\n" +
+    "        \"btce\": 654\n" +
+    "      }\n" +
+    "    },\n" +
+    "    \"latestBlock\": {\n" +
+    "        ...Block Object\n" +
+    "    },\n" +
+    "    \"transactions\": [...Transaction Objects]\n" +
+    "  }\n" +
+    "}\n" +
+    "  </code>\n" +
+    "</pre>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/wallet/batch/_description.html',
+    "<h3>Retrieve multiple Addresses</h3>\n" +
+    "<br>\n" +
+    "<p>Gets and returns data for multiple addresses.</p>\n" +
+    "<br>\n" +
+    "<p><strong>Request Parameters</strong></p>\n" +
+    "<table class=\"table table-bordered table-docs\">\n" +
+    "  <tbody>\n" +
+    "    <thead>\n" +
+    "      <tr>\n" +
+    "        <td>Param Name</td>\n" +
+    "        <td>Default Value</td>\n" +
+    "        <td>Type</td>\n" +
+    "        <td>Required</td>\n" +
+    "      </tr>\n" +
+    "    </thead>\n" +
+    "    <tr>\n" +
+    "      <td>addresses: </td>\n" +
+    "      <td></td>\n" +
+    "      <td><em>array</em> of <em>strings</em></td>\n" +
+    "      <td><span class='label label-primary'>REQUIRED</span></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>limit: </td>\n" +
+    "      <td>20</td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>offset: </td>\n" +
+    "      <td>0</td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
+    "    </tr>\n" +
+    "  </tbody>\n" +
+    "</table>\n" +
+    "\n" +
+    "<br>\n" +
+    "<p><strong>Response Attributes for Wallet</strong></p>\n" +
+    "<table class=\"table table-bordered table-docs table-condensed\">\n" +
+    "  <tbody>\n" +
+    "    <tr>\n" +
+    "      <td>summary: </td>\n" +
+    "      <td>\n" +
+    "        <table class=\"table table-bordered table-docs table-condensed\">\n" +
+    "          <tbody>\n" +
+    "            <tr>\n" +
+    "              <td>transactionsCount</td>\n" +
+    "              <td>\n" +
+    "                <em>integer</em>\n" +
+    "                <div>\n" +
+    "                  transactions for all addresses\n" +
+    "                </div>\n" +
+    "              </td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>totalReceivedValue</td>\n" +
+    "              <td>\n" +
+    "                <em>integer</em>\n" +
+    "                <div>\n" +
+    "                  totalReceivedValue for all addresses\n" +
+    "                </div>\n" +
+    "              </td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>totalSentValue</td>\n" +
+    "              <td>\n" +
+    "                <em>integer</em>\n" +
+    "                <div>\n" +
+    "                  totalSentValue for all addresses\n" +
+    "                </div>\n" +
+    "              </td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>balance</td>\n" +
+    "              <td>\n" +
+    "                <em>integer</em>\n" +
+    "                <div>\n" +
+    "                  balance for all addresses\n" +
+    "                </div>\n" +
+    "              </td>\n" +
+    "            </tr>\n" +
+    "          </tbody>\n" +
+    "        </table>\n" +
+    "      </td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>addresses: </td>\n" +
+    "      <td><em>array</em> of <em>Address Objects</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>exchangeRates: </td>\n" +
+    "      <td>\n" +
+    "        <table class=\"table table-bordered table-docs table-condensed\">\n" +
+    "          <tbody>\n" +
+    "            <tr>\n" +
+    "              <td>BTCUSD</td>\n" +
+    "              <td><em>Object</em> of exchange rates</td>\n" +
+    "            </tr>\n" +
+    "          </tbody>\n" +
+    "        </table>\n" +
+    "      </td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>latestBlock: </td>\n" +
+    "      <td><em>Block Object</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>transactions: </td>\n" +
+    "      <td><em>array</em> of <em>Transaction Objects</em></td>\n" +
+    "    </tr>\n" +
+    "  </tbody>\n" +
+    "</table>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/wallet/batch/_nodejs.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/wallet/batch/_ruby.html',
+    "<code>RUBY</code>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/wallet/intro/_curl.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/wallet/intro/_description.html',
+    "<h2>Wallet</h2>\n" +
+    "<br>\n" +
+    "<p>\n" +
+    "  The Wallet object is a convenience endpoint for commonly queried data (e.g. User dashboards, user profiles). It contains a batch addresses request with transactions, exchange rate info etc ...\n" +
+    "</p>\n" +
+    "<br>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/wallet/intro/_nodejs.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/wallet/intro/_ruby.html',
+    ""
   );
 
 
@@ -2715,7 +3681,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <h2 class='text-center white'>\n" +
     "        Get started with the Blockchain Data API\n" +
     "      </h2>\n" +
-    "      <br><br><br>\n" +
+    "      <br><br>\n" +
     "      <div class=\"row text-center\">\n" +
     "        <a class=\"btn btn-success btn-lg\" href=\"/docs/tutorials\">\n" +
     "          <!-- TODO: should be explorer -->\n" +
