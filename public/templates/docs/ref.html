@@ -11,7 +11,7 @@
             </h5>
           </div>
         </li>
-        <li ng-repeat="s in sections" spy="{{s.resource}}">
+        <li ng-repeat="s in sections" spy="{{s.resource}}" id="resource-{{s.resource}}">
           <a href="/docs/ref#{{s.resource}}">{{s.resource.capitalize()}}</a>
           <ul class="nav">
             <li ng-repeat="sub in s.subs.slice(1)" spy="{{sub.id}}" id="sidebar-{{sub.id}}">

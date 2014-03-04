@@ -56,6 +56,7 @@ hbApp.directive 'scrollSpy', ($window, $timeout) ->
               highlightSpy = spy
 
               $(".bs-sidenav ul.nav").hide()
+              $(".bs-sidenav #resource-" + spy.id).children().show()
               $(".bs-sidenav ul.nav #sidebar-" + spy.id).parent().show()
 
 
