@@ -2,30 +2,34 @@
 <div class="h5 title">DEFINITION</div>
 <pre>
   <code class="bash" hljs>
-GET https://api.helloblock.io/v1/addresses/<span class='text-primary'>&lt;address&gt;</span>
+GET https://testnet.helloblock.io/v1/addresses/<span class='text-primary'>&lt;address&gt;</span>?param=value
   </code>
 </pre>
 <div class="h5 title">EXAMPLE REQUEST</div>
 <pre class="curl">
   <code class="bash" hljs>
-$ curl https://api.helloblock.io/v1/addresses/<span class='text-primary'>n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK</span>?txs=true
+$ curl https://testnet.helloblock.io/v1/addresses/<span class='text-primary'>mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L</span>
   </code>
 </pre>
 <div class="h5 title">EXAMPLE RESPONSE</div>
 <pre>
   <code class="javascript" hljs>
 {
-  "total_received": 100000,
-  "total_received_n": 1,
-  "total_sent": 100000,
-  "total_sent_n": 1,
-  "tx_n": 2,
-  "balance": 0,
-  "address": "n25NdiLR7X6TPLRkpYSX3zn6kLYGWLPMnK",
-  "hash160": "e18424c2562c495e16c4a67d9bf803116158be6e"
-  "txs": [
-    ... Transaction Objects
-  ]
+  "status": "success",
+  "data": {
+    "address": {
+      "totalReceivedValue": 573211091000,
+      "totalReceivedCount": 318,
+      "totalSentValue": 573204032000,
+      "totalSentCount": 315,
+      "balance": 7059000,
+      "transactionsCount": 320,
+      "address": "mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L",
+      "hash160": "a5319d469e1ddd9558bd558a50e95f74b3da58c9",
+      "unspents": [ ... Unspent Objects ],
+      "transactions": [ ... Transaction Objects ]
+    }
+  }
 }
   </code>
 </pre>

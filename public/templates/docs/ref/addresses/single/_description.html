@@ -5,43 +5,73 @@
 <p><strong>Request Parameters</strong></p>
 <table class="table table-bordered table-docs">
   <tbody>
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Type</td>
+        <td>Default</td>
+        <td>Required</td>
+      </tr>
+    </thead>
     <tr>
       <td>address: </td>
-      <td><em>string</em> <span class='label label-primary'>REQUIRED</span></td>
+      <td><em>string</em></td>
+      <td></td>
+      <td><span class='label label-primary'>REQUIRED</span></td>
     </tr>
     <tr>
-      <td>txs: </td>
-      <td><em>boolean</em> <span class='label label-warning'>OPTIONAL</span></td>
+      <td>limit: </td>
+      <td><em>integer</em></td>
+      <td>20</td>
+      <td><span class='label label-warning'>OPTIONAL</span></td>
+    </tr>
+    <tr>
+      <td>offset: </td>
+      <td><em>integer</em></td>
+      <td>0</td>
+      <td><span class='label label-warning'>OPTIONAL</span></td>
+    </tr>
+    <tr>
+      <td>transactions: </td>
+      <td><em>boolean</em></td>
+      <td>true</td>
+      <td><span class='label label-warning'>OPTIONAL</span></td>
+    </tr>
+    <tr>
+      <td>unspents: </td>
+      <td><em>boolean</em></td>
+      <td>true</td>
+      <td><span class='label label-warning'>OPTIONAL</span></td>
     </tr>
   </tbody>
 </table>
 
 <br>
-<p><strong>Response Attributes</strong></p>
+<p><strong>Response Address Attributes</strong></p>
 <table class="table table-bordered table-docs table-condensed">
   <tbody>
     <tr>
-      <td>total_received: </td>
+      <td>totalReceivedValue: </td>
       <td><em>integer</em></td>
     </tr>
     <tr>
-      <td>total_received_n: </td>
+      <td>totalReceivedCount: </td>
       <td><em>integer</em></td>
     </tr>
     <tr>
-      <td>total_sent: </td>
+      <td>totalSentValue: </td>
       <td><em>integer</em></td>
     </tr>
     <tr>
-      <td>total_sent_n: </td>
-      <td><em>integer</em></td>
-    </tr>
-    <tr>
-      <td>tx_n: </td>
+      <td>totalSentCount: </td>
       <td><em>integer</em></td>
     </tr>
     <tr>
       <td>balance: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>transactionsCount: </td>
       <td><em>integer</em></td>
     </tr>
     <tr>
@@ -50,10 +80,14 @@
     </tr>
     <tr>
       <td>hash160: </td>
-      <td><em>string</em> (hash160)</td>
+      <td><em>string</em></td>
     </tr>
     <tr>
-      <td>txs: </td>
+      <td>unspents: </td>
+      <td><em>array</em> of Transaction Objects</td>
+    </tr>
+    <tr>
+      <td>transactions: </td>
       <td><em>array</em> of Transaction Objects</td>
     </tr>
   </tbody>
