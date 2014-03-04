@@ -4,25 +4,22 @@ hbApp.controller("docs/refCtrl", function($scope) {
     return '/templates/docs/ref/' + resource + '/' + subfolder + '/_' + partial + '.html'
   }
 
-  // Sidebar Structure, link with main content
-  // Break into 2 and then recombine
-  $scope.general = [{
+  $scope.sections = [{
     resource: "introduction",
     subs: [{
       name: "",
       folder: "intro",
       id: "introduction-intro"
+    }, {
+      name: "Response",
+      folder: "response",
+      id: "response"
+    }, {
+      name: "Errors",
+      folder: "errors",
+      id: "errors"
     }]
   }, {
-    resource: "errors",
-    subs: [{
-      name: "",
-      folder: "intro",
-      id: "errors-intro"
-    }]
-  }]
-
-  $scope.resources = [{
     resource: "addresses",
     subs: [{
       name: "",
@@ -33,7 +30,7 @@ hbApp.controller("docs/refCtrl", function($scope) {
       folder: "single",
       id: "addresses-single"
     }, {
-      name: "Retrieve multiple",
+      name: "Retrieve Batch",
       folder: "batch",
       id: "addresses-batch"
     }, {
@@ -56,7 +53,7 @@ hbApp.controller("docs/refCtrl", function($scope) {
       folder: "single",
       id: "transactions-single"
     }, {
-      name: "Retrieve multiple",
+      name: "Retrieve Batch",
       folder: "batch",
       id: "transactions-batch"
     }, {
@@ -136,7 +133,5 @@ hbApp.controller("docs/refCtrl", function($scope) {
       id: "blockchain.info-intro"
     }]
   }]
-
-  $scope.sections = $scope.general.concat($scope.resources)
 
 })
