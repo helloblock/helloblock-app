@@ -1,0 +1,29 @@
+<br><br><br><br><br>
+<div class="h5 title">DEFINITION</div>
+<pre>
+  <code class="bash" hljs>
+POST https://testnet.helloblock.io/v1/faucet/withdrawal
+  </code>
+</pre>
+<div class="h5 title">EXAMPLE REQUEST</div>
+<pre>
+  <code class="bash" hljs>
+$ curl -X POST https://testnet.helloblock.io/v1/faucet/withdrawal \
+ -d "amount=<span class='text-primary'>100000</span>" \
+ -d "toAddress=<span class='text-primary'>mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo</span>"
+  </code>
+</pre>
+<div class="h5 title">EXAMPLE RESPONSE</div>
+<pre>
+  <code class="javascript" hljs>
+{
+  "status": "success",
+  "data": {
+    "amount": 100000,
+    "fromAddress": "mzPkw5EdvHCntC2hrhRXSqwHLHpLWzSZiL",
+    "toAddress": "mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo",
+    "txHash": "80e8910251b323f51dd8b3319372509149fecdc08887807c0030538d1135c4f3"
+  }
+}
+  </code>
+</pre>

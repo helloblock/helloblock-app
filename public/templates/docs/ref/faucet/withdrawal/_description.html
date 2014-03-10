@@ -1,0 +1,58 @@
+<h3>Withdrawal</h3>
+<br>
+<p><strong>Body Parameters</strong></p>
+<table class="table table-bordered table-docs">
+  <tbody>
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Default Value</td>
+        <td>Type</td>
+        <td>Required</td>
+      </tr>
+    </thead>
+    <tr>
+      <td>toAddress: </td>
+      <td></td>
+      <td><em>string</em></td>
+      <td><span class='label label-primary'>REQUIRED</span></td>
+    </tr>
+    <tr>
+      <td>amount: </td>
+      <td>(max: 1000000)</td>
+      <td><em>integer</em></td>
+      <td><span class='label label-primary'>REQUIRED</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+<p><strong>Response Attributes</strong></p>
+<table class="table table-bordered table-docs table-condensed">
+  <tbody>
+    <tr>
+      <td>amount: </td>
+      <td>
+        <em>integer</em>
+      </td>
+    </tr>
+    <tr>
+      <td>fromAddress: </td>
+      <td>
+        <em>string</em>
+      </td>
+    </tr>
+    <tr>
+      <td>toAddress: </td>
+      <td>
+        <em>string</em>
+      </td>
+    </tr>
+    <tr>
+      <td>txHash: </td>
+      <td>
+        <em>string</em>
+      </td>
+    </tr>
+  </tbody>
+</table>

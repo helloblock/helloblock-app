@@ -98,17 +98,13 @@ hbApp.controller("docs/refCtrl", function($scope) {
       folder: "intro",
       id: "faucet-intro"
     }, {
-      name: "Retrieve",
+      name: "Retrieve Unspents",
       folder: "single",
       id: "faucet-single"
     }, {
       name: "Withdrawal",
       folder: "withdrawal",
       id: "faucet-withdrawal"
-    }, {
-      name: "stats",
-      folder: "stats",
-      id: "faucet-stats"
     }]
   }, {
     resource: "streaming",
