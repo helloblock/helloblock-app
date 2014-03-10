@@ -1951,8 +1951,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('/templates/docs/ref/blockchain.info/intro/_description.html',
     "<h2>Blockchain.info Mirror</h2>\n" +
-    "\n" +
-    "<h3>Docs coming soon ...</h3>\n"
+    "<br>\n" +
+    "<h3>Docs coming soon ...</h3>\n" +
+    "<br><br>\n"
   );
 
 
@@ -2219,9 +2220,12 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/faucet/intro/_description.html',
-    "<h2>Faucet (TESTNET)</h2>\n" +
-    "\n" +
-    "<h3>Docs coming soon ...</h3>\n"
+    "<h2>Faucet</h2>\n" +
+    "<br>\n" +
+    "<p>\n" +
+    "  This Faucet provides free Bitcoins (on testnet) for testing purposes in development.\n" +
+    "</p>\n" +
+    "<br>\n"
   );
 
 
@@ -2236,12 +2240,130 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/faucet/single/_curl.html',
-    ""
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "GET https://testnet.helloblock.io/v1/faucet?param=value\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "$ curl https://testnet.helloblock.io/v1/faucet?type=1\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "{\n" +
+    "  \"status\": \"success\",\n" +
+    "  \"data\": {\n" +
+    "    \"privateKeyWIF\": \"91wNaeHUxQ5hejapS5fLVgVEA2yh9E3rzxQNZ8XpaiHpQehpvjJ\",\n" +
+    "    \"privateKeyHex\": \"2e72587d6ad78b04b15331f03adfc3a1ae72794e0e2e3aa82ad7025e2d97ec82\",\n" +
+    "    \"address\": \"mzqZADCoj3KgPmW9vqpLFe1adY3goUYTGG\",\n" +
+    "    \"hash160\": \"d3eefb19630a1a3a7b267ea6ff9d145377519347\",\n" +
+    "    \"faucetType\": 1,\n" +
+    "    \"unspents\": [{\n" +
+    "      \"confirmations\": 11495,\n" +
+    "      \"blockHeight\": 192668,\n" +
+    "      \"txHash\": \"fdacf1ac89ee333095acab51b1f88994ade14bfa156c2be682478e35fe29df9d\",\n" +
+    "      \"index\": 0,\n" +
+    "      \"scriptPubKey\": \"76a914d3eefb19630a1a3a7b267ea6ff9d14537751934788ac\",\n" +
+    "      \"type\": \"pubkeyhash\",\n" +
+    "      \"value\": 100000,\n" +
+    "      \"hash160\": \"d3eefb19630a1a3a7b267ea6ff9d145377519347\",\n" +
+    "      \"address\": \"mzqZADCoj3KgPmW9vqpLFe1adY3goUYTGG\"\n" +
+    "    }]\n" +
+    "  }\n" +
+    "}\n" +
+    "  </code>\n" +
+    "</pre>\n"
   );
 
 
   $templateCache.put('/templates/docs/ref/faucet/single/_description.html',
-    ""
+    "<h3>Retrieve Unspents</h3>\n" +
+    "<br>\n" +
+    "<p>Retrieves a unique key pair (address with private key) with pre-existing unspent outputs. This is particularly useful in \"before each\" blocks in test suites. Note that no key pair is ever retrieved twice. See the table below for different variations of unspent outputs combinations</p>\n" +
+    "<br>\n" +
+    "<p><strong>Request Parameters</strong></p>\n" +
+    "<table class=\"table table-bordered table-docs\">\n" +
+    "  <tbody>\n" +
+    "    <thead>\n" +
+    "      <tr>\n" +
+    "        <td>Param Name</td>\n" +
+    "        <td>Default Value</td>\n" +
+    "        <td>Type</td>\n" +
+    "        <td>Required</td>\n" +
+    "      </tr>\n" +
+    "    </thead>\n" +
+    "    <tr>\n" +
+    "      <td>type: </td>\n" +
+    "      <td></td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "      <td><span class='label label-primary'>REQUIRED</span></td>\n" +
+    "    </tr>\n" +
+    "  </tbody>\n" +
+    "</table>\n" +
+    "\n" +
+    "<br>\n" +
+    "\n" +
+    "<p><strong>Response Attributes for Faucet</strong></p>\n" +
+    "<table class=\"table table-bordered table-docs table-condensed\">\n" +
+    "  <tbody>\n" +
+    "    <tr>\n" +
+    "      <td>privateKeyWIF: </td>\n" +
+    "      <td><em>string</em> <a href=\"https://en.bitcoin.it/wiki/Wallet_import_format\" target=\"_blank\">Wallet Import Format</a></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>privateKeyHex: </td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>address: </td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>hash160: </td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>faucetType: </td>\n" +
+    "      <td><em>integer</em> (1, 2 or 3)</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>unspents: </td>\n" +
+    "      <td>\n" +
+    "        Unspent Objects\n" +
+    "      </td>\n" +
+    "    </tr>\n" +
+    "  </tbody>\n" +
+    "</table>\n" +
+    "\n" +
+    "<p><strong>Faucet Types</strong></p>\n" +
+    "<table class=\"table table-bordered table-docs\">\n" +
+    "  <thead>\n" +
+    "    <tr>\n" +
+    "      <td>Faucet Type</td>\n" +
+    "      <td>Unspent Outputs Values</td>\n" +
+    "    </tr>\n" +
+    "  </thead>\n" +
+    "  <tbody>\n" +
+    "    <tr>\n" +
+    "      <td>1</td>\n" +
+    "      <td>[100000]</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>2</td>\n" +
+    "      <td>[25000, 25000]</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>3</td>\n" +
+    "      <td>[100000, 50000, 10000]</td>\n" +
+    "    </tr>\n" +
+    "  </tbody>\n" +
+    "</table>\n"
   );
 
 
@@ -2255,33 +2377,98 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/templates/docs/ref/faucet/stats/_curl.html',
-    ""
-  );
-
-
-  $templateCache.put('/templates/docs/ref/faucet/stats/_description.html',
-    ""
-  );
-
-
-  $templateCache.put('/templates/docs/ref/faucet/stats/_nodejs.html',
-    ""
-  );
-
-
-  $templateCache.put('/templates/docs/ref/faucet/stats/_ruby.html',
-    ""
-  );
-
-
   $templateCache.put('/templates/docs/ref/faucet/withdrawal/_curl.html',
-    ""
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "POST https://testnet.helloblock.io/v1/faucet/withdrawal\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "$ curl -X POST https://testnet.helloblock.io/v1/faucet/withdrawal \\\n" +
+    " -d \"amount=<span class='text-primary'>100000</span>\" \\\n" +
+    " -d \"toAddress=<span class='text-primary'>mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo</span>\"\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "{\n" +
+    "  \"status\": \"success\",\n" +
+    "  \"data\": {\n" +
+    "    \"amount\": 100000,\n" +
+    "    \"fromAddress\": \"mzPkw5EdvHCntC2hrhRXSqwHLHpLWzSZiL\",\n" +
+    "    \"toAddress\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\",\n" +
+    "    \"txHash\": \"80e8910251b323f51dd8b3319372509149fecdc08887807c0030538d1135c4f3\"\n" +
+    "  }\n" +
+    "}\n" +
+    "  </code>\n" +
+    "</pre>\n"
   );
 
 
   $templateCache.put('/templates/docs/ref/faucet/withdrawal/_description.html',
-    ""
+    "<h3>Withdrawal</h3>\n" +
+    "<br>\n" +
+    "<p><strong>Body Parameters</strong></p>\n" +
+    "<table class=\"table table-bordered table-docs\">\n" +
+    "  <tbody>\n" +
+    "    <thead>\n" +
+    "      <tr>\n" +
+    "        <td>Name</td>\n" +
+    "        <td>Default Value</td>\n" +
+    "        <td>Type</td>\n" +
+    "        <td>Required</td>\n" +
+    "      </tr>\n" +
+    "    </thead>\n" +
+    "    <tr>\n" +
+    "      <td>toAddress: </td>\n" +
+    "      <td></td>\n" +
+    "      <td><em>string</em></td>\n" +
+    "      <td><span class='label label-primary'>REQUIRED</span></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>amount: </td>\n" +
+    "      <td>(max: 1000000)</td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "      <td><span class='label label-primary'>REQUIRED</span></td>\n" +
+    "    </tr>\n" +
+    "  </tbody>\n" +
+    "</table>\n" +
+    "\n" +
+    "<br>\n" +
+    "<p><strong>Response Attributes</strong></p>\n" +
+    "<table class=\"table table-bordered table-docs table-condensed\">\n" +
+    "  <tbody>\n" +
+    "    <tr>\n" +
+    "      <td>amount: </td>\n" +
+    "      <td>\n" +
+    "        <em>integer</em>\n" +
+    "      </td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>fromAddress: </td>\n" +
+    "      <td>\n" +
+    "        <em>string</em>\n" +
+    "      </td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>toAddress: </td>\n" +
+    "      <td>\n" +
+    "        <em>string</em>\n" +
+    "      </td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>txHash: </td>\n" +
+    "      <td>\n" +
+    "        <em>string</em>\n" +
+    "      </td>\n" +
+    "    </tr>\n" +
+    "  </tbody>\n" +
+    "</table>\n"
   );
 
 
@@ -2499,8 +2686,10 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('/templates/docs/ref/streaming/intro/_description.html',
     "<h2>Streaming</h2>\n" +
-    "\n" +
-    "<h3>Docs coming soon ...</h3>\n"
+    "<br>\n" +
+    "<h3>Docs coming soon ...</h3>\n" +
+    "<br>\n" +
+    "<br>\n"
   );
 
 
@@ -2891,7 +3080,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<div class=\"h5 title\">DEFINITION</div>\n" +
     "<pre>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "GET https://testnet.helloblock.io/v1/transactions/<span class='text-primary'>&lt;txHash&gt;</span>\n" +
+    "GET https://testnet.helloblock.io/v1/transactions/<span class='text-primary'>&lt;txHash&gt;</span>?param=value\n" +
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
@@ -2974,7 +3163,10 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <td><span class='label label-primary'>REQUIRED</span></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>rawTxHex: </td>\n" +
+    "      <td>\n" +
+    "        <div>rawTxHex: </div>\n" +
+    "        <div>(returns raw transaction hex)</div>\n" +
+    "      </td>\n" +
     "      <td>false</td>\n" +
     "      <td><em>boolean</em></td>\n" +
     "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
@@ -3119,145 +3311,6 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/transactions/single/_ruby.html',
-    "<code>RUBY</code>\n"
-  );
-
-
-  $templateCache.put('/templates/docs/ref/unspents/intro/_curl.html',
-    ""
-  );
-
-
-  $templateCache.put('/templates/docs/ref/unspents/intro/_description.html',
-    "<h2>Unspent Outputs</h2>\n" +
-    "<br>\n" +
-    "<p>\n" +
-    "  Get unspent outputs for any given address or batch of addresses so you can build a transaction.\n" +
-    "</p>\n" +
-    "<br>\n"
-  );
-
-
-  $templateCache.put('/templates/docs/ref/unspents/intro/_nodejs.html',
-    ""
-  );
-
-
-  $templateCache.put('/templates/docs/ref/unspents/intro/_ruby.html',
-    ""
-  );
-
-
-  $templateCache.put('/templates/docs/ref/unspents/multiple/_curl.html',
-    "<br><br><br><br><br><br>\n" +
-    "<div class=\"h5 title\">DEFINITION</div>\n" +
-    "<pre>\n" +
-    "  <code class=\"bash\" hljs>\n" +
-    "GET https://api.helloblock.io/v1/addresses/unspents?addresses[]=<span class=\"text-primary\">&lt;address&gt;</span></code>\n" +
-    "  </code>\n" +
-    "</pre>\n" +
-    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
-    "<pre class='curl'>\n" +
-    "  <code class=\"bash\" hljs>\n" +
-    "$ curl https://api.helloblock.io/v1/addresses/unspents?addresses[]=<span class='text-primary'>mfwyrZw47YY7wExpcLm7uPHLer7XoMVntd</span>&addresses[]=<span class='text-primary'>n161eDouWrxaPPk6D3y4si3Kenz43yAAo8</span>&addresses[]=<span class='text-primary'>mhdDvTC1wgTr6kEEs4wkDTSxwjuQzvN4md</span>\n" +
-    "  </code>\n" +
-    "</pre>\n" +
-    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
-    "<pre>\n" +
-    "  <code class=\"javascript\" hljs>\n" +
-    "[ {\n" +
-    "  \"confirmations\": 32,\n" +
-    "  \"block_height\": 155068,\n" +
-    "  \"tx_hash\": \"7110f57720d45f751e5a796cf53f3e78c74dd93939933642f4c277d2cf524f9e\",\n" +
-    "  \"tx_id\": 997365,\n" +
-    "  \"n\": 1,\n" +
-    "  \"scriptPubKey\": \"76a91404bbb3a6de41830289bb34a47133b0dbfcc3adc288ac\",\n" +
-    "  \"value\": 2200000000,\n" +
-    "  \"hash160\": \"04bbb3a6de41830289bb34a47133b0dbfcc3adc2\",\n" +
-    "  \"address\": \"mfwyrZw47YY7wExpcLm7uPHLer7XoMVntd\"\n" +
-    "}, {\n" +
-    "  \"confirmations\": 32,\n" +
-    "  \"block_height\": 155068,\n" +
-    "  \"tx_hash\": \"dbd9a8fee45519c338b0b49656967066c873afabe3ab4c831ff5c9ce5cab4725\",\n" +
-    "  \"tx_id\": 997374,\n" +
-    "  \"n\": 0,\n" +
-    "  \"scriptPubKey\": \"76a91404bbb3a6de41830289bb34a47133b0dbfcc3adc288ac\",\n" +
-    "  \"value\": 2100000000,\n" +
-    "  \"hash160\": \"04bbb3a6de41830289bb34a47133b0dbfcc3adc2\",\n" +
-    "  \"address\": \"mfwyrZw47YY7wExpcLm7uPHLer7XoMVntd\"\n" +
-    "}]\n" +
-    "  </code>\n" +
-    "</pre>\n"
-  );
-
-
-  $templateCache.put('/templates/docs/ref/unspents/multiple/_description.html',
-    "<h3>Retrieve Unspent Outputs for multiple Addresses</h3>\n" +
-    "<br>\n" +
-    "<p><strong>Request Parameters</strong></p>\n" +
-    "<table class=\"table table-bordered table-docs\">\n" +
-    "  <tbody>\n" +
-    "    <tr>\n" +
-    "      <td>addresses: </td>\n" +
-    "      <td>\n" +
-    "        <em>array</em> of <em>strings</em> <span class='label label-primary'>REQUIRED</span>\n" +
-    "      </td>\n" +
-    "    </tr>\n" +
-    "  </tbody>\n" +
-    "</table>\n" +
-    "\n" +
-    "<br>\n" +
-    "<p><strong>Response Attributes</strong></p>\n" +
-    "<p>Returns <em>array</em> of: </p>\n" +
-    "<table class=\"table table-bordered table-docs table-condensed\">\n" +
-    "  <tbody>\n" +
-    "    <tr>\n" +
-    "      <td>confirmations: </td>\n" +
-    "      <td><em>integer</em></td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>block_height: </td>\n" +
-    "      <td><em>integer</em></td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>tx_hash: </td>\n" +
-    "      <td><em>string</em></td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>tx_id: </td>\n" +
-    "      <td><em>integer</em></td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>n: </td>\n" +
-    "      <td><em>integer</em></td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>scriptPubKey: </td>\n" +
-    "      <td><em>string</em></td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>value: </td>\n" +
-    "      <td><em>integer</em></td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>hash160: </td>\n" +
-    "      <td><em>string</em></td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>address: </td>\n" +
-    "      <td><em>string</em> (base58)</td>\n" +
-    "    </tr>\n" +
-    "  </tbody>\n" +
-    "</table>\n"
-  );
-
-
-  $templateCache.put('/templates/docs/ref/unspents/multiple/_nodejs.html',
-    ""
-  );
-
-
-  $templateCache.put('/templates/docs/ref/unspents/multiple/_ruby.html',
     "<code>RUBY</code>\n"
   );
 
