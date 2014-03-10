@@ -57,10 +57,6 @@ hbApp.controller("docs/refCtrl", function($scope) {
       folder: "latest",
       id: "transactions-latest"
     }, {
-      name: "Decode",
-      folder: "decode",
-      id: "transactions-decode"
-    }, {
       name: "Propagate",
       folder: "post",
       id: "transactions-post"
