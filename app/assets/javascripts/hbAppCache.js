@@ -951,73 +951,6 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/templates/brand.html',
-    "<h1 ng-non-bindable>\n" +
-    "  <code>{{Hello, Block}}</code>\n" +
-    "</h1>\n" +
-    "<h1 ng-non-bindable>\n" +
-    "  {{Hello, Block}}\n" +
-    "</h1>\n" +
-    "<h1 ng-non-bindable>\n" +
-    "  Hello, Block\n" +
-    "</h1>\n" +
-    "\n" +
-    "<h1 ng-non-bindable>\n" +
-    "  &lt;code /&gt; Hello, Block\n" +
-    "</h1>\n" +
-    "\n" +
-    "<h1 ng-non-bindable>\n" +
-    "  Hello, &lt;Block /&gt;\n" +
-    "</h1>\n" +
-    "\n" +
-    "<div tester></div>\n" +
-    "\n" +
-    "\n" +
-    "api.helloblock.io/v1/\n" +
-    "\n" +
-    "main.helloblock.io/v1/\n" +
-    "test.helloblock.io/v1/\n" +
-    "\n" +
-    "\n" +
-    "test.helloblock.io/b/\n" +
-    "\n" +
-    "\n" +
-    "helloblock.io/docs/\n" +
-    "helloblock.io/docs/explorer\n" +
-    "helloblock.io/explorer\n" +
-    "helloblock.io/api-explorer\n" +
-    "helloblock.io/doc/api-explorer\n" +
-    "\n" +
-    "helloblock.io/docs/builder\n" +
-    "\n" +
-    "helloblock.io/tutorials/coincasts\n" +
-    "helloblock.io/tutorials/sample-apps\n" +
-    "\n" +
-    "helloblock.io/mainnet/\n" +
-    "\n" +
-    "helloblock.io/testnet/\n" +
-    "helloblock.io/testnet/transactions/:tx_hash\n" +
-    "helloblock.io/testnet/addresses/:address\n" +
-    "helloblock.io/testnet/blocks/:block_id\n" +
-    "helloblock.io/testnet/unconfirmed\n" +
-    "helloblock.io/testnet/blocks\n" +
-    "\n" +
-    "helloblock.io/v1/\n" +
-    "helloblock.io/v1/transactions/:tx_hash\n" +
-    "helloblock.io/v1/addresses/:address\n" +
-    "helloblock.io/v1/blocks/:block_id\n" +
-    "helloblock.io/v1/unconfirmed\n" +
-    "helloblock.io/v1/blocks\n" +
-    "\n" +
-    "helloblock.io/\n" +
-    "helloblock.io/transactions/:tx_hash\n" +
-    "helloblock.io/addresses/:address\n" +
-    "helloblock.io/blocks/:block_id\n" +
-    "helloblock.io/unconfirmed\n" +
-    "helloblock.io/blocks\n"
-  );
-
-
   $templateCache.put('/templates/components/_docnav.html',
     "<div class=\"navbar navbar-inverse navbar-subnav\">\n" +
     "  <div class=\"container\">\n" +
@@ -1035,12 +968,12 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            Reference\n" +
     "          </a>\n" +
     "        </li>\n" +
-    "        <li class='no-left' ng-class=\"{'active': selected == 'explorer'}\">\n" +
+    "        <!-- <li class='no-left' ng-class=\"{'active': selected == 'explorer'}\">\n" +
     "          <a href=\"/docs/explorer/\">\n" +
     "            <i class=\"fa fa-search\"></i>\n" +
     "            API Explorer\n" +
     "          </a>\n" +
-    "        </li>\n" +
+    "        </li> -->\n" +
     "        <!-- <li class='no-left' ng-class=\"{'active': selected == 'latest'}\">\n" +
     "          <a href=\"/docs/tutorials/\">\n" +
     "            Sample Apps\n" +
