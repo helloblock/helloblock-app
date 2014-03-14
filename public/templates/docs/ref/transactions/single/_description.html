@@ -20,7 +20,6 @@
     <tr>
       <td>
         <div>rawTxHex: </div>
-        <div>(returns raw transaction hex)</div>
       </td>
       <td>false</td>
       <td><em>boolean</em></td>
@@ -124,10 +123,6 @@
               <td><em>string</em></td>
             </tr>
             <tr>
-              <td>spent</td>
-              <td><em>boolean</em></td>
-            </tr>
-            <tr>
               <td>address</td>
               <td><em>string</em></td>
             </tr>
@@ -138,6 +133,19 @@
             <tr>
               <td>type</td>
               <td><em>string</em></td>
+            </tr>
+            <tr>
+              <td>spent</td>
+              <td><em>boolean</em></td>
+            </tr>
+            <tr>
+              <td>nextTxHash</td>
+              <td>
+                <em>string || null</em>
+                <div>
+                  Returns Tx Hash if output is spent
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>

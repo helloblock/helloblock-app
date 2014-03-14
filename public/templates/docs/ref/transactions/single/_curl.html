@@ -8,7 +8,7 @@ GET https://testnet.helloblock.io/v1/transactions/<span class='text-primary'>&lt
 <div class="h5 title">EXAMPLE REQUEST</div>
 <pre class='curl'>
   <code class="bash" hljs>
-curl https://testnet.helloblock.io/v1/transactions/<span class='text-primary'>2542cd64e02d902975dc6e2e97797ceec5a84e8597c80d22a9e2dbd16e748738</span>?rawTxHex=false
+curl https://testnet.helloblock.io/v1/transactions/<span class='text-primary'>2542cd64e02d902975dc6e2e97797ceec5a84e8597c80d22a9e2dbd16e748738</span>?rawTxHex=true
   </code>
 </pre>
 <div class="h5 title">EXAMPLE RESPONSE</div>
@@ -40,22 +40,25 @@ curl https://testnet.helloblock.io/v1/transactions/<span class='text-primary'>25
         "index": 0,
         "value": 46970000,
         "scriptPubKey": "76a9144465358b1c07d001a49216c466b6e8de5c708d9988ac",
-        "spent": false,
         "address": "mmkbVEWhehm6mKUgV36K6oWX4BCZcp5by3",
         "hash160": "4465358b1c07d001a49216c466b6e8de5c708d99",
-        "type": "pubkeyhash"
+        "type": "pubkeyhash",
+        "spent": false,
+        "nextTxHash": "2542cd64e02d902975dc6e2e97797ceec5a84e8597c80d22a9e2dbd16e748738"
       }, {
         "index": 1,
         "value": 52975207768,
         "scriptPubKey": "76a9146a0d58b53a6b6aef32d5907e237ad57e6d84d0d688ac",
-        "spent": true,
         "address": "mqBhuiixrkwypkjNHFwSNYiFEtAiDr54gp",
         "hash160": "6a0d58b53a6b6aef32d5907e237ad57e6d84d0d6",
-        "type": "pubkeyhash"
+        "type": "pubkeyhash",
+        "spent": true,
+        "nextTxHash": null
       }],
       "totalInputsValue": 53022177768,
       "totalOutputsValue": 53022177768,
-      "fees": 0
+      "fees": 0,
+      "rawTxHex": "asdf"
     }
   }
 }
