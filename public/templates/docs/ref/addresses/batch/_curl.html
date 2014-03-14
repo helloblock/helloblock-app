@@ -1,0 +1,50 @@
+<br><br><br><br><br>
+<div class="h5 title">DEFINITION</div>
+<pre>
+  <code class="bash" hljs>
+GET https://testnet.helloblock.io/v1/addresses?address=<span class='text-primary'>&lt;address&gt;</span>
+  </code>
+</pre>
+<div class="h5 title">EXAMPLE REQUEST</div>
+<pre class="curl">
+  <code class="bash" hljs>
+curl https://testnet.helloblock.io/v1/addresses?address=<span class='text-primary'>mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L</span>&address=<span class='text-primary'>mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo</span>
+  </code>
+</pre>
+<div class="h5 title">EXAMPLE RESPONSE</div>
+<!-- TODO: actual data -->
+<pre>
+  <code class="javascript" hljs>
+{
+  "status": "success",
+  "data": {
+    "addresses": [
+    {
+      "balance": 7059000,
+      "confirmedBalance": 7059000,
+      "txsCount": 320,
+      "confirmedTxsCount": 320,
+      "totalReceivedValue": 123000,
+      "totalReceivedCount": 160,
+      "totalSentValue": 122200,
+      "totalSentCount": 160,
+      "address": "mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L",
+      "hash160": "a5319d469e1ddd9558bd558a50e95f74b3da58c9",
+    },
+    {
+      "balance": 7059000,
+      "confirmedBalance": 7059000,
+      "txsCount": 320,
+      "confirmedTxsCount": 320,
+      "totalReceivedValue": 123000,
+      "totalReceivedCount": 160,
+      "totalSentValue": 122200,
+      "totalSentCount": 160,
+      "address": "mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo",
+      "hash160": "a5319d469e1ddd9558bd558a50e95f74b3da58c9",
+    }
+    ]
+  }
+}
+  </code>
+</pre>

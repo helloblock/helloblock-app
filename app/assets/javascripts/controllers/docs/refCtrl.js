@@ -30,7 +30,7 @@ hbApp.controller("docs/refCtrl", function($scope) {
       folder: "single",
       id: "addresses-single"
     }, {
-      name: "Retrieve Batch",
+      name: "Retrieve batch",
       folder: "batch",
       id: "addresses-batch"
     }, {
@@ -53,7 +53,7 @@ hbApp.controller("docs/refCtrl", function($scope) {
       folder: "single",
       id: "transactions-single"
     }, {
-      name: "Retrieve Batch",
+      name: "Retrieve batch",
       folder: "batch",
       id: "transactions-batch"
     }, {

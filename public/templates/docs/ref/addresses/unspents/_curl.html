@@ -2,13 +2,13 @@
 <div class="h5 title">DEFINITION</div>
 <pre>
   <code class="bash" hljs>
-GET https://testnet.helloblock.io/v1/addresses/unspents?addresses=<span class='text-primary'>&lt;address&gt;</span>
+GET https://testnet.helloblock.io/v1/addresses/<span class='text-primary'>&lt;address&gt;</span>/unspents?param=value
   </code>
 </pre>
 <div class="h5 title">EXAMPLE REQUEST</div>
 <pre class="curl">
   <code class="bash" hljs>
-$ curl https://testnet.helloblock.io/v1/addresses/unspents?addresses=<span class='text-primary'>mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L</span>&addresses=<span class='text-primary'>mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo</span>&limit=10
+curl https://testnet.helloblock.io/v1/addresses/<span class='text-primary'>mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L</span>/unspents?limit=10
   </code>
 </pre>
 <div class="h5 title">EXAMPLE RESPONSE</div>
