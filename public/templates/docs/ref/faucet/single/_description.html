@@ -1,6 +1,8 @@
 <h3>Retrieve Unspents</h3>
 <br>
-<p>Retrieves a unique key pair (address with private key) with pre-existing unspent outputs. This is particularly useful in "before each" blocks in test suites. Note that no key pair is ever retrieved twice. See the table below for different variations of unspent outputs combinations</p>
+<p>
+  Retrieves a unique key pair, pre-loaded with unspent outputs. Particularly useful in "before each" hooks.
+</p>
 <br>
 <p><strong>Request Parameters</strong></p>
 <table class="table table-bordered table-docs">
@@ -16,14 +18,39 @@
     <tr>
       <td>type: </td>
       <td></td>
-      <td><em>integer</em></td>
+      <td>
+        <em>integer</em>
+        <div>(1, 2 or 3)</div>
+      </td>
       <td><span class='label label-primary'>REQUIRED</span></td>
     </tr>
   </tbody>
 </table>
-
 <br>
-
+<p><strong>Request Parameters | Faucet Types</strong></p>
+<table class="table table-bordered table-docs">
+  <thead>
+    <tr>
+      <td>Type</td>
+      <td>Preloaded Unspents Outputs</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>[100000]</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>[25000, 25000]</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>[100000, 50000, 10000]</td>
+    </tr>
+  </tbody>
+</table>
+<br>
 <p><strong>Response Attributes for Faucet</strong></p>
 <table class="table table-bordered table-docs table-condensed">
   <tbody>
@@ -50,32 +77,8 @@
     <tr>
       <td>unspents: </td>
       <td>
-        Unspent Objects
+        Array of <em>Unspent Objects</em>
       </td>
-    </tr>
-  </tbody>
-</table>
-
-<p><strong>Faucet Types</strong></p>
-<table class="table table-bordered table-docs">
-  <thead>
-    <tr>
-      <td>Faucet Type</td>
-      <td>Unspent Outputs Values</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>[100000]</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>[25000, 25000]</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>[100000, 50000, 10000]</td>
     </tr>
   </tbody>
 </table>
