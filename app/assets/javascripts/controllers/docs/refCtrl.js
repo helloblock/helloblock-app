@@ -30,6 +30,10 @@ hbApp.controller("docs/refCtrl", function($scope) {
       folder: "single",
       id: "addresses-single"
     }, {
+      name: "Retrieve Batch",
+      folder: "batch",
+      id: "addresses-batch"
+    }, {
       name: "Retrieve unspents",
       folder: "unspents",
       id: "addresses-unspents"
@@ -103,11 +107,11 @@ hbApp.controller("docs/refCtrl", function($scope) {
       id: "faucet-withdrawal"
     }]
   }, {
-    resource: "streaming",
+    resource: "socket",
     subs: [{
       name: "",
       folder: "intro",
-      id: "streaming-intro"
+      id: "socket-intro"
     }]
   }, {
     resource: "blockchain.info",
