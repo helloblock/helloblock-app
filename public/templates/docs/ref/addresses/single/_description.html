@@ -21,7 +21,7 @@
     </tr>
     <tr>
       <td>limit: </td>
-      <td>20</td>
+      <td>10</td>
       <td><em>integer</em></td>
       <td><span class='label label-warning'>OPTIONAL</span></td>
     </tr>
@@ -50,7 +50,7 @@
 <p><strong>Response Attributes for Address</strong></p>
 <table class="table table-bordered table-docs table-condensed">
   <tbody>
-    <tr>
+    <!-- <tr>
       <td>totalReceivedValue: </td>
       <td><em>integer</em></td>
     </tr>
@@ -65,13 +65,31 @@
     <tr>
       <td>totalSentCount: </td>
       <td><em>integer</em></td>
-    </tr>
+    </tr> -->
     <tr>
       <td>balance: </td>
-      <td><em>integer</em></td>
+      <td>
+        <em>integer</em>
+        <div>
+          includes unconfirmed transactions
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>confirmedBalance: </td>
+      <td>
+        <em>integer</em>
+        <div>
+          includes only confirmed transactions
+        </div>
+      </td>
     </tr>
     <tr>
       <td>transactionsCount: </td>
+      <td><em>integer</em></td>
+    </tr>
+    <tr>
+      <td>confirmedTransactionsCount: </td>
       <td><em>integer</em></td>
     </tr>
     <tr>
@@ -84,7 +102,7 @@
     </tr>
     <tr>
       <td>unspents: </td>
-      <td><em>array</em> of Transaction Objects</td>
+      <td><em>array</em> of Unspent Objects</td>
     </tr>
     <tr>
       <td>transactions: </td>
