@@ -2,13 +2,13 @@
 <div class="h5 title">DEFINITION</div>
 <pre>
   <code class="bash" hljs>
-GET https://testnet.helloblock.io/v1/blocks/latest?param=value
+GET https://testnet.helloblock.io/v1/blocks/<span class='text-primary'>&lt;blockId&gt;</span>/transactions?param=value
   </code>
 </pre>
 <div class="h5 title">EXAMPLE REQUEST</div>
-<pre class='curl'>
+<pre class="curl">
   <code class="bash" hljs>
-curl https://testnet.helloblock.io/v1/blocks/latest?limit=5
+curl https://testnet.helloblock.io/v1/blocks/<span class='text-primary'>123123</span>?limit=5
   </code>
 </pre>
 <div class="h5 title">EXAMPLE RESPONSE</div>

@@ -2,13 +2,13 @@
 <div class="h5 title">DEFINITION</div>
 <pre>
   <code class="bash" hljs>
-GET https://testnet.helloblock.io/v1/blocks/<span class='text-primary'>&lt;blockId&gt;</span>?param=value
+GET https://testnet.helloblock.io/v1/blocks/<span class='text-primary'>&lt;blockId&gt;</span>
   </code>
 </pre>
 <div class="h5 title">EXAMPLE REQUEST</div>
 <pre class="curl">
   <code class="bash" hljs>
-curl https://testnet.helloblock.io/v1/blocks/<span class='text-primary'>123123</span>?limit=10
+curl https://testnet.helloblock.io/v1/blocks/<span class='text-primary'>123123</span>
   </code>
 </pre>
 <div class="h5 title">EXAMPLE RESPONSE</div>
@@ -29,8 +29,7 @@ curl https://testnet.helloblock.io/v1/blocks/<span class='text-primary'>123123</
       "totalInputsValue": 5301000000,
       "totalOutputsValue": 10301000000,
       "txsCount": 4,
-      "confirmations": 188855,
-      "transactions": [ ... Transaaction Objects ]
+      "confirmations": 188855
     }
   }
 }
