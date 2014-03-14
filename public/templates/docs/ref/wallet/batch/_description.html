@@ -1,6 +1,6 @@
-<h3>Retrieve multiple Addresses</h3>
+<h3>Retrieve</h3>
 <br>
-<p>Gets and returns data for multiple addresses.</p>
+<p>Gets and returns addresses, transactions, unspents for multiple addresses.</p>
 <br>
 <p><strong>Request Parameters</strong></p>
 <table class="table table-bordered table-docs">
@@ -18,6 +18,18 @@
       <td></td>
       <td><em>array</em> of <em>strings</em></td>
       <td><span class='label label-primary'>REQUIRED</span></td>
+    </tr>
+    <tr>
+      <td>transactions: </td>
+      <td>false</td>
+      <td><em>boolean</em></td>
+      <td><span class='label label-warning'>OPTIONAL</span></td>
+    </tr>
+    <tr>
+      <td>unspents: </td>
+      <td>false</td>
+      <td><em>boolean</em></td>
+      <td><span class='label label-warning'>OPTIONAL</span></td>
     </tr>
     <tr>
       <td>limit: </td>
@@ -44,11 +56,38 @@
         <table class="table table-bordered table-docs table-condensed">
           <tbody>
             <tr>
+              <td>balance</td>
+              <td>
+                <em>integer</em>
+                <div>
+                  balance (incl. unconfirmed) for all addresses
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>confirmedBalance</td>
+              <td>
+                <em>integer</em>
+                <div>
+                  confirmedBalance for all addresses
+                </div>
+              </td>
+            </tr>
+            <tr>
               <td>txsCount</td>
               <td>
                 <em>integer</em>
                 <div>
-                  transactions for all addresses
+                  txsCount for all addresses
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>confirmedTxsCount</td>
+              <td>
+                <em>integer</em>
+                <div>
+                  confirmedTxsCount for all addresses
                 </div>
               </td>
             </tr>
@@ -70,15 +109,6 @@
                 </div>
               </td>
             </tr>
-            <tr>
-              <td>balance</td>
-              <td>
-                <em>integer</em>
-                <div>
-                  balance for all addresses
-                </div>
-              </td>
-            </tr>
           </tbody>
         </table>
       </td>
@@ -88,25 +118,12 @@
       <td><em>array</em> of <em>Address Objects</em></td>
     </tr>
     <tr>
-      <td>exchangeRates: </td>
-      <td>
-        <table class="table table-bordered table-docs table-condensed">
-          <tbody>
-            <tr>
-              <td>BTCUSD</td>
-              <td><em>Object</em> of exchange rates</td>
-            </tr>
-          </tbody>
-        </table>
-      </td>
-    </tr>
-    <tr>
-      <td>latestBlock: </td>
-      <td><em>Block Object</em></td>
-    </tr>
-    <tr>
       <td>transactions: </td>
       <td><em>array</em> of <em>Transaction Objects</em></td>
+    </tr>
+    <tr>
+      <td>unspents: </td>
+      <td><em>array</em> of <em>Unspent Objects</em></td>
     </tr>
   </tbody>
 </table>
