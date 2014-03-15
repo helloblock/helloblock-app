@@ -8,7 +8,7 @@ GET https://testnet.helloblock.io/v1/blocks/<span class='text-primary'>&lt;block
 <div class="h5 title">EXAMPLE REQUEST</div>
 <pre class="curl">
   <code class="bash" hljs>
-curl https://testnet.helloblock.io/v1/blocks/<span class='text-primary'>123123</span>?limit=5
+curl https://testnet.helloblock.io/v1/blocks/<span class='text-primary'>123123</span>/transactions?limit=1
   </code>
 </pre>
 <div class="h5 title">EXAMPLE RESPONSE</div>
@@ -18,10 +18,56 @@ curl https://testnet.helloblock.io/v1/blocks/<span class='text-primary'>123123</
   "status": "success",
   "data": {
     "transactions": [
-      Transaction Object,
-      Transaction Object,
-      ...
+      {
+        "txHash": "baae34397881132faaeff32c57c92963596a1f8f7a38477961eafc6e737ce365",
+        "version": 1,
+        "locktime": 0,
+        "size": 138,
+        "blockHash": "00000000002b652559550d2829249026aec39b7b84f2c7febadf0250b93ee3c1",
+        "blockHeight": 123123,
+        "blockTime": 1382046624,
+        "estimatedTxTime": 1382046624,
+        "confirmations": 81132,
+        "inputsCount": 1,
+        "outputsCount": 2,
+        "inputs": [
+          {
+            "prevTxOutIndex": -1,
+            "prevTxHash": "baae34397881132faaeff32c57c92963596a1f8f7a38477961eafc6e737ce365",
+            "value": 0,
+            "address": null,
+            "hash160": null,
+            "scriptSig": "03f3e0010652605ba00b000000000033020000"
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "value": 4925026471,
+            "scriptPubKey": "76a91495006ae154ef272450cbc2317d12950a02470e3788ac",
+            "address": "mu6oUeNmEqQJ31cBrDrpDuwfQCAvwCxn6H",
+            "hash160": "95006ae154ef272450cbc2317d12950a02470e37",
+            "type": "pubkeyhash",
+            "spent": false,
+            "nextTxHash": null
+          },
+          {
+            "index": 1,
+            "value": 74983529,
+            "scriptPubKey": "76a91495006ae154ef272450cbc2317d12950a02470e3788ac",
+            "address": "mu6oUeNmEqQJ31cBrDrpDuwfQCAvwCxn6H",
+            "hash160": "95006ae154ef272450cbc2317d12950a02470e37",
+            "type": "pubkeyhash",
+            "spent": false,
+            "nextTxHash": null
+          }
+        ],
+        "totalInputsValue": 0,
+        "totalOutputsValue": 5000010000,
+        "fees": 0
+      }
     ]
+  }
 }
   </code>
 </pre>

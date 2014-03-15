@@ -8,7 +8,7 @@ GET https://testnet.helloblock.io/v1/blocks/latest?param=value
 <div class="h5 title">EXAMPLE REQUEST</div>
 <pre class='curl'>
   <code class="bash" hljs>
-curl https://testnet.helloblock.io/v1/blocks/latest?limit=5
+curl https://testnet.helloblock.io/v1/blocks/latest?limit=1
   </code>
 </pre>
 <div class="h5 title">EXAMPLE RESPONSE</div>
@@ -17,11 +17,21 @@ curl https://testnet.helloblock.io/v1/blocks/latest?limit=5
 {
   "status": "success",
   "data": {
-    "transactions": [
-      Transaction Object,
-      Transaction Object,
-      ...
+    "blocks": [
+      {
+        "blockHeight": 204255,
+        "blockHash": "0000000058024389ca3df9cdefa3aefe3809cd99574b262ff26bfb7aa176d857",
+        "blockTime": 1394454645,
+        "previousBlockHash": "0000000057b2a6082dafae124fee74f3aedd4f52dd8713b7af9b4e3eb981b30b",
+        "bits": 486604799,
+        "version": 2,
+        "merkleRootHash": "8867986858331ab2a8a3dd0dab445bd024318e1ae36947886927dd24f0fb8d3f",
+        "nonce": 1553646336,
+        "txsCount": 5,
+        "confirmations": 0
+      }
     ]
+  }
 }
   </code>
 </pre>

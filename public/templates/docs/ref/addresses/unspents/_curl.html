@@ -8,7 +8,7 @@ GET https://testnet.helloblock.io/v1/addresses/<span class='text-primary'>&lt;ad
 <div class="h5 title">EXAMPLE REQUEST</div>
 <pre class="curl">
   <code class="bash" hljs>
-curl https://testnet.helloblock.io/v1/addresses/<span class='text-primary'>mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L</span>/unspents?limit=10
+curl https://testnet.helloblock.io/v1/addresses/<span class='text-primary'>mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L</span>/unspents?limit=1
   </code>
 </pre>
 <div class="h5 title">EXAMPLE RESPONSE</div>
@@ -18,18 +18,17 @@ curl https://testnet.helloblock.io/v1/addresses/<span class='text-primary'>mvaRD
   "status": "success",
   "data": {
     "unspents": [
-    {
-      "confirmations": 19117,
-      "blockHeight": 183387,
-      "prevTxHash": "244ab8fbd2bd2959fb00cf3ea06ab192965c9a77d889246b2b3c8480ae259639",
-      "prevTxOutIndex": 1,
-      "scriptPubKey": "76a914a5319d469e1ddd9558bd558a50e95f74b3da58c988ac",
-      "type": "pubkeyhash",
-      "value": 7039000,
-      "hash160": "a5319d469e1ddd9558bd558a50e95f74b3da58c9",
-      "address": "mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L"
-    },
-    ... More Unspent Objects
+      {
+        "confirmations": 13824,
+        "blockHeight": 190431,
+        "txHash": "06849aa080b61ad403f3d6ff5e53ee38a099ea0e53600ac1453375021e376e65",
+        "index": 0,
+        "scriptPubKey": "76a914a5319d469e1ddd9558bd558a50e95f74b3da58c988ac",
+        "type": "pubkeyhash",
+        "value": 10000,
+        "hash160": "a5319d469e1ddd9558bd558a50e95f74b3da58c9",
+        "address": "mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L"
+      }
     ]
   }
 }

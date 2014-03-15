@@ -117,13 +117,15 @@ hbApp.controller("docs/refCtrl", function($scope) {
       folder: "intro",
       id: "socket-intro"
     }]
-  }, {
-    resource: "blockchain.info",
-    subs: [{
-      name: "",
-      folder: "intro",
-      id: "blockchain.info-intro"
-    }]
-  }]
+  }
+  // , {
+  //   resource: "blockchain.info",
+  //   subs: [{
+  //     name: "",
+  //     folder: "intro",
+  //     id: "blockchain.info-intro"
+  //   }]
+  // }
+  ]
 
 })
