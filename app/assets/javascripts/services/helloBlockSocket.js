@@ -1,4 +1,4 @@
-hbApp.factory( "HelloBlockSocket", function( $rootScope ) {
+hbApp.factory("HelloBlockSocket", function($rootScope) {
 
   var Socket = {
     URL: {
@@ -9,11 +9,11 @@ hbApp.factory( "HelloBlockSocket", function( $rootScope ) {
   }
 
   Socket.beep = function() {
-    if ( $rootScope.global.sound === 1 ) {
+    if ($rootScope.global.sound === 1) {
       var file = "/beep.wav";
-      ( new Audio( file ) ).play()
+      (new Audio(file)).play()
     }
   }
 
   return Socket;
-} )
+})

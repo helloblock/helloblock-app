@@ -1,13 +1,13 @@
-hbApp.directive( "selected", function( $timeout ) {
+hbApp.directive("selected", function($timeout) {
 	return {
-		link: function( $scope, element, attrs ) {
-			$timeout( function() {
-				$( element ).select()
-			} )
+		link: function($scope, element, attrs) {
+			$timeout(function() {
+				$(element).select()
+			})
 
-			$( element ).click( function() {
-				$( element ).select()
-			} )
+			$(element).click(function() {
+				$(element).select()
+			})
 		}
 	}
-} )
+})

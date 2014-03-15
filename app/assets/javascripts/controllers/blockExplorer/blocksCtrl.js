@@ -1,12 +1,12 @@
-hbApp.controller( "blockExplorer/blocksCtrl", function( $scope, $routeParams, $location, $rootScope, HelloBlock ) {
+hbApp.controller("blockExplorer/blocksCtrl", function($scope, $routeParams, $location, $rootScope, HelloBlock) {
 
   var explorerMode = $rootScope.global.mode;
 
   var identifier = 168058;
 
-  if ( $routeParams.identifier ) {
-    if ( $routeParams.identifier.match( /^\d+$/ ) ) {
-      identifier = parseInt( $routeParams.identifier );
+  if ($routeParams.identifier) {
+    if ($routeParams.identifier.match(/^\d+$/)) {
+      identifier = parseInt($routeParams.identifier);
     } else {
       identifier = $routeParams.identifier
     }
@@ -18,28 +18,28 @@ hbApp.controller( "blockExplorer/blocksCtrl", function( $scope, $routeParams, $l
     transactions: []
   }
 
-  HelloBlock[ explorerMode ].Blocks.get( {
+  HelloBlock[explorerMode].Blocks.get({
     identifier: $scope.block.identifier,
     transactions: false
-  }, function( res ) {
-    var data = res[ "data" ][ "block" ]
+  }, function(res) {
+    var data = res["data"]["block"]
     $scope.block.index = data.blockHeight;
-    $scope.block = $.extend( {}, $scope.block, data );
-  }, function( err ) {
-    $location.path( "/" + explorerMode ).search( {
+    $scope.block = $.extend({}, $scope.block, data);
+  }, function(err) {
+    $location.path("/" + explorerMode).search({
       error: 'true'
-    } )
-  } )
+    })
+  })
 
-  HelloBlock[ explorerMode ].BlockTransactions.get( {
+  HelloBlock[explorerMode].BlockTransactions.get({
     identifier: $scope.block.identifier
-  }, function( res ) {
+  }, function(res) {
     $scope.block.transactions = res.data.transactions
-  }, function( err ) {
-    $location.path( "/" + explorerMode ).search( {
+  }, function(err) {
+    $location.path("/" + explorerMode).search({
       error: 'true'
-    } )
-  } )
+    })
+  })
 
   // Fake Infinite Scrolling
   $scope.limitTo = {
@@ -50,4 +50,4 @@ hbApp.controller( "blockExplorer/blocksCtrl", function( $scope, $routeParams, $l
     $scope.limitTo.transactions += 5
   }
 
-} )
+})

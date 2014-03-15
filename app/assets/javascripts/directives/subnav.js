@@ -1,4 +1,4 @@
-hbApp.directive( 'subnav', function( $rootScope ) {
+hbApp.directive('subnav', function($rootScope) {
 
   return {
     restrict: "E",
@@ -9,9 +9,9 @@ hbApp.directive( 'subnav', function( $rootScope ) {
     templateUrl: "/templates/components/_subnav.html",
     transclude: true
   }
-} );
+});
 
-hbApp.directive( 'docnav', function( $rootScope ) {
+hbApp.directive('docnav', function($rootScope) {
 
   return {
     restrict: "E",
@@ -22,4 +22,4 @@ hbApp.directive( 'docnav', function( $rootScope ) {
     templateUrl: "/templates/components/_docnav.html",
     transclude: true
   }
-} );
+});

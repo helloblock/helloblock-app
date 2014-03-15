@@ -1,33 +1,33 @@
-hbApp.controller( "blockExplorer/unconfirmedCtrl", function( $scope, HelloBlock ) {
+hbApp.controller("blockExplorer/unconfirmedCtrl", function($scope, HelloBlock) {
 
   $scope.transactions = {
     unconfirmed: []
   }
 
-  var transactionsChannel = PusherClient.subscribe( 'transactions' );
+  var transactionsChannel = PusherClient.subscribe('transactions');
 
   // Callback: Lvl 1
-  HelloBlock.Transactions.get( {
+  HelloBlock.Transactions.get({
     txHash: "latest",
     limit: 100
-  }, function( res ) {
+  }, function(res) {
 
     $scope.transactions.unconfirmed = res.data.transactions;
 
     // Callback: Lvl 1
-    transactionsChannel.bind( 'unconfirmed', function( res ) {
+    transactionsChannel.bind('unconfirmed', function(res) {
       Pusher.beep();
 
       var tx = res.message;
 
-      $scope.$apply( function() {
-        $scope.transactions.unconfirmed.unshift( tx )
-      } )
+      $scope.$apply(function() {
+        $scope.transactions.unconfirmed.unshift(tx)
+      })
 
-    } );
-  }, function( err ) {
-    console.log( err )
-  } )
+    });
+  }, function(err) {
+    console.log(err)
+  })
 
   $scope.limitTo = {
     unconfirmed: 5
@@ -37,8 +37,8 @@ hbApp.controller( "blockExplorer/unconfirmedCtrl", function( $scope, HelloBlock 
     $scope.limitTo.unconfirmed += 5
   }
 
-  $scope.$on( "$destroy", function() {
+  $scope.$on("$destroy", function() {
     // PusherClient.unsubscribe( "transactions" )
-  } )
+  })
 
-} )
+})

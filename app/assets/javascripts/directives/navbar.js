@@ -1,8 +1,8 @@
-hbApp.directive( 'navbar', function() {
+hbApp.directive('navbar', function() {
 
-	return {
-		restrict: "E",
-		templateUrl: "/templates/components/_navbar.html",
-		transclude: true
-	}
-} );
+  return {
+    restrict: "E",
+    templateUrl: "/templates/components/_navbar.html",
+    transclude: true
+  }
+});

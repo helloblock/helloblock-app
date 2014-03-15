@@ -1,7 +1,7 @@
-hbApp.directive( "spin", function() {
+hbApp.directive("spin", function() {
 	return {
 		restrict: "E",
-		link: function( $scope, element, attrs ) {
+		link: function($scope, element, attrs) {
 			var opts = {
 				lines: 17,
 				length: 40,
@@ -21,16 +21,16 @@ hbApp.directive( "spin", function() {
 				left: '440%'
 			};
 
-			var spinner = new Spinner( opts )
-			spinner.spin( element[ 0 ] );
+			var spinner = new Spinner(opts)
+			spinner.spin(element[0]);
 		}
 	}
-} );
+});
 
-hbApp.directive( "waitspin", function() {
+hbApp.directive("waitspin", function() {
 	return {
 		restrict: "E",
-		link: function( $scope, element, attrs ) {
+		link: function($scope, element, attrs) {
 			var opts = {
 				lines: 17,
 				length: 40,
@@ -50,12 +50,12 @@ hbApp.directive( "waitspin", function() {
 				left: attrs.left || '500%'
 			};
 
-			if ( attrs.left !== undefined ) {
+			if (attrs.left !== undefined) {
 				opts.left = attrs.left;
 			}
 
-			var spinner = new Spinner( opts )
-			spinner.spin( element[ 0 ] );
+			var spinner = new Spinner(opts)
+			spinner.spin(element[0]);
 		}
 	}
-} );
+});

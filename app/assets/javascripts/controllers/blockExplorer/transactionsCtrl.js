@@ -1,4 +1,4 @@
-hbApp.controller( "blockExplorer/transactionsCtrl", function( $scope, $routeParams, $location, $rootScope, HelloBlock ) {
+hbApp.controller("blockExplorer/transactionsCtrl", function($scope, $routeParams, $location, $rootScope, HelloBlock) {
 
   var explorerMode = $rootScope.global.mode;
 
@@ -8,21 +8,21 @@ hbApp.controller( "blockExplorer/transactionsCtrl", function( $scope, $routePara
   }
 
   $scope.transaction = {
-    txHash: $routeParams.txHash || defaultTxHashes[ explorerMode ],
-    index: parseInt( $routeParams.index )
+    txHash: $routeParams.txHash || defaultTxHashes[explorerMode],
+    index: parseInt($routeParams.index)
   }
 
-  HelloBlock[ explorerMode ].Transactions.get( {
+  HelloBlock[explorerMode].Transactions.get({
     txHash: $scope.transaction.txHash
-  }, function( res ) {
+  }, function(res) {
 
-    $scope.transaction = $.extend( {}, $scope.transaction, res.data.transaction );
+    $scope.transaction = $.extend({}, $scope.transaction, res.data.transaction);
 
-  }, function( err ) {
-    console.log( "error", err )
-    $location.path( "/" + explorerMode ).search( {
+  }, function(err) {
+    console.log("error", err)
+    $location.path("/" + explorerMode).search({
       error: 'true'
-    } )
-  } )
+    })
+  })
 
-} )
+})
