@@ -10,7 +10,7 @@
   <div class="centerpiece">
     <div class="container">
       <br>
-      <br><br>
+      <br>
       <h1 class='main-title text-center white'>
         <strong>
           Focus on building Bitcoin apps, not infrastructure.
@@ -18,15 +18,35 @@
       </h1>
       <br>
       <h2 class='text-center white'>
-        Get started with the Blockchain Data API
+        <span>
+          Get started with the Blockchain Data API
+        </span>
+        <a class="btn btn-success" href="/docs/ref">
+          <span class='h4'>
+            <em>Go to Docs</em>
+          </span>
+        </a>
       </h2>
       <br><br>
-      <div class="row text-center">
-        <a class="btn btn-success btn-lg" href="/docs/ref">
-          <!-- TODO: should be tutorial -->
-          Getting Started
-        </a>
+      <div class="row">
+        <form ng-submit="bigSearch.query(query)">
+          <div class="container">
+            <div class="input-group">
+              <input
+                class='h3 big-input'
+                spellcheck="false"
+                ng-model="query"
+                placeholder="Search for any address, transaction hash or block height">
+              <span class="input-group-btn">
+                <button class="btn btn-success btn-block btn-search">
+                  <span class="h2">SEARCH</span>
+                </button>
+              </span>
+            </div>
+          </div>
+        </form>
       </div>
+      <br><br>
     </div>
   </div>
   <br>

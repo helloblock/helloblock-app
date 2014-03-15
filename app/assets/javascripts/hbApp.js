@@ -80,21 +80,21 @@ hbApp.run(function($rootScope, $location, $cookieStore, $anchorScroll) {
       var explorerMode = $rootScope.global.mode;
 
       if (QueryValidator.address(query)) {
-        $location.path("/" + explorerMode + "/addresses/" + query)
+        $location.path("/addresses/" + query)
         return;
       }
 
       if (QueryValidator.transaction(query)) {
-        $location.path("/" + explorerMode + "/transactions/" + query)
+        $location.path("/transactions/" + query)
         return;
       }
 
       if (QueryValidator.block(query)) {
-        $location.path("/" + explorerMode + "/blocks/" + query)
+        $location.path("/blocks/" + query)
         return;
       }
 
-      $location.path("/" + explorerMode).search({
+      $location.path("/latest").search({
         error: 'true'
       })
     }
