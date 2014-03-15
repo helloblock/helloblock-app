@@ -8,11 +8,11 @@
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a href="#" ng-click="global.setMode('testnet')">TESTNET</a>
+              <a href="{{global.baseUrl.mainnet}}/latest">MAINNET</a>
             </li>
             <div class="divider"></div>
             <li>
-              <a href="#" ng-click="global.setMode('mainnet')">MAINNET</a>
+              <a href="{{global.baseUrl.testnet}}/latest">TESTNET</a>
             </li>
           </ul>
         </li>
@@ -30,27 +30,27 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class='no-left' ng-class="{'active': selected == 'latest'}">
-          <a href="/{{global.mode}}/">
+          <a href="/latest">
             Latest
           </a>
         </li>
         <li ng-class="{'active': selected == 'addresses'}">
-          <a href="/{{global.mode}}/addresses">
+          <a href="/addresses">
             Addresses
           </a>
         </li>
         <li ng-class="{'active': selected == 'transactions'}">
-          <a href="/{{global.mode}}/transactions">
+          <a href="/transactions">
             Transactions
           </a>
         </li>
         <li ng-class="{'active': selected == 'blocks'}">
-          <a href="/{{global.mode}}/blocks">
+          <a href="/blocks">
             Blocks
           </a>
         </li>
         <li ng-class="{'active': selected == 'propagate'}">
-          <a href="/{{global.mode}}/propagate">
+          <a href="/propagate">
             Propagate
           </a>
         </li>

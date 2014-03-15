@@ -13,17 +13,28 @@ hbApp.config(function($locationProvider) {
   $locationProvider.html5Mode(true);
 })
 
+// EXPLORER MODE
 hbApp.run(function($rootScope, $location, $routeParams) {
+  // debugger
   $rootScope.global = {}
+  $rootScope.global.mode = _getExplorerMode($location.host());
 
-  // EXPLORER MODE
-  $rootScope.global.mode = _getExplorerMode($location.host())
-  console.log($location.host(), $rootScope.global.mode);
+  $rootScope.global.baseUrl = {};
 
-  $rootScope.global.setMode = function(mode) {
-    $rootScope.global.mode = mode.toLowerCase();
-    // $cookieStore.put( 'mode', mode );
-    $location.path("/" + mode.toLowerCase())
+  if (ENV === 'production') {
+    $rootScope.global.baseUrl.mainnet = "//helloblock.io";
+    $rootScope.global.baseUrl.testnet = "//test.helloblock.io";
+  } else {
+    $rootScope.global.baseUrl.mainnet = "//localhost:3000";
+    $rootScope.global.baseUrl.testnet = "//test.localhost:3000";
+  };
+
+})
+
+// CURRENT LINK
+hbApp.run(function($rootScope, $location) {
+  $rootScope.global.isOnLink = function(path) {
+    return path === $location.path().split("/")[1];
   };
 })
 
@@ -32,11 +43,6 @@ hbApp.run(function($rootScope, $location, $cookieStore, $anchorScroll) {
   // TODO: What if cookies are set wrong, e.g. JSON.parse("MAINNET")
   // Things could break without us knowing
   // Should force clear every now and then
-
-  // CURRENT LINK
-  $rootScope.global.isOnLink = function(path) {
-    return path === $location.path().split("/")[1];
-  }
 
   // LANGUAGE
   $rootScope.global.language = $cookieStore.get('language') || "curl"
@@ -210,3 +216,7 @@ var _getExplorerMode = function(host) {
 
   return "mainnet";
 }
+
+// var _extractHostname = function(url) {
+//   var tmp = document.
+// }
