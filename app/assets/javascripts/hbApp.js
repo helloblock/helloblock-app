@@ -13,11 +13,12 @@ hbApp.config(function($locationProvider) {
   $locationProvider.html5Mode(true);
 })
 
-hbApp.run(function($rootScope, $location) {
+hbApp.run(function($rootScope, $location, $routeParams) {
   $rootScope.global = {}
 
   // EXPLORER MODE
-  $rootScope.global.mode = $location.path().split("/")[1] || "testnet";
+  $rootScope.global.mode = _getExplorerMode($location.host())
+  console.log($location.host(), $rootScope.global.mode);
 
   $rootScope.global.setMode = function(mode) {
     $rootScope.global.mode = mode.toLowerCase();
@@ -125,43 +126,35 @@ hbApp.config(function($routeProvider) {
 
   })
 
-  var modes = ["/testnet", "/mainnet"];
+  $routeProvider.when('/latest', {
+    templateUrl: "/templates/blockExplorer/home.html",
+    controller: "blockExplorer/homeCtrl"
+  })
 
-  for (var i in modes) {
-    Route.namespace(modes[i], "blockExplorer", function(explorerMode, serviceName) {
+  $routeProvider.when("/addresses/:address?", {
+    templateUrl: "/templates/blockExplorer/addresses.html",
+    controller: "blockExplorer/addressesCtrl"
+  })
 
-      $routeProvider.when(explorerMode, {
-        templateUrl: "/templates/" + serviceName + "/home.html",
-        controller: serviceName + "/homeCtrl"
-      })
+  $routeProvider.when("/transactions/:txHash?", {
+    templateUrl: "/templates/blockExplorer/transactions.html",
+    controller: "blockExplorer/transactionsCtrl"
+  })
 
-      $routeProvider.when(explorerMode + "/addresses/:address?", {
-        templateUrl: "/templates/" + serviceName + "/addresses.html",
-        controller: serviceName + "/addressesCtrl"
-      })
+  $routeProvider.when("/blocks/:identifier?", {
+    templateUrl: "/templates/blockExplorer/blocks.html",
+    controller: "blockExplorer/blocksCtrl"
+  })
 
-      $routeProvider.when(explorerMode + "/transactions/:txHash?", {
-        templateUrl: "/templates/" + serviceName + "/transactions.html",
-        controller: serviceName + "/transactionsCtrl"
-      })
+  $routeProvider.when("/propagate", {
+    templateUrl: "/templates/blockExplorer/propagate.html",
+    controller: "blockExplorer/propagateCtrl"
+  })
 
-      $routeProvider.when(explorerMode + "/blocks/:identifier?", {
-        templateUrl: "/templates/" + serviceName + "/blocks.html",
-        controller: serviceName + "/blocksCtrl"
-      })
-
-      $routeProvider.when(explorerMode + "/propagate", {
-        templateUrl: "/templates/" + serviceName + "/propagate.html",
-        controller: serviceName + "/propagateCtrl"
-      })
-
-      $routeProvider.when(explorerMode + "/test", {
-        templateUrl: "/templates/" + serviceName + "/test.html",
-        controller: serviceName + "/testCtrl"
-      })
-
-    })
-  };
+  $routeProvider.when("/test", {
+    templateUrl: "/templates/blockExplorer/test.html",
+    controller: "blockExplorer/testCtrl"
+  })
 
   $routeProvider.otherwise({
     templateUrl: "/404.html",
@@ -206,4 +199,14 @@ var Route = {
   namespace: function(explorerMode, serviceName, callback) {
     callback(explorerMode, serviceName)
   }
+}
+
+var _getExplorerMode = function(host) {
+  var subDomain = host.split(".")[0];
+
+  if (subDomain == "test") {
+    return "testnet";
+  };
+
+  return "mainnet";
 }
