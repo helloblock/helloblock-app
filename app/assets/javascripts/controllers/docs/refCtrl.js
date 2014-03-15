@@ -102,7 +102,7 @@ hbApp.controller("docs/refCtrl", function($scope) {
       folder: "intro",
       id: "faucet-intro"
     }, {
-      name: "Retrieve Unspents",
+      name: "Retrieve unspents",
       folder: "single",
       id: "faucet-single"
     }, {
