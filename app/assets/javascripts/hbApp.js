@@ -36,6 +36,18 @@ hbApp.run(function($rootScope, $location) {
   $rootScope.global.isOnLink = function(path) {
     return path === $location.path().split("/")[1];
   };
+
+  $rootScope.global.isOnLinks = function(array) {
+    var onLink = false;
+    array.forEach(function(item) {
+      if (item === $location.path().split("/")[1]) {
+        onLink = true;
+        return;
+      }
+    })
+
+    return onLink;
+  };
 })
 
 hbApp.run(function($rootScope, $location, $cookieStore, $anchorScroll) {
