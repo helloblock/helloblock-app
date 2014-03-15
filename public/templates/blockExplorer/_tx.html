@@ -6,7 +6,7 @@
       </span>
       <span class='h5 pull-left'>
         <clipboard clip-copy="{{tx.txHash}}"></clipboard>
-        <a href="/{{global.mode}}/transactions/{{tx.txHash}}"> {{tx.txHash}}</a>
+        <a href="/transactions/{{tx.txHash}}"> {{tx.txHash}}</a>
       </span>
       <span class="pull-right">
         <span class="label label-lg" confirmations="{{tx.confirmations}}"></span>
@@ -31,7 +31,7 @@
         <tbody>
           <tr>
             <td rowspan="2" class='text-center n-index'>
-              <a href="/{{global.mode}}/transactions/{{i.txHash}}?n={{i.index}}">
+              <a href="/transactions/{{i.txHash}}?n={{i.index}}">
                 n: {{i.index}}
               </a>
             </td>
@@ -41,7 +41,7 @@
             <td>
               <span class="h6">
                 <clipboard clip-copy="{{i.address}}"></clipboard>
-                <a href="/{{global.mode}}/addresses/{{i.address}}">{{i.address}}</a>
+                <a href="/addresses/{{i.address}}">{{i.address}}</a>
               </span>
               </td>
           </tr>
@@ -81,7 +81,7 @@
             <td>
               <span class="h6">
                 <clipboard clip-copy="{{o.address}}"></clipboard>
-                <a href="/{{global.mode}}/addresses/{{o.address}}">{{o.address}}</a>
+                <a href="/addresses/{{o.address}}">{{o.address}}</a>
               </span>
             </td>
           </tr>

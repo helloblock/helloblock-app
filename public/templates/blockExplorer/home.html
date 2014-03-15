@@ -66,7 +66,7 @@
       <tbody>
         <tr ng-repeat="block in blocks.latest">
           <td class='text-center'>
-            <a href="/{{global.mode}}/blocks/{{block.blockHeight}}">{{block.blockHeight}}</a>
+            <a href="/blocks/{{block.blockHeight}}">{{block.blockHeight}}</a>
           </td>
           <td class='text-center'>
             <span class='h6'>{{block.txsCount}}</span>
@@ -99,7 +99,7 @@
         <tr ng-repeat="tx in transactions.latest">
           <td>
             <clipboard clip-copy="{{tx.txHash}}"></clipboard>
-            <a href="/{{global.mode}}/transactions/{{tx.txHash}}">{{tx.txHash}}</a>
+            <a href="/transactions/{{tx.txHash}}">{{tx.txHash}}</a>
           </td>
           <td>
             <span class='h6 nowrap' live='true' timeago="{{tx.estimatedTxTime}}"></span>
