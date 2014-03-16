@@ -2201,14 +2201,14 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <td>merkleRootHash: </td>\n" +
     "      <td><em>string</em></td>\n" +
     "    </tr>\n" +
-    "    <tr>\n" +
+    "    <!-- <tr>\n" +
     "      <td>totalInputsValue: </td>\n" +
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
     "      <td>totalOutputsValue: </td>\n" +
     "      <td><em>integer</em></td>\n" +
-    "    </tr>\n" +
+    "    </tr> -->\n" +
     "    <tr>\n" +
     "      <td>txsCount: </td>\n" +
     "      <td><em>integer</em></td>\n" +
