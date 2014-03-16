@@ -1392,7 +1392,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"outputsCount\": 2,\n" +
     "        \"inputs\": [\n" +
     "          {\n" +
-    "            \"prevTxOutIndex\": 1,\n" +
+    "            \"prevTxoutIndex\": 1,\n" +
     "            \"prevTxHash\": \"001ca8f4519037aa9224ab0ea9944f6e538af232d9ed3c806df8c31c05c704e7\",\n" +
     "            \"value\": 100000,\n" +
     "            \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\",\n" +
@@ -1400,7 +1400,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptSig\": \"4930460221009b4f454cc827e526c7dd4e8e9290cc4e238b73dcf6297cc18084bd18c25a882f022100d3aa80a050f0f158d2c59eec53a36aa17bf05d4a4383e6a71c36ea6f4e2f774e0141041f6222232963dc66e40f008bae27738966770a8d34d687e015b66e43e49ace2511ca6bce0df1beef080c174c6c0cf8609d51898c9e7551df0721d94758133438\"\n" +
     "          },\n" +
     "          {\n" +
-    "            \"prevTxOutIndex\": 1,\n" +
+    "            \"prevTxoutIndex\": 1,\n" +
     "            \"prevTxHash\": \"001ca8f4519037aa9224ab0ea9944f6e538af232d9ed3c806df8c31c05c704e7\",\n" +
     "            \"value\": 100000,\n" +
     "            \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\",\n" +
@@ -1898,7 +1898,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"outputsCount\": 3,\n" +
     "        \"inputs\": [\n" +
     "          {\n" +
-    "            \"prevTxOutIndex\": 2,\n" +
+    "            \"prevTxoutIndex\": 2,\n" +
     "            \"prevTxHash\": \"006fe24861564c3399423a0a8d5591f03016e0060122e1d201d306883ebc2b80\",\n" +
     "            \"value\": 7603000,\n" +
     "            \"address\": \"mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L\",\n" +
@@ -2185,7 +2185,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <td><em>string</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>prevTxOutIndex: </td>\n" +
+    "      <td>prevTxoutIndex: </td>\n" +
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
@@ -2521,7 +2521,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"outputsCount\": 2,\n" +
     "        \"inputs\": [\n" +
     "          {\n" +
-    "            \"prevTxOutIndex\": -1,\n" +
+    "            \"prevTxoutIndex\": -1,\n" +
     "            \"prevTxHash\": \"baae34397881132faaeff32c57c92963596a1f8f7a38477961eafc6e737ce365\",\n" +
     "            \"value\": 0,\n" +
     "            \"address\": null,\n" +
@@ -3142,7 +3142,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"outputsCount\": 2,\n" +
     "        \"inputs\": [\n" +
     "          {\n" +
-    "            \"prevTxOutIndex\": 1,\n" +
+    "            \"prevTxoutIndex\": 1,\n" +
     "            \"prevTxHash\": \"47bf46f92384002dc008696dac3437a2ca4a2696c21a3f6d1d789513e7b9a3f0\",\n" +
     "            \"value\": 100000,\n" +
     "            \"address\": \"mk1caepuZCUNELK7P1t8cP8GtqZPcdzibr\",\n" +
@@ -3150,7 +3150,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptSig\": \"493046022100bce7fe3cc1120f524af14ff157c9558b218e2c7e1f9722955d7bd34d31ccadca022100f4aa43e73a64e5aeceeaf237c94ed7e4b478d64241c640028067393bd2688464012103ba3fa2f1d35c2d8acf7a66f997a140e8d2be69dc0d054a26b46c2f1d50b2366a\"\n" +
     "          },\n" +
     "          {\n" +
-    "            \"prevTxOutIndex\": 1,\n" +
+    "            \"prevTxoutIndex\": 1,\n" +
     "            \"prevTxHash\": \"47bf46f92384002dc008696dac3437a2ca4a2696c21a3f6d1d789513e7b9a3f0\",\n" +
     "            \"value\": 1030397,\n" +
     "            \"address\": \"mnmZ2hevsK1pEnpCtywYH1Sn1qKXi9DRGi\",\n" +
@@ -3464,7 +3464,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      \"outputsCount\": 2,\n" +
     "      \"inputs\": [\n" +
     "        {\n" +
-    "          \"prevTxOutIndex\": 0,\n" +
+    "          \"prevTxoutIndex\": 0,\n" +
     "          \"prevTxHash\": \"2542cd64e02d902975dc6e2e97797ceec5a84e8597c80d22a9e2dbd16e748738\",\n" +
     "          \"value\": 53022177768,\n" +
     "          \"address\": \"mjswyggXrNJKdb1PHEfqrFxyefwFnn1q68\",\n" +
@@ -3586,7 +3586,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        <table class='table table-bordered table-condensed table-docs'>\n" +
     "          <tbody>\n" +
     "            <tr>\n" +
-    "              <td>prevTxOutIndex</td>\n" +
+    "              <td>prevTxoutIndex</td>\n" +
     "              <td><em>integer</em></td>\n" +
     "            </tr>\n" +
     "            <tr>\n" +
@@ -3652,7 +3652,16 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              <td>\n" +
     "                <em>string || null</em>\n" +
     "                <div>\n" +
-    "                  Returns Tx Hash if output is spent\n" +
+    "                  Returns the Tx Hash of where output is spent\n" +
+    "                </div>\n" +
+    "              </td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td>nextTxinIndex</td>\n" +
+    "              <td>\n" +
+    "                <em>integer</em>\n" +
+    "                <div>\n" +
+    "                  Returns the Tx Input Index of where output is spent\n" +
     "                </div>\n" +
     "              </td>\n" +
     "            </tr>\n" +
@@ -3759,7 +3768,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"outputsCount\": 2,\n" +
     "        \"inputs\": [\n" +
     "          {\n" +
-    "            \"prevTxOutIndex\": 1,\n" +
+    "            \"prevTxoutIndex\": 1,\n" +
     "            \"prevTxHash\": \"001ca8f4519037aa9224ab0ea9944f6e538af232d9ed3c806df8c31c05c704e7\",\n" +
     "            \"value\": 100000,\n" +
     "            \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\",\n" +
@@ -3767,7 +3776,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptSig\": \"4930460221009b4f454cc827e526c7dd4e8e9290cc4e238b73dcf6297cc18084bd18c25a882f022100d3aa80a050f0f158d2c59eec53a36aa17bf05d4a4383e6a71c36ea6f4e2f774e0141041f6222232963dc66e40f008bae27738966770a8d34d687e015b66e43e49ace2511ca6bce0df1beef080c174c6c0cf8609d51898c9e7551df0721d94758133438\"\n" +
     "          },\n" +
     "          {\n" +
-    "            \"prevTxOutIndex\": 1,\n" +
+    "            \"prevTxoutIndex\": 1,\n" +
     "            \"prevTxHash\": \"001ca8f4519037aa9224ab0ea9944f6e538af232d9ed3c806df8c31c05c704e7\",\n" +
     "            \"value\": 100000,\n" +
     "            \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\",\n" +
