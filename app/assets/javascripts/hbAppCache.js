@@ -1387,7 +1387,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"blockHeight\": 190560,\n" +
     "        \"blockTime\": 1392985961,\n" +
     "        \"estimatedTxTime\": 1392985961,\n" +
-    "        \"confirmations\": 14597,\n" +
+    "        \"confirmations\": 14598,\n" +
     "        \"inputsCount\": 2,\n" +
     "        \"outputsCount\": 2,\n" +
     "        \"inputs\": [\n" +
@@ -1417,7 +1417,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"hash160\": \"e8a86de5d3fc6daa28a17ec1f933146f61079983\",\n" +
     "            \"type\": \"pubkeyhash\",\n" +
     "            \"spent\": false,\n" +
-    "            \"nextTxHash\": null\n" +
+    "            \"nextTxHash\": null,\n" +
+    "            \"nextTxinIndex\": null\n" +
     "          },\n" +
     "          {\n" +
     "            \"index\": 1,\n" +
@@ -1427,7 +1428,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\",\n" +
     "            \"type\": \"pubkeyhash\",\n" +
     "            \"spent\": true,\n" +
-    "            \"nextTxHash\": \"ca6c1ff48e6ee5b04b0fc4dc502d263ca32767914a3831719b08a1780bd5a62f\"\n" +
+    "            \"nextTxHash\": \"ca6c1ff48e6ee5b04b0fc4dc502d263ca32767914a3831719b08a1780bd5a62f\",\n" +
+    "            \"nextTxinIndex\": 0\n" +
     "          }\n" +
     "        ],\n" +
     "        \"totalInputsValue\": 200000,\n" +
@@ -1893,7 +1895,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"blockHeight\": 183387,\n" +
     "        \"blockTime\": 1392802642,\n" +
     "        \"estimatedTxTime\": 1392802642,\n" +
-    "        \"confirmations\": 20868,\n" +
+    "        \"confirmations\": 21771,\n" +
     "        \"inputsCount\": 1,\n" +
     "        \"outputsCount\": 3,\n" +
     "        \"inputs\": [\n" +
@@ -1915,7 +1917,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"hash160\": \"4c4f564549206c6f766520796f75206261627920\",\n" +
     "            \"type\": \"pubkeyhash\",\n" +
     "            \"spent\": false,\n" +
-    "            \"nextTxHash\": null\n" +
+    "            \"nextTxHash\": null,\n" +
+    "            \"nextTxinIndex\": null\n" +
     "          },\n" +
     "          {\n" +
     "            \"index\": 1,\n" +
@@ -1925,7 +1928,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"hash160\": \"666f722065766572000000000000000000000000\",\n" +
     "            \"type\": \"pubkeyhash\",\n" +
     "            \"spent\": false,\n" +
-    "            \"nextTxHash\": null\n" +
+    "            \"nextTxHash\": null,\n" +
+    "            \"nextTxinIndex\": null\n" +
     "          },\n" +
     "          {\n" +
     "            \"index\": 2,\n" +
@@ -1935,7 +1939,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"hash160\": \"a5319d469e1ddd9558bd558a50e95f74b3da58c9\",\n" +
     "            \"type\": \"pubkeyhash\",\n" +
     "            \"spent\": true,\n" +
-    "            \"nextTxHash\": \"2866c00dd63b014b3a260b7598427e793a234a148c35a33f180e93d1bd2c955e\"\n" +
+    "            \"nextTxHash\": \"2866c00dd63b014b3a260b7598427e793a234a148c35a33f180e93d1bd2c955e\",\n" +
+    "            \"nextTxinIndex\": 0\n" +
     "          }\n" +
     "        ],\n" +
     "        \"totalInputsValue\": 7603000,\n" +
@@ -2516,7 +2521,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"blockHeight\": 123123,\n" +
     "        \"blockTime\": 1382046624,\n" +
     "        \"estimatedTxTime\": 1382046624,\n" +
-    "        \"confirmations\": 81132,\n" +
+    "        \"confirmations\": 82035,\n" +
     "        \"inputsCount\": 1,\n" +
     "        \"outputsCount\": 2,\n" +
     "        \"inputs\": [\n" +
@@ -2538,7 +2543,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"hash160\": \"95006ae154ef272450cbc2317d12950a02470e37\",\n" +
     "            \"type\": \"pubkeyhash\",\n" +
     "            \"spent\": false,\n" +
-    "            \"nextTxHash\": null\n" +
+    "            \"nextTxHash\": null,\n" +
+    "            \"nextTxinIndex\": null\n" +
     "          },\n" +
     "          {\n" +
     "            \"index\": 1,\n" +
@@ -2548,7 +2554,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"hash160\": \"95006ae154ef272450cbc2317d12950a02470e37\",\n" +
     "            \"type\": \"pubkeyhash\",\n" +
     "            \"spent\": false,\n" +
-    "            \"nextTxHash\": null\n" +
+    "            \"nextTxHash\": null,\n" +
+    "            \"nextTxinIndex\": null\n" +
     "          }\n" +
     "        ],\n" +
     "        \"totalInputsValue\": 0,\n" +
@@ -3137,7 +3144,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"blockHeight\": 155064,\n" +
     "        \"blockTime\": 1388685039,\n" +
     "        \"estimatedTxTime\": 1388685039,\n" +
-    "        \"confirmations\": 49191,\n" +
+    "        \"confirmations\": 50094,\n" +
     "        \"inputsCount\": 2,\n" +
     "        \"outputsCount\": 2,\n" +
     "        \"inputs\": [\n" +
@@ -3167,7 +3174,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"hash160\": \"3488c0786a4cc76c59dc509654831ba5b34a0799\",\n" +
     "            \"type\": \"pubkeyhash\",\n" +
     "            \"spent\": true,\n" +
-    "            \"nextTxHash\": \"d17e1b9e2a6e044ed3d9eeb0600e0de3f4107052c891ce86802aaf60f4bdebf1\"\n" +
+    "            \"nextTxHash\": \"d17e1b9e2a6e044ed3d9eeb0600e0de3f4107052c891ce86802aaf60f4bdebf1\",\n" +
+    "            \"nextTxinIndex\": 1\n" +
     "          },\n" +
     "          {\n" +
     "            \"index\": 1,\n" +
@@ -3177,7 +3185,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"hash160\": \"dfcb6c48e49b7a6d9d4f51e174f587a9b8ae33aa\",\n" +
     "            \"type\": \"pubkeyhash\",\n" +
     "            \"spent\": true,\n" +
-    "            \"nextTxHash\": \"b0abcac31a9f7b7a0bcad9eff4adaedd479c0d6c1911c901ecb626372e6b0e9e\"\n" +
+    "            \"nextTxHash\": \"b0abcac31a9f7b7a0bcad9eff4adaedd479c0d6c1911c901ecb626372e6b0e9e\",\n" +
+    "            \"nextTxinIndex\": 1\n" +
     "          }\n" +
     "        ],\n" +
     "        \"totalInputsValue\": 1130397,\n" +
@@ -3459,7 +3468,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      \"blockHeight\": 154810,\n" +
     "      \"blockTime\": 1388393306,\n" +
     "      \"estimatedTxTime\": 1388393306,\n" +
-    "      \"confirmations\": 49445,\n" +
+    "      \"confirmations\": 50348,\n" +
     "      \"inputsCount\": 1,\n" +
     "      \"outputsCount\": 2,\n" +
     "      \"inputs\": [\n" +
@@ -3481,7 +3490,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          \"hash160\": \"4465358b1c07d001a49216c466b6e8de5c708d99\",\n" +
     "          \"type\": \"pubkeyhash\",\n" +
     "          \"spent\": false,\n" +
-    "          \"nextTxHash\": null\n" +
+    "          \"nextTxHash\": null,\n" +
+    "          \"nextTxinIndex\": null\n" +
     "        },\n" +
     "        {\n" +
     "          \"index\": 1,\n" +
@@ -3491,7 +3501,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          \"hash160\": \"6a0d58b53a6b6aef32d5907e237ad57e6d84d0d6\",\n" +
     "          \"type\": \"pubkeyhash\",\n" +
     "          \"spent\": true,\n" +
-    "          \"nextTxHash\": \"af9c827f15a57b6268bb5978888e4473ed68107f7f0ca9004dec238cad4a284a\"\n" +
+    "          \"nextTxHash\": \"af9c827f15a57b6268bb5978888e4473ed68107f7f0ca9004dec238cad4a284a\",\n" +
+    "          \"nextTxinIndex\": 0\n" +
     "        }\n" +
     "      ],\n" +
     "      \"totalInputsValue\": 53022177768,\n" +
@@ -3717,17 +3728,17 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  \"status\": \"success\",\n" +
     "  \"data\": {\n" +
     "    \"summary\": {\n" +
-    "      \"balance\": 2034000,\n" +
-    "      \"confirmedBalance\": 2034000,\n" +
-    "      \"txsCount\": 369,\n" +
-    "      \"confirmedTxsCount\": 369\n" +
+    "      \"balance\": 316333265,\n" +
+    "      \"confirmedBalance\": 316333265,\n" +
+    "      \"txsCount\": 384,\n" +
+    "      \"confirmedTxsCount\": 384\n" +
     "    },\n" +
     "    \"addresses\": [\n" +
     "      {\n" +
-    "        \"balance\": 2034000,\n" +
-    "        \"confirmedBalance\": 2034000,\n" +
-    "        \"txsCount\": 367,\n" +
-    "        \"confirmedTxsCount\": 367,\n" +
+    "        \"balance\": 316333265,\n" +
+    "        \"confirmedBalance\": 316333265,\n" +
+    "        \"txsCount\": 382,\n" +
+    "        \"confirmedTxsCount\": 382,\n" +
     "        \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\",\n" +
     "        \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\"\n" +
     "      },\n" +
@@ -3742,7 +3753,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    ],\n" +
     "    \"unspents\": [\n" +
     "      {\n" +
-    "        \"confirmations\": 1737,\n" +
+    "        \"confirmations\": 2640,\n" +
     "        \"blockHeight\": 202518,\n" +
     "        \"txHash\": \"005cd997f92d11afc621b2eabdc5eea952d31da1cb27a05dc5e34d611bed1496\",\n" +
     "        \"index\": 0,\n" +
@@ -3763,7 +3774,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"blockHeight\": 190560,\n" +
     "        \"blockTime\": 1392985961,\n" +
     "        \"estimatedTxTime\": 1392985961,\n" +
-    "        \"confirmations\": 13695,\n" +
+    "        \"confirmations\": 14598,\n" +
     "        \"inputsCount\": 2,\n" +
     "        \"outputsCount\": 2,\n" +
     "        \"inputs\": [\n" +
@@ -3793,7 +3804,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"hash160\": \"e8a86de5d3fc6daa28a17ec1f933146f61079983\",\n" +
     "            \"type\": \"pubkeyhash\",\n" +
     "            \"spent\": false,\n" +
-    "            \"nextTxHash\": null\n" +
+    "            \"nextTxHash\": null,\n" +
+    "            \"nextTxinIndex\": null\n" +
     "          },\n" +
     "          {\n" +
     "            \"index\": 1,\n" +
@@ -3803,7 +3815,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\",\n" +
     "            \"type\": \"pubkeyhash\",\n" +
     "            \"spent\": true,\n" +
-    "            \"nextTxHash\": \"ca6c1ff48e6ee5b04b0fc4dc502d263ca32767914a3831719b08a1780bd5a62f\"\n" +
+    "            \"nextTxHash\": \"ca6c1ff48e6ee5b04b0fc4dc502d263ca32767914a3831719b08a1780bd5a62f\",\n" +
+    "            \"nextTxinIndex\": 0\n" +
     "          }\n" +
     "        ],\n" +
     "        \"totalInputsValue\": 200000,\n" +
