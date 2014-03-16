@@ -1447,9 +1447,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/addresses/batch-transactions/_description.html',
-    "<h3>Get Transactions</h3>\n" +
+    "<h3>Get Batch Transactions</h3>\n" +
     "<br>\n" +
-    "<p>Gets and returns transactions for a given address.</p>\n" +
+    "<p>Gets and returns transactions for multiple addresses.</p>\n" +
     "<br>\n" +
     "<p><strong>Request Parameters</strong></p>\n" +
     "<table class=\"table table-bordered table-docs\">\n" +
@@ -3834,7 +3834,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/wallet/batch/_description.html',
-    "<h3>Get</h3>\n" +
+    "<h3>Get Wallet</h3>\n" +
     "<br>\n" +
     "<p>Gets and returns addresses, transactions, unspents for multiple addresses.</p>\n" +
     "<br>\n" +
