@@ -1447,7 +1447,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/addresses/batch-transactions/_description.html',
-    "<h3>Retrieve Transactions</h3>\n" +
+    "<h3>Get Transactions</h3>\n" +
     "<br>\n" +
     "<p>Gets and returns transactions for a given address.</p>\n" +
     "<br>\n" +
@@ -1556,7 +1556,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/addresses/batch-unspents/_description.html',
-    "<h3>Retrieve Batch Unspent Outputs</h3>\n" +
+    "<h3>Get Batch Unspent Outputs</h3>\n" +
     "<br>\n" +
     "<p>Gets and returns the unspent outputs for multiple addresses.</p>\n" +
     "<br>\n" +
@@ -1660,7 +1660,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/addresses/batch/_description.html',
-    "<h3>Retrieve multiple Addresses</h3>\n" +
+    "<h3>Get Batch Addresses</h3>\n" +
     "<br>\n" +
     "<p>Batch get multiple addresses.</p>\n" +
     "<br>\n" +
@@ -1772,7 +1772,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/addresses/single/_description.html',
-    "<h3>Retrieve an Address</h3>\n" +
+    "<h3>Get an Address</h3>\n" +
     "<br>\n" +
     "<p>Gets and returns data for a single address.</p>\n" +
     "<br>\n" +
@@ -1958,7 +1958,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/addresses/transactions/_description.html',
-    "<h3>Retrieve Transactions</h3>\n" +
+    "<h3>Get Transactions</h3>\n" +
     "<br>\n" +
     "<p>Gets and returns transactions for a given address.</p>\n" +
     "<br>\n" +
@@ -2137,7 +2137,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/addresses/unspents/_description.html',
-    "<h3>Retrieve Unspent Outputs</h3>\n" +
+    "<h3>Get Unspent Outputs</h3>\n" +
     "<br>\n" +
     "<p>Gets and returns the unspent outputs for a given address.</p>\n" +
     "<br>\n" +
@@ -2318,7 +2318,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/blocks/latest/_description.html',
-    "<h3>Retrieve latest Blocks</h3>\n" +
+    "<h3>Get latest Blocks</h3>\n" +
     "<br>\n" +
     "<p><strong>Request Parameters</strong></p>\n" +
     "<table class=\"table table-bordered table-docs\">\n" +
@@ -2404,7 +2404,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/blocks/single/_description.html',
-    "<h3>Retrieve a Block</h3>\n" +
+    "<h3>Get a Block</h3>\n" +
     "<br>\n" +
     "<p><strong>Request Parameters</strong></p>\n" +
     "<table class=\"table table-bordered table-docs\">\n" +
@@ -2571,7 +2571,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/blocks/transactions/_description.html',
-    "<h3>Retrieve Transactions</h3>\n" +
+    "<h3>Get Transactions</h3>\n" +
     "<br>\n" +
     "<p><strong>Request Parameters</strong></p>\n" +
     "<table class=\"table table-bordered table-docs\">\n" +
@@ -2694,10 +2694,10 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/faucet/single/_description.html',
-    "<h3>Retrieve Unspents</h3>\n" +
+    "<h3>Get Unspents</h3>\n" +
     "<br>\n" +
     "<p>\n" +
-    "  Retrieves a unique key pair, pre-loaded with unspent outputs. Particularly useful in \"before each\" hooks.\n" +
+    "  Gets a unique key pair, pre-loaded with unspent outputs. Particularly useful in \"before each\" hooks.\n" +
     "</p>\n" +
     "<br>\n" +
     "<p><strong>Request Parameters</strong></p>\n" +
@@ -3203,7 +3203,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/transactions/batch/_description.html',
-    "<h3>Retrieve multiple Transactions</h3>\n" +
+    "<h3>Get Batch Transactions</h3>\n" +
     "<br>\n" +
     "<p><strong>Request Parameters</strong></p>\n" +
     "<table class=\"table table-bordered table-docs\">\n" +
@@ -3307,7 +3307,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/transactions/latest/_description.html',
-    "<h3>Retrieve latest Transactions</h3>\n" +
+    "<h3>Get latest Transactions</h3>\n" +
     "<br>\n" +
     "<p><strong>Request Parameters</strong></p>\n" +
     "<table class=\"table table-bordered table-docs\">\n" +
@@ -3518,7 +3518,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/transactions/single/_description.html',
-    "<h3>Retrieve a Transaction</h3>\n" +
+    "<h3>Get a Transaction</h3>\n" +
     "<br>\n" +
     "<p><strong>Request Parameters</strong></p>\n" +
     "<table class=\"table table-bordered table-docs\">\n" +
@@ -3834,7 +3834,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/wallet/batch/_description.html',
-    "<h3>Retrieve</h3>\n" +
+    "<h3>Get</h3>\n" +
     "<br>\n" +
     "<p>Gets and returns addresses, transactions, unspents for multiple addresses.</p>\n" +
     "<br>\n" +

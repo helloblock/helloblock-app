@@ -26,27 +26,27 @@ hbApp.controller("docs/refCtrl", function($scope) {
         folder: "intro",
         id: "addresses-intro"
       }, {
-        name: "Retrieve",
+        name: "Get",
         folder: "single",
         id: "addresses-single"
       }, {
-        name: "Retrieve batch",
+        name: "Get batch",
         folder: "batch",
         id: "addresses-batch"
       }, {
-        name: "Retrieve unspents",
+        name: "Get unspents",
         folder: "unspents",
         id: "addresses-unspents"
       }, {
-        name: "Retrieve batch unspents",
+        name: "Get batch unspents",
         folder: "batch-unspents",
         id: "addresses-batch-unspents"
       }, {
-        name: "Retrieve transactions",
+        name: "Get transactions",
         folder: "transactions",
         id: "addresses-transactions"
       }, {
-        name: "Retrieve batch transactions",
+        name: "Get batch transactions",
         folder: "batch-transactions",
         id: "addresses-batch-transactions"
       }]
@@ -57,15 +57,15 @@ hbApp.controller("docs/refCtrl", function($scope) {
         folder: "intro",
         id: "transactions-intro"
       }, {
-        name: "Retrieve",
+        name: "Get",
         folder: "single",
         id: "transactions-single"
       }, {
-        name: "Retrieve batch",
+        name: "Get batch",
         folder: "batch",
         id: "transactions-batch"
       }, {
-        name: "Retrieve latest",
+        name: "Get latest",
         folder: "latest",
         id: "transactions-latest"
       }, {
@@ -80,15 +80,15 @@ hbApp.controller("docs/refCtrl", function($scope) {
         folder: "intro",
         id: "blocks-intro"
       }, {
-        name: "Retrieve",
+        name: "Get",
         folder: "single",
         id: "blocks-single"
       }, {
-        name: "Retrieve transactions",
+        name: "Get transactions",
         folder: "transactions",
         id: "blocks-transactions"
       }, {
-        name: "Retrieve latest",
+        name: "Get latest",
         folder: "latest",
         id: "blocks-latest"
       }]
@@ -99,7 +99,7 @@ hbApp.controller("docs/refCtrl", function($scope) {
         folder: "intro",
         id: "wallet-intro"
       }, {
-        name: "Retrieve",
+        name: "Get",
         folder: "batch",
         id: "wallet-batch"
       }]
@@ -110,7 +110,7 @@ hbApp.controller("docs/refCtrl", function($scope) {
         folder: "intro",
         id: "faucet-intro"
       }, {
-        name: "Retrieve unspents",
+        name: "Get unspents",
         folder: "single",
         id: "faucet-single"
       }, {
