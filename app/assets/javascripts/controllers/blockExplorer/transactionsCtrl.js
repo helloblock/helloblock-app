@@ -20,7 +20,7 @@ hbApp.controller("blockExplorer/transactionsCtrl", function($scope, $routeParams
 
   }, function(err) {
     console.log("error", err)
-    $location.path("/" + explorerMode).search({
+    $location.path("/latest").search({
       error: 'true'
     })
   })

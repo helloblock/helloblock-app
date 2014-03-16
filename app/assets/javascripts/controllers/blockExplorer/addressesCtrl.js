@@ -13,37 +13,35 @@ hbApp.controller("blockExplorer/addressesCtrl", function($scope, $routeParams, $
     unspents: []
   }
 
-  var addressesChannel = io.connect(HelloBlockSocket.URL[explorerMode] + '/addresses', {
-    'force new connection': true
-  })
+  // var addressesChannel = io.connect(HelloBlockSocket.URL[explorerMode] + '/addresses', {
+  //   'force new connection': true
+  // })
 
   // Addresses, loading /transactions and /unspents separate to improve performance
   // Callback: Lvl 1
   HelloBlock[explorerMode].Addresses.get({
-    address: $scope.address.base58,
-    transactions: false,
-    unspents: false
+    address: $scope.address.base58
   }, function(res) {
 
     $scope.address = $.extend({}, $scope.address, res.data.address);
 
     // Callback: Lvl 2
-    addressesChannel.on($scope.address.base58, function(data) {
-      HelloBlockSocket.beep();
+    // addressesChannel.on($scope.address.base58, function(data) {
+    //   HelloBlockSocket.beep();
 
-      var tx = data.message
-      // TODO
-      // tx.direction
-      // tx.result
+    //   var tx = data.message
+    //   // TODO
+    //   // tx.direction
+    //   // tx.result
 
-      $scope.$apply(function() {
-        $scope.address.transactions.unshift(tx)
-      })
-    });
+    //   $scope.$apply(function() {
+    //     $scope.address.transactions.unshift(tx)
+    //   })
+    // });
 
   }, function(err) {
     console.log("error!", err)
-    $location.path("/" + explorerMode).search({
+    $location.path("/latest").search({
       error: 'true'
     })
   })
@@ -51,7 +49,7 @@ hbApp.controller("blockExplorer/addressesCtrl", function($scope, $routeParams, $
   // Address Transactions
   HelloBlock[explorerMode].AddressTransactions.get({
     address: $scope.address.base58,
-    limit: 20,
+    limit: 10,
     offset: 0,
   }, function(res) {
 
@@ -59,7 +57,7 @@ hbApp.controller("blockExplorer/addressesCtrl", function($scope, $routeParams, $
 
   }, function(err) {
     console.log("error!", err)
-    $location.path("/" + explorerMode).search({
+    $location.path("/latest").search({
       error: 'true'
     })
   })
@@ -67,7 +65,7 @@ hbApp.controller("blockExplorer/addressesCtrl", function($scope, $routeParams, $
   // Address Unspents
   HelloBlock[explorerMode].AddressUnspents.get({
     address: $scope.address.base58,
-    limit: 20,
+    limit: 10,
     offset: 0,
   }, function(res) {
 
@@ -88,7 +86,7 @@ hbApp.controller("blockExplorer/addressesCtrl", function($scope, $routeParams, $
 
   }, function(err) {
     console.log("error!", err)
-    $location.path("/" + explorerMode).search({
+    $location.path("/latest").search({
       error: 'true'
     })
   })
@@ -101,8 +99,8 @@ hbApp.controller("blockExplorer/addressesCtrl", function($scope, $routeParams, $
   }
 
   $scope.offset = {
-    transactions: 20,
-    unspents: 20
+    transactions: 10,
+    unspents: 10
   }
 
   $scope.fetching = false
@@ -121,14 +119,14 @@ hbApp.controller("blockExplorer/addressesCtrl", function($scope, $routeParams, $
     // Callback: Lvl 1
     HelloBlock[explorerMode].AddressTransactions.get({
       address: $scope.address.base58,
-      limit: 20,
+      limit: 10,
       offset: $scope.offset.transactions
     }, function(res) {
 
       if (res.data.transactions.length > 0) {
         $scope.address.transactions = $scope.address.transactions.concat(
           res.data.transactions);
-        $scope.offset.transactions += 20;
+        $scope.offset.transactions += 10;
       } else {
         $scope.finished.transactions = true;
       }
@@ -155,8 +153,8 @@ hbApp.controller("blockExplorer/addressesCtrl", function($scope, $routeParams, $
     // Callback: Lvl 1
     HelloBlock[explorerMode].AddressUnspents.get({
       address: $scope.address.base58,
-      limit: 20,
-      offset: $scope.limitTo.unspents
+      limit: 10,
+      offset: $scope.offset.unspents
     }, function(res) {
 
       var unspents_tx_hashes = res.data.unspents.map(function(i) {
@@ -177,7 +175,7 @@ hbApp.controller("blockExplorer/addressesCtrl", function($scope, $routeParams, $
         if (res.data.transactions.length > 0) {
           $scope.address.unspents = $scope.address.unspents.concat(
             res.data.transactions)
-          $scope.offset.unspents += 20
+          $scope.offset.unspents += 10
         } else {
           $scope.finished.unspents = true;
         }

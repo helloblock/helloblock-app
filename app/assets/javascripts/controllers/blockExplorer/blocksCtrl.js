@@ -26,7 +26,7 @@ hbApp.controller("blockExplorer/blocksCtrl", function($scope, $routeParams, $loc
     $scope.block.index = data.blockHeight;
     $scope.block = $.extend({}, $scope.block, data);
   }, function(err) {
-    $location.path("/" + explorerMode).search({
+    $location.path("/latest").search({
       error: 'true'
     })
   })
@@ -36,7 +36,7 @@ hbApp.controller("blockExplorer/blocksCtrl", function($scope, $routeParams, $loc
   }, function(res) {
     $scope.block.transactions = res.data.transactions
   }, function(err) {
-    $location.path("/" + explorerMode).search({
+    $location.path("/latest").search({
       error: 'true'
     })
   })
