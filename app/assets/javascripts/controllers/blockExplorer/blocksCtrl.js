@@ -19,8 +19,7 @@ hbApp.controller("blockExplorer/blocksCtrl", function($scope, $routeParams, $loc
   }
 
   HelloBlock[explorerMode].Blocks.get({
-    identifier: $scope.block.identifier,
-    transactions: false
+    identifier: $scope.block.identifier
   }, function(res) {
     var data = res["data"]["block"]
     $scope.block.index = data.blockHeight;
