@@ -38,9 +38,17 @@ hbApp.controller("docs/refCtrl", function($scope) {
         folder: "unspents",
         id: "addresses-unspents"
       }, {
+        name: "Retrieve batch unspents",
+        folder: "batch-unspents",
+        id: "addresses-batch-unspents"
+      }, {
         name: "Retrieve transactions",
         folder: "transactions",
         id: "addresses-transactions"
+      }, {
+        name: "Retrieve batch transactions",
+        folder: "batch-transactions",
+        id: "addresses-batch-transactions"
       }]
     }, {
       resource: "transactions",
