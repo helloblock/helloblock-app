@@ -1,4 +1,4 @@
-hbApp.controller("blockExplorer/addressesCtrl", function($scope, $routeParams, $location, $rootScope, HelloBlock, HelloBlockSocket) {
+hbApp.controller("blockExplorer/addressesCtrl", function($scope, $routeParams, $location, $rootScope, HelloBlock, HelloBlockSocket, Utils) {
 
   var explorerMode = $rootScope.global.mode;
 
@@ -10,8 +10,9 @@ hbApp.controller("blockExplorer/addressesCtrl", function($scope, $routeParams, $
   $scope.address = {
     base58: $routeParams.address || defaultAddresses[explorerMode],
     transactions: [],
-    unspents: []
-  }
+    unspents: [],
+    active: Utils.pathLast($location.path())
+  };
 
   // var addressesChannel = io.connect(HelloBlockSocket.URL[explorerMode] + '/addresses', {
   //   'force new connection': true

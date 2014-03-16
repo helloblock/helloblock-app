@@ -154,12 +154,27 @@ hbApp.config(function($routeProvider) {
     controller: "blockExplorer/addressesCtrl"
   })
 
+  $routeProvider.when("/addresses/:address/transactions", {
+    templateUrl: "/templates/blockExplorer/addresses.html",
+    controller: "blockExplorer/addressesCtrl"
+  })
+
+  $routeProvider.when("/addresses/:address/unspents", {
+    templateUrl: "/templates/blockExplorer/addresses.html",
+    controller: "blockExplorer/addressesCtrl"
+  })
+
   $routeProvider.when("/transactions/:txHash?", {
     templateUrl: "/templates/blockExplorer/transactions.html",
     controller: "blockExplorer/transactionsCtrl"
   })
 
   $routeProvider.when("/blocks/:identifier?", {
+    templateUrl: "/templates/blockExplorer/blocks.html",
+    controller: "blockExplorer/blocksCtrl"
+  })
+
+  $routeProvider.when("/blocks/:identifier/transactions", {
     templateUrl: "/templates/blockExplorer/blocks.html",
     controller: "blockExplorer/blocksCtrl"
   })

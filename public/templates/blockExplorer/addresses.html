@@ -96,7 +96,7 @@
 </div>
 <div class="container">
   <tabset>
-    <tab heading="All Transactions">
+    <tab heading="All Transactions" active="address.active === 'transactions' ">
       <br>
       <div infinite-scroll="loadMoreTransactions()">
         <span ng-repeat="tx in address.transactions">
@@ -105,7 +105,7 @@
       </div>
 
     </tab>
-    <tab heading="Unspent Outputs">
+    <tab heading="Unspent Outputs" active="address.active === 'unspents' ">
       <br>
       <div infinite-scroll="loadMoreUnspents()">
         <span ng-repeat="tx in address.unspents">
