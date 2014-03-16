@@ -1,0 +1,47 @@
+<br><br><br><br><br>
+<div class="h5 title">DEFINITION</div>
+<pre>
+  <code class="bash" hljs>
+GET https://testnet.helloblock.io/v1/addresses/unspents?addresses=<span class='text-primary'>&lt;address&gt;</span>
+  </code>
+</pre>
+<div class="h5 title">EXAMPLE REQUEST</div>
+<pre class="curl">
+  <code class="bash" hljs>
+curl https://testnet.helloblock.io/v1/addresses/unspents?addresses=<span class='text-primary'>mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L</span>&addresses=<span class='text-primary'>mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo</span>&limit=1
+  </code>
+</pre>
+<div class="h5 title">EXAMPLE RESPONSE</div>
+<pre>
+  <code class="javascript" hljs>
+{
+  "status": "success",
+  "data": {
+    "unspents": [
+      {
+        "confirmations": 2639,
+        "blockHeight": 202518,
+        "txHash": "005cd997f92d11afc621b2eabdc5eea952d31da1cb27a05dc5e34d611bed1496",
+        "index": 0,
+        "scriptPubKey": "76a914652c453e3f8768d6d6e1f2985cb8939db91a4e0588ac",
+        "type": "pubkeyhash",
+        "value": 10000,
+        "hash160": "652c453e3f8768d6d6e1f2985cb8939db91a4e05",
+        "address": "mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo"
+      },
+      {
+        "confirmations": 14726,
+        "blockHeight": 190431,
+        "txHash": "06849aa080b61ad403f3d6ff5e53ee38a099ea0e53600ac1453375021e376e65",
+        "index": 0,
+        "scriptPubKey": "76a914a5319d469e1ddd9558bd558a50e95f74b3da58c988ac",
+        "type": "pubkeyhash",
+        "value": 10000,
+        "hash160": "a5319d469e1ddd9558bd558a50e95f74b3da58c9",
+        "address": "mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L"
+      }
+    ]
+  }
+}
+  </code>
+</pre>
