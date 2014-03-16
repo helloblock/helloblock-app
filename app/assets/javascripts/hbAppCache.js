@@ -1357,6 +1357,260 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('/templates/docs/ref/addresses/batch-transactions/_curl.html',
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "GET https://testnet.helloblock.io/v1/addresses/transactions?addresses=<span class='text-primary'>&lt;address&gt;</span>\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "curl https://testnet.helloblock.io/v1/addresses/transactions?addresses=<span class='text-primary'>mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L</span>&addresses=<span class='text-primary'>mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo</span>&limit=1\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "{\n" +
+    "  \"status\": \"success\",\n" +
+    "  \"data\": {\n" +
+    "    \"transactions\": [\n" +
+    "      {\n" +
+    "        \"txHash\": \"001ca8f4519037aa9224ab0ea9944f6e538af232d9ed3c806df8c31c05c704e7\",\n" +
+    "        \"version\": 1,\n" +
+    "        \"locktime\": 0,\n" +
+    "        \"size\": 439,\n" +
+    "        \"blockHash\": \"0000000001ad40d52ababc4a24fccd810c91f9a39c3afa72955b9a8be342371f\",\n" +
+    "        \"blockHeight\": 190560,\n" +
+    "        \"blockTime\": 1392985961,\n" +
+    "        \"estimatedTxTime\": 1392985961,\n" +
+    "        \"confirmations\": 14597,\n" +
+    "        \"inputsCount\": 2,\n" +
+    "        \"outputsCount\": 2,\n" +
+    "        \"inputs\": [\n" +
+    "          {\n" +
+    "            \"prevTxOutIndex\": 1,\n" +
+    "            \"prevTxHash\": \"001ca8f4519037aa9224ab0ea9944f6e538af232d9ed3c806df8c31c05c704e7\",\n" +
+    "            \"value\": 100000,\n" +
+    "            \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\",\n" +
+    "            \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\",\n" +
+    "            \"scriptSig\": \"4930460221009b4f454cc827e526c7dd4e8e9290cc4e238b73dcf6297cc18084bd18c25a882f022100d3aa80a050f0f158d2c59eec53a36aa17bf05d4a4383e6a71c36ea6f4e2f774e0141041f6222232963dc66e40f008bae27738966770a8d34d687e015b66e43e49ace2511ca6bce0df1beef080c174c6c0cf8609d51898c9e7551df0721d94758133438\"\n" +
+    "          },\n" +
+    "          {\n" +
+    "            \"prevTxOutIndex\": 1,\n" +
+    "            \"prevTxHash\": \"001ca8f4519037aa9224ab0ea9944f6e538af232d9ed3c806df8c31c05c704e7\",\n" +
+    "            \"value\": 100000,\n" +
+    "            \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\",\n" +
+    "            \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\",\n" +
+    "            \"scriptSig\": \"48304502207b6ef61a49677070a75aceb365ac6f5b5db67b9e75e1eb1f8a0a7c594d65e79e0221008b5d9e07e1c3a39109d7baffee1aba9f867833c8ca8fb825bb185236563e15510141041f6222232963dc66e40f008bae27738966770a8d34d687e015b66e43e49ace2511ca6bce0df1beef080c174c6c0cf8609d51898c9e7551df0721d94758133438\"\n" +
+    "          }\n" +
+    "        ],\n" +
+    "        \"outputs\": [\n" +
+    "          {\n" +
+    "            \"index\": 0,\n" +
+    "            \"value\": 100000,\n" +
+    "            \"scriptPubKey\": \"76a914e8a86de5d3fc6daa28a17ec1f933146f6107998388ac\",\n" +
+    "            \"address\": \"n2j8qELbiG5Ay3hvj6K6hbSJKqaVLHD2eA\",\n" +
+    "            \"hash160\": \"e8a86de5d3fc6daa28a17ec1f933146f61079983\",\n" +
+    "            \"type\": \"pubkeyhash\",\n" +
+    "            \"spent\": false,\n" +
+    "            \"nextTxHash\": null\n" +
+    "          },\n" +
+    "          {\n" +
+    "            \"index\": 1,\n" +
+    "            \"value\": 90000,\n" +
+    "            \"scriptPubKey\": \"76a914652c453e3f8768d6d6e1f2985cb8939db91a4e0588ac\",\n" +
+    "            \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\",\n" +
+    "            \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\",\n" +
+    "            \"type\": \"pubkeyhash\",\n" +
+    "            \"spent\": true,\n" +
+    "            \"nextTxHash\": \"ca6c1ff48e6ee5b04b0fc4dc502d263ca32767914a3831719b08a1780bd5a62f\"\n" +
+    "          }\n" +
+    "        ],\n" +
+    "        \"totalInputsValue\": 200000,\n" +
+    "        \"totalOutputsValue\": 190000,\n" +
+    "        \"fees\": 10000,\n" +
+    "        \"estimatedTxDirection\": \"outgoing\",\n" +
+    "        \"estimatedTxValue\": -100000\n" +
+    "      }\n" +
+    "    ]\n" +
+    "  }\n" +
+    "}\n" +
+    "  </code>\n" +
+    "</pre>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/addresses/batch-transactions/_description.html',
+    "<h3>Retrieve Transactions</h3>\n" +
+    "<br>\n" +
+    "<p>Gets and returns transactions for a given address.</p>\n" +
+    "<br>\n" +
+    "<p><strong>Request Parameters</strong></p>\n" +
+    "<table class=\"table table-bordered table-docs\">\n" +
+    "  <tbody>\n" +
+    "    <thead>\n" +
+    "      <tr>\n" +
+    "        <td>Param Name</td>\n" +
+    "        <td>Default Value</td>\n" +
+    "        <td>Type</td>\n" +
+    "        <td>Required</td>\n" +
+    "      </tr>\n" +
+    "    </thead>\n" +
+    "    <tr>\n" +
+    "      <td>addresses: </td>\n" +
+    "      <td></td>\n" +
+    "      <td>\n" +
+    "        <em>strings</em>\n" +
+    "        <div>repeat for multiple</div>\n" +
+    "      </td>\n" +
+    "      <td><span class='label label-primary'>REQUIRED</span></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>limit: </td>\n" +
+    "      <td>10</td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>offset: </td>\n" +
+    "      <td>0</td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
+    "    </tr>\n" +
+    "  </tbody>\n" +
+    "</table>\n" +
+    "\n" +
+    "<br>\n" +
+    "<p><strong>Response Attributes for Transactions</strong></p>\n" +
+    "<p>\n" +
+    "  Returns <em>Array</em> of Transaction Objects\n" +
+    "</p>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/addresses/batch-transactions/_nodejs.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/addresses/batch-transactions/_ruby.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/addresses/batch-unspents/_curl.html',
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "GET https://testnet.helloblock.io/v1/addresses/unspents?addresses=<span class='text-primary'>&lt;address&gt;</span>\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "curl https://testnet.helloblock.io/v1/addresses/unspents?addresses=<span class='text-primary'>mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L</span>&addresses=<span class='text-primary'>mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo</span>&limit=2\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "{\n" +
+    "  \"status\": \"success\",\n" +
+    "  \"data\": {\n" +
+    "    \"unspents\": [\n" +
+    "      {\n" +
+    "        \"confirmations\": 2639,\n" +
+    "        \"blockHeight\": 202518,\n" +
+    "        \"txHash\": \"005cd997f92d11afc621b2eabdc5eea952d31da1cb27a05dc5e34d611bed1496\",\n" +
+    "        \"index\": 0,\n" +
+    "        \"scriptPubKey\": \"76a914652c453e3f8768d6d6e1f2985cb8939db91a4e0588ac\",\n" +
+    "        \"type\": \"pubkeyhash\",\n" +
+    "        \"value\": 10000,\n" +
+    "        \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\",\n" +
+    "        \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\"\n" +
+    "      },\n" +
+    "      {\n" +
+    "        \"confirmations\": 14726,\n" +
+    "        \"blockHeight\": 190431,\n" +
+    "        \"txHash\": \"06849aa080b61ad403f3d6ff5e53ee38a099ea0e53600ac1453375021e376e65\",\n" +
+    "        \"index\": 0,\n" +
+    "        \"scriptPubKey\": \"76a914a5319d469e1ddd9558bd558a50e95f74b3da58c988ac\",\n" +
+    "        \"type\": \"pubkeyhash\",\n" +
+    "        \"value\": 10000,\n" +
+    "        \"hash160\": \"a5319d469e1ddd9558bd558a50e95f74b3da58c9\",\n" +
+    "        \"address\": \"mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L\"\n" +
+    "      }\n" +
+    "    ]\n" +
+    "  }\n" +
+    "}\n" +
+    "  </code>\n" +
+    "</pre>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/addresses/batch-unspents/_description.html',
+    "<h3>Retrieve Batch Unspent Outputs</h3>\n" +
+    "<br>\n" +
+    "<p>Gets and returns the unspent outputs for multiple addresses.</p>\n" +
+    "<br>\n" +
+    "<p><strong>Request Parameters</strong></p>\n" +
+    "<table class=\"table table-bordered table-docs\">\n" +
+    "  <tbody>\n" +
+    "    <thead>\n" +
+    "      <tr>\n" +
+    "        <td>Param Name</td>\n" +
+    "        <td>Default Value</td>\n" +
+    "        <td>Type</td>\n" +
+    "        <td>Required</td>\n" +
+    "      </tr>\n" +
+    "    </thead>\n" +
+    "    <tr>\n" +
+    "      <td>addresses: </td>\n" +
+    "      <td></td>\n" +
+    "      <td>\n" +
+    "        <em>strings</em>\n" +
+    "        <div>repeat for multiple</div>\n" +
+    "      </td>\n" +
+    "      <td><span class='label label-primary'>REQUIRED</span></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>limit: </td>\n" +
+    "      <td>10</td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>offset: </td>\n" +
+    "      <td>0</td>\n" +
+    "      <td><em>integer</em></td>\n" +
+    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
+    "    </tr>\n" +
+    "  </tbody>\n" +
+    "</table>\n" +
+    "\n" +
+    "<br>\n" +
+    "<p><strong>Response Attributes for Unspents</strong></p>\n" +
+    "<p>\n" +
+    "  Returns <em>Array</em> of Unspent Output Objects (as above)\n" +
+    "</p>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/ref/addresses/batch-unspents/_nodejs.html',
+    ""
+  );
+
+
+  $templateCache.put('/templates/docs/ref/addresses/batch-unspents/_ruby.html',
+    ""
+  );
+
+
   $templateCache.put('/templates/docs/ref/addresses/batch/_curl.html',
     "<br><br><br><br><br>\n" +
     "<div class=\"h5 title\">DEFINITION</div>\n" +
