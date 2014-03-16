@@ -447,7 +447,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        <tbody>\n" +
     "          <tr>\n" +
     "            <td rowspan=\"2\" class='text-center n-index'>\n" +
-    "              <a href=\"/transactions/{{i.txHash}}?prevTxoutIndex={{i.prevTxoutIndex}}\">\n" +
+    "              <a href=\"/transactions/{{i.prevTxHash}}?prevTxoutIndex={{i.prevTxoutIndex}}\">\n" +
     "                n: {{i.prevTxoutIndex}}\n" +
     "              </a>\n" +
     "            </td>\n" +
