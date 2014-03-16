@@ -83,15 +83,15 @@
       <td class='no-top'>
         <br>
         <div class="col-md-6">
-          <div class="text-center" ng-show="transaction.inputs[0].txHash === null">
+          <div class="text-center" ng-show="transaction.inputs[0].prevTxHash === null">
             <br>
             <span class="h3">NEWLY GENERATED COINS</span>
           </div>
           <table
           ng-repeat="i in transaction.inputs"
-          ng-show="i.txHash !== null"
-          class="
-          table table-bordered table-io"
+          ng-show="i.prevTxHash !== null"
+          class="table table-bordered table-io"
+          ng-class="{'table-highlighted': transaction.nextTxinIndex === $index}"
           >
           <tbody>
             <tr>
@@ -114,24 +114,24 @@
               </td>
             </tr>
             <tr>
-              <td>n (index): </td>
+              <td>PrevTxout Index: </td>
               <td>
                 <span>
-                  <a href="/transactions/{{i.txHash}}?n={{i.index}}">
-                    {{i.index}}
+                  <a href="/transactions/{{i.prevTxHash}}?prevTxoutIndex={{i.prevTxoutIndex}}">
+                    {{i.prevTxoutIndex}}
                   </a>
                 </span>
               </td>
             </tr>
             <tr>
               <td>
-                TX Hash:
+                Prev TxHash:
               </td>
               <td class=''>
                 <span class="amount">
-                  <clipboard clip-copy="{{i.txHash}}"></clipboard>
-                  <a href="/transactions/{{i.txHash}}?n={{i.index}}">
-                    {{i.txHash}}
+                  <clipboard clip-copy="{{i.prevTxHash}}"></clipboard>
+                  <a href="/transactions/{{i.prevTxHash}}?prevTxoutIndex={{i.prevTxoutIndex}}">
+                    {{i.prevTxHash}}
                   </a>
                 </span>
               </td>
@@ -154,10 +154,10 @@
         <table
         ng-repeat="o in transaction.outputs"
         class="table table-bordered table-io"
-        ng-class="{'table-highlighted': transaction.index === o.index}">
+        ng-class="{'table-highlighted': transaction.prevTxoutIndex === o.index}">
         <tbody>
           <tr>
-            <td>n (index): </td>
+            <td>Output Index:</td>
             <td><span>{{o.index}}</span></td>
           </tr>
           <tr>
@@ -193,6 +193,29 @@
               </span>
             </td>
           </tr> -->
+          <tr>
+            <td>NextTxIn Index: </td>
+            <td>
+              <span>
+                <a href="/transactions/{{o.nextTxHash}}?nextTxinIndex={{o.nextTxinIndex}}">
+                  {{o.nextTxinIndex}}
+                </a>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Next TxHash:
+            </td>
+            <td class=''>
+              <span class="amount" ng-show="o.nextTxHash">
+                <clipboard clip-copy="{{o.nextTxHash}}"></clipboard>
+                <a href="/transactions/{{o.nextTxHash}}?nextTxinIndex={{o.nextTxinIndex}}">
+                  {{o.nextTxHash}}
+                </a>
+              </span>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

@@ -191,7 +191,7 @@ hbApp.controller("blockExplorer/addressesCtrl", function($scope, $routeParams, $
   }
 
   $scope.$on("$destroy", function() {
-    addressesChannel.socket.disconnect();
+    // addressesChannel.socket.disconnect();
   })
 
 })

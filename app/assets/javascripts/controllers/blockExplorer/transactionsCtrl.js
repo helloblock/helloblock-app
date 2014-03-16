@@ -9,7 +9,8 @@ hbApp.controller("blockExplorer/transactionsCtrl", function($scope, $routeParams
 
   $scope.transaction = {
     txHash: $routeParams.txHash || defaultTxHashes[explorerMode],
-    index: parseInt($routeParams.index)
+    prevTxoutIndex: parseInt($routeParams.prevTxoutIndex),
+    nextTxinIndex: parseInt($routeParams.nextTxinIndex)
   }
 
   HelloBlock[explorerMode].Transactions.get({
