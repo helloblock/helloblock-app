@@ -57,25 +57,22 @@
     <table class="table table-latest">
       <thead>
         <tr>
+          <!-- <th class='text-center'><span class='h5 nowrap'>Block Hash</span></th> -->
           <th class='text-center'><span class='h5'>Block Height</span></th>
           <th class='text-center'><span class='h5'># Transactions</span></th>
-          <th class='text-center'><span class='h5 nowrap'>Total Output Value</span></th>
           <th class='text-center'><span class='h5'>Time</span></th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="block in blocks.latest">
+          <!-- <td>
+            <a href="/blocks/{{block.blockHash}}">{{block.blockHash}}</a>
+          </td> -->
           <td class='text-center'>
             <a href="/blocks/{{block.blockHeight}}">{{block.blockHeight}}</a>
           </td>
           <td class='text-center'>
             <span class='h6'>{{block.txsCount}}</span>
-          </td>
-          <td>
-            <span class="label label-success amount label-lg">
-              <span to-btc="{{block.totalOutputsValue}}"></span>
-            </span>
-
           </td>
           <td class='text-center'>
             <span class='h6' live='true' timeago="{{block.blockTime}}"></span>
