@@ -4,7 +4,7 @@ hbApp.controller("blockExplorer/addressesCtrl", function($scope, $routeParams, $
 
   var defaultAddresses = {
     testnet: "mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo",
-    mainnet: "1KJbvJXiV6AguiuBzif1ZzpX67pBCUuf7T"
+    mainnet: "16ps38WzmDhEWMPQecVndrWZADekC4FU42"
   }
 
   $scope.address = {
