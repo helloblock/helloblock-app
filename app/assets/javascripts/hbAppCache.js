@@ -271,15 +271,15 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <td class='no-top'>\n" +
     "        <br>\n" +
     "        <div class=\"col-md-6\">\n" +
-    "          <div class=\"text-center\" ng-show=\"transaction.inputs[0].txHash === null\">\n" +
+    "          <div class=\"text-center\" ng-show=\"transaction.inputs[0].prevTxHash === null\">\n" +
     "            <br>\n" +
     "            <span class=\"h3\">NEWLY GENERATED COINS</span>\n" +
     "          </div>\n" +
     "          <table\n" +
     "          ng-repeat=\"i in transaction.inputs\"\n" +
-    "          ng-show=\"i.txHash !== null\"\n" +
-    "          class=\"\n" +
-    "          table table-bordered table-io\"\n" +
+    "          ng-show=\"i.prevTxHash !== null\"\n" +
+    "          class=\"table table-bordered table-io\"\n" +
+    "          ng-class=\"{'table-highlighted': transaction.nextTxinIndex === $index}\"\n" +
     "          >\n" +
     "          <tbody>\n" +
     "            <tr>\n" +
@@ -302,24 +302,24 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              </td>\n" +
     "            </tr>\n" +
     "            <tr>\n" +
-    "              <td>n (index): </td>\n" +
+    "              <td>PrevTxout Index: </td>\n" +
     "              <td>\n" +
     "                <span>\n" +
-    "                  <a href=\"/transactions/{{i.txHash}}?n={{i.index}}\">\n" +
-    "                    {{i.index}}\n" +
+    "                  <a href=\"/transactions/{{i.prevTxHash}}?prevTxoutIndex={{i.prevTxoutIndex}}\">\n" +
+    "                    {{i.prevTxoutIndex}}\n" +
     "                  </a>\n" +
     "                </span>\n" +
     "              </td>\n" +
     "            </tr>\n" +
     "            <tr>\n" +
     "              <td>\n" +
-    "                TX Hash:\n" +
+    "                Prev TxHash:\n" +
     "              </td>\n" +
     "              <td class=''>\n" +
     "                <span class=\"amount\">\n" +
-    "                  <clipboard clip-copy=\"{{i.txHash}}\"></clipboard>\n" +
-    "                  <a href=\"/transactions/{{i.txHash}}?n={{i.index}}\">\n" +
-    "                    {{i.txHash}}\n" +
+    "                  <clipboard clip-copy=\"{{i.prevTxHash}}\"></clipboard>\n" +
+    "                  <a href=\"/transactions/{{i.prevTxHash}}?prevTxoutIndex={{i.prevTxoutIndex}}\">\n" +
+    "                    {{i.prevTxHash}}\n" +
     "                  </a>\n" +
     "                </span>\n" +
     "              </td>\n" +
@@ -342,10 +342,10 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        <table\n" +
     "        ng-repeat=\"o in transaction.outputs\"\n" +
     "        class=\"table table-bordered table-io\"\n" +
-    "        ng-class=\"{'table-highlighted': transaction.index === o.index}\">\n" +
+    "        ng-class=\"{'table-highlighted': transaction.prevTxoutIndex === o.index}\">\n" +
     "        <tbody>\n" +
     "          <tr>\n" +
-    "            <td>n (index): </td>\n" +
+    "            <td>Output Index:</td>\n" +
     "            <td><span>{{o.index}}</span></td>\n" +
     "          </tr>\n" +
     "          <tr>\n" +
@@ -381,6 +381,29 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              </span>\n" +
     "            </td>\n" +
     "          </tr> -->\n" +
+    "          <tr>\n" +
+    "            <td>NextTxIn Index: </td>\n" +
+    "            <td>\n" +
+    "              <span>\n" +
+    "                <a href=\"/transactions/{{o.nextTxHash}}?nextTxinIndex={{o.nextTxinIndex}}\">\n" +
+    "                  {{o.nextTxinIndex}}\n" +
+    "                </a>\n" +
+    "              </span>\n" +
+    "            </td>\n" +
+    "          </tr>\n" +
+    "          <tr>\n" +
+    "            <td>\n" +
+    "              Next TxHash:\n" +
+    "            </td>\n" +
+    "            <td class=''>\n" +
+    "              <span class=\"amount\" ng-show=\"o.nextTxHash\">\n" +
+    "                <clipboard clip-copy=\"{{o.nextTxHash}}\"></clipboard>\n" +
+    "                <a href=\"/transactions/{{o.nextTxHash}}?nextTxinIndex={{o.nextTxinIndex}}\">\n" +
+    "                  {{o.nextTxHash}}\n" +
+    "                </a>\n" +
+    "              </span>\n" +
+    "            </td>\n" +
+    "          </tr>\n" +
     "        </tbody>\n" +
     "      </table>\n" +
     "    </div>\n" +
@@ -424,8 +447,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        <tbody>\n" +
     "          <tr>\n" +
     "            <td rowspan=\"2\" class='text-center n-index'>\n" +
-    "              <a href=\"/transactions/{{i.txHash}}?n={{i.index}}\">\n" +
-    "                n: {{i.index}}\n" +
+    "              <a href=\"/transactions/{{i.txHash}}?prevTxoutIndex={{i.prevTxoutIndex}}\">\n" +
+    "                n: {{i.prevTxoutIndex}}\n" +
     "              </a>\n" +
     "            </td>\n" +
     "            <td rowspan=\"2\" class='text-center'>\n" +
@@ -557,6 +580,10 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            <td>{{address.txsCount}}</td>\n" +
     "          </tr>\n" +
     "          <tr>\n" +
+    "            <td><strong># Confirmed Transactions</strong></td>\n" +
+    "            <td>{{address.confirmedTxsCount}}</td>\n" +
+    "          </tr>\n" +
+    "         <!--  <tr>\n" +
     "            <td><strong># Total Sent</strong></td>\n" +
     "            <td>{{address.totalSentCount}}</td>\n" +
     "          </tr>\n" +
@@ -571,10 +598,14 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          <tr>\n" +
     "            <td><strong>Total Received Amount</strong></td>\n" +
     "            <td watch='true' to-btc=\"{{address.totalReceivedValue}}\"></td>\n" +
+    "          </tr> -->\n" +
+    "          <tr>\n" +
+    "            <td><strong>Balance</strong></td>\n" +
+    "            <td watch='true' to-btc=\"{{address.balance}}\"></td>\n" +
     "          </tr>\n" +
     "          <tr>\n" +
-    "            <td><strong>Final Balance Amount</strong></td>\n" +
-    "            <td watch='true' to-btc=\"{{address.balance}}\"></td>\n" +
+    "            <td><strong>Confirmed Balance</strong></td>\n" +
+    "            <td watch='true' to-btc=\"{{address.confirmedBalance}}\"></td>\n" +
     "          </tr>\n" +
     "        </tbody>\n" +
     "      </table>\n" +
@@ -584,7 +615,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "</div>\n" +
     "<div class=\"container\">\n" +
     "  <tabset>\n" +
-    "    <tab heading=\"All Transactions\">\n" +
+    "    <tab heading=\"All Transactions\" active=\"address.active === 'transactions' \">\n" +
     "      <br>\n" +
     "      <div infinite-scroll=\"loadMoreTransactions()\">\n" +
     "        <span ng-repeat=\"tx in address.transactions\">\n" +
@@ -593,7 +624,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      </div>\n" +
     "\n" +
     "    </tab>\n" +
-    "    <tab heading=\"Unspent Outputs\">\n" +
+    "    <tab heading=\"Unspent Outputs\" active=\"address.active === 'unspents' \">\n" +
     "      <br>\n" +
     "      <div infinite-scroll=\"loadMoreUnspents()\">\n" +
     "        <span ng-repeat=\"tx in address.unspents\">\n" +
@@ -699,14 +730,14 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        <td># Transactions: </td>\n" +
     "        <td>{{block.txsCount}}</td>\n" +
     "      </tr>\n" +
-    "      <tr>\n" +
+    "      <!-- <tr>\n" +
     "        <td>Total Inputs: </td>\n" +
     "        <td to-btc=\"{{block.totalInputsValue}}\"></td>\n" +
     "      </tr>\n" +
     "      <tr>\n" +
     "        <td>Total Outputs: </td>\n" +
     "        <td to-btc=\"{{block.totalOutputsValue}}\"></td>\n" +
-    "      </tr>\n" +
+    "      </tr> -->\n" +
     "    </table>\n" +
     "\n" +
     "  </div>\n" +
@@ -786,25 +817,22 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <table class=\"table table-latest\">\n" +
     "      <thead>\n" +
     "        <tr>\n" +
+    "          <!-- <th class='text-center'><span class='h5 nowrap'>Block Hash</span></th> -->\n" +
     "          <th class='text-center'><span class='h5'>Block Height</span></th>\n" +
     "          <th class='text-center'><span class='h5'># Transactions</span></th>\n" +
-    "          <th class='text-center'><span class='h5 nowrap'>Total Output Value</span></th>\n" +
     "          <th class='text-center'><span class='h5'>Time</span></th>\n" +
     "        </tr>\n" +
     "      </thead>\n" +
     "      <tbody>\n" +
     "        <tr ng-repeat=\"block in blocks.latest\">\n" +
+    "          <!-- <td>\n" +
+    "            <a href=\"/blocks/{{block.blockHash}}\">{{block.blockHash}}</a>\n" +
+    "          </td> -->\n" +
     "          <td class='text-center'>\n" +
     "            <a href=\"/blocks/{{block.blockHeight}}\">{{block.blockHeight}}</a>\n" +
     "          </td>\n" +
     "          <td class='text-center'>\n" +
     "            <span class='h6'>{{block.txsCount}}</span>\n" +
-    "          </td>\n" +
-    "          <td>\n" +
-    "            <span class=\"label label-success amount label-lg\">\n" +
-    "              <span to-btc=\"{{block.totalOutputsValue}}\"></span>\n" +
-    "            </span>\n" +
-    "\n" +
     "          </td>\n" +
     "          <td class='text-center'>\n" +
     "            <span class='h6' live='true' timeago=\"{{block.blockTime}}\"></span>\n" +
@@ -847,7 +875,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<div class=\"centerpiece-alt text-center\">\n" +
     "  <div class=\"container heading\">\n" +
     "    <div class=\"h1 text-center white\">\n" +
-    "        PROPAGATE/DECODE TRANSACTIONS [{{global.mode.toUpperCase()}}]\n" +
+    "        PROPAGATE TRANSACTIONS [{{global.mode.toUpperCase()}}]\n" +
     "      </div>\n" +
     "  </div>\n" +
     "</div>\n" +
@@ -864,9 +892,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        selected></textarea>\n" +
     "    </div>\n" +
     "    <div class=\"pull-right\">\n" +
-    "      <button class='btn btn-warning' ng-click=\"decodeHex()\">\n" +
+    "      <!-- <button class='btn btn-warning' ng-click=\"decodeHex()\">\n" +
     "        DECODE\n" +
-    "      </button>\n" +
+    "      </button> -->\n" +
     "      <button class='btn btn-danger' ng-click=\"propagateHex()\">\n" +
     "        PROPAGATE\n" +
     "      </button>\n" +
@@ -1415,7 +1443,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptPubKey\": \"76a914e8a86de5d3fc6daa28a17ec1f933146f6107998388ac\",\n" +
     "            \"address\": \"n2j8qELbiG5Ay3hvj6K6hbSJKqaVLHD2eA\",\n" +
     "            \"hash160\": \"e8a86de5d3fc6daa28a17ec1f933146f61079983\",\n" +
-    "            \"type\": \"pubkeyhash\",\n" +
+    "            \"txoutType\": \"pubkeyhash\",\n" +
     "            \"spent\": false,\n" +
     "            \"nextTxHash\": null,\n" +
     "            \"nextTxinIndex\": null\n" +
@@ -1426,7 +1454,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptPubKey\": \"76a914652c453e3f8768d6d6e1f2985cb8939db91a4e0588ac\",\n" +
     "            \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\",\n" +
     "            \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\",\n" +
-    "            \"type\": \"pubkeyhash\",\n" +
+    "            \"txoutType\": \"pubkeyhash\",\n" +
     "            \"spent\": true,\n" +
     "            \"nextTxHash\": \"ca6c1ff48e6ee5b04b0fc4dc502d263ca32767914a3831719b08a1780bd5a62f\",\n" +
     "            \"nextTxinIndex\": 0\n" +
@@ -1531,7 +1559,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"txHash\": \"005cd997f92d11afc621b2eabdc5eea952d31da1cb27a05dc5e34d611bed1496\",\n" +
     "        \"index\": 0,\n" +
     "        \"scriptPubKey\": \"76a914652c453e3f8768d6d6e1f2985cb8939db91a4e0588ac\",\n" +
-    "        \"type\": \"pubkeyhash\",\n" +
+    "        \"txoutType\": \"pubkeyhash\",\n" +
     "        \"value\": 10000,\n" +
     "        \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\",\n" +
     "        \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\"\n" +
@@ -1542,7 +1570,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"txHash\": \"06849aa080b61ad403f3d6ff5e53ee38a099ea0e53600ac1453375021e376e65\",\n" +
     "        \"index\": 0,\n" +
     "        \"scriptPubKey\": \"76a914a5319d469e1ddd9558bd558a50e95f74b3da58c988ac\",\n" +
-    "        \"type\": \"pubkeyhash\",\n" +
+    "        \"txoutType\": \"pubkeyhash\",\n" +
     "        \"value\": 10000,\n" +
     "        \"hash160\": \"a5319d469e1ddd9558bd558a50e95f74b3da58c9\",\n" +
     "        \"address\": \"mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L\"\n" +
@@ -1915,7 +1943,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptPubKey\": \"76a9144c4f564549206c6f766520796f7520626162792088ac\",\n" +
     "            \"address\": \"mnUSh4g73n1CRJxQ86UaHHymszyG6AyyHG\",\n" +
     "            \"hash160\": \"4c4f564549206c6f766520796f75206261627920\",\n" +
-    "            \"type\": \"pubkeyhash\",\n" +
+    "            \"txoutType\": \"pubkeyhash\",\n" +
     "            \"spent\": false,\n" +
     "            \"nextTxHash\": null,\n" +
     "            \"nextTxinIndex\": null\n" +
@@ -1926,7 +1954,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptPubKey\": \"76a914666f72206576657200000000000000000000000088ac\",\n" +
     "            \"address\": \"mpraj1bhrSp7226HHpHuXnj1tZWJgaXKuy\",\n" +
     "            \"hash160\": \"666f722065766572000000000000000000000000\",\n" +
-    "            \"type\": \"pubkeyhash\",\n" +
+    "            \"txoutType\": \"pubkeyhash\",\n" +
     "            \"spent\": false,\n" +
     "            \"nextTxHash\": null,\n" +
     "            \"nextTxinIndex\": null\n" +
@@ -1937,7 +1965,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptPubKey\": \"76a914a5319d469e1ddd9558bd558a50e95f74b3da58c988ac\",\n" +
     "            \"address\": \"mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L\",\n" +
     "            \"hash160\": \"a5319d469e1ddd9558bd558a50e95f74b3da58c9\",\n" +
-    "            \"type\": \"pubkeyhash\",\n" +
+    "            \"txoutType\": \"pubkeyhash\",\n" +
     "            \"spent\": true,\n" +
     "            \"nextTxHash\": \"2866c00dd63b014b3a260b7598427e793a234a148c35a33f180e93d1bd2c955e\",\n" +
     "            \"nextTxinIndex\": 0\n" +
@@ -2123,7 +2151,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"txHash\": \"06849aa080b61ad403f3d6ff5e53ee38a099ea0e53600ac1453375021e376e65\",\n" +
     "        \"index\": 0,\n" +
     "        \"scriptPubKey\": \"76a914a5319d469e1ddd9558bd558a50e95f74b3da58c988ac\",\n" +
-    "        \"type\": \"pubkeyhash\",\n" +
+    "        \"txoutType\": \"pubkeyhash\",\n" +
     "        \"value\": 10000,\n" +
     "        \"hash160\": \"a5319d469e1ddd9558bd558a50e95f74b3da58c9\",\n" +
     "        \"address\": \"mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L\"\n" +
@@ -2541,7 +2569,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptPubKey\": \"76a91495006ae154ef272450cbc2317d12950a02470e3788ac\",\n" +
     "            \"address\": \"mu6oUeNmEqQJ31cBrDrpDuwfQCAvwCxn6H\",\n" +
     "            \"hash160\": \"95006ae154ef272450cbc2317d12950a02470e37\",\n" +
-    "            \"type\": \"pubkeyhash\",\n" +
+    "            \"txoutType\": \"pubkeyhash\",\n" +
     "            \"spent\": false,\n" +
     "            \"nextTxHash\": null,\n" +
     "            \"nextTxinIndex\": null\n" +
@@ -2552,7 +2580,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptPubKey\": \"76a91495006ae154ef272450cbc2317d12950a02470e3788ac\",\n" +
     "            \"address\": \"mu6oUeNmEqQJ31cBrDrpDuwfQCAvwCxn6H\",\n" +
     "            \"hash160\": \"95006ae154ef272450cbc2317d12950a02470e37\",\n" +
-    "            \"type\": \"pubkeyhash\",\n" +
+    "            \"txoutType\": \"pubkeyhash\",\n" +
     "            \"spent\": false,\n" +
     "            \"nextTxHash\": null,\n" +
     "            \"nextTxinIndex\": null\n" +
@@ -2681,7 +2709,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      \"txHash\": \"fdacf1ac89ee333095acab51b1f88994ade14bfa156c2be682478e35fe29df9d\",\n" +
     "      \"index\": 0,\n" +
     "      \"scriptPubKey\": \"76a914d3eefb19630a1a3a7b267ea6ff9d14537751934788ac\",\n" +
-    "      \"type\": \"pubkeyhash\",\n" +
+    "      \"txoutType\": \"pubkeyhash\",\n" +
     "      \"value\": 100000,\n" +
     "      \"hash160\": \"d3eefb19630a1a3a7b267ea6ff9d145377519347\",\n" +
     "      \"address\": \"mzqZADCoj3KgPmW9vqpLFe1adY3goUYTGG\"\n" +
@@ -3172,7 +3200,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptPubKey\": \"76a9143488c0786a4cc76c59dc509654831ba5b34a079988ac\",\n" +
     "            \"address\": \"mkJjFiLGTTZxc9gynVHZ3nam17aaQdZU75\",\n" +
     "            \"hash160\": \"3488c0786a4cc76c59dc509654831ba5b34a0799\",\n" +
-    "            \"type\": \"pubkeyhash\",\n" +
+    "            \"txoutType\": \"pubkeyhash\",\n" +
     "            \"spent\": true,\n" +
     "            \"nextTxHash\": \"d17e1b9e2a6e044ed3d9eeb0600e0de3f4107052c891ce86802aaf60f4bdebf1\",\n" +
     "            \"nextTxinIndex\": 1\n" +
@@ -3183,7 +3211,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptPubKey\": \"76a914dfcb6c48e49b7a6d9d4f51e174f587a9b8ae33aa88ac\",\n" +
     "            \"address\": \"n1vGfugd2W27SkG5TZiWpmDzQrvtxAgFJw\",\n" +
     "            \"hash160\": \"dfcb6c48e49b7a6d9d4f51e174f587a9b8ae33aa\",\n" +
-    "            \"type\": \"pubkeyhash\",\n" +
+    "            \"txoutType\": \"pubkeyhash\",\n" +
     "            \"spent\": true,\n" +
     "            \"nextTxHash\": \"b0abcac31a9f7b7a0bcad9eff4adaedd479c0d6c1911c901ecb626372e6b0e9e\",\n" +
     "            \"nextTxinIndex\": 1\n" +
@@ -3488,7 +3516,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          \"scriptPubKey\": \"76a9144465358b1c07d001a49216c466b6e8de5c708d9988ac\",\n" +
     "          \"address\": \"mmkbVEWhehm6mKUgV36K6oWX4BCZcp5by3\",\n" +
     "          \"hash160\": \"4465358b1c07d001a49216c466b6e8de5c708d99\",\n" +
-    "          \"type\": \"pubkeyhash\",\n" +
+    "          \"txoutType\": \"pubkeyhash\",\n" +
     "          \"spent\": false,\n" +
     "          \"nextTxHash\": null,\n" +
     "          \"nextTxinIndex\": null\n" +
@@ -3499,7 +3527,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          \"scriptPubKey\": \"76a9146a0d58b53a6b6aef32d5907e237ad57e6d84d0d688ac\",\n" +
     "          \"address\": \"mqBhuiixrkwypkjNHFwSNYiFEtAiDr54gp\",\n" +
     "          \"hash160\": \"6a0d58b53a6b6aef32d5907e237ad57e6d84d0d6\",\n" +
-    "          \"type\": \"pubkeyhash\",\n" +
+    "          \"txoutType\": \"pubkeyhash\",\n" +
     "          \"spent\": true,\n" +
     "          \"nextTxHash\": \"af9c827f15a57b6268bb5978888e4473ed68107f7f0ca9004dec238cad4a284a\",\n" +
     "          \"nextTxinIndex\": 0\n" +
@@ -3758,7 +3786,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"txHash\": \"005cd997f92d11afc621b2eabdc5eea952d31da1cb27a05dc5e34d611bed1496\",\n" +
     "        \"index\": 0,\n" +
     "        \"scriptPubKey\": \"76a914652c453e3f8768d6d6e1f2985cb8939db91a4e0588ac\",\n" +
-    "        \"type\": \"pubkeyhash\",\n" +
+    "        \"txoutType\": \"pubkeyhash\",\n" +
     "        \"value\": 10000,\n" +
     "        \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\",\n" +
     "        \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\"\n" +
@@ -3802,7 +3830,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptPubKey\": \"76a914e8a86de5d3fc6daa28a17ec1f933146f6107998388ac\",\n" +
     "            \"address\": \"n2j8qELbiG5Ay3hvj6K6hbSJKqaVLHD2eA\",\n" +
     "            \"hash160\": \"e8a86de5d3fc6daa28a17ec1f933146f61079983\",\n" +
-    "            \"type\": \"pubkeyhash\",\n" +
+    "            \"txoutType\": \"pubkeyhash\",\n" +
     "            \"spent\": false,\n" +
     "            \"nextTxHash\": null,\n" +
     "            \"nextTxinIndex\": null\n" +
@@ -3813,7 +3841,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptPubKey\": \"76a914652c453e3f8768d6d6e1f2985cb8939db91a4e0588ac\",\n" +
     "            \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\",\n" +
     "            \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\",\n" +
-    "            \"type\": \"pubkeyhash\",\n" +
+    "            \"txoutType\": \"pubkeyhash\",\n" +
     "            \"spent\": true,\n" +
     "            \"nextTxHash\": \"ca6c1ff48e6ee5b04b0fc4dc502d263ca32767914a3831719b08a1780bd5a62f\",\n" +
     "            \"nextTxinIndex\": 0\n" +
