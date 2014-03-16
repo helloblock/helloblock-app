@@ -1570,7 +1570,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <td>confirmedTxsCount: </td>\n" +
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
-    "    <tr>\n" +
+    "    <!-- <tr>\n" +
     "      <td>totalReceivedValue: </td>\n" +
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
@@ -1585,7 +1585,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <tr>\n" +
     "      <td>totalSentCount: </td>\n" +
     "      <td><em>integer</em></td>\n" +
-    "    </tr>\n" +
+    "    </tr> -->\n" +
     "    <tr>\n" +
     "      <td>address: </td>\n" +
     "      <td><em>string</em> (base58)</td>\n" +
@@ -3654,7 +3654,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "                </div>\n" +
     "              </td>\n" +
     "            </tr>\n" +
-    "            <tr>\n" +
+    "            <!-- <tr>\n" +
     "              <td>totalReceivedValue</td>\n" +
     "              <td>\n" +
     "                <em>integer</em>\n" +
@@ -3671,7 +3671,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "                  totalSentValue for all addresses\n" +
     "                </div>\n" +
     "              </td>\n" +
-    "            </tr>\n" +
+    "            </tr> -->\n" +
     "          </tbody>\n" +
     "        </table>\n" +
     "      </td>\n" +
