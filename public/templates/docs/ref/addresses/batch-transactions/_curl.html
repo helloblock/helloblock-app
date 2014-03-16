@@ -1,0 +1,83 @@
+<br><br><br><br><br>
+<div class="h5 title">DEFINITION</div>
+<pre>
+  <code class="bash" hljs>
+GET https://testnet.helloblock.io/v1/addresses/transactions?addresses=<span class='text-primary'>&lt;address&gt;</span>
+  </code>
+</pre>
+<div class="h5 title">EXAMPLE REQUEST</div>
+<pre class="curl">
+  <code class="bash" hljs>
+curl https://testnet.helloblock.io/v1/addresses/transactions?addresses=<span class='text-primary'>mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L</span>&addresses=<span class='text-primary'>mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo</span>&limit=1
+  </code>
+</pre>
+<div class="h5 title">EXAMPLE RESPONSE</div>
+<pre>
+  <code class="javascript" hljs>
+{
+  "status": "success",
+  "data": {
+    "transactions": [
+      {
+        "txHash": "001ca8f4519037aa9224ab0ea9944f6e538af232d9ed3c806df8c31c05c704e7",
+        "version": 1,
+        "locktime": 0,
+        "size": 439,
+        "blockHash": "0000000001ad40d52ababc4a24fccd810c91f9a39c3afa72955b9a8be342371f",
+        "blockHeight": 190560,
+        "blockTime": 1392985961,
+        "estimatedTxTime": 1392985961,
+        "confirmations": 14597,
+        "inputsCount": 2,
+        "outputsCount": 2,
+        "inputs": [
+          {
+            "prevTxOutIndex": 1,
+            "prevTxHash": "001ca8f4519037aa9224ab0ea9944f6e538af232d9ed3c806df8c31c05c704e7",
+            "value": 100000,
+            "address": "mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo",
+            "hash160": "652c453e3f8768d6d6e1f2985cb8939db91a4e05",
+            "scriptSig": "4930460221009b4f454cc827e526c7dd4e8e9290cc4e238b73dcf6297cc18084bd18c25a882f022100d3aa80a050f0f158d2c59eec53a36aa17bf05d4a4383e6a71c36ea6f4e2f774e0141041f6222232963dc66e40f008bae27738966770a8d34d687e015b66e43e49ace2511ca6bce0df1beef080c174c6c0cf8609d51898c9e7551df0721d94758133438"
+          },
+          {
+            "prevTxOutIndex": 1,
+            "prevTxHash": "001ca8f4519037aa9224ab0ea9944f6e538af232d9ed3c806df8c31c05c704e7",
+            "value": 100000,
+            "address": "mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo",
+            "hash160": "652c453e3f8768d6d6e1f2985cb8939db91a4e05",
+            "scriptSig": "48304502207b6ef61a49677070a75aceb365ac6f5b5db67b9e75e1eb1f8a0a7c594d65e79e0221008b5d9e07e1c3a39109d7baffee1aba9f867833c8ca8fb825bb185236563e15510141041f6222232963dc66e40f008bae27738966770a8d34d687e015b66e43e49ace2511ca6bce0df1beef080c174c6c0cf8609d51898c9e7551df0721d94758133438"
+          }
+        ],
+        "outputs": [
+          {
+            "index": 0,
+            "value": 100000,
+            "scriptPubKey": "76a914e8a86de5d3fc6daa28a17ec1f933146f6107998388ac",
+            "address": "n2j8qELbiG5Ay3hvj6K6hbSJKqaVLHD2eA",
+            "hash160": "e8a86de5d3fc6daa28a17ec1f933146f61079983",
+            "type": "pubkeyhash",
+            "spent": false,
+            "nextTxHash": null
+          },
+          {
+            "index": 1,
+            "value": 90000,
+            "scriptPubKey": "76a914652c453e3f8768d6d6e1f2985cb8939db91a4e0588ac",
+            "address": "mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo",
+            "hash160": "652c453e3f8768d6d6e1f2985cb8939db91a4e05",
+            "type": "pubkeyhash",
+            "spent": true,
+            "nextTxHash": "ca6c1ff48e6ee5b04b0fc4dc502d263ca32767914a3831719b08a1780bd5a62f"
+          }
+        ],
+        "totalInputsValue": 200000,
+        "totalOutputsValue": 190000,
+        "fees": 10000,
+        "estimatedTxDirection": "outgoing",
+        "estimatedTxValue": -100000
+      }
+    ]
+  }
+}
+  </code>
+</pre>
