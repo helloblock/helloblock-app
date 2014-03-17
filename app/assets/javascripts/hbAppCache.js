@@ -3258,12 +3258,6 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      </td>\n" +
     "      <td><span class='label label-primary'>REQUIRED</span></td>\n" +
     "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>rawTxHex: </td>\n" +
-    "      <td>false</td>\n" +
-    "      <td><em>boolean</em></td>\n" +
-    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
-    "    </tr>\n" +
     "  </tbody>\n" +
     "</table>\n" +
     "\n" +
@@ -3472,13 +3466,13 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<div class=\"h5 title\">DEFINITION</div>\n" +
     "<pre>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "GET https://testnet.helloblock.io/v1/transactions/<span class='text-primary'>&lt;txHash&gt;</span>?param=value\n" +
+    "GET https://testnet.helloblock.io/v1/transactions/<span class='text-primary'>&lt;txHash&gt;</span>\n" +
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
     "<pre class='curl'>\n" +
     "  <code class=\"bash\" hljs>\n" +
-    "curl https://testnet.helloblock.io/v1/transactions/<span class='text-primary'>2542cd64e02d902975dc6e2e97797ceec5a84e8597c80d22a9e2dbd16e748738</span>?rawTxHex=true\n" +
+    "curl https://testnet.helloblock.io/v1/transactions/<span class='text-primary'>2542cd64e02d902975dc6e2e97797ceec5a84e8597c80d22a9e2dbd16e748738</span>\n" +
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
@@ -3535,8 +3529,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      ],\n" +
     "      \"totalInputsValue\": 53022177768,\n" +
     "      \"totalOutputsValue\": 53022177768,\n" +
-    "      \"fees\": 0,\n" +
-    "      \"rawTxHex\": \"01000000013887746ed1dbe2a9220dc897854ea8c5ee7c79972e6edc7529902de064cd4225000000006b483045022100cc3a4f04c04b3aa6c4c98632f72641112e027a0f2280351e5722449c658d4a6c0220074f0537f668d4049c7b0da91486d6d83a2f37a60512a1771aedc35c97f0e92b0121038708f0be6ec42ff5788c5cd51c87f245538c1ecf890c12774fe006b55797c114ffffffff0290b4cc02000000001976a9144465358b1c07d001a49216c466b6e8de5c708d9988ac588591550c0000001976a9146a0d58b53a6b6aef32d5907e237ad57e6d84d0d688ac00000000\"\n" +
+    "      \"fees\": 0\n" +
     "    }\n" +
     "  }\n" +
     "}\n" +
@@ -3564,14 +3557,6 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <td></td>\n" +
     "      <td><em>string</em></td>\n" +
     "      <td><span class='label label-primary'>REQUIRED</span></td>\n" +
-    "    </tr>\n" +
-    "    <tr>\n" +
-    "      <td>\n" +
-    "        <div>rawTxHex: </div>\n" +
-    "      </td>\n" +
-    "      <td>false</td>\n" +
-    "      <td><em>boolean</em></td>\n" +
-    "      <td><span class='label label-warning'>OPTIONAL</span></td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
     "</table>\n" +
