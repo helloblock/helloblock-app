@@ -615,7 +615,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "</div>\n" +
     "<div class=\"container\">\n" +
     "  <tabset>\n" +
-    "    <tab heading=\"All Transactions\" active=\"address.active === 'transactions' \">\n" +
+    "    <tab heading=\"All Transactions\" active=\"tabset.transactions\">\n" +
     "      <br>\n" +
     "      <div infinite-scroll=\"loadMoreTransactions()\">\n" +
     "        <span ng-repeat=\"tx in address.transactions\">\n" +
@@ -624,7 +624,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      </div>\n" +
     "\n" +
     "    </tab>\n" +
-    "    <tab heading=\"Unspent Outputs\" active=\"address.active === 'unspents' \">\n" +
+    "    <tab heading=\"Unspent Outputs\" active=\"tabset.unspents\">\n" +
     "      <br>\n" +
     "      <div infinite-scroll=\"loadMoreUnspents()\">\n" +
     "        <span ng-repeat=\"tx in address.unspents\">\n" +
@@ -915,9 +915,10 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    </span>\n" +
     "  </div>\n" +
     "  <waitspin left=\"620%\" ng-if=\"sending\"></waitspin>\n" +
-    "  <div ng-show=\"!!transaction && !sending\">\n" +
-    "    {{transaction}}\n" +
-    "    <div ng-include=\"'/templates/blockExplorer/_full_tx.html'\"></div>\n" +
+    "  <div ng-show=\"transaction\">\n" +
+    "    <div ng-hide=\"sending\">\n" +
+    "      <div ng-include=\"'/templates/blockExplorer/_full_tx.html'\"></div>\n" +
+    "    </div>\n" +
     "  </div>\n" +
     "\n" +
     "</div>\n"
