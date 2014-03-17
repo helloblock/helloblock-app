@@ -23,12 +23,21 @@ hbApp.controller("blockExplorer/homeCtrl", function($scope, $routeParams, $rootS
 
   var listLimit = 20;
 
-  // var blocksChannel = io.connect(HelloBlockSocket.URL[explorerMode] + '/blocks', {
-  //   'force new connection': true
-  // })
-  // var transactionsChannel = io.connect(HelloBlockSocket.URL[explorerMode] + '/transactions', {
-  //   'force new connection': true
-  // })
+  var ws = new WebSocket(HelloBlockSocket.URL[explorerMode]);
+
+  ws.onopen = function() {
+    ws.send(JSON.stringify({
+      "op": "subscribe",
+      "channel": "transaction",
+      "events": ["unconfirmed"]
+    }));
+
+    ws.send(JSON.stringify({
+      "op": "subscribe",
+      "channel": "block",
+      "events": ['mainchain']
+    }));
+  }
 
   HelloBlock[explorerMode].Blocks.get({
     identifier: "latest",
@@ -37,17 +46,22 @@ hbApp.controller("blockExplorer/homeCtrl", function($scope, $routeParams, $rootS
     $scope.blocks.latest = res.data.blocks
 
     // Callback Level 2
-    // blocksChannel.on("latest", function(data) {
-    //   var block = data.message
+    ws.onmessage = function(event) {
+      var data = JSON.parse(event.data)
 
-    //   $scope.$apply(function() {
-    //     $scope.blocks.latest.unshift(block)
+      // TODO: Better sub handler
+      if (!data.previousBlockHash) {
+        return;
+      };
 
-    //     if ($scope.blocks.latest.length >= listLimit) {
-    //       $scope.blocks.latest.pop();
-    //     }
-    //   })
-    // })
+      $scope.$apply(function() {
+        $scope.blocks.latest.unshift(data);
+
+        if ($scope.blocks.latest.length >= listLimit) {
+          $scope.blocks.latest.pop();
+        };
+      });
+    }
 
   }, function(err) {
     console.log(err)
@@ -61,18 +75,22 @@ hbApp.controller("blockExplorer/homeCtrl", function($scope, $routeParams, $rootS
     $scope.transactions.latest = res.data.transactions
 
     // Callback Level 2
-    // transactionsChannel.on("latest", function(data) {
+    ws.onmessage = function(event) {
+      var data = JSON.parse(event.data)
 
-    //   var tx = data.message
+      // TODO: Better sub handler
+      if (!data.txHash) {
+        return;
+      }
 
-    //   $scope.$apply(function() {
-    //     $scope.transactions.latest.unshift(tx)
+      $scope.$apply(function() {
+        $scope.transactions.latest.unshift(data)
 
-    //     if ($scope.transactions.latest.length >= listLimit) {
-    //       $scope.transactions.latest.pop();
-    //     }
-    //   })
-    // })
+        if ($scope.transactions.latest.length >= listLimit) {
+          $scope.transactions.latest.pop();
+        }
+      })
+    }
 
   }, function(err) {
     console.log(err)
