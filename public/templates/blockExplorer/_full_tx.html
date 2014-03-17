@@ -83,10 +83,6 @@
       <td class='no-top'>
         <br>
         <div class="col-md-6">
-          <div class="text-center" ng-show="transaction.inputs[0].prevTxHash === null">
-            <br>
-            <span class="h3">NEWLY GENERATED COINS</span>
-          </div>
           <table
           ng-repeat="i in transaction.inputs"
           ng-show="i.prevTxHash !== null"
@@ -98,10 +94,12 @@
               <td>Address: </td>
               <td>
                 <clipboard clip-copy="{{i.address}}"></clipboard>
-                <img
-                ng-src="https://secure.gravatar.com/avatar/{{i.hash160}}?d=identicon&s=16"
-                width="16">
-                <span><a href="/addresses/{{i.address}}">{{i.address}}</a></span>
+                <span ng-hide="transaction.coinbase">
+                  <img
+                  ng-src="https://secure.gravatar.com/avatar/{{i.hash160}}?d=identicon&s=16"
+                  width="16">
+                  <span><a href="/addresses/{{i.address}}">{{i.address}}</a></span>
+                </span>
               </td>
             </tr>
             <tr>
@@ -109,14 +107,16 @@
                 Amount:
               </td>
               <td>
-                <span class="label label-default">SPENT</span>
-                <span class="amount" to-btc="{{i.value}}"></span>
+                <span ng-hide="transaction.coinbase">
+                  <span class="label label-default">SPENT</span>
+                  <span class="amount" to-btc="{{i.value}}"></span>
+                </span>
               </td>
             </tr>
             <tr>
               <td>PrevTxout Index: </td>
               <td>
-                <span>
+                <span ng-hide="transaction.coinbase">
                   <a href="/transactions/{{i.prevTxHash}}?prevTxoutIndex={{i.prevTxoutIndex}}">
                     {{i.prevTxoutIndex}}
                   </a>
@@ -128,7 +128,7 @@
                 Prev TxHash:
               </td>
               <td class=''>
-                <span class="amount">
+                <span class="amount" ng-hide="transaction.coinbase">
                   <clipboard clip-copy="{{i.prevTxHash}}"></clipboard>
                   <a href="/transactions/{{i.prevTxHash}}?prevTxoutIndex={{i.prevTxoutIndex}}">
                     {{i.prevTxHash}}
@@ -157,7 +157,7 @@
         ng-class="{'table-highlighted': transaction.prevTxoutIndex === o.index}">
         <tbody>
           <tr>
-            <td>Output Index:</td>
+            <td>Index:</td>
             <td><span>{{o.index}}</span></td>
           </tr>
           <tr>

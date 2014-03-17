@@ -149,34 +149,37 @@ hbApp.config(function($routeProvider) {
     controller: "blockExplorer/homeCtrl"
   })
 
-  $routeProvider.when("/addresses/:address?", {
-    templateUrl: "/templates/blockExplorer/addresses.html",
-    controller: "blockExplorer/addressesCtrl"
-  })
+  var versions = ["", "/v1"];
+  versions.forEach(function(prefix) {
+    $routeProvider.when(prefix + "/addresses/:address?", {
+      templateUrl: "/templates/blockExplorer/addresses.html",
+      controller: "blockExplorer/addressesCtrl"
+    })
 
-  $routeProvider.when("/addresses/:address/transactions", {
-    templateUrl: "/templates/blockExplorer/addresses.html",
-    controller: "blockExplorer/addressesCtrl"
-  })
+    $routeProvider.when(prefix + "/addresses/:address/transactions", {
+      templateUrl: "/templates/blockExplorer/addresses.html",
+      controller: "blockExplorer/addressesCtrl"
+    })
 
-  $routeProvider.when("/addresses/:address/unspents", {
-    templateUrl: "/templates/blockExplorer/addresses.html",
-    controller: "blockExplorer/addressesCtrl"
-  })
+    $routeProvider.when(prefix + "/addresses/:address/unspents", {
+      templateUrl: "/templates/blockExplorer/addresses.html",
+      controller: "blockExplorer/addressesCtrl"
+    })
 
-  $routeProvider.when("/transactions/:txHash?", {
-    templateUrl: "/templates/blockExplorer/transactions.html",
-    controller: "blockExplorer/transactionsCtrl"
-  })
+    $routeProvider.when(prefix + "/transactions/:txHash?", {
+      templateUrl: "/templates/blockExplorer/transactions.html",
+      controller: "blockExplorer/transactionsCtrl"
+    })
 
-  $routeProvider.when("/blocks/:identifier?", {
-    templateUrl: "/templates/blockExplorer/blocks.html",
-    controller: "blockExplorer/blocksCtrl"
-  })
+    $routeProvider.when(prefix + "/blocks/:identifier?", {
+      templateUrl: "/templates/blockExplorer/blocks.html",
+      controller: "blockExplorer/blocksCtrl"
+    })
 
-  $routeProvider.when("/blocks/:identifier/transactions", {
-    templateUrl: "/templates/blockExplorer/blocks.html",
-    controller: "blockExplorer/blocksCtrl"
+    $routeProvider.when(prefix + "/blocks/:identifier/transactions", {
+      templateUrl: "/templates/blockExplorer/blocks.html",
+      controller: "blockExplorer/blocksCtrl"
+    })
   })
 
   $routeProvider.when("/propagate", {

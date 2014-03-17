@@ -10,7 +10,8 @@ hbApp.controller("blockExplorer/transactionsCtrl", function($scope, $routeParams
   $scope.transaction = {
     txHash: $routeParams.txHash || defaultTxHashes[explorerMode],
     prevTxoutIndex: parseInt($routeParams.prevTxoutIndex),
-    nextTxinIndex: parseInt($routeParams.nextTxinIndex)
+    nextTxinIndex: parseInt($routeParams.nextTxinIndex),
+    coinbase: false
   }
 
   HelloBlock[explorerMode].Transactions.get({
@@ -18,6 +19,10 @@ hbApp.controller("blockExplorer/transactionsCtrl", function($scope, $routeParams
   }, function(res) {
 
     $scope.transaction = $.extend({}, $scope.transaction, res.data.transaction);
+
+    if ($scope.transaction.inputs[0].prevTxHash.match(/^[0]+$/)) {
+      $scope.transaction.coinbase = true;
+    }
 
   }, function(err) {
     console.log("error", err)

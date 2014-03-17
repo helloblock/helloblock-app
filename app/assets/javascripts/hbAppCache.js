@@ -271,10 +271,6 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <td class='no-top'>\n" +
     "        <br>\n" +
     "        <div class=\"col-md-6\">\n" +
-    "          <div class=\"text-center\" ng-show=\"transaction.inputs[0].prevTxHash === null\">\n" +
-    "            <br>\n" +
-    "            <span class=\"h3\">NEWLY GENERATED COINS</span>\n" +
-    "          </div>\n" +
     "          <table\n" +
     "          ng-repeat=\"i in transaction.inputs\"\n" +
     "          ng-show=\"i.prevTxHash !== null\"\n" +
@@ -286,10 +282,12 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              <td>Address: </td>\n" +
     "              <td>\n" +
     "                <clipboard clip-copy=\"{{i.address}}\"></clipboard>\n" +
-    "                <img\n" +
-    "                ng-src=\"https://secure.gravatar.com/avatar/{{i.hash160}}?d=identicon&s=16\"\n" +
-    "                width=\"16\">\n" +
-    "                <span><a href=\"/addresses/{{i.address}}\">{{i.address}}</a></span>\n" +
+    "                <span ng-hide=\"transaction.coinbase\">\n" +
+    "                  <img\n" +
+    "                  ng-src=\"https://secure.gravatar.com/avatar/{{i.hash160}}?d=identicon&s=16\"\n" +
+    "                  width=\"16\">\n" +
+    "                  <span><a href=\"/addresses/{{i.address}}\">{{i.address}}</a></span>\n" +
+    "                </span>\n" +
     "              </td>\n" +
     "            </tr>\n" +
     "            <tr>\n" +
@@ -297,14 +295,16 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "                Amount:\n" +
     "              </td>\n" +
     "              <td>\n" +
-    "                <span class=\"label label-default\">SPENT</span>\n" +
-    "                <span class=\"amount\" to-btc=\"{{i.value}}\"></span>\n" +
+    "                <span ng-hide=\"transaction.coinbase\">\n" +
+    "                  <span class=\"label label-default\">SPENT</span>\n" +
+    "                  <span class=\"amount\" to-btc=\"{{i.value}}\"></span>\n" +
+    "                </span>\n" +
     "              </td>\n" +
     "            </tr>\n" +
     "            <tr>\n" +
     "              <td>PrevTxout Index: </td>\n" +
     "              <td>\n" +
-    "                <span>\n" +
+    "                <span ng-hide=\"transaction.coinbase\">\n" +
     "                  <a href=\"/transactions/{{i.prevTxHash}}?prevTxoutIndex={{i.prevTxoutIndex}}\">\n" +
     "                    {{i.prevTxoutIndex}}\n" +
     "                  </a>\n" +
@@ -316,7 +316,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "                Prev TxHash:\n" +
     "              </td>\n" +
     "              <td class=''>\n" +
-    "                <span class=\"amount\">\n" +
+    "                <span class=\"amount\" ng-hide=\"transaction.coinbase\">\n" +
     "                  <clipboard clip-copy=\"{{i.prevTxHash}}\"></clipboard>\n" +
     "                  <a href=\"/transactions/{{i.prevTxHash}}?prevTxoutIndex={{i.prevTxoutIndex}}\">\n" +
     "                    {{i.prevTxHash}}\n" +
@@ -345,7 +345,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        ng-class=\"{'table-highlighted': transaction.prevTxoutIndex === o.index}\">\n" +
     "        <tbody>\n" +
     "          <tr>\n" +
-    "            <td>Output Index:</td>\n" +
+    "            <td>Index:</td>\n" +
     "            <td><span>{{o.index}}</span></td>\n" +
     "          </tr>\n" +
     "          <tr>\n" +
