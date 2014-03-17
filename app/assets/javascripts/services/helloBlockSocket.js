@@ -3,8 +3,8 @@ hbApp.factory("HelloBlockSocket", function($rootScope) {
   var Socket = {};
 
   Socket.URL = {
-    mainnet: "ws://mainnet-helloblock-socket.herokuapp.com",
-    testnet: "ws://testnet-helloblock-socket.herokuapp.com"
+    mainnet: "wss://mainnet-helloblock-socket.herokuapp.com",
+    testnet: "wss://testnet-helloblock-socket.herokuapp.com"
   };
 
   Socket.beep = function() {
