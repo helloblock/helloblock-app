@@ -42,9 +42,10 @@
     </span>
   </div>
   <waitspin left="620%" ng-if="sending"></waitspin>
-  <div ng-show="!!transaction && !sending">
-    {{transaction}}
-    <div ng-include="'/templates/blockExplorer/_full_tx.html'"></div>
+  <div ng-show="transaction">
+    <div ng-hide="sending">
+      <div ng-include="'/templates/blockExplorer/_full_tx.html'"></div>
+    </div>
   </div>
 
 </div>

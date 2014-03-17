@@ -10,15 +10,26 @@ hbApp.controller("blockExplorer/addressesCtrl", function($scope, $routeParams, $
   $scope.address = {
     base58: $routeParams.address || defaultAddresses[explorerMode],
     transactions: [],
-    unspents: [],
-    active: Utils.pathLast($location.path())
+    unspents: []
   };
 
-  // var addressesChannel = io.connect(HelloBlockSocket.URL[explorerMode] + '/addresses', {
-  //   'force new connection': true
-  // })
+  var suffix = Utils.pathLast($location.path());
 
-  // Addresses, loading /transactions and /unspents separate to improve performance
+  $scope.tabset = {
+    transactions: suffix === "transactions",
+    unspents: suffix === "unspents"
+  }
+
+  var ws = new WebSocket(HelloBlockSocket.URL[explorerMode]);
+
+  ws.onopen = function() {
+    ws.send(JSON.stringify({
+      "op": "subscribe",
+      "channel": "address",
+      "events": ['mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L']
+    }));
+  }
+
   // Callback: Lvl 1
   HelloBlock[explorerMode].Addresses.get({
     address: $scope.address.base58
@@ -27,18 +38,18 @@ hbApp.controller("blockExplorer/addressesCtrl", function($scope, $routeParams, $
     $scope.address = $.extend({}, $scope.address, res.data.address);
 
     // Callback: Lvl 2
-    // addressesChannel.on($scope.address.base58, function(data) {
-    //   HelloBlockSocket.beep();
+    ws.onmessage = function(event) {
+      var data = JSON.parse(event.data);
 
-    //   var tx = data.message
-    //   // TODO
-    //   // tx.direction
-    //   // tx.result
+      if (!data.txHash) {
+        return;
+      }
 
-    //   $scope.$apply(function() {
-    //     $scope.address.transactions.unshift(tx)
-    //   })
-    // });
+      // TODO: txDir
+      $scope.$apply(function() {
+        $scope.address.transactions.unshift(data)
+      })
+    }
 
   }, function(err) {
     console.log("error!", err)
@@ -194,5 +205,4 @@ hbApp.controller("blockExplorer/addressesCtrl", function($scope, $routeParams, $
   $scope.$on("$destroy", function() {
     // addressesChannel.socket.disconnect();
   })
-
 })
