@@ -3016,7 +3016,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<pre>\n" +
     "  <code class=\"bash\" hljs>\n" +
     "curl -X POST https://testnet.helloblock.io/v1/faucet/withdrawal \\\n" +
-    " -d \"amount=<span class='text-primary'>100000</span>\" \\\n" +
+    " -d \"value=<span class='text-primary'>100000</span>\" \\\n" +
     " -d \"toAddress=<span class='text-primary'>mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo</span>\"\n" +
     "  </code>\n" +
     "</pre>\n" +
@@ -3026,7 +3026,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "{\n" +
     "  \"status\": \"success\",\n" +
     "  \"data\": {\n" +
-    "    \"amount\": 100000,\n" +
+    "    \"value\": 100000,\n" +
     "    \"fromAddress\": \"mzPkw5EdvHCntC2hrhRXSqwHLHpLWzSZiL\",\n" +
     "    \"toAddress\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\",\n" +
     "    \"txHash\": \"80e8910251b323f51dd8b3319372509149fecdc08887807c0030538d1135c4f3\"\n" +
@@ -3060,7 +3060,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <td><span class='label label-primary'>REQUIRED</span></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>amount: </td>\n" +
+    "      <td>value: </td>\n" +
     "      <td>(max: 1,000,000)</td>\n" +
     "      <td>\n" +
     "        <em>integer</em>\n" +
@@ -3076,7 +3076,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<table class=\"table table-bordered table-docs table-condensed\">\n" +
     "  <tbody>\n" +
     "    <tr>\n" +
-    "      <td>amount: </td>\n" +
+    "      <td>value: </td>\n" +
     "      <td>\n" +
     "        <em>integer</em>\n" +
     "      </td>\n" +
@@ -3120,7 +3120,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
     "<pre class=\"curl\">\n" +
     "  <code class=\"ruby\" hljs>\n" +
-    "HelloBlock::Faucet.withdraw(to: &#39;1DQN9nop...&#39;, amount: 100_000).to_hash\n" +
+    "HelloBlock::Faucet.withdraw(to: &#39;1DQN9nop...&#39;, value: 100_000).to_hash\n" +
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
