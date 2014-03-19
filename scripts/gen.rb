@@ -8,9 +8,9 @@ module Gen
     content = {
       req_lang: "ruby",
       res_lang: "ruby",
-      definition: "# COMING SOON",
+      definition: "# ...coming soon",
       example: opts[:example],
-      response: "# COMING SOON"
+      response: "# ... coming soon"
     }
     rendered = Mustache.render(template, content)
     p rendered

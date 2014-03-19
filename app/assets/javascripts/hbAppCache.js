@@ -1531,7 +1531,25 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/addresses/batch-transactions/_ruby.html',
-    ""
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ...coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "HelloBlock::Transaction.where(address: [&#39;1DQN9nop...&#39;, ...]).to_hash\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ... coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n"
   );
 
 
@@ -1640,7 +1658,25 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/addresses/batch-unspents/_ruby.html',
-    ""
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ...coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "HelloBlock::Address.unspents.where(address: [&#39;1DQN9nop...&#39;, ...]).to_hash\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ... coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n"
   );
 
 
@@ -1737,7 +1773,25 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/addresses/batch/_ruby.html',
-    ""
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ...coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "HelloBlock::Address.where(address: [&#39;1DQN9nop...&#39;, ...]).to_hash\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ... coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n"
   );
 
 
@@ -1762,7 +1816,25 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/addresses/intro/_ruby.html',
-    "<code>RUBY</code>\n"
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ...coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "RUBY\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ... coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n"
   );
 
 
@@ -1892,7 +1964,25 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/addresses/single/_ruby.html',
-    "<code>RUBY</code>\n"
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ...coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "HelloBlock::Address.find(&#39;1DQN9nop...&#39;).to_hash\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ... coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n"
   );
 
 
@@ -2256,7 +2346,25 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/addresses/unspents/_ruby.html',
-    ""
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ...coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "HelloBlock::Address.find(&#39;1DQN9nop...&#39;).unspents.to_hash\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ... coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n"
   );
 
 
@@ -2304,7 +2412,25 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/blocks/intro/_ruby.html',
-    "<code>RUBY</code>\n"
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ...coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "RUBY\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ... coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n"
   );
 
 
@@ -2392,7 +2518,25 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/blocks/latest/_ruby.html',
-    ""
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ...coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "HelloBlock::Block.last(1).to_hash\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ... coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n"
   );
 
 
@@ -2519,7 +2663,25 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/blocks/single/_ruby.html',
-    "<code>RUBY</code>\n"
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ...coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "HelloBlock::Block.find(&#39;00000...&#39;).to_hash\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ... coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n"
   );
 
 
@@ -2820,7 +2982,25 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/faucet/single/_ruby.html',
-    ""
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ...coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "HelloBlock::Faucet.where(type: 3).to_hash\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ... coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n"
   );
 
 
@@ -2930,7 +3110,25 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/faucet/withdrawal/_ruby.html',
-    ""
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ...coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "HelloBlock::Faucet.withdraw(to: &#39;1DQN9nop...&#39;, amount: 100_000).to_hash\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ... coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n"
   );
 
 
@@ -2998,7 +3196,25 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/introduction/errors/_ruby.html',
-    "<code>RUBY</code>\n"
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ...coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "RUBY\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ... coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n"
   );
 
 
@@ -3057,7 +3273,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  <code class=\"ruby\" hljs>\n" +
     "puts \"The Ruby Client Library is a work in progress ...\"\n" +
     "\n" +
-    "puts \"Please visit <a href=\"https://github.com/BitcoinMafia/\">https://github.com/BitcoinMafia/</a> if you'd like to contribute.\"\n" +
+    "puts \"Please visit <a href=\"https://github.com/NathanielWroblewski/helloblock/\">https://github.com/NathanielWroblewski/helloblock/</a> if you'd like to contribute.\"\n" +
     "  </code>\n" +
     "</pre>\n"
   );
@@ -3282,7 +3498,25 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/transactions/batch/_ruby.html',
-    "<code>RUBY</code>\n"
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ...coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "HelloBlock::Transaction.where(transaction: [&#39;f37e6181...&#39;, ...]).to_hash\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ... coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n"
   );
 
 
@@ -3307,7 +3541,25 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/transactions/intro/_ruby.html',
-    "<code>RUBY</code>\n"
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ...coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "RUBY\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ... coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n"
   );
 
 
@@ -3378,7 +3630,25 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/transactions/latest/_ruby.html',
-    ""
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ...coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "HelloBlock::Transaction.last(5).offset(7).to_hash\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ... coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n"
   );
 
 
@@ -3464,7 +3734,25 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/transactions/post/_ruby.html',
-    "<code>RUBY</code>\n"
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ...coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "HelloBlock::Transaction.create(&#39;01000...&#39;).to_hash\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ... coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n"
   );
 
 
@@ -3728,7 +4016,25 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/transactions/single/_ruby.html',
-    "<code>RUBY</code>\n"
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ...coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "HelloBlock::Transaction.find(&#39;f37e6181...&#39;).to_hash\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ... coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n"
   );
 
 
@@ -4003,7 +4309,25 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/ref/wallet/batch/_ruby.html',
-    "<code>RUBY</code>\n"
+    "<br><br><br><br><br>\n" +
+    "<div class=\"h5 title\">DEFINITION</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ...coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<pre class=\"curl\">\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "HelloBlock::Wallet.where(addresses: [...], unspents: false).to_hash\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<pre>\n" +
+    "  <code class=\"ruby\" hljs>\n" +
+    "# ... coming soon\n" +
+    "  </code>\n" +
+    "</pre>\n"
   );
 
 
