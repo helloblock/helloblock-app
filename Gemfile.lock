@@ -40,7 +40,6 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     commonjs (0.2.7)
-    dalli (2.6.4)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -64,7 +63,6 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    memcachier (0.0.2)
     method_source (0.8.2)
     mime-types (1.25.1)
     minitest (4.7.5)
@@ -161,12 +159,10 @@ DEPENDENCIES
   angularjs-rails (~> 1.2.5)
   awesome_print
   coffee-rails (~> 4.0.0)
-  dalli
   font-awesome-rails
   jbuilder (~> 1.2)
   jquery-rails
   less-rails (~> 2.4.2)
-  memcachier
   newrelic_rpm
   pg
   pry-rails

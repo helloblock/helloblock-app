@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 ruby "2.0.0"
 
-# Note: dependent on Sprockets version because of non_digest.rb hack
 gem 'rails', '4.0.2'
 
 gem 'rails_12factor'
@@ -31,8 +30,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'memcachier'
-gem 'dalli'
+# gem 'memcachier'
+# gem 'dalli'
 
 gem 'newrelic_rpm'
 

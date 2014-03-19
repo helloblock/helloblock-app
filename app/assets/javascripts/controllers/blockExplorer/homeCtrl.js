@@ -50,7 +50,7 @@ hbApp.controller("blockExplorer/homeCtrl", function($scope, $routeParams, $rootS
       var data = JSON.parse(event.data)
 
       // TODO: Better sub handler
-      if (!data.previousBlockHash) {
+      if (!data.prevBlockHash) {
         return;
       };
 
