@@ -1446,7 +1446,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptPubKey\": \"76a914e8a86de5d3fc6daa28a17ec1f933146f6107998388ac\",\n" +
     "            \"address\": \"n2j8qELbiG5Ay3hvj6K6hbSJKqaVLHD2eA\",\n" +
     "            \"hash160\": \"e8a86de5d3fc6daa28a17ec1f933146f61079983\",\n" +
-    "            \"txoutType\": \"pubkeyhash\",\n" +
+    "            \"type\": \"pubkeyhash\",\n" +
     "            \"spent\": false,\n" +
     "            \"nextTxHash\": null,\n" +
     "            \"nextTxinIndex\": null\n" +
@@ -1457,7 +1457,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptPubKey\": \"76a914652c453e3f8768d6d6e1f2985cb8939db91a4e0588ac\",\n" +
     "            \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\",\n" +
     "            \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\",\n" +
-    "            \"txoutType\": \"pubkeyhash\",\n" +
+    "            \"type\": \"pubkeyhash\",\n" +
     "            \"spent\": true,\n" +
     "            \"nextTxHash\": \"ca6c1ff48e6ee5b04b0fc4dc502d263ca32767914a3831719b08a1780bd5a62f\",\n" +
     "            \"nextTxinIndex\": 0\n" +
@@ -1562,7 +1562,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"txHash\": \"005cd997f92d11afc621b2eabdc5eea952d31da1cb27a05dc5e34d611bed1496\",\n" +
     "        \"index\": 0,\n" +
     "        \"scriptPubKey\": \"76a914652c453e3f8768d6d6e1f2985cb8939db91a4e0588ac\",\n" +
-    "        \"txoutType\": \"pubkeyhash\",\n" +
+    "        \"type\": \"pubkeyhash\",\n" +
     "        \"value\": 10000,\n" +
     "        \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\",\n" +
     "        \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\"\n" +
@@ -1573,7 +1573,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"txHash\": \"06849aa080b61ad403f3d6ff5e53ee38a099ea0e53600ac1453375021e376e65\",\n" +
     "        \"index\": 0,\n" +
     "        \"scriptPubKey\": \"76a914a5319d469e1ddd9558bd558a50e95f74b3da58c988ac\",\n" +
-    "        \"txoutType\": \"pubkeyhash\",\n" +
+    "        \"type\": \"pubkeyhash\",\n" +
     "        \"value\": 10000,\n" +
     "        \"hash160\": \"a5319d469e1ddd9558bd558a50e95f74b3da58c9\",\n" +
     "        \"address\": \"mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L\"\n" +
@@ -1947,7 +1947,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptPubKey\": \"76a9144c4f564549206c6f766520796f7520626162792088ac\",\n" +
     "            \"address\": \"mnUSh4g73n1CRJxQ86UaHHymszyG6AyyHG\",\n" +
     "            \"hash160\": \"4c4f564549206c6f766520796f75206261627920\",\n" +
-    "            \"txoutType\": \"pubkeyhash\",\n" +
+    "            \"type\": \"pubkeyhash\",\n" +
     "            \"spent\": false,\n" +
     "            \"nextTxHash\": null,\n" +
     "            \"nextTxinIndex\": null\n" +
@@ -1958,7 +1958,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptPubKey\": \"76a914666f72206576657200000000000000000000000088ac\",\n" +
     "            \"address\": \"mpraj1bhrSp7226HHpHuXnj1tZWJgaXKuy\",\n" +
     "            \"hash160\": \"666f722065766572000000000000000000000000\",\n" +
-    "            \"txoutType\": \"pubkeyhash\",\n" +
+    "            \"type\": \"pubkeyhash\",\n" +
     "            \"spent\": false,\n" +
     "            \"nextTxHash\": null,\n" +
     "            \"nextTxinIndex\": null\n" +
@@ -1969,7 +1969,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptPubKey\": \"76a914a5319d469e1ddd9558bd558a50e95f74b3da58c988ac\",\n" +
     "            \"address\": \"mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L\",\n" +
     "            \"hash160\": \"a5319d469e1ddd9558bd558a50e95f74b3da58c9\",\n" +
-    "            \"txoutType\": \"pubkeyhash\",\n" +
+    "            \"type\": \"pubkeyhash\",\n" +
     "            \"spent\": true,\n" +
     "            \"nextTxHash\": \"2866c00dd63b014b3a260b7598427e793a234a148c35a33f180e93d1bd2c955e\",\n" +
     "            \"nextTxinIndex\": 0\n" +
@@ -2155,7 +2155,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"txHash\": \"06849aa080b61ad403f3d6ff5e53ee38a099ea0e53600ac1453375021e376e65\",\n" +
     "        \"index\": 0,\n" +
     "        \"scriptPubKey\": \"76a914a5319d469e1ddd9558bd558a50e95f74b3da58c988ac\",\n" +
-    "        \"txoutType\": \"pubkeyhash\",\n" +
+    "        \"type\": \"pubkeyhash\",\n" +
     "        \"value\": 10000,\n" +
     "        \"hash160\": \"a5319d469e1ddd9558bd558a50e95f74b3da58c9\",\n" +
     "        \"address\": \"mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L\"\n" +
@@ -2333,7 +2333,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"blockHeight\": 204255,\n" +
     "        \"blockHash\": \"0000000058024389ca3df9cdefa3aefe3809cd99574b262ff26bfb7aa176d857\",\n" +
     "        \"blockTime\": 1394454645,\n" +
-    "        \"previousBlockHash\": \"0000000057b2a6082dafae124fee74f3aedd4f52dd8713b7af9b4e3eb981b30b\",\n" +
+    "        \"prevBlockHash\": \"0000000057b2a6082dafae124fee74f3aedd4f52dd8713b7af9b4e3eb981b30b\",\n" +
     "        \"bits\": 486604799,\n" +
     "        \"version\": 2,\n" +
     "        \"merkleRootHash\": \"8867986858331ab2a8a3dd0dab445bd024318e1ae36947886927dd24f0fb8d3f\",\n" +
@@ -2420,7 +2420,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      \"blockHeight\": 123123,\n" +
     "      \"blockHash\": \"00000000002b652559550d2829249026aec39b7b84f2c7febadf0250b93ee3c1\",\n" +
     "      \"blockTime\": 1382046624,\n" +
-    "      \"previousBlockHash\": \"000000000025896a3409c57493aa7020a4cc24232a8ee9da10cbe857953d27bd\",\n" +
+    "      \"prevBlockHash\": \"000000000025896a3409c57493aa7020a4cc24232a8ee9da10cbe857953d27bd\",\n" +
     "      \"bits\": 456643328,\n" +
     "      \"version\": 2,\n" +
     "      \"merkleRootHash\": \"82203172bab3f9b90543e98eef4acdf5ab9daf3b6df80806092f9715fe72ba63\",\n" +
@@ -2477,7 +2477,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>previousBlockHash: </td>\n" +
+    "      <td>prevBlockHash: </td>\n" +
     "      <td><em>string</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
@@ -2574,7 +2574,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptPubKey\": \"76a91495006ae154ef272450cbc2317d12950a02470e3788ac\",\n" +
     "            \"address\": \"mu6oUeNmEqQJ31cBrDrpDuwfQCAvwCxn6H\",\n" +
     "            \"hash160\": \"95006ae154ef272450cbc2317d12950a02470e37\",\n" +
-    "            \"txoutType\": \"pubkeyhash\",\n" +
+    "            \"type\": \"pubkeyhash\",\n" +
     "            \"spent\": false,\n" +
     "            \"nextTxHash\": null,\n" +
     "            \"nextTxinIndex\": null\n" +
@@ -2585,7 +2585,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptPubKey\": \"76a91495006ae154ef272450cbc2317d12950a02470e3788ac\",\n" +
     "            \"address\": \"mu6oUeNmEqQJ31cBrDrpDuwfQCAvwCxn6H\",\n" +
     "            \"hash160\": \"95006ae154ef272450cbc2317d12950a02470e37\",\n" +
-    "            \"txoutType\": \"pubkeyhash\",\n" +
+    "            \"type\": \"pubkeyhash\",\n" +
     "            \"spent\": false,\n" +
     "            \"nextTxHash\": null,\n" +
     "            \"nextTxinIndex\": null\n" +
@@ -2714,7 +2714,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      \"txHash\": \"fdacf1ac89ee333095acab51b1f88994ade14bfa156c2be682478e35fe29df9d\",\n" +
     "      \"index\": 0,\n" +
     "      \"scriptPubKey\": \"76a914d3eefb19630a1a3a7b267ea6ff9d14537751934788ac\",\n" +
-    "      \"txoutType\": \"pubkeyhash\",\n" +
+    "      \"type\": \"pubkeyhash\",\n" +
     "      \"value\": 100000,\n" +
     "      \"hash160\": \"d3eefb19630a1a3a7b267ea6ff9d145377519347\",\n" +
     "      \"address\": \"mzqZADCoj3KgPmW9vqpLFe1adY3goUYTGG\"\n" +
@@ -3207,7 +3207,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptPubKey\": \"76a9143488c0786a4cc76c59dc509654831ba5b34a079988ac\",\n" +
     "            \"address\": \"mkJjFiLGTTZxc9gynVHZ3nam17aaQdZU75\",\n" +
     "            \"hash160\": \"3488c0786a4cc76c59dc509654831ba5b34a0799\",\n" +
-    "            \"txoutType\": \"pubkeyhash\",\n" +
+    "            \"type\": \"pubkeyhash\",\n" +
     "            \"spent\": true,\n" +
     "            \"nextTxHash\": \"d17e1b9e2a6e044ed3d9eeb0600e0de3f4107052c891ce86802aaf60f4bdebf1\",\n" +
     "            \"nextTxinIndex\": 1\n" +
@@ -3218,7 +3218,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptPubKey\": \"76a914dfcb6c48e49b7a6d9d4f51e174f587a9b8ae33aa88ac\",\n" +
     "            \"address\": \"n1vGfugd2W27SkG5TZiWpmDzQrvtxAgFJw\",\n" +
     "            \"hash160\": \"dfcb6c48e49b7a6d9d4f51e174f587a9b8ae33aa\",\n" +
-    "            \"txoutType\": \"pubkeyhash\",\n" +
+    "            \"type\": \"pubkeyhash\",\n" +
     "            \"spent\": true,\n" +
     "            \"nextTxHash\": \"b0abcac31a9f7b7a0bcad9eff4adaedd479c0d6c1911c901ecb626372e6b0e9e\",\n" +
     "            \"nextTxinIndex\": 1\n" +
@@ -3518,7 +3518,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          \"scriptPubKey\": \"76a9144465358b1c07d001a49216c466b6e8de5c708d9988ac\",\n" +
     "          \"address\": \"mmkbVEWhehm6mKUgV36K6oWX4BCZcp5by3\",\n" +
     "          \"hash160\": \"4465358b1c07d001a49216c466b6e8de5c708d99\",\n" +
-    "          \"txoutType\": \"pubkeyhash\",\n" +
+    "          \"type\": \"pubkeyhash\",\n" +
     "          \"spent\": false,\n" +
     "          \"nextTxHash\": null,\n" +
     "          \"nextTxinIndex\": null\n" +
@@ -3529,7 +3529,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          \"scriptPubKey\": \"76a9146a0d58b53a6b6aef32d5907e237ad57e6d84d0d688ac\",\n" +
     "          \"address\": \"mqBhuiixrkwypkjNHFwSNYiFEtAiDr54gp\",\n" +
     "          \"hash160\": \"6a0d58b53a6b6aef32d5907e237ad57e6d84d0d6\",\n" +
-    "          \"txoutType\": \"pubkeyhash\",\n" +
+    "          \"type\": \"pubkeyhash\",\n" +
     "          \"spent\": true,\n" +
     "          \"nextTxHash\": \"af9c827f15a57b6268bb5978888e4473ed68107f7f0ca9004dec238cad4a284a\",\n" +
     "          \"nextTxinIndex\": 0\n" +
@@ -3783,7 +3783,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"txHash\": \"005cd997f92d11afc621b2eabdc5eea952d31da1cb27a05dc5e34d611bed1496\",\n" +
     "        \"index\": 0,\n" +
     "        \"scriptPubKey\": \"76a914652c453e3f8768d6d6e1f2985cb8939db91a4e0588ac\",\n" +
-    "        \"txoutType\": \"pubkeyhash\",\n" +
+    "        \"type\": \"pubkeyhash\",\n" +
     "        \"value\": 10000,\n" +
     "        \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\",\n" +
     "        \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\"\n" +
@@ -3829,7 +3829,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptPubKey\": \"76a914e8a86de5d3fc6daa28a17ec1f933146f6107998388ac\",\n" +
     "            \"address\": \"n2j8qELbiG5Ay3hvj6K6hbSJKqaVLHD2eA\",\n" +
     "            \"hash160\": \"e8a86de5d3fc6daa28a17ec1f933146f61079983\",\n" +
-    "            \"txoutType\": \"pubkeyhash\",\n" +
+    "            \"type\": \"pubkeyhash\",\n" +
     "            \"spent\": false,\n" +
     "            \"nextTxHash\": null,\n" +
     "            \"nextTxinIndex\": null\n" +
@@ -3840,7 +3840,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            \"scriptPubKey\": \"76a914652c453e3f8768d6d6e1f2985cb8939db91a4e0588ac\",\n" +
     "            \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\",\n" +
     "            \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\",\n" +
-    "            \"txoutType\": \"pubkeyhash\",\n" +
+    "            \"type\": \"pubkeyhash\",\n" +
     "            \"spent\": true,\n" +
     "            \"nextTxHash\": \"ca6c1ff48e6ee5b04b0fc4dc502d263ca32767914a3831719b08a1780bd5a62f\",\n" +
     "            \"nextTxinIndex\": 0\n" +
