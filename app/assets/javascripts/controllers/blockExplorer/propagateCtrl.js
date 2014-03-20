@@ -43,18 +43,27 @@ hbApp.controller("blockExplorer/propagateCtrl", function($scope, HelloBlock, $ro
       HelloBlockSocket.beep();
       Alerts.addSuccess("Propagation successful! ")
 
-      HelloBlock[explorerMode].Transactions.get({
-        txHash: res.data.transaction.txHash
-      }, function(resp) {
-        $scope.sending = false;
-
-        $scope.transaction = resp.data.transaction
-      })
+      getTx(res.data.transaction.txHash)
 
     }, function(err) {
       console.log(err)
       Alerts.addDanger(err.data.message, false)
       $scope.sending = false;
+    })
+  }
+
+  // Recursive Get Transaction After Propagation
+  function getTx(txHash) {
+    HelloBlock[explorerMode].Transactions.get({
+      txHash: txHash
+    }, function(resp) {
+      $scope.sending = false;
+
+      $scope.transaction = resp.data.transaction
+    }, function(err) {
+      setTimeout(function() {
+        getTx(txHash)
+      }, 5000)
     })
   }
 
