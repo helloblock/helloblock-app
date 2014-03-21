@@ -1708,7 +1708,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"txsCount\": 320,\n" +
     "        \"confirmedTxsCount\": 320,\n" +
     "        \"address\": \"mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L\",\n" +
-    "        \"hash160\": \"a5319d469e1ddd9558bd558a50e95f74b3da58c9\"\n" +
+    "        \"hash160\": \"a5319d469e1ddd9558bd558a50e95f74b3da58c9\",\n" +
+    "        \"type\": \"pubkeyhash\"\n" +
     "      },\n" +
     "      {\n" +
     "        \"balance\": 2034000,\n" +
@@ -1716,7 +1717,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"txsCount\": 367,\n" +
     "        \"confirmedTxsCount\": 367,\n" +
     "        \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\",\n" +
-    "        \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\"\n" +
+    "        \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\",\n" +
+    "        \"type\": \"pubkeyhash\"\n" +
     "      }\n" +
     "    ]\n" +
     "  }\n" +
@@ -1865,7 +1867,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      \"txsCount\": 320,\n" +
     "      \"confirmedTxsCount\": 320,\n" +
     "      \"address\": \"mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L\",\n" +
-    "      \"hash160\": \"a5319d469e1ddd9558bd558a50e95f74b3da58c9\"\n" +
+    "      \"hash160\": \"a5319d469e1ddd9558bd558a50e95f74b3da58c9\",\n" +
+    "      \"type\": \"pubkeyhash\"\n" +
     "    }\n" +
     "  }\n" +
     "}\n" +
@@ -1952,6 +1955,13 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <tr>\n" +
     "      <td>hash160: </td>\n" +
     "      <td><em>string</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>type: </td>\n" +
+    "      <td>\n" +
+    "        <em>string</em>\n" +
+    "        <div>pubkeyhash || scripthash</div>\n" +
+    "      </td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
     "</table>\n"
@@ -4071,7 +4081,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"txsCount\": 382,\n" +
     "        \"confirmedTxsCount\": 382,\n" +
     "        \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\",\n" +
-    "        \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\"\n" +
+    "        \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\",\n" +
+    "        \"type\": \"pubkeyhash\"\n" +
     "      },\n" +
     "      {\n" +
     "        \"balance\": 0,\n" +
@@ -4079,7 +4090,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"txsCount\": 2,\n" +
     "        \"confirmedTxsCount\": 2,\n" +
     "        \"address\": \"mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3\",\n" +
-    "        \"hash160\": \"a0a5226c2e376c929d800a070399e5a3d0277c6e\"\n" +
+    "        \"hash160\": \"a0a5226c2e376c929d800a070399e5a3d0277c6e\",\n" +
+    "        \"type\": \"pubkeyhash\"\n" +
     "      }\n" +
     "    ],\n" +
     "    \"unspents\": [\n" +
