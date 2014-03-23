@@ -64,22 +64,14 @@
             <td><strong># Confirmed Transactions</strong></td>
             <td>{{address.confirmedTxsCount}}</td>
           </tr>
-         <!--  <tr>
-            <td><strong># Total Sent</strong></td>
-            <td>{{address.totalSentCount}}</td>
-          </tr>
           <tr>
-            <td><strong># Total Received</strong></td>
-            <td>{{address.totalReceivedCount}}</td>
-          </tr>
-          <tr>
-            <td><strong>Total Sent Amount</strong></td>
-            <td watch='true' to-btc="{{address.totalSentValue}}"></td>
-          </tr>
-          <tr>
-            <td><strong>Total Received Amount</strong></td>
+            <td><strong>Total Received Value</strong></td>
             <td watch='true' to-btc="{{address.totalReceivedValue}}"></td>
-          </tr> -->
+          </tr>
+          <tr>
+            <td><strong>Confirmed Received Value</strong></td>
+            <td watch='true' to-btc="{{address.confirmedReceivedValue}}"></td>
+          </tr>
           <tr>
             <td><strong>Balance</strong></td>
             <td watch='true' to-btc="{{address.balance}}"></td>
