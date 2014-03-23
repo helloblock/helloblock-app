@@ -1695,7 +1695,6 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  </code>\n" +
     "</pre>\n" +
     "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
-    "<!-- TODO: actual data -->\n" +
     "<pre>\n" +
     "  <code class=\"javascript\" hljs>\n" +
     "{\n" +
@@ -1703,19 +1702,23 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  \"data\": {\n" +
     "    \"addresses\": [\n" +
     "      {\n" +
-    "        \"balance\": 7059000,\n" +
-    "        \"confirmedBalance\": 7059000,\n" +
-    "        \"txsCount\": 320,\n" +
-    "        \"confirmedTxsCount\": 320,\n" +
+    "        \"balance\": 6611000,\n" +
+    "        \"confirmedBalance\": 6611000,\n" +
+    "        \"txsCount\": 345,\n" +
+    "        \"confirmedTxsCount\": 345,\n" +
+    "        \"totalReceivedValue\": 4912950000,\n" +
+    "        \"confirmedTotalReceivedValue\": 4912950000,\n" +
     "        \"address\": \"mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L\",\n" +
     "        \"hash160\": \"a5319d469e1ddd9558bd558a50e95f74b3da58c9\",\n" +
     "        \"type\": \"pubkeyhash\"\n" +
     "      },\n" +
     "      {\n" +
-    "        \"balance\": 2034000,\n" +
-    "        \"confirmedBalance\": 2034000,\n" +
-    "        \"txsCount\": 367,\n" +
-    "        \"confirmedTxsCount\": 367,\n" +
+    "        \"balance\": 317193265,\n" +
+    "        \"confirmedBalance\": 317193265,\n" +
+    "        \"txsCount\": 450,\n" +
+    "        \"confirmedTxsCount\": 450,\n" +
+    "        \"totalReceivedValue\": 528179265,\n" +
+    "        \"confirmedTotalReceivedValue\": 528179265,\n" +
     "        \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\",\n" +
     "        \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\",\n" +
     "        \"type\": \"pubkeyhash\"\n" +
@@ -1862,10 +1865,12 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  \"status\": \"success\",\n" +
     "  \"data\": {\n" +
     "    \"address\": {\n" +
-    "      \"balance\": 7059000,\n" +
-    "      \"confirmedBalance\": 7059000,\n" +
-    "      \"txsCount\": 320,\n" +
-    "      \"confirmedTxsCount\": 320,\n" +
+    "      \"balance\": 6611000,\n" +
+    "      \"confirmedBalance\": 6611000,\n" +
+    "      \"txsCount\": 345,\n" +
+    "      \"confirmedTxsCount\": 345,\n" +
+    "      \"totalReceivedValue\": 4912950000,\n" +
+    "      \"confirmedTotalReceivedValue\": 4912950000,\n" +
     "      \"address\": \"mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L\",\n" +
     "      \"hash160\": \"a5319d469e1ddd9558bd558a50e95f74b3da58c9\",\n" +
     "      \"type\": \"pubkeyhash\"\n" +
@@ -1932,15 +1937,15 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <td>confirmedTxsCount: </td>\n" +
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
-    "    <!-- <tr>\n" +
+    "    <tr>\n" +
     "      <td>totalReceivedValue: </td>\n" +
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>totalReceivedCount: </td>\n" +
+    "      <td>confirmedTotalReceivedValue: </td>\n" +
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
-    "    <tr>\n" +
+    "    <!-- <tr>\n" +
     "      <td>totalSentValue: </td>\n" +
     "      <td><em>integer</em></td>\n" +
     "    </tr>\n" +
@@ -4069,17 +4074,21 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  \"status\": \"success\",\n" +
     "  \"data\": {\n" +
     "    \"summary\": {\n" +
-    "      \"balance\": 316333265,\n" +
-    "      \"confirmedBalance\": 316333265,\n" +
-    "      \"txsCount\": 384,\n" +
-    "      \"confirmedTxsCount\": 384\n" +
+    "      \"balance\": 317193265,\n" +
+    "      \"confirmedBalance\": 317193265,\n" +
+    "      \"txsCount\": 452,\n" +
+    "      \"confirmedTxsCount\": 452,\n" +
+    "      \"totalReceivedValue\": 528279265,\n" +
+    "      \"confirmedTotalReceivedValue\": 528279265\n" +
     "    },\n" +
     "    \"addresses\": [\n" +
     "      {\n" +
-    "        \"balance\": 316333265,\n" +
-    "        \"confirmedBalance\": 316333265,\n" +
-    "        \"txsCount\": 382,\n" +
-    "        \"confirmedTxsCount\": 382,\n" +
+    "        \"balance\": 317193265,\n" +
+    "        \"confirmedBalance\": 317193265,\n" +
+    "        \"txsCount\": 450,\n" +
+    "        \"confirmedTxsCount\": 450,\n" +
+    "        \"totalReceivedValue\": 528179265,\n" +
+    "        \"confirmedTotalReceivedValue\": 528179265,\n" +
     "        \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\",\n" +
     "        \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\",\n" +
     "        \"type\": \"pubkeyhash\"\n" +
@@ -4089,6 +4098,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        \"confirmedBalance\": 0,\n" +
     "        \"txsCount\": 2,\n" +
     "        \"confirmedTxsCount\": 2,\n" +
+    "        \"totalReceivedValue\": 100000,\n" +
+    "        \"confirmedTotalReceivedValue\": 100000,\n" +
     "        \"address\": \"mvANEVQRsAC7xHt4GW2iSsJwUSMgkGX2k3\",\n" +
     "        \"hash160\": \"a0a5226c2e376c929d800a070399e5a3d0277c6e\",\n" +
     "        \"type\": \"pubkeyhash\"\n" +
@@ -4096,9 +4107,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    ],\n" +
     "    \"unspents\": [\n" +
     "      {\n" +
-    "        \"confirmations\": 2640,\n" +
-    "        \"blockHeight\": 202518,\n" +
-    "        \"txHash\": \"005cd997f92d11afc621b2eabdc5eea952d31da1cb27a05dc5e34d611bed1496\",\n" +
+    "        \"confirmations\": 1693,\n" +
+    "        \"blockHeight\": 205675,\n" +
+    "        \"txHash\": \"01b0f44a0e746d75829152f6848b06eafc1631b4d754c4114cb3c08755a324e8\",\n" +
     "        \"index\": 0,\n" +
     "        \"scriptPubKey\": \"76a914652c453e3f8768d6d6e1f2985cb8939db91a4e0588ac\",\n" +
     "        \"type\": \"pubkeyhash\",\n" +
@@ -4109,44 +4120,35 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    ],\n" +
     "    \"transactions\": [\n" +
     "      {\n" +
-    "        \"txHash\": \"001ca8f4519037aa9224ab0ea9944f6e538af232d9ed3c806df8c31c05c704e7\",\n" +
+    "        \"txHash\": \"cee09fa8eeb075e5489218964656f4273c93fd6c2e20baeb0f5488751f4eb3ae\",\n" +
     "        \"version\": 1,\n" +
     "        \"locktime\": 0,\n" +
-    "        \"size\": 439,\n" +
-    "        \"blockHash\": \"0000000001ad40d52ababc4a24fccd810c91f9a39c3afa72955b9a8be342371f\",\n" +
-    "        \"blockHeight\": 190560,\n" +
-    "        \"blockTime\": 1392985961,\n" +
-    "        \"estimatedTxTime\": 1392985961,\n" +
-    "        \"confirmations\": 14598,\n" +
-    "        \"inputsCount\": 2,\n" +
+    "        \"size\": 257,\n" +
+    "        \"blockHash\": \"000000000012c76435073e4a701331a3822176fae7e1e115f2fb489b282e51c1\",\n" +
+    "        \"blockHeight\": 206361,\n" +
+    "        \"blockTime\": 1395467825,\n" +
+    "        \"estimatedTxTime\": 1395467801,\n" +
+    "        \"confirmations\": 1007,\n" +
+    "        \"inputsCount\": 1,\n" +
     "        \"outputsCount\": 2,\n" +
     "        \"inputs\": [\n" +
     "          {\n" +
-    "            \"prevTxHash\": \"001ca8f4519037aa9224ab0ea9944f6e538af232d9ed3c806df8c31c05c704e7\",\n" +
+    "            \"prevTxHash\": \"f95afac183f4b54903ea7658f4cd8fa19d28a61ae0abbc787ef8d0c49ec337ed\",\n" +
     "            \"prevTxoutIndex\": 1,\n" +
     "            \"prevTxoutType\": \"pubkeyhash\",\n" +
-    "            \"value\": 100000,\n" +
-    "            \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\",\n" +
-    "            \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\",\n" +
-    "            \"scriptSig\": \"4930460221009b4f454cc827e526c7dd4e8e9290cc4e238b73dcf6297cc18084bd18c25a882f022100d3aa80a050f0f158d2c59eec53a36aa17bf05d4a4383e6a71c36ea6f4e2f774e0141041f6222232963dc66e40f008bae27738966770a8d34d687e015b66e43e49ace2511ca6bce0df1beef080c174c6c0cf8609d51898c9e7551df0721d94758133438\"\n" +
-    "          },\n" +
-    "          {\n" +
-    "            \"prevTxHash\": \"001ca8f4519037aa9224ab0ea9944f6e538af232d9ed3c806df8c31c05c704e7\",\n" +
-    "            \"prevTxoutIndex\": 1,\n" +
-    "            \"prevTxoutType\": \"pubkeyhash\",\n" +
-    "            \"value\": 100000,\n" +
-    "            \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\",\n" +
-    "            \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\",\n" +
-    "            \"scriptSig\": \"48304502207b6ef61a49677070a75aceb365ac6f5b5db67b9e75e1eb1f8a0a7c594d65e79e0221008b5d9e07e1c3a39109d7baffee1aba9f867833c8ca8fb825bb185236563e15510141041f6222232963dc66e40f008bae27738966770a8d34d687e015b66e43e49ace2511ca6bce0df1beef080c174c6c0cf8609d51898c9e7551df0721d94758133438\"\n" +
+    "            \"value\": 4899140000,\n" +
+    "            \"address\": \"mpRZxxp5FtmQipEWJPa1NY9FmPsva3exUd\",\n" +
+    "            \"hash160\": \"61b469ada61f37c620010912a9d5d56646015f16\",\n" +
+    "            \"scriptSig\": \"4730440220180296a9ffbab732300a746098eaf3e277cc005e62f5f4de7e0f96203d969c3302202503fa073ed4a222b71c07ff407ee93f9e91ee65d0468008044e29e27072b6ef0141040cfa3dfb357bdff37c8748c7771e173453da5d7caa32972ab2f5c888fff5bbaeb5fc812b473bf808206930fade81ef4e373e60039886b51022ce68902d96ef70\"\n" +
     "          }\n" +
     "        ],\n" +
     "        \"outputs\": [\n" +
     "          {\n" +
     "            \"index\": 0,\n" +
-    "            \"value\": 100000,\n" +
-    "            \"scriptPubKey\": \"76a914e8a86de5d3fc6daa28a17ec1f933146f6107998388ac\",\n" +
-    "            \"address\": \"n2j8qELbiG5Ay3hvj6K6hbSJKqaVLHD2eA\",\n" +
-    "            \"hash160\": \"e8a86de5d3fc6daa28a17ec1f933146f61079983\",\n" +
+    "            \"value\": 10000,\n" +
+    "            \"scriptPubKey\": \"76a914652c453e3f8768d6d6e1f2985cb8939db91a4e0588ac\",\n" +
+    "            \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\",\n" +
+    "            \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\",\n" +
     "            \"type\": \"pubkeyhash\",\n" +
     "            \"spent\": false,\n" +
     "            \"nextTxHash\": null,\n" +
@@ -4154,21 +4156,21 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          },\n" +
     "          {\n" +
     "            \"index\": 1,\n" +
-    "            \"value\": 90000,\n" +
-    "            \"scriptPubKey\": \"76a914652c453e3f8768d6d6e1f2985cb8939db91a4e0588ac\",\n" +
-    "            \"address\": \"mpjuaPusdVC5cKvVYCFX94bJX1SNUY8EJo\",\n" +
-    "            \"hash160\": \"652c453e3f8768d6d6e1f2985cb8939db91a4e05\",\n" +
+    "            \"value\": 4899120000,\n" +
+    "            \"scriptPubKey\": \"76a91461b469ada61f37c620010912a9d5d56646015f1688ac\",\n" +
+    "            \"address\": \"mpRZxxp5FtmQipEWJPa1NY9FmPsva3exUd\",\n" +
+    "            \"hash160\": \"61b469ada61f37c620010912a9d5d56646015f16\",\n" +
     "            \"type\": \"pubkeyhash\",\n" +
-    "            \"spent\": true,\n" +
-    "            \"nextTxHash\": \"ca6c1ff48e6ee5b04b0fc4dc502d263ca32767914a3831719b08a1780bd5a62f\",\n" +
-    "            \"nextTxinIndex\": 0\n" +
+    "            \"spent\": false,\n" +
+    "            \"nextTxHash\": null,\n" +
+    "            \"nextTxinIndex\": null\n" +
     "          }\n" +
     "        ],\n" +
-    "        \"totalInputsValue\": 200000,\n" +
-    "        \"totalOutputsValue\": 190000,\n" +
+    "        \"totalInputsValue\": 4899140000,\n" +
+    "        \"totalOutputsValue\": 4899130000,\n" +
     "        \"fees\": 10000,\n" +
-    "        \"estimatedTxDirection\": \"outgoing\",\n" +
-    "        \"estimatedTxValue\": -100000\n" +
+    "        \"estimatedTxDirection\": \"incoming\",\n" +
+    "        \"estimatedTxValue\": 10000\n" +
     "      }\n" +
     "    ]\n" +
     "  }\n" +
@@ -4275,7 +4277,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "                </div>\n" +
     "              </td>\n" +
     "            </tr>\n" +
-    "            <!-- <tr>\n" +
+    "            <tr>\n" +
     "              <td>totalReceivedValue</td>\n" +
     "              <td>\n" +
     "                <em>integer</em>\n" +
@@ -4285,14 +4287,14 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              </td>\n" +
     "            </tr>\n" +
     "            <tr>\n" +
-    "              <td>totalSentValue</td>\n" +
+    "              <td>confirmedTotalReceivedValue</td>\n" +
     "              <td>\n" +
     "                <em>integer</em>\n" +
     "                <div>\n" +
-    "                  totalSentValue for all addresses\n" +
+    "                  confirmedTotalReceivedValue for all addresses\n" +
     "                </div>\n" +
     "              </td>\n" +
-    "            </tr> -->\n" +
+    "            </tr>\n" +
     "          </tbody>\n" +
     "        </table>\n" +
     "      </td>\n" +
