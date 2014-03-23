@@ -584,11 +584,11 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            <td>{{address.confirmedTxsCount}}</td>\n" +
     "          </tr>\n" +
     "          <tr>\n" +
-    "            <td><strong>Total Received Amount</strong></td>\n" +
+    "            <td><strong>Total Received Value</strong></td>\n" +
     "            <td watch='true' to-btc=\"{{address.totalReceivedValue}}\"></td>\n" +
     "          </tr>\n" +
     "          <tr>\n" +
-    "            <td><strong>Confirmed Received Amount</strong></td>\n" +
+    "            <td><strong>Confirmed Received Value</strong></td>\n" +
     "            <td watch='true' to-btc=\"{{address.confirmedReceivedValue}}\"></td>\n" +
     "          </tr>\n" +
     "          <tr>\n" +
