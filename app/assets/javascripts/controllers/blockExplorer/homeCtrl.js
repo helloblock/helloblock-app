@@ -70,7 +70,8 @@ hbApp.controller("blockExplorer/homeCtrl", function($scope, $routeParams, $rootS
   // Callback Level 1
   HelloBlock[explorerMode].Transactions.get({
     txHash: "latest",
-    limit: 20
+    limit: 20,
+    inputsOutputs: false
   }, function(res) {
     $scope.transactions.latest = res.data.transactions
 
