@@ -31,7 +31,9 @@ hbApp.controller("blockExplorer/blocksCtrl", function($scope, $routeParams, $loc
   })
 
   HelloBlock[explorerMode].BlockTransactions.get({
-    identifier: $scope.block.identifier
+    identifier: $scope.block.identifier,
+    limit: 10,
+    offset: 0
   }, function(res) {
     $scope.block.transactions = res.data.transactions
   }, function(err) {
@@ -40,13 +42,49 @@ hbApp.controller("blockExplorer/blocksCtrl", function($scope, $routeParams, $loc
     })
   })
 
-  // Fake Infinite Scrolling
-  $scope.limitTo = {
-    transactions: 5,
+  // Infinite Scrolling
+  $scope.finished = {
+    transactions: false,
   }
 
+  $scope.offset = {
+    transactions: 10,
+  }
+
+  $scope.fetching = false
+
   $scope.loadMoreTransactions = function() {
-    $scope.limitTo.transactions += 5
+    if ($scope.finished.transactions) {
+      return;
+    }
+
+    if ($scope.fetching === true) {
+      return;
+    }
+
+    $scope.fetching = true;
+    console.log("fetching ... ")
+    // Callback: Lvl 1
+    HelloBlock[explorerMode].BlockTransactions.get({
+      identifier: $scope.block.identifier,
+      limit: 10,
+      offset: $scope.offset.transactions
+    }, function(res) {
+
+      if (res.data.transactions.length > 0) {
+        $scope.block.transactions = $scope.block.transactions.concat(
+          res.data.transactions);
+        $scope.offset.transactions += 10;
+      } else {
+        $scope.finished.transactions = true;
+      }
+
+      $scope.fetching = false;
+
+    }, function(err) {
+      console.log(err)
+      $scope.fetching = false;
+    })
   }
 
 })

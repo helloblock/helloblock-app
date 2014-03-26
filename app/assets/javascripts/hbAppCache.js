@@ -741,11 +741,16 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  </div>\n" +
     "  <br>\n" +
     "  <div infinite-scroll=\"loadMoreTransactions()\">\n" +
-    "    <span ng-repeat=\"tx in block.transactions| limitTo:limitTo.transactions\">\n" +
+    "    <span ng-repeat=\"tx in block.transactions\">\n" +
     "      <div ng-include=\"'/templates/blockExplorer/_tx.html'\"></div>\n" +
     "    </span>\n" +
     "  </div>\n" +
-    "</div>\n"
+    "</div>\n" +
+    "<div class=\"col-md-8 col-md-offset-1\">\n" +
+    "  <waitspin ng-show=\"fetching\"></waitspin>\n" +
+    "</div>\n" +
+    "<div class=\"space-big\"></div>\n" +
+    "<div class=\"space-big\"></div>\n"
   );
 
 
