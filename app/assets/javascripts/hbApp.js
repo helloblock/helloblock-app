@@ -5,7 +5,6 @@ var hbApp = angular.module('hbApp', [
   'ngResource',
   'ngCookies',
   'ui.bootstrap',
-  'ui.select2',
   'infinite-scroll'
 ])
 
