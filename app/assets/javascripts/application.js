@@ -14,9 +14,6 @@
 //= require yeti/loader
 //= require yeti/bootswatch
 
-//= require highlight.min
-//= require angular-ui-bootstrap-tpls
-//= require spin.min
 //= require cryptocoin
 
 //= require ng-infinite-scroll
@@ -37,3 +34,6 @@
 // require angular-resource
 // require angular-cookies
 // require moment.min
+// require highlight.min
+// require angular-ui-bootstrap-tpls
+// require spin.min
