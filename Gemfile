@@ -28,3 +28,7 @@ end
 gem 'newrelic_rpm'
 
 gem 'rspec-rails'
+
+group :production do
+  gem 'prerender_rails'
+end
