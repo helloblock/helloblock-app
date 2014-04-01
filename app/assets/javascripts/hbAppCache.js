@@ -3271,7 +3271,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  <code class=\"javascript\" hljs>\n" +
     "npm install helloblock-js --save\n" +
     "\n" +
-    "console.log(\"Docs in progress...Please visit <a href=\"https://github.com/helloblock/helloblock-js\">https://github.com/helloblock-js/</a>\")\n" +
+    "console.log(\"Work in progress...Please visit <a href=\"https://github.com/helloblock/helloblock-js\">https://github.com/helloblock-js/</a>\")\n" +
     "\n" +
     "\n" +
     "  </code>\n" +
@@ -3284,8 +3284,6 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<pre>\n" +
     "  <code class=\"ruby\" hljs>\n" +
     "puts \"The Ruby Client Library is a work in progress ...\"\n" +
-    "\n" +
-    "puts \"Please visit <a href=\"https://github.com/NathanielWroblewski/helloblock/\">https://github.com/NathanielWroblewski/helloblock/</a> if you'd like to contribute.\"\n" +
     "  </code>\n" +
     "</pre>\n"
   );
@@ -4405,8 +4403,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "<h3>Introduction</h3>\n" +
     "<blockquote>\n" +
-    "  <p>Hey there, you've come here a bit early but we're really exciting to share the open source API we've build. All the endpoints work and we're writing up the docs now.</p>\n" +
-    "  <p>In the mean time, shoot me an e-mail and let's discuss how we can help. scott@helloblock.io</p>\n" +
+    "  <!-- <p>Hey there, you've come here a bit early but we're really exciting to share the open source API we've build. All the endpoints work and we're writing up the docs now.</p>\n" +
+    "  <p>In the mean time, shoot me an e-mail and let's discuss how we can help. scott@helloblock.io</p> -->\n" +
+    "  <p>Coming soon ...</p>\n" +
     "</blockquote>\n" +
     "\n" +
     "<!-- <h3>Lorem</h3>\n" +
