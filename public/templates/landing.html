@@ -10,13 +10,15 @@
   <div class="centerpiece">
     <div class="container">
       <br>
-      <br><br>
+      <br>
+      <!-- <br> -->
       <h1 class='main-title text-center white'>
         <strong>
           Focus on building Bitcoin apps, not infrastructure.
         </strong>
       </h1>
-      <br><br>
+      <br>
+      <!-- <br> -->
       <h2 class='text-center white'>
         <span>
           Get started with the Blockchain Data API
@@ -49,7 +51,7 @@
       <!-- <br><br> -->
     </div>
   </div>
-  <br>
+  <!-- <br> -->
   <div class="container">
     <div class="row">
       <div class="feature col-md-4 text-center">
@@ -84,7 +86,7 @@
       </div>
     </div>
 
-    <br><br>
+    <br>
     <!-- <div class="row">
       <h1 class='text-center'>Quick Start</h1>
       <div class="col-md-8 col-md-offset-2">
@@ -125,15 +127,10 @@
 
       </div>
     </div> -->
-    <br><br><br>
+    <!-- <br><br><br> -->
     <div class="row">
       <!-- <h1 class='text-center'>Quick Start</h1> -->
       <div class="col-md-8 col-md-offset-2">
-        <blockquote>
-          <p class="lead">
-            Sign up to to access the Testnet3 Faucet, lift the API Rate Limit, and be notified for new features.
-          </p>
-        </blockquote>
         <form ng-submit="User.signUp(User.email)">
           <div class="input-group">
               <input
@@ -143,6 +140,7 @@
                 name="email"
                 ng-model="User.email"
                 ng-minlength="4"
+                placeholder="person@example.com"
                 required
                 >
               <span class="input-group-btn">
@@ -152,6 +150,12 @@
               </span>
           </div>
         </form>
+        <br>
+        <blockquote>
+          <p class="lead">
+            Access the Faucet, lift the Rate Limit, be notified of new features.
+          </p>
+        </blockquote>
 
       </div>
 

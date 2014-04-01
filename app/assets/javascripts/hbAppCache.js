@@ -4553,13 +4553,15 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  <div class=\"centerpiece\">\n" +
     "    <div class=\"container\">\n" +
     "      <br>\n" +
-    "      <br><br>\n" +
+    "      <br>\n" +
+    "      <!-- <br> -->\n" +
     "      <h1 class='main-title text-center white'>\n" +
     "        <strong>\n" +
     "          Focus on building Bitcoin apps, not infrastructure.\n" +
     "        </strong>\n" +
     "      </h1>\n" +
-    "      <br><br>\n" +
+    "      <br>\n" +
+    "      <!-- <br> -->\n" +
     "      <h2 class='text-center white'>\n" +
     "        <span>\n" +
     "          Get started with the Blockchain Data API\n" +
@@ -4592,7 +4594,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      <!-- <br><br> -->\n" +
     "    </div>\n" +
     "  </div>\n" +
-    "  <br>\n" +
+    "  <!-- <br> -->\n" +
     "  <div class=\"container\">\n" +
     "    <div class=\"row\">\n" +
     "      <div class=\"feature col-md-4 text-center\">\n" +
@@ -4627,7 +4629,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      </div>\n" +
     "    </div>\n" +
     "\n" +
-    "    <br><br>\n" +
+    "    <br>\n" +
     "    <!-- <div class=\"row\">\n" +
     "      <h1 class='text-center'>Quick Start</h1>\n" +
     "      <div class=\"col-md-8 col-md-offset-2\">\n" +
@@ -4668,15 +4670,10 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "      </div>\n" +
     "    </div> -->\n" +
-    "    <br><br><br>\n" +
+    "    <!-- <br><br><br> -->\n" +
     "    <div class=\"row\">\n" +
     "      <!-- <h1 class='text-center'>Quick Start</h1> -->\n" +
     "      <div class=\"col-md-8 col-md-offset-2\">\n" +
-    "        <blockquote>\n" +
-    "          <p class=\"lead\">\n" +
-    "            Sign up to to access the Testnet3 Faucet, lift the API Rate Limit, and be notified for new features.\n" +
-    "          </p>\n" +
-    "        </blockquote>\n" +
     "        <form ng-submit=\"User.signUp(User.email)\">\n" +
     "          <div class=\"input-group\">\n" +
     "              <input\n" +
@@ -4686,6 +4683,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "                name=\"email\"\n" +
     "                ng-model=\"User.email\"\n" +
     "                ng-minlength=\"4\"\n" +
+    "                placeholder=\"person@example.com\"\n" +
     "                required\n" +
     "                >\n" +
     "              <span class=\"input-group-btn\">\n" +
@@ -4695,6 +4693,12 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              </span>\n" +
     "          </div>\n" +
     "        </form>\n" +
+    "        <br>\n" +
+    "        <blockquote>\n" +
+    "          <p class=\"lead\">\n" +
+    "            Access the Faucet, lift the Rate Limit, be notified of new features.\n" +
+    "          </p>\n" +
+    "        </blockquote>\n" +
     "\n" +
     "      </div>\n" +
     "\n" +
