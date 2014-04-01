@@ -135,6 +135,8 @@ hbApp.controller("blockExplorer/addressesCtrl", function($scope, $routeParams, $
       offset: $scope.offset.transactions
     }, function(res) {
 
+      debugger
+
       if (res.data.transactions.length > 0) {
         $scope.address.transactions = $scope.address.transactions.concat(
           res.data.transactions);

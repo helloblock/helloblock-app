@@ -4553,13 +4553,13 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  <div class=\"centerpiece\">\n" +
     "    <div class=\"container\">\n" +
     "      <br>\n" +
-    "      <br>\n" +
+    "      <br><br>\n" +
     "      <h1 class='main-title text-center white'>\n" +
     "        <strong>\n" +
     "          Focus on building Bitcoin apps, not infrastructure.\n" +
     "        </strong>\n" +
     "      </h1>\n" +
-    "      <br>\n" +
+    "      <br><br>\n" +
     "      <h2 class='text-center white'>\n" +
     "        <span>\n" +
     "          Get started with the Blockchain Data API\n" +
@@ -4570,8 +4570,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          </span>\n" +
     "        </a>\n" +
     "      </h2>\n" +
-    "      <br><br>\n" +
-    "      <div class=\"row\">\n" +
+    "      <!-- <br><br> -->\n" +
+    "      <!-- <div class=\"row\">\n" +
     "        <form ng-submit=\"bigSearch.query(query)\">\n" +
     "          <div class=\"container\">\n" +
     "            <div class=\"input-group\">\n" +
@@ -4588,8 +4588,8 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "            </div>\n" +
     "          </div>\n" +
     "        </form>\n" +
-    "      </div>\n" +
-    "      <br><br>\n" +
+    "      </div> -->\n" +
+    "      <!-- <br><br> -->\n" +
     "    </div>\n" +
     "  </div>\n" +
     "  <br>\n" +
