@@ -762,13 +762,12 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  <br>\n" +
     "  <form ng-submit=\"bigSearch.query(query)\">\n" +
     "    <div class=\"container\">\n" +
-    "      <div ng-show=\"hasError()\">\n" +
-    "        <div class=\"alert alert-danger alert-danger-light text-center\">\n" +
-    "          <a class=\"close\" data-dismiss=\"alert\" href=\"#\" aria-hidden=\"true\">&times;</a>\n" +
+    "      <div ng-show=\"hasError() && alert\">\n" +
+    "        <alert type=\"alert.type\" close=\"close()\" class=\"alert-danger-light text-center\">\n" +
     "          <span class=\"h4\">\n" +
-    "            Please ensure your query is a valid address, transaction hash or block height/hash\n" +
+    "            {{alert.msg}}\n" +
     "          </span>\n" +
-    "        </div>\n" +
+    "        </alert>\n" +
     "      </div>\n" +
     "      <div class=\"input-group\">\n" +
     "        <input\n" +
@@ -1168,6 +1167,37 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      </ul>\n" +
     "    </div><!-- /.nav-collapse -->\n" +
     "  </div>\n" +
+    "</div>\n"
+  );
+
+
+  $templateCache.put('/templates/docs/_quickstart.html',
+    "<div class='quickstart'>\n" +
+    "<br>\n" +
+    "<div class=\"h5 title\">EXAMPLE REQUEST</div>\n" +
+    "<code class=\"bash\" hljs>\n" +
+    "curl https://testnet.helloblock.io/v1/addresses/<span class='text-primary'>mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L</span>\n" +
+    "</code>\n" +
+    "<div class=\"h5 title\">EXAMPLE RESPONSE</div>\n" +
+    "<code class=\"javascript\" hljs>\n" +
+    "{\n" +
+    "  \"status\": \"success\",\n" +
+    "  \"data\": {\n" +
+    "    \"address\": {\n" +
+    "      \"balance\": 6611000,\n" +
+    "      \"confirmedBalance\": 6611000,\n" +
+    "      \"txsCount\": 345,\n" +
+    "      \"confirmedTxsCount\": 345,\n" +
+    "      \"totalReceivedValue\": 4912950000,\n" +
+    "      \"confirmedReceivedValue\": 4912950000,\n" +
+    "      \"address\": \"mvaRDyLUeF4CP7Lu9umbU3FxehyC5nUz3L\",\n" +
+    "      \"hash160\": \"a5319d469e1ddd9558bd558a50e95f74b3da58c9\",\n" +
+    "      \"type\": \"pubkeyhash\"\n" +
+    "    }\n" +
+    "  }\n" +
+    "}\n" +
+    "</code>\n" +
+    "\n" +
     "</div>\n"
   );
 
@@ -4553,7 +4583,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  <div class=\"centerpiece\">\n" +
     "    <div class=\"container\">\n" +
     "      <br>\n" +
-    "      <br>\n" +
+    "      <!-- <br> -->\n" +
     "      <!-- <br> -->\n" +
     "      <h1 class='main-title text-center white'>\n" +
     "        <strong>\n" +
@@ -4561,40 +4591,36 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        </strong>\n" +
     "      </h1>\n" +
     "      <br>\n" +
-    "      <!-- <br> -->\n" +
     "      <h2 class='text-center white'>\n" +
     "        <span>\n" +
     "          Get started with the Blockchain Data API\n" +
     "        </span>\n" +
     "        <a class=\"btn btn-success\" href=\"/docs/ref\">\n" +
-    "          <span class='h4'>\n" +
-    "            <em>Go to Docs</em>\n" +
+    "          <span class='h3'>\n" +
+    "            GO TO DOCS\n" +
     "          </span>\n" +
     "        </a>\n" +
     "      </h2>\n" +
-    "      <!-- <br><br> -->\n" +
-    "      <!-- <div class=\"row\">\n" +
-    "        <form ng-submit=\"bigSearch.query(query)\">\n" +
-    "          <div class=\"container\">\n" +
-    "            <div class=\"input-group\">\n" +
-    "              <input\n" +
-    "                class='h3 big-input'\n" +
-    "                spellcheck=\"false\"\n" +
-    "                ng-model=\"query\"\n" +
-    "                placeholder=\"Search for any address, transaction hash or block height\">\n" +
-    "              <span class=\"input-group-btn\">\n" +
-    "                <button class=\"btn btn-success btn-block btn-search\">\n" +
-    "                  <span class=\"h2\">SEARCH</span>\n" +
-    "                </button>\n" +
-    "              </span>\n" +
-    "            </div>\n" +
+    "      <br><br>\n" +
+    "      <div class=\"row\">\n" +
+    "        <form ng-submit=\"bigSearch.query(query)\" class=\"container big-search\">\n" +
+    "          <div class=\"input-group\">\n" +
+    "            <input\n" +
+    "              class='h3 big-input'\n" +
+    "              spellcheck=\"false\"\n" +
+    "              ng-model=\"query\"\n" +
+    "              placeholder=\"Search for any address, transaction hash or block height\">\n" +
+    "            <span class=\"input-group-btn\">\n" +
+    "              <button class=\"btn btn-success btn-block btn-search\">\n" +
+    "                <span class=\"h2\">SEARCH</span>\n" +
+    "              </button>\n" +
+    "            </span>\n" +
     "          </div>\n" +
     "        </form>\n" +
-    "      </div> -->\n" +
-    "      <!-- <br><br> -->\n" +
+    "      </div>\n" +
+    "      <br>\n" +
     "    </div>\n" +
     "  </div>\n" +
-    "  <!-- <br> -->\n" +
     "  <div class=\"container\">\n" +
     "    <div class=\"row\">\n" +
     "      <div class=\"feature col-md-4 text-center\">\n" +
@@ -4624,56 +4650,18 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "          Programmatic Faucet\n" +
     "        </h2>\n" +
     "        <p class='lead lead-smaller'>\n" +
-    "          Programmatic access to free Bitcoins (on testnet3) for testing purposes.\n" +
+    "          <a href=\"/docs/ref#faucet\">Programmatic access</a> to free Bitcoins (on testnet3) for testing purposes.\n" +
     "        </p>\n" +
     "      </div>\n" +
     "    </div>\n" +
-    "\n" +
     "    <br>\n" +
-    "    <!-- <div class=\"row\">\n" +
-    "      <h1 class='text-center'>Quick Start</h1>\n" +
-    "      <div class=\"col-md-8 col-md-offset-2\">\n" +
-    "        <blockquote>\n" +
-    "          <p class=\"lead\">\n" +
-    "            If you are using the <a href=\"https://blockchain.info/api/blockchain_api\">Blockchain.info API</a> would like testnet support,\n" +
-    "            substituted your base URL as follows:\n" +
-    "          </p>\n" +
-    "        </blockquote>\n" +
-    "        <div>\n" +
-    "          <h2 class='text-center'>\n" +
-    "            <code>https://blockchain.info/</code>\n" +
-    "          </h2>\n" +
-    "          <h2>\n" +
-    "            <code>\n" +
-    "              <textarea class='big-input link' readonly selected>https://test.helloblock.io/b/</textarea>\n" +
-    "            </code>\n" +
-    "          </h2>\n" +
-    "        </div>\n" +
-    "        <br><br>\n" +
-    "        <blockquote>\n" +
-    "          <p class=\"lead\">\n" +
-    "            <code class=''>https://test.helloblock.io/b/</code>\n" +
-    "            mirrors the methods and responses specified in <a href=\"blockchain.info/api/blockchain_api\">https://blockchain.info/api/blockchain_api</a> (including /pushtx), except it runs on <a href=\"https://en.bitcoin.it/wiki/Testnet\">testnet3</a>, an alternative blockchain used for testing.\n" +
-    "          </p>\n" +
-    "        </blockquote>\n" +
-    "        <blockquote>\n" +
-    "          <p class=\"lead\">\n" +
-    "            However, if you prefer a more reliable API, we recommended you to try our API.\n" +
-    "          </p>\n" +
-    "        </blockquote>\n" +
-    "        <br>\n" +
-    "        <div class=\"row text-center\">\n" +
-    "          <a class=\"btn btn-success btn-lg\" href=\"/docs/tutorials\">\n" +
-    "            Getting Started\n" +
-    "          </a>\n" +
-    "        </div>\n" +
-    "\n" +
-    "      </div>\n" +
-    "    </div> -->\n" +
-    "    <!-- <br><br><br> -->\n" +
     "    <div class=\"row\">\n" +
-    "      <!-- <h1 class='text-center'>Quick Start</h1> -->\n" +
+    "      <h1 class='text-center'>Register an Account</h1>\n" +
+    "      <br>\n" +
     "      <div class=\"col-md-8 col-md-offset-2\">\n" +
+    "        <p class=\"lead text-center\">\n" +
+    "          Access the Faucet, lift the Rate Limit, be notified of new features.\n" +
+    "        </p>\n" +
     "        <form ng-submit=\"User.signUp(User.email)\">\n" +
     "          <div class=\"input-group\">\n" +
     "              <input\n" +
@@ -4688,24 +4676,36 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "                >\n" +
     "              <span class=\"input-group-btn\">\n" +
     "                <button class=\"btn btn-success btn-block btn-search\">\n" +
-    "                  <span class=\"h4\">Sign Up</span>\n" +
+    "                  <span class=\"h4\">REGISTER</span>\n" +
     "                </button>\n" +
     "              </span>\n" +
     "          </div>\n" +
     "        </form>\n" +
     "        <br>\n" +
-    "        <blockquote>\n" +
-    "          <p class=\"lead\">\n" +
-    "            Access the Faucet, lift the Rate Limit, be notified of new features.\n" +
-    "          </p>\n" +
-    "        </blockquote>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"row\">\n" +
+    "      <h1 class='text-center'>Quick Start</h1>\n" +
+    "      <br>\n" +
+    "      <div class=\"col-md-8 col-md-offset-2\">\n" +
+    "        <pre class='sample'>\n" +
+    "          <div ng-include=\"'/templates/docs/_quickstart.html'\"></div>\n" +
+    "        </pre>\n" +
+    "        <br>\n" +
+    "        <div class=\"row text-center\">\n" +
+    "          <a class=\"btn btn-success btn-lg\" href=\"/docs/ref\">\n" +
+    "            <span class='h3'>\n" +
+    "              GETTING STARTED\n" +
+    "            </span>\n" +
+    "          </a>\n" +
+    "        </div>\n" +
     "\n" +
     "      </div>\n" +
-    "\n" +
-    "  </div>\n" +
-    "\n" +
+    "    </div>\n" +
     "</div>\n" +
-    "<br><br><br><br><br><br>\n"
+    "<br><br>\n" +
+    "<!-- <br><br><br><br> -->\n"
   );
 
 

@@ -11,8 +11,13 @@ hbApp.controller("blockExplorer/homeCtrl", function($scope, $routeParams, $rootS
     latest: []
   }
 
-  $scope.getinfo = {
-    latest: []
+  $scope.alert = {
+    type: "danger",
+    msg: "Please ensure your query is a valid address, transaction hash or block height/hash"
+  }
+
+  $scope.close = function() {
+    delete $scope.alert
   }
 
   $scope.hasError = function() {

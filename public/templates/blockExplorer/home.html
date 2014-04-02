@@ -5,13 +5,12 @@
   <br>
   <form ng-submit="bigSearch.query(query)">
     <div class="container">
-      <div ng-show="hasError()">
-        <div class="alert alert-danger alert-danger-light text-center">
-          <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+      <div ng-show="hasError() && alert">
+        <alert type="alert.type" close="close()" class="alert-danger-light text-center">
           <span class="h4">
-            Please ensure your query is a valid address, transaction hash or block height/hash
+            {{alert.msg}}
           </span>
-        </div>
+        </alert>
       </div>
       <div class="input-group">
         <input

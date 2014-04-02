@@ -10,7 +10,7 @@
   <div class="centerpiece">
     <div class="container">
       <br>
-      <br>
+      <!-- <br> -->
       <!-- <br> -->
       <h1 class='main-title text-center white'>
         <strong>
@@ -18,40 +18,36 @@
         </strong>
       </h1>
       <br>
-      <!-- <br> -->
       <h2 class='text-center white'>
         <span>
           Get started with the Blockchain Data API
         </span>
         <a class="btn btn-success" href="/docs/ref">
-          <span class='h4'>
-            <em>Go to Docs</em>
+          <span class='h3'>
+            GO TO DOCS
           </span>
         </a>
       </h2>
-      <!-- <br><br> -->
-      <!-- <div class="row">
-        <form ng-submit="bigSearch.query(query)">
-          <div class="container">
-            <div class="input-group">
-              <input
-                class='h3 big-input'
-                spellcheck="false"
-                ng-model="query"
-                placeholder="Search for any address, transaction hash or block height">
-              <span class="input-group-btn">
-                <button class="btn btn-success btn-block btn-search">
-                  <span class="h2">SEARCH</span>
-                </button>
-              </span>
-            </div>
+      <br><br>
+      <div class="row">
+        <form ng-submit="bigSearch.query(query)" class="container big-search">
+          <div class="input-group">
+            <input
+              class='h3 big-input'
+              spellcheck="false"
+              ng-model="query"
+              placeholder="Search for any address, transaction hash or block height">
+            <span class="input-group-btn">
+              <button class="btn btn-success btn-block btn-search">
+                <span class="h2">SEARCH</span>
+              </button>
+            </span>
           </div>
         </form>
-      </div> -->
-      <!-- <br><br> -->
+      </div>
+      <br>
     </div>
   </div>
-  <!-- <br> -->
   <div class="container">
     <div class="row">
       <div class="feature col-md-4 text-center">
@@ -81,56 +77,18 @@
           Programmatic Faucet
         </h2>
         <p class='lead lead-smaller'>
-          Programmatic access to free Bitcoins (on testnet3) for testing purposes.
+          <a href="/docs/ref#faucet">Programmatic access</a> to free Bitcoins (on testnet3) for testing purposes.
         </p>
       </div>
     </div>
-
     <br>
-    <!-- <div class="row">
-      <h1 class='text-center'>Quick Start</h1>
-      <div class="col-md-8 col-md-offset-2">
-        <blockquote>
-          <p class="lead">
-            If you are using the <a href="https://blockchain.info/api/blockchain_api">Blockchain.info API</a> would like testnet support,
-            substituted your base URL as follows:
-          </p>
-        </blockquote>
-        <div>
-          <h2 class='text-center'>
-            <code>https://blockchain.info/</code>
-          </h2>
-          <h2>
-            <code>
-              <textarea class='big-input link' readonly selected>https://test.helloblock.io/b/</textarea>
-            </code>
-          </h2>
-        </div>
-        <br><br>
-        <blockquote>
-          <p class="lead">
-            <code class=''>https://test.helloblock.io/b/</code>
-            mirrors the methods and responses specified in <a href="blockchain.info/api/blockchain_api">https://blockchain.info/api/blockchain_api</a> (including /pushtx), except it runs on <a href="https://en.bitcoin.it/wiki/Testnet">testnet3</a>, an alternative blockchain used for testing.
-          </p>
-        </blockquote>
-        <blockquote>
-          <p class="lead">
-            However, if you prefer a more reliable API, we recommended you to try our API.
-          </p>
-        </blockquote>
-        <br>
-        <div class="row text-center">
-          <a class="btn btn-success btn-lg" href="/docs/tutorials">
-            Getting Started
-          </a>
-        </div>
-
-      </div>
-    </div> -->
-    <!-- <br><br><br> -->
     <div class="row">
-      <!-- <h1 class='text-center'>Quick Start</h1> -->
+      <h1 class='text-center'>Register an Account</h1>
+      <br>
       <div class="col-md-8 col-md-offset-2">
+        <p class="lead text-center">
+          Access the Faucet, lift the Rate Limit, be notified of new features.
+        </p>
         <form ng-submit="User.signUp(User.email)">
           <div class="input-group">
               <input
@@ -145,21 +103,33 @@
                 >
               <span class="input-group-btn">
                 <button class="btn btn-success btn-block btn-search">
-                  <span class="h4">Sign Up</span>
+                  <span class="h4">REGISTER</span>
                 </button>
               </span>
           </div>
         </form>
         <br>
-        <blockquote>
-          <p class="lead">
-            Access the Faucet, lift the Rate Limit, be notified of new features.
-          </p>
-        </blockquote>
+      </div>
+    </div>
+
+    <div class="row">
+      <h1 class='text-center'>Quick Start</h1>
+      <br>
+      <div class="col-md-8 col-md-offset-2">
+        <pre class='sample'>
+          <div ng-include="'/templates/docs/_quickstart.html'"></div>
+        </pre>
+        <br>
+        <div class="row text-center">
+          <a class="btn btn-success btn-lg" href="/docs/ref">
+            <span class='h3'>
+              GETTING STARTED
+            </span>
+          </a>
+        </div>
 
       </div>
-
-  </div>
-
+    </div>
 </div>
-<br><br><br><br><br><br>
+<br><br>
+<!-- <br><br><br><br> -->
