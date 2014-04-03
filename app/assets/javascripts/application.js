@@ -18,6 +18,9 @@
 //= require ng-infinite-scroll
 
 //= require hbApp
+//= require hbApp.globals
+//= require hbApp.routes
+//= require_tree ./modules
 //= require_tree ./controllers
 //= require_tree ./directives
 //= require_tree ./services

@@ -55,9 +55,9 @@ Helloblock::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
 
-  # hbAppCache is not in application.js, only include in production
+  # hbApp.cache is not in application.js, only include in production
   # $ grunt ngtemplates to build this file
-  config.assets.precompile += %w( hbAppCache.js )
+  config.assets.precompile += %w( hbApp.cache.js )
   config.serve_static_assets = true
 
   # Ignore bad email addresses and do not raise email delivery errors.
