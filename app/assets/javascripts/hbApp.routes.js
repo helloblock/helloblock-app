@@ -32,7 +32,25 @@ hbApp.config(function($routeProvider) {
   Utils.namespace("/dashboard", "dashboard", function(url, name) {
     $routeProvider.when(url, {
       templateUrl: "/templates/" + name + "/index.html",
-      controller: name + "/indexCtrl"
+      controller: name + "/indexCtrl",
+      resolve: {
+        authenticate: function(Auth, $location) {
+          var authPromise = Auth.verify()
+
+          authPromise.then(function(session) {
+            // cookie store
+            // save session
+
+            return true
+          }, function(reason) {
+            return $location.path("/", {
+              error: "unauthorized"
+            })
+          }, function(update) {
+            console.log(update)
+          });
+        }
+      }
     })
   })
 

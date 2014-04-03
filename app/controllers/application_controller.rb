@@ -31,6 +31,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  # CSRF Token for NON-GETs
+  # New form_authenticity_token generated
+  # Attacker needs this cookie + same value in NON-GET requests
+  # Cross-origin policies ban attacker from getting cookie value or html from user's browser
   def set_csrf_cookie_for_ng
     cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
   end

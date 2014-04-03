@@ -35,7 +35,7 @@ hbApp.run(function($rootScope, $location) {
   };
 })
 
-hbApp.run(function($rootScope, $location, $cookieStore, $anchorScroll) {
+hbApp.run(function($rootScope, $location, $cookieStore) {
 
   // TODO: What if cookies are set wrong, e.g. JSON.parse("MAINNET")
   // Things could break without us knowing
@@ -55,10 +55,6 @@ hbApp.run(function($rootScope, $location, $cookieStore, $anchorScroll) {
     $rootScope.global.sound = state;
     $cookieStore.put('sound', state);
   }
-
-  $rootScope.$on('$routeChangeSuccess', function(next, current) {
-    $anchorScroll();
-  });
 
   $rootScope.bigSearch = {
     query: function(query) {
@@ -85,12 +81,18 @@ hbApp.run(function($rootScope, $location, $cookieStore, $anchorScroll) {
     }
   }
 
-  // ClipBoard
+})
+
+// Other
+hbApp.run(function($rootScope, $anchorScroll) {
+  $rootScope.$on('$routeChangeSuccess', function(next, current) {
+    $anchorScroll();
+  });
+
   ZeroClipboard.config({
     moviePath: '//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/1.3.2/ZeroClipboard.swf',
     trustedDomains: ["*"],
     allowScriptAccess: "always",
     forceHandCursor: true
   });
-
 })

@@ -8,6 +8,6 @@ var hbApp = angular.module('hbApp', [
   'infinite-scroll'
 ])
 
-hbApp.config(function($locationProvider) {
+hbApp.config(function($locationProvider, $httpProvider) {
   $locationProvider.html5Mode(true);
 })
