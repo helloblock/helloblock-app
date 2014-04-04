@@ -42,13 +42,13 @@ hbApp.config(function($routeProvider) {
   })
 
   $routeProvider.when("/signup", {
-    templateUrl: "/templates/" + name + "/index.html",
-    controller: name + "/indexCtrl"
+    templateUrl: "/templates/signup.html",
+    controller: "signUpCtrl"
   })
 
   $routeProvider.when("/signin", {
-    templateUrl: "/templates/" + name + "/index.html",
-    controller: name + "/indexCtrl"
+    templateUrl: "/templates/signin.html",
+    controller: "signInCtrl"
   })
 
   // BLOCK EXPLORER

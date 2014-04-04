@@ -1,1 +1,99 @@
+<br>
+<h1 class="text-center">Register an Account</h1>
 <br><br>
+<div class="col-md-8 col-md-offset-1">
+  <form
+    name="signUpForm"
+    class="form-horizontal"
+    ng-submit="Processor.submit()"
+    novalidate>
+
+    <!-- Uncaught errors -->
+    <div class="row error-messages" ng-repeat="error in Processor.errors">
+      <div class="col-sm-10 col-sm-offset-2">
+        {{error.message}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="h3 col-sm-4 big-input-label">Email:</label>
+      <div class="col-sm-8">
+        <input
+          class="h3 big-input big-input-left"
+          spellcheck="false"
+          tabindex="1"
+          type="email"
+          name="email"
+          ng-model="Account.email"
+          ng-minlength="4"
+          required
+        >
+      </div>
+    </div>
+    <div class="error-messages col-sm-8 col-sm-offset-4">
+      <div
+        ng-show="signUpForm.password.$error.minlength"
+        class="alert alert-warning text-center">
+        <span class="h4">
+          Password must be above 8 characters
+        </span>
+      </div>
+      <div
+        ng-show="signUpForm.password.$error.equals"
+        class="alert alert-danger text-center">
+        <span class="h4">
+          Password does not match
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="h3 col-sm-4 big-input-label">Password:</label>
+      <div class="col-sm-8">
+        <input
+          tabindex="2"
+          class="h3 big-input big-input-left"
+          name="password"
+          type="password"
+          ng-model="Account.password"
+          ng-minlength="8"
+          required
+          equals="{{Account.passwordConfirmation}}"
+          >
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="h3 col-sm-4 big-input-label">Password Confirmation:</label>
+      <div class="col-sm-8">
+        <input
+          tabindex="3"
+          class="h3 big-input big-input-left"
+          name="password-confirmation"
+          type="password"
+          ng-model="Account.passwordConfirmation"
+          ng-minlength="8"
+          required
+          equals="{{Account.password}}"
+          >
+      </div>
+    </div>
+    <br><br>
+    <div class="form-group">
+      <div class="col-sm-1 col-sm-offset-1">
+        <spin size="small" ng-show="Processor.submitting"></spin>
+      </div>
+      <div class="col-md-4 col-md-offset-4">
+        <button
+          class="btn btn-success btn-lg"
+          type="submit"
+          ng-disabled="signUpForm.$invalid || Processor.submitting"
+          >
+          <span class='h2'>
+            SIGN UP
+          </span>
+        </button>
+      </div>
+    </div>
+  </form>
+  </div>
+
+</div>
