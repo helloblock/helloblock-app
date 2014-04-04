@@ -4,11 +4,11 @@ module Authenticator
   AUTH_SECRET = ENV["AUTH_SECRET"]
 
   def create
-
+    AUTH_SECRET
   end
 
   def validate(opts = {})
-    return false
+    return true
   end
 
   module Token

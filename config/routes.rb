@@ -2,7 +2,7 @@ Helloblock::Application.routes.draw do
   root to: "application#index"
 
   resources :sessions, only: [:create, :destroy]
-  get "/sessions/validate" => "sessions#validate"
+  post "/sessions/validate" => "sessions#validate"
   get "/sessions/debug" => "sessions#debug"
 
   post "/email" => "application#save_email"

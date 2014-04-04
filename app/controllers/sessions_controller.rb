@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     # Success
     return render json: {
 
-      }. status: 200
+      }, status: 200
   end
 
   def create
@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
 
     # Auth
     user_valid = Authenticator.validate(email: "")
+    sleep 2
 
     if !user_valid
       # Redirect to sign up
@@ -40,6 +41,7 @@ class SessionsController < ApplicationController
   end
 
   def validate
+    sleep 2
     user_token = Authenticator::Token.validate(session[:user_token])
 
     if !user_token

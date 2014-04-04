@@ -1,4 +1,4 @@
-hbApp.controller("signUpCtrl", function($scope, $routeParams) {
+hbApp.controller("signUpCtrl", function($scope, $routeParams, Session) {
 
   // $routeParams default populate
   var Account = {}
@@ -7,13 +7,16 @@ hbApp.controller("signUpCtrl", function($scope, $routeParams) {
   var Processor = {}
   Processor.errors = []
   Processor.submit = function() {
-    if (true) {
+    if ($scope.signUpForm.$invalid) {
       var error = {
         message: "Something went wrong, we've been notified."
       }
       Processor.errors.push({})
       return false;
     }
+
+    return Session.create(Account.email, Account.password)
+
   }
 
   // Attach scopes

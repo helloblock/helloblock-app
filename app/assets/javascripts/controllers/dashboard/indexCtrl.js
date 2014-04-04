@@ -1,4 +1,4 @@
-hbApp.controller("dashboard/indexCtrl", function($scope, $http) {
+hbApp.controller("dashboard/indexCtrl", function($scope, $http, Session) {
   // Header Cookies
   // _helloblock_session
   // authenticity_token
@@ -6,12 +6,12 @@ hbApp.controller("dashboard/indexCtrl", function($scope, $http) {
   $scope.res = {}
 
   $scope.button = function() {
-    $http.get("/sessions/debug")
-      .success(function(res) {
-        $scope.res = res.session
-      })
-      .error(function(res) {
-        $scope.res = res.session
-      })
+    var session = Session.debug();
+
+    session.then(function(res) {
+      $scope.res = res
+    }, function(res) {
+      $scope.res = res
+    })
   }
 })
