@@ -34,24 +34,21 @@ hbApp.config(function($routeProvider) {
       templateUrl: "/templates/" + name + "/index.html",
       controller: name + "/indexCtrl",
       resolve: {
-        authenticate: function(Auth, $location) {
-          var authPromise = Auth.verify()
-
-          authPromise.then(function(session) {
-            // cookie store
-            // save session
-
-            return true
-          }, function(reason) {
-            return $location.path("/", {
-              error: "unauthorized"
-            })
-          }, function(update) {
-            console.log(update)
-          });
+        verify: function(Sessions) {
+          Sessions.create("email", "password")
         }
       }
     })
+  })
+
+  $routeProvider.when("/signup", {
+    templateUrl: "/templates/" + name + "/index.html",
+    controller: name + "/indexCtrl"
+  })
+
+  $routeProvider.when("/signin", {
+    templateUrl: "/templates/" + name + "/index.html",
+    controller: name + "/indexCtrl"
   })
 
   // BLOCK EXPLORER

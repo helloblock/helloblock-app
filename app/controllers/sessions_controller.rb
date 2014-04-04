@@ -1,31 +1,73 @@
 class SessionsController < ApplicationController
 
-  def new
+  def signup
+    user = Authenticator.create(
+      email: params["email"],
+      password: params["password"])
 
+    # Error
+
+    # Success
+    return render json: {
+
+      }. status: 200
   end
 
   def create
-    user = User.where(email: "")
+    reset_session
 
-    if !user
+    # Auth
+    user_valid = Authenticator.validate(email: "")
+
+    if !user_valid
       # Redirect to sign up
-      return false
+      return render json: {
+        status: "fail",
+        message: "Wrong username or password"
+      }, status: 401
     end
 
-    if !user.authenticate(params[:session][:password])
-      # Wrong password
-      return false
+    user_token = Authenticator::Token.create(
+      email: params["email"],
+      password: params["password"])
+
+    session[:user_token] = user_token
+
+    return render json: {
+      status: "success"
+    }, status: 200
+
+  end
+
+  def validate
+    user_token = Authenticator::Token.validate(session[:user_token])
+
+    if !user_token
+      return render json: {
+        status: "fail",
+        message: "Token invalid or expired"
+      }, status: 401
     end
 
-    user.generate_token
-    # cookies.permanent[:remember_token] = remember_token
-    session[:remember_token] = user.remember_token
-
-    return true
+    return render json: {
+      status: "success"
+    }, status: 200
 
   end
 
   def destroy
+    Authenticator::Token.destroy(session[:user_token])
+    reset_session
 
+    return render json: {
+      status: "success"
+    }, status: 200
+  end
+
+  def debug
+    ap session.to_hash
+    render json: {
+      session: session
+    }
   end
 end
