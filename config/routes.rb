@@ -1,6 +1,8 @@
 Helloblock::Application.routes.draw do
   root to: "application#index"
 
+  resources :sessions, only: [:new, :create, :destroy]
+
   post "/email" => "application#save_email"
 
   # Static Assets normally served before this
