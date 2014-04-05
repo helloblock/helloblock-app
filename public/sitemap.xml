@@ -3,12 +3,12 @@
     <loc>https://helloblock.io/docs/tutorials</loc>
   </url>
   <url>
-    <loc>https://helloblock.io/latest</loc>
-  </url>
-  <url>
     <loc>https://helloblock.io/docs/ref</loc>
   </url>
   <url>
     <loc>https://helloblock.io</loc>
+  </url>
+  <url>
+    <loc>https://helloblock.io/robots.txt</loc>
   </url>
 </urlset>
