@@ -1,4 +1,7 @@
 hbApp.factory("Session", function($q, $http, $location) {
+  // Header Cookies
+  // _helloblock_session
+  // authenticity_token
 
   var Session = {};
 

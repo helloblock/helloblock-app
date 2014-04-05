@@ -2,8 +2,8 @@ class SessionsController < ApplicationController
 
   def signup
     user = Authenticator.create(
-      email: params["email"],
-      password: params["password"])
+      email: params["session"]["email"],
+      password: params["session"]["password"])
 
     # Error
 
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 
     # Auth
     user_valid = Authenticator.validate(email: "")
-    sleep 2
+    sleep 1
 
     if !user_valid
       # Redirect to sign up
@@ -29,8 +29,8 @@ class SessionsController < ApplicationController
     end
 
     user_token = Authenticator::Token.create(
-      email: params["email"],
-      password: params["password"])
+      email: params["session"]["email"],
+      password: params["session"]["password"])
 
     session[:user_token] = user_token
 
@@ -41,7 +41,7 @@ class SessionsController < ApplicationController
   end
 
   def validate
-    sleep 2
+    sleep 1
     user_token = Authenticator::Token.validate(session[:user_token])
 
     if !user_token
@@ -67,7 +67,7 @@ class SessionsController < ApplicationController
   end
 
   def debug
-    ap session.to_hash
+    ap.to_hash
     render json: {
       session: session
     }
