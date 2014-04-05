@@ -1033,7 +1033,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      </button>\n" +
     "      <a class=\"navbar-brand\" href=\"/\">\n" +
     "        <span ng-non-bindable>\n" +
-    "          Hello, block! [BETA]\n" +
+    "          Hello, block!\n" +
     "        </span>\n" +
     "      </a>\n" +
     "    </div>\n" +
