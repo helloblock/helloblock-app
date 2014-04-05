@@ -1,29 +1,25 @@
 module Authenticator
   extend self
 
-  AUTH_SECRET = ENV["AUTH_SECRET"]
+  AUTH_HOST = ENV["AUTH_HOST"]
+  # TODO
+  # AUTH_SECRET = ENV["AUTH_SECRET"]
 
-  def create
-    AUTH_SECRET
-  end
-
-  def validate(opts = {})
-    return true
-  end
-
-  module Token
+  module User
     extend self
 
     def create(opts = {})
-      return "token-#{SecureRandom.urlsafe_base64}"
+      HTTParty.post("#{AUTH_HOST}/users", body: {
+        email: opts[:email],
+        password: opts[:password]
+      })
     end
 
-    def validate(token)
-      return true
-    end
-
-    def destroy
-      return true
+    def authenticate(opts = {})
+      HTTParty.post("#{AUTH_HOST}/users/authenticate", body: {
+        email: opts[:email],
+        password: opts[:password]
+      })
     end
   end
 

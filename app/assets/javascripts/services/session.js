@@ -49,20 +49,6 @@ hbApp.factory("Session", function($q, $http, $location) {
     return deferred.promise;
   };
 
-  Session.debug = function() {
-    var deferred = $q.defer();
-
-    $http.get("/sessions/debug")
-      .success(function(res) {
-        deferred.resolve(res);
-      })
-      .error(function(res) {
-        deferred.reject(res);
-      })
-
-    return deferred.promise;
-  }
-
   return Session;
 
 })
