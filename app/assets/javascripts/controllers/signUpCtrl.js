@@ -1,4 +1,4 @@
-hbApp.controller("signUpCtrl", function($scope, $routeParams, Session) {
+hbApp.controller("signUpCtrl", function($scope, $routeParams, User) {
 
   // $routeParams default populate
   var Account = {}
@@ -15,7 +15,7 @@ hbApp.controller("signUpCtrl", function($scope, $routeParams, Session) {
       return false;
     }
 
-    return Session.create(Account.email, Account.password)
+    return User.create(Account.email, Account.password)
 
   }
 
