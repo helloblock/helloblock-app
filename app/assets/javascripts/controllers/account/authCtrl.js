@@ -1,18 +1,16 @@
-hbApp.controller("authCtrl", function($scope, $routeParams, User) {
-
-  var action = $routeParams.action;
+hbApp.controller("account/authCtrl", function($scope, $routeParams, $location) {
 
   $scope.tabset = {
-    signin: action === "signin",
-    signup: action === "signup"
+    signin: $location.path().match(/signin/),
+    signup: $location.path().match(/signup/)
   }
 
   // $routeParams default populate
-  var Account = {}
-  Account.email = $routeParams.email
 
   // Sign Up
   var SignUp = {};
+  SignUp.User = {}
+
   SignUp.errors = [];
   SignUp.submit = function() {
     if ($scope.signUpForm.$invalid) {
@@ -32,9 +30,9 @@ hbApp.controller("authCtrl", function($scope, $routeParams, User) {
 
   // Sign In
   var SignIn = {};
+  SignIn.User = {}
 
   // Attach scopes
-  $scope.Account = Account;
   $scope.SignUp = SignUp;
   $scope.SignIn = SignIn;
 })

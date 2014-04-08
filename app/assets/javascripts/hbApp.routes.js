@@ -32,12 +32,17 @@ hbApp.config(function($routeProvider) {
   Utils.namespace("/account", "account", function(url, name) {
     $routeProvider.when(url + "/signin", {
       templateUrl: "/templates/account/auth.html",
-      controller: "authCtrl"
+      controller: name + "/authCtrl"
     })
 
     $routeProvider.when(url + "/signup", {
       templateUrl: "/templates/account/auth.html",
-      controller: "authCtrl"
+      controller: name + "/authCtrl"
+    })
+
+    $routeProvider.when(url + "/settings", {
+      templateUrl: "/templates/account/settings.html",
+      controller: name + "/settingsCtrl"
     })
 
     $routeProvider.when(url, {

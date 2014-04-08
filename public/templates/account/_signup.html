@@ -1,5 +1,5 @@
 <br>
-<h1 class="text-center">Register an Account</h1>
+<h1 class="text-center">Register an SignUp</h1>
 <br><br>
 <form
   name="signUpForm"
@@ -23,13 +23,13 @@
         tabindex="1"
         type="email"
         name="email"
-        ng-model="Account.email"
+        ng-model="SignUp.User.email"
         ng-minlength="4"
         required
       >
     </div>
   </div>
-  <div class="error-messages col-sm-8 col-sm-offset-4">
+  <div class="error-messages col-sm-7 col-sm-offset-3">
     <div
       ng-show="signUpForm.password.$error.minlength"
       class="alert alert-warning text-center">
@@ -53,10 +53,10 @@
         class="h3 big-input big-input-left"
         name="password"
         type="password"
-        ng-model="Account.password"
+        ng-model="SignUp.User.password"
         ng-minlength="8"
         required
-        equals="{{Account.passwordConfirmation}}"
+        equals="{{SignUp.User.passwordConfirmation}}"
         >
     </div>
   </div>
@@ -68,10 +68,10 @@
         class="h3 big-input big-input-left"
         name="password-confirmation"
         type="password"
-        ng-model="Account.passwordConfirmation"
+        ng-model="SignUp.User.passwordConfirmation"
         ng-minlength="8"
         required
-        equals="{{Account.password}}"
+        equals="{{SignUp.User.password}}"
         >
     </div>
   </div>
