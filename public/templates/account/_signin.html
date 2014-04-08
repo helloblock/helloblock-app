@@ -1,7 +1,7 @@
 <h1 class="text-center">Sign In</h1>
 <br><br>
 <form
-  name="signUpForm"
+  name="signInForm"
   class="form-horizontal"
   ng-submit="SignIn.submit()"
   novalidate>
@@ -50,7 +50,7 @@
       <button
         class="btn btn-success btn-lg"
         type="submit"
-        ng-disabled="signUpForm.$invalid || SignIn.submitting"
+        ng-disabled="signInForm.$invalid || SignIn.submitting"
         >
         <span class='h2'>
           SIGN IN

@@ -24,10 +24,10 @@
   <table class="table table-api-keys">
     <thead>
       <tr>
-        <th>Scope</th>
-        <th>Creation Time</th>
-        <th>Active?</th>
+        <th>Network</th>
         <th>Secret</th>
+        <th>Created At</th>
+        <th>Active?</th>
         <th></th>
       </tr>
     </thead>
@@ -35,12 +35,6 @@
       <tr class='success'>
         <td>
           Mainnet
-        </td>
-        <td>
-          2014-04-07 08:06:29.834-07
-        </td>
-        <td>
-          <span class="label label-success">ACTIVE</span>
         </td>
         <td>
           <span>
@@ -54,9 +48,17 @@
           </span>
         </td>
         <td>
-          <a class="btn btn-warning btn-tiny">
-            Deactivate
-          </a>
+          2014-04-07 08:06:29.834-07
+        </td>
+        <td>
+          <span class="label label-success">ACTIVE</span>
+        </td>
+        <td>
+          <div ng-show="true">
+            <a class="btn btn-warning btn-tiny">
+              Deactivate
+            </a>
+          </div>
         </td>
       </tr>
     </tbody>

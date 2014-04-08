@@ -1,29 +1,25 @@
-hbApp.controller("account/authCtrl", function($scope, $routeParams, $location) {
+hbApp.controller("account/authCtrl", function($scope, $routeParams, $location, $http) {
 
   $scope.tabset = {
     signin: $location.path().match(/signin/),
     signup: $location.path().match(/signup/)
   }
 
-  // $routeParams default populate
-
   // Sign Up
   var SignUp = {};
-  SignUp.User = {}
+  SignUp.User = {};
+  SignUp.User.email = $routeParams.email;
 
   SignUp.errors = [];
   SignUp.submit = function() {
-    if ($scope.signUpForm.$invalid) {
-      return false;
-    }
 
     $http.post("/users", {
-      email: email,
-      password: password,
+      email: SignUp.User.email,
+      password: SignUp.User.password,
     }).success(function(res) {
-      $location.path("/account")
+      $location.url("/account")
     }).error(function(res) {
-
+      SignUp.errors.push("Email taken or password invalid.")
     })
 
   }

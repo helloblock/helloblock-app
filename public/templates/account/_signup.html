@@ -8,9 +8,11 @@
   novalidate>
 
   <!-- Uncaught errors -->
-  <div class="row error-messages" ng-repeat="error in SignUp.errors">
-    <div class="col-sm-6 col-sm-offset-3">
-      {{error.message}}
+  <div class="error-messages col-sm-7 col-sm-offset-3">
+    <div class="alert alert-danger text-center" ng-repeat="error in SignUp.errors">
+      <span class="h4">
+        {{error}}
+      </span>
     </div>
   </div>
 

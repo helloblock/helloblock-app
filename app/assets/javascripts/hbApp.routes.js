@@ -50,8 +50,7 @@ hbApp.config(function($routeProvider) {
       controller: name + "/indexCtrl",
       resolve: {
         verify: function(Session) {
-          return true;
-          // return Session.validate()
+          return Session.validate()
         }
       }
     })
