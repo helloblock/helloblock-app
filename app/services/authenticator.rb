@@ -26,8 +26,9 @@ module Authenticator
     end
 
     def update(opts = {})
-      HTTParty.post("#{ENV["AUTH_HOST"]}/users/#{opts[:uid]}",
+      HTTParty.post("#{ENV["AUTH_HOST"]}/users/password",
         body: {
+          uid: opts[:uid],
           password: opts[:password],
           newPassword: opts[:newPassword]
         }
@@ -35,8 +36,9 @@ module Authenticator
     end
 
     module Token
-      def change(opts)
-        HTTParty.post("#{ENV["AUTH_HOST"]}/users/#{opts[:uid]}/tokens", body: {
+      def reset(opts)
+        HTTParty.post("#{ENV["AUTH_HOST"]}/users/tokens/reset", body: {
+          uid: opts[:uid],
           password: opts[:password]
         })
       end

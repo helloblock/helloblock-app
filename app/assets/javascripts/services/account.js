@@ -1,6 +1,6 @@
-hbApp.factory("Processor", function($q, $http, $location) {
+hbApp.factory("Account", function($q, $http, $location) {
 
-  function Processor(opts) {
+  function Account(opts) {
     var self = this;
     self.User = {};
     self.User.email = opts.email;
@@ -11,7 +11,7 @@ hbApp.factory("Processor", function($q, $http, $location) {
     self.errorMsg = opts.errorMsg;
   }
 
-  Processor.prototype.submit = function(payload) {
+  Account.prototype.submit = function(payload) {
     var self = this
     self.submitting = true;
 
@@ -26,7 +26,15 @@ hbApp.factory("Processor", function($q, $http, $location) {
     })
   }
 
-  Processor.validate = function() {
+  Account.getTokens = function() {
+    // $http.get()
+  }
+
+  Account.resetTokens = function() {
+    // $http.post()
+  }
+
+  Account.validate = function() {
     var deferred = $q.defer();
 
     $http.post("/sessions/validate")
@@ -41,6 +49,6 @@ hbApp.factory("Processor", function($q, $http, $location) {
 
   }
 
-  return Processor;
+  return Account;
 
 })

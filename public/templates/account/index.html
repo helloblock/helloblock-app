@@ -27,23 +27,37 @@
         <th>Network</th>
         <th>Secret</th>
         <th>Created At</th>
-        <th>Active?</th>
         <th></th>
+        <!-- <th></th> -->
       </tr>
     </thead>
     <tbody>
+      <tr ng-repeat="token in tokens">
+        <td>
+          {{token.scope}}
+        </td>
+        <td>
+          {{token.secretKey}}
+        </td>
+        <td>
+          {{token.createdAt}}
+        </td>
+        <td>
+          {{token.active}}
+        </td>
+      </tr>
       <tr class='success'>
         <td>
           Mainnet
         </td>
         <td>
-          <span>
+          <!-- <span>
             <em>
               Secret key has been hidden,
               <a href="#">click here to show.</a>
             </em>
-          </span>
-          <span ng-show="false">
+          </span> -->
+          <span ng-show="true">
             t_sk_wKS9_U8JwcbBdOQXkvmBh0QaE0k95DP5cPRmllUfXRI
           </span>
         </td>
@@ -53,13 +67,13 @@
         <td>
           <span class="label label-success">ACTIVE</span>
         </td>
-        <td>
+        <!-- <td>
           <div ng-show="true">
             <a class="btn btn-warning btn-tiny">
               Deactivate
             </a>
           </div>
-        </td>
+        </td> -->
       </tr>
     </tbody>
   </table>

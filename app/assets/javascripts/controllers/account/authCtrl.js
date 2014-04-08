@@ -1,4 +1,4 @@
-hbApp.controller("account/authCtrl", function($scope, $location, $http, Processor, $routeParams) {
+hbApp.controller("account/authCtrl", function($scope, $location, $http, Account, $routeParams) {
 
   $scope.tabset = {
     signin: $location.path().match(/signin/),
@@ -9,14 +9,14 @@ hbApp.controller("account/authCtrl", function($scope, $location, $http, Processo
     $location.url("/account/" + path)
   }
 
-  $scope.SignUp = new Processor({
+  $scope.SignUp = new Account({
     email: $routeParams.email,
     endpoint: "/users",
     redirectTo: "/account",
     errorMsg: "Email taken or password invalid.",
   })
 
-  $scope.SignIn = new Processor({
+  $scope.SignIn = new Account({
     endpoint: "/sessions",
     redirectTo: "/account",
     errorMsg: "Email or password invalid.",
