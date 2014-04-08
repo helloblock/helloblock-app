@@ -25,6 +25,15 @@ module Authenticator
       )
     end
 
+    def update(opts = {})
+      HTTParty.post("#{ENV["AUTH_HOST"]}/users/#{opts[:uid]}",
+        body: {
+          password: opts[:password],
+          newPassword: opts[:newPassword]
+        }
+      )
+    end
+
     module Token
       def change(opts)
         HTTParty.post("#{ENV["AUTH_HOST"]}/users/#{opts[:uid]}/tokens", body: {

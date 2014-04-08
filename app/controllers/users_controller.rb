@@ -5,15 +5,30 @@ class UsersController < ApplicationController
       email: params["user"]["email"],
       password: params["user"]["password"])
 
-    body = JSON.parse(response.body)
-
-    if response.code >= 300
-      render json: body, status: response.code
+    if response.code > 300
+      render json: response.to_hash, status: response.code
     end
 
     if response.code == 200
-      session[:uid] = body["data"]["uid"]
-      render json: body, status: response.code
+      session[:uid] = response["data"]["uid"]
+      render json: response.to_hash, status: response.code
+    end
+  end
+
+  def update
+    response = Authenticator::User.update(
+      password: params["user"]["password"],
+      newPassword: params["user"]["newPassword"],
+      uid: session[:uid]
+    )
+
+    if response.code > 300
+      render json: response.to_hash, status: response.code
+    end
+
+    if response.code == 200
+      session[:uid] = response["data"]["uid"]
+      render json: response.to_hash, status: response.code
     end
   end
 end

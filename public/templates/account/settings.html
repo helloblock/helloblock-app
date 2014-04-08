@@ -1,19 +1,31 @@
 <accnav selected="'settings'" global="global"></accnav>
 
+<div class='alert-message' ng-show="change">
+  <div class="alert alert-success text-center">
+    <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+    <span class="h4">
+      Password successfully changed.
+    </span>
+  </div>
+</div>
+
+
 <div class="container">
   <br>
   <h1 class="text-center">Change Password</h1>
   <br><br>
   <form
-    name="signUpForm"
+    name="settingsForm"
     class="form-horizontal"
-    ng-submit="SignUp.submit()"
+    ng-submit="Settings.submit(Settings.User)"
     novalidate>
 
     <!-- Uncaught errors -->
-    <div class="row error-messages" ng-repeat="error in SignUp.errors">
-      <div class="col-sm-6 col-sm-offset-3">
-        {{error.message}}
+    <div class="error-messages col-sm-7 col-sm-offset-3">
+      <div class="alert alert-danger text-center" ng-repeat="error in Settings.errors">
+        <span class="h4">
+          {{error}}
+        </span>
       </div>
     </div>
 
@@ -26,7 +38,7 @@
           tabindex="1"
           type="password"
           name="password"
-          ng-model="Account.password"
+          ng-model="Settings.User.password"
           ng-minlength="8"
           required
         >
@@ -34,14 +46,14 @@
     </div>
     <div class="error-messages col-sm-7 col-sm-offset-3">
       <div
-        ng-show="signUpForm.newPassword.$error.minlength"
+        ng-show="settingsForm.newPassword.$error.minlength"
         class="alert alert-warning text-center">
         <span class="h4">
           Password must be above 8 characters
         </span>
       </div>
       <div
-        ng-show="signUpForm.newPassword.$error.equals"
+        ng-show="settingsForm.newPassword.$error.equals"
         class="alert alert-danger text-center">
         <span class="h4">
           Password does not match
@@ -56,10 +68,10 @@
           class="h3 big-input big-input-left"
           name="newPassword"
           type="password"
-          ng-model="Account.newPassword"
+          ng-model="Settings.User.newPassword"
           ng-minlength="8"
           required
-          equals="{{Account.newPasswordConfirmation}}"
+          equals="{{Settings.User.newPasswordConfirmation}}"
           >
       </div>
     </div>
@@ -71,23 +83,23 @@
           class="h3 big-input big-input-left"
           name="newPasswordConfirmation"
           type="password"
-          ng-model="Account.newPasswordConfirmation"
+          ng-model="Settings.User.newPasswordConfirmation"
           ng-minlength="8"
           required
-          equals="{{Account.newPassword}}"
+          equals="{{Settings.User.newPassword}}"
           >
       </div>
     </div>
     <br><br>
     <div class="form-group">
       <div class="col-sm-1 col-sm-offset-1">
-        <spin size="small" ng-show="SignUp.submitting"></spin>
+        <spin size="small" ng-show="Settings.submitting"></spin>
       </div>
       <div class="col-md-4 col-md-offset-3">
         <button
           class="btn btn-success btn-lg"
           type="submit"
-          ng-disabled="signUpForm.$invalid || SignUp.submitting"
+          ng-disabled="settingsForm.$invalid || Settings.submitting"
           >
           <span class='h2'>
             SUBMIT

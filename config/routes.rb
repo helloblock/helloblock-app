@@ -5,6 +5,7 @@ Helloblock::Application.routes.draw do
   post "/sessions/validate" => "sessions#validate"
 
   resources :users, only: [:create]
+  post "/users/update" => "users#update"
 
   post "/email" => "application#save_email"
 

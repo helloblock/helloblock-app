@@ -1,24 +1,21 @@
-hbApp.factory("Auth", function($q, $http, $location) {
+hbApp.factory("Processor", function($q, $http, $location) {
 
-  function Auth(opts) {
-    var self = this
+  function Processor(opts) {
+    var self = this;
     self.User = {};
     self.User.email = opts.email;
     self.errors = [];
     self.submitting = false;
     self.endpoint = opts.endpoint;
     self.redirectTo = opts.redirectTo;
-    self.errorMsg = opts.errorMsg
+    self.errorMsg = opts.errorMsg;
   }
 
-  Auth.prototype.submit = function() {
+  Processor.prototype.submit = function(payload) {
     var self = this
     self.submitting = true;
 
-    $http.post(self.endpoint, {
-      email: self.User.email,
-      password: self.User.password,
-    }).success(function(res) {
+    $http.post(self.endpoint, payload).success(function(res) {
       $location.url(self.redirectTo);
 
       self.submitting = false;
@@ -29,7 +26,7 @@ hbApp.factory("Auth", function($q, $http, $location) {
     })
   }
 
-  Auth.validate = function() {
+  Processor.validate = function() {
     var deferred = $q.defer();
 
     $http.post("/sessions/validate")
@@ -44,6 +41,6 @@ hbApp.factory("Auth", function($q, $http, $location) {
 
   }
 
-  return Auth;
+  return Processor;
 
 })
