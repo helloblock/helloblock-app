@@ -1,7 +1,6 @@
 // EXPLORER MODE
 hbApp.run(function($rootScope, $location, $routeParams) {
-  // debugger
-  $rootScope.global = {}
+  $rootScope.global = {};
   $rootScope.global.mode = Utils.explorerMode($location.host());
 
   $rootScope.global.baseUrl = {};
@@ -17,7 +16,7 @@ hbApp.run(function($rootScope, $location, $routeParams) {
 })
 
 // CURRENT LINK
-hbApp.run(function($rootScope, $location) {
+hbApp.run(function($rootScope, $location, $http) {
   $rootScope.global.isOnLink = function(path) {
     return path === $location.path().split("/")[1];
   };
@@ -33,6 +32,17 @@ hbApp.run(function($rootScope, $location) {
 
     return onLink;
   };
+
+  $rootScope.global.signOut = function() {
+    $http.delete("/sessions/1")
+      .success(function() {
+        $location.url("/")
+      })
+      .error(function() {
+        $location.url("/")
+      })
+  }
+
 })
 
 hbApp.run(function($rootScope, $location, $cookieStore) {

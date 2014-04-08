@@ -3,6 +3,7 @@ Helloblock::Application.routes.draw do
 
   resources :sessions, only: [:create, :destroy]
   post "/sessions/validate" => "sessions#validate"
+
   resources :users, only: [:create]
 
   post "/email" => "application#save_email"
