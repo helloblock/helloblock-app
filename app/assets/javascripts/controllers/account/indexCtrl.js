@@ -1,4 +1,4 @@
-hbApp.controller("account/indexCtrl", function($scope, $http, Session) {
+hbApp.controller("account/indexCtrl", function($scope, $http) {
   $scope.res = {}
 
   $scope.button = function() {

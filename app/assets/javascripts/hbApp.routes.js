@@ -49,8 +49,8 @@ hbApp.config(function($routeProvider) {
       templateUrl: "/templates/" + name + "/index.html",
       controller: name + "/indexCtrl",
       resolve: {
-        verify: function(Session) {
-          return Session.validate()
+        verify: function(Auth) {
+          return Auth.validate()
         }
       }
     })
