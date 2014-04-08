@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def create
+    reset_session()
     response = Authenticator::User.create(
       email: params["user"]["email"],
       password: params["user"]["password"])

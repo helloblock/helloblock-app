@@ -1,24 +1,20 @@
-hbApp.controller("landingCtrl", function($scope, $http, $location, $routeParams) {
-	$scope.emailSuccess = function() {
-		if ($routeParams.email_success === 'true') {
-			return true;
-		}
-	};
+hbApp.controller("landingCtrl", function($scope, $http, $location) {
 
-	$scope.User = {
-		email: "",
-		signUp: function(email) {
-			if (!email) {
-				return;
-			};
+	var User = {}
+	User.email;
 
-			$http.post("/email", {
-				email: email
-			}).success(function() {
-				$location.path("/").search({
-					email_success: 'true'
-				})
-			})
-		}
+	User.signUp = function(email) {
+		if (!email) return;
+
+		$http.post("/email", {
+			email: email
+		})
+
+		$location.path("/account/signup").search({
+			email: email
+		})
 	}
+
+	$scope.User = User;
+
 })

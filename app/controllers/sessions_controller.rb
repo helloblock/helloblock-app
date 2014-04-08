@@ -1,18 +1,12 @@
 class SessionsController < ApplicationController
 
   def create
-    reset_session
+    reset_session()
     authenticate_user!
-    session[:uid] = @user[:uid]
-
-    render json: {
-      status: "success"
-    }, status: 200
-
   end
 
   def destroy
-    reset_session
+    reset_session()
     render json: {
       status: "success"
     }, status: 200
@@ -32,18 +26,26 @@ class SessionsController < ApplicationController
       return
     end
 
-    if !params["email"] && !params["password"]
+    if !params["email"] || !params["password"]
       render json: {
         status: "fail"
       }, status: 401
       return
     end
 
-    response = Authenticator::User.authenticate(
+    @response = Authenticator::User.authenticate(
       email: params["email"],
       password: params["password"]
     )
 
-    render json: response.body, status: response.code
+    if @response.code > 200
+      render json: {
+        status: "fail"
+      }, status: 401
+      return
+    end
+
+    session[:uid] = @response["data"]["uid"]
+    render json: @response.to_hash, status: @response.code
   end
 end

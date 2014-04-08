@@ -1,10 +1,10 @@
 <br><br>
 <div class="container">
   <tabset>
-    <tab heading="Sign In" active="tabset.signin">
-      <!-- <div ng-include="'/templates/account/_signin.html'"></div> -->
+    <tab heading="Sign In" active="tabset.signin" ng-click="tabset.click('signin')">
+      <div ng-include="'/templates/account/_signin.html'"></div>
     </tab>
-    <tab heading="Sign Up" active="tabset.signup">
+    <tab heading="Sign Up" active="tabset.signup" ng-click="tabset.click('signup')">
       <div ng-include="'/templates/account/_signup.html'"></div>
   </tabset>
 </div>
