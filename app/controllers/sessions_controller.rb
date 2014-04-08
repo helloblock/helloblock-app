@@ -33,9 +33,11 @@ class SessionsController < ApplicationController
       return
     end
 
-    @response = Authenticator::User.authenticate(
-      email: params["email"],
-      password: params["password"]
+    @response = HTTParty.post("#{ENV["AUTH_HOST"]}/users/authenticate",
+      body: {
+        email: params["email"],
+        password: params["password"]
+      }
     )
 
     if @response.code > 200

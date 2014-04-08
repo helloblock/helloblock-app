@@ -1,9 +1,13 @@
 class UsersController < ApplicationController
   def create
     reset_session()
-    response = Authenticator::User.create(
-      email: params["user"]["email"],
-      password: params["user"]["password"])
+
+    response = HTTParty.post("#{ENV["AUTH_HOST"]}/users",
+      body: {
+        email: params["user"]["email"],
+        password: params["user"]["password"]
+      }
+    )
 
     if response.code > 300
       render json: response.to_hash, status: response.code
@@ -16,10 +20,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    response = Authenticator::User.update(
-      password: params["user"]["password"],
-      newPassword: params["user"]["newPassword"],
-      uid: session[:uid]
+    response = HTTParty.post("#{ENV["AUTH_HOST"]}/users/password",
+      body: {
+        uid: session[:uid],
+        password: params["user"]["password"],
+        newPassword: params["user"]["newPassword"]
+      }
     )
 
     if response.code > 300
@@ -27,23 +33,36 @@ class UsersController < ApplicationController
     end
 
     if response.code == 200
-      session[:uid] = response["data"]["uid"]
       render json: response.to_hash, status: response.code
     end
   end
 
-  def reset_keys
-    response = Authenticator::Token.reset(
-      uid: session[:uid],
-      password: params["password"]
-    )
+  def tokens
+    response = HTTParty.get("#{ENV["AUTH_HOST"]}/tokens", query: {
+      uid: session[:uid]
+    })
 
     if response.code > 300
       render json: response.to_hash, status: response.code
     end
 
     if response.code == 200
-      session[:uid] = response["data"]["uid"]
+      render json: response.to_hash, status: response.code
+    end
+
+  end
+
+  def reset_tokens
+    response = HTTParty.post("#{ENV["AUTH_HOST"]}/users/tokens/reset", body: {
+      uid: session[:uid],
+      password: params["password"]
+    })
+
+    if response.code > 300
+      render json: response.to_hash, status: response.code
+    end
+
+    if response.code == 200
       render json: response.to_hash, status: response.code
     end
   end

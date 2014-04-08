@@ -6,6 +6,8 @@ Helloblock::Application.routes.draw do
 
   resources :users, only: [:create]
   post "/users/update" => "users#update"
+  get "/users/tokens" => "users#tokens"
+  post "/users/tokens/reset" => "users#reset_tokens"
 
   post "/email" => "application#save_email"
 

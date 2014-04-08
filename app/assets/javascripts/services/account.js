@@ -26,14 +26,6 @@ hbApp.factory("Account", function($q, $http, $location) {
     })
   }
 
-  Account.getTokens = function() {
-    // $http.get()
-  }
-
-  Account.resetTokens = function() {
-    // $http.post()
-  }
-
   Account.validate = function() {
     var deferred = $q.defer();
 

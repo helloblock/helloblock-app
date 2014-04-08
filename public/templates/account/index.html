@@ -1,5 +1,17 @@
 <accnav selected="'keys'" global="global"></accnav>
 <br><br>
+
+<!-- Uncaught errors -->
+<div class="row">
+  <div class="error-messages col-md-6 col-md-offset-3">
+    <div class="alert alert-danger text-center" ng-repeat="error in errors">
+      <span class="h4">
+        {{error}}
+      </span>
+    </div>
+  </div>
+</div>
+
 <div class="container">
   <p class="lead">
     Welcome, Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -15,7 +27,7 @@
   </h1>
   <div class="row">
     <div class="pull-right">
-      <a class="btn btn-success">
+      <a class="btn btn-success" ng-click="resetTokens()">
         Generate New Keys
       </a>
     </div>
@@ -28,13 +40,14 @@
         <th>Secret</th>
         <th>Created At</th>
         <th></th>
-        <!-- <th></th> -->
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="token in tokens">
+      <tr ng-repeat="token in tokens"
+        ng-class="{'text-gray-light': token.active !== true}"
+      >
         <td>
-          {{token.scope}}
+          {{token.scope.toUpperCase()}}
         </td>
         <td>
           {{token.secretKey}}
@@ -43,37 +56,10 @@
           {{token.createdAt}}
         </td>
         <td>
-          {{token.active}}
-        </td>
-      </tr>
-      <tr class='success'>
-        <td>
-          Mainnet
-        </td>
-        <td>
-          <!-- <span>
-            <em>
-              Secret key has been hidden,
-              <a href="#">click here to show.</a>
-            </em>
-          </span> -->
-          <span ng-show="true">
-            t_sk_wKS9_U8JwcbBdOQXkvmBh0QaE0k95DP5cPRmllUfXRI
+          <span class="label label-success" ng-if="token.active === true">
+            ACTIVE
           </span>
         </td>
-        <td>
-          2014-04-07 08:06:29.834-07
-        </td>
-        <td>
-          <span class="label label-success">ACTIVE</span>
-        </td>
-        <!-- <td>
-          <div ng-show="true">
-            <a class="btn btn-warning btn-tiny">
-              Deactivate
-            </a>
-          </div>
-        </td> -->
       </tr>
     </tbody>
   </table>
