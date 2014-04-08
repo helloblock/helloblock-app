@@ -55,6 +55,12 @@ hbApp.config(function($routeProvider) {
         }
       }
     })
+
+    $routeProvider.when(url + "/keys", {
+      templateUrl: "/templates/account/index.html",
+      controller: name + "/indexCtrl"
+    })
+
   })
 
   // BLOCK EXPLORER
