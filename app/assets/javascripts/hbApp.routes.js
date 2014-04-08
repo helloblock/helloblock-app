@@ -29,26 +29,27 @@ hbApp.config(function($routeProvider) {
   })
 
   // DASHBOARD
-  Utils.namespace("/dashboard", "dashboard", function(url, name) {
+  Utils.namespace("/account", "account", function(url, name) {
+    $routeProvider.when(url + "/signin", {
+      templateUrl: "/templates/account/auth.html",
+      controller: "authCtrl"
+    })
+
+    $routeProvider.when(url + "/signup", {
+      templateUrl: "/templates/account/auth.html",
+      controller: "authCtrl"
+    })
+
     $routeProvider.when(url, {
       templateUrl: "/templates/" + name + "/index.html",
       controller: name + "/indexCtrl",
       resolve: {
         verify: function(Session) {
-          return Session.validate()
+          return true;
+          // return Session.validate()
         }
       }
     })
-  })
-
-  $routeProvider.when("/signup", {
-    templateUrl: "/templates/signup.html",
-    controller: "signUpCtrl"
-  })
-
-  $routeProvider.when("/signin", {
-    templateUrl: "/templates/signin.html",
-    controller: "signInCtrl"
   })
 
   // BLOCK EXPLORER

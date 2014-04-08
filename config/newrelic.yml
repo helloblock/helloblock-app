@@ -30,7 +30,7 @@ common: &default_settings
   # Application Name Set this to be the name of your application as
   # you'd like it show up in New Relic. The service will then auto-map
   # instances of your application into an "application" on your
-  # dashboard page. If you want to map this instance into multiple
+  # account page. If you want to map this instance into multiple
   # apps, like "AJAX Requests" and "All UI" then specify a semicolon
   # separated list of up to three distinct names, or a yaml list.
   # Defaults to the capitalized RAILS_ENV or RACK_ENV (i.e.,

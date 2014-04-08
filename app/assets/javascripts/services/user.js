@@ -10,7 +10,7 @@ hbApp.factory("User", function($q, $http, $location) {
       password: password,
     }).success(function(res) {
       deferred.resolve(res);
-      $location.path("/dashboard")
+      $location.path("/account")
     }).error(function(res) {
       deferred.reject(res)
     })

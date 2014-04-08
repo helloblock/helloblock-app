@@ -1,0 +1,67 @@
+<h1 class="text-center">Sign In</h1>
+<br><br>
+<form
+  name="signUpForm"
+  class="form-horizontal"
+  ng-submit="SignIn.submit()"
+  novalidate>
+
+  <!-- Uncaught errors -->
+  <div class="row error-messages" ng-repeat="error in SignIn.errors">
+    <div class="col-sm-10 col-sm-offset-2">
+      {{error.message}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="h3 col-sm-3 big-input-label">Email:</label>
+    <div class="col-sm-7">
+      <input
+        class="h3 big-input big-input-left"
+        spellcheck="false"
+        tabindex="1"
+        type="email"
+        name="email"
+        ng-model="SignUp.email"
+        ng-minlength="4"
+        required
+      >
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="h3 col-sm-3 big-input-label">Password:</label>
+    <div class="col-sm-7">
+      <input
+        tabindex="2"
+        class="h3 big-input big-input-left"
+        name="password"
+        type="password"
+        ng-model="SignUp.password"
+        required
+        >
+    </div>
+  </div>
+  <br><br>
+  <div class="form-group">
+    <div class="col-sm-1 col-sm-offset-1">
+      <spin size="small" ng-show="SignIn.submitting"></spin>
+    </div>
+    <div class="col-md-4 col-md-offset-3">
+      <button
+        class="btn btn-success btn-lg"
+        type="submit"
+        ng-disabled="signUpForm.$invalid || SignIn.submitting"
+        >
+        <span class='h2'>
+          SIGN IN
+        </span>
+      </button>
+    </div>
+  </div>
+</form>
+<br>
+<div class="text-center">
+  <p class="lead">Don't have an account?
+    <a href="/account/signup">Sign up here.</a>
+  </p>
+</div>

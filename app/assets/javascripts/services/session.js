@@ -13,7 +13,7 @@ hbApp.factory("Session", function($q, $http, $location) {
         deferred.resolve(res);
       }).error(function(res) {
         deferred.reject(res)
-        $location.path("/signin")
+        $location.path("/account/signin")
       })
 
     return deferred.promise
@@ -27,7 +27,7 @@ hbApp.factory("Session", function($q, $http, $location) {
       password: password,
     }).success(function(res) {
       deferred.resolve(res);
-      $location.path("/dashboard")
+      $location.path("/account")
     }).error(function(res) {
       deferred.reject(res)
     })
