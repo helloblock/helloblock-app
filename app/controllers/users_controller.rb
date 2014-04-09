@@ -33,8 +33,7 @@ class UsersController < ApplicationController
   private
 
   def mirror(method, resource, opts)
-    url = "#{ENV["AUTH_HOST"]}#{resource}"
-    response = HTTParty.send(method, url, opts)
+    response = Auth.send(method, resource, opts)
 
     if response.code > 300
       render json: response, status: response.code

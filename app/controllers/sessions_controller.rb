@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
       return
     end
 
-    @response = HTTParty.post("#{ENV["AUTH_HOST"]}/users/authenticate",
+    @response = Auth.post("/users/authenticate",
       body: {
         email: params["email"],
         password: params["password"]
