@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
 
   def create
     reset_session()
-    authenticate_user!
+    authenticate
   end
 
   def destroy
@@ -12,13 +12,7 @@ class SessionsController < ApplicationController
     }, status: 200
   end
 
-  def validate
-    authenticate_user!
-  end
-
-  protected
-
-  def authenticate_user!
+  def authenticate
     if session[:uid]
       render json: {
         status: "success"

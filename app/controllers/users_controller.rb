@@ -2,68 +2,49 @@ class UsersController < ApplicationController
   def create
     reset_session()
 
-    response = HTTParty.post("#{ENV["AUTH_HOST"]}/users",
-      body: {
-        email: params["user"]["email"],
-        password: params["user"]["password"]
-      }
-    )
-
-    if response.code > 300
-      render json: response.to_hash, status: response.code
-    end
-
-    if response.code == 200
+    mirror(:post, "/users", body: {
+      email: params["user"]["email"],
+      password: params["user"]["password"]
+    }) do |response|
       session[:uid] = response["data"]["uid"]
-      render json: response.to_hash, status: response.code
     end
   end
 
   def update
-    response = HTTParty.post("#{ENV["AUTH_HOST"]}/users/password",
-      body: {
-        uid: session[:uid],
-        password: params["user"]["password"],
-        newPassword: params["user"]["newPassword"]
-      }
-    )
-
-    if response.code > 300
-      render json: response.to_hash, status: response.code
-    end
-
-    if response.code == 200
-      render json: response.to_hash, status: response.code
-    end
+    mirror(:put, "/users", body: {
+      uid: session[:uid],
+      password: params["user"]["password"],
+      newPassword: params["user"]["newPassword"]
+    })
   end
 
   def tokens
-    response = HTTParty.get("#{ENV["AUTH_HOST"]}/tokens", query: {
-      uid: session[:uid]
-    })
-
-    if response.code > 300
-      render json: response.to_hash, status: response.code
-    end
-
-    if response.code == 200
-      render json: response.to_hash, status: response.code
-    end
-
-  end
-
-  def reset_tokens
-    response = HTTParty.post("#{ENV["AUTH_HOST"]}/users/tokens/reset", body: {
+    mirror(:get, "/users/tokens", query: {
       uid: session[:uid],
-      password: params["password"]
     })
+  end
+
+  def tokens_put
+    mirror(:put, "/users/tokens", body: {
+      uid: session[:uid],
+    })
+  end
+
+  private
+
+  def mirror(method, resource, opts)
+    url = "#{ENV["AUTH_HOST"]}#{resource}"
+    response = HTTParty.send(method, url, opts)
 
     if response.code > 300
-      render json: response.to_hash, status: response.code
+      render json: response, status: response.code
     end
 
     if response.code == 200
-      render json: response.to_hash, status: response.code
+      yield response if block_given?
+      render json: response, status: response.code
     end
   end
+
+
 end

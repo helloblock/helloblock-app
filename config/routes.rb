@@ -2,12 +2,12 @@ Helloblock::Application.routes.draw do
   root to: "application#index"
 
   resources :sessions, only: [:create, :destroy]
-  post "/sessions/validate" => "sessions#validate"
+  post "/sessions/authenticate" => "sessions#authenticate"
 
-  resources :users, only: [:create]
-  post "/users/update" => "users#update"
   get "/users/tokens" => "users#tokens"
-  post "/users/tokens/reset" => "users#reset_tokens"
+  put "/users/tokens" => "users#tokens_put"
+  put "/users" => "users#update"
+  post "/users" => "users#create"
 
   post "/email" => "application#save_email"
 

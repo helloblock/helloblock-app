@@ -14,7 +14,7 @@ hbApp.controller("account/indexCtrl", function($scope, $http, $location) {
   }
 
   $scope.resetTokens = function() {
-    $http.post("/users/tokens/reset")
+    $http.put("/users/tokens")
       .success(function(data) {
         $scope.getTokens()
       })

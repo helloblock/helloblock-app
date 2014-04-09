@@ -11,11 +11,11 @@ hbApp.factory("Account", function($q, $http, $location) {
     self.errorMsg = opts.errorMsg;
   }
 
-  Account.prototype.submit = function(payload) {
+  Account.prototype.submit = function(method, payload) {
     var self = this
     self.submitting = true;
 
-    $http.post(self.endpoint, payload).success(function(res) {
+    $http[method](self.endpoint, payload).success(function(res) {
       $location.url(self.redirectTo);
 
       self.submitting = false;
@@ -26,10 +26,10 @@ hbApp.factory("Account", function($q, $http, $location) {
     })
   }
 
-  Account.validate = function() {
+  Account.authenticate = function() {
     var deferred = $q.defer();
 
-    $http.post("/sessions/validate")
+    $http.post("/sessions/authenticate")
       .success(function(res) {
         deferred.resolve(res);
       }).error(function(res) {

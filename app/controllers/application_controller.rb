@@ -17,16 +17,11 @@ class ApplicationController < ActionController::Base
   end
 
   def save_email
-    email = Email.new({
+    # Temp email store
+    Email.create({
       email: params[:email],
       ip_address: request.remote_ip
     })
-    if email.save
-
-    else
-      # TODO
-    end
-
     render nothing: true
   end
 
