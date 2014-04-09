@@ -409,7 +409,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  </h1>\n" +
     "  <div class=\"row\">\n" +
     "    <div class=\"pull-right\">\n" +
-    "      <a class=\"btn btn-success\" ng-click=\"resetTokens()\">\n" +
+    "      <a class=\"btn btn-success\" ng-click=\"resetTokens()\" ng-disabled=\"resetting\">\n" +
     "        Generate New Keys\n" +
     "      </a>\n" +
     "    </div>\n" +
