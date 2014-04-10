@@ -4392,7 +4392,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "      </td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>out: </td>\n" +
+    "      <td>outputs: </td>\n" +
     "      <td>\n" +
     "        <p><em>array</em> of Output Objects</p>\n" +
     "        <table class='table table-bordered table-condensed table-docs'>\n" +
