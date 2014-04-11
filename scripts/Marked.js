@@ -20,18 +20,6 @@ renderer.code = function(code, lang, escaped) {
 	return file
 };
 
-renderer.codespan = function(text) {
-	return '<code hljs>' + text + '</code>';
-};
-
-var Tabset = {};
-
-Tabset.replace = function(string, callback) {
-	JSDom.env(string, function(err, window) {
-		debugger
-	})
-};
-
 Marked.setOptions({
 	renderer: renderer,
 	gfm: true,
@@ -45,10 +33,24 @@ Marked.setOptions({
 	langPrefix: ""
 });
 
-var markdownFile = fs.readFileSync("tmp/style.md").toString();
+var baseDir = "public/md/";
 
-var renderedFile = Marked(markdownFile);
-Tabset.replace(renderedFile, function(err, file) {
-	fs.writeFileSync("public/templates/docs/tutorials/mark.html", file)
-	debugger
+fs.readdir(baseDir, function(err, files) {
+
+	files.forEach(function(file) {
+		console.log(file)
+		fs.readFile(baseDir + file, function(err, data) {
+
+			var renderedFile = Marked(data.toString());
+
+			var targetDest = "public/templates/docs/tutorials/" + file.split(".")[0] + ".html"
+
+			fs.writeFile(targetDest, renderedFile, function(err, data) {
+				if (err) throw err;
+				return true;
+			})
+
+		})
+	})
+
 })
