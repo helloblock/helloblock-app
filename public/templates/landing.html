@@ -1,5 +1,5 @@
 <div id="landing">
-  <div ng-show="emailSuccess()" class='alert-message'>
+  <div ng-show="User.emailSuccess" class='alert-message'>
     <div class="alert alert-success text-center">
       <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
       <span class="h4">
@@ -102,8 +102,11 @@
                 required
                 >
               <span class="input-group-btn">
-                <button class="btn btn-success btn-block btn-search">
+                <button class="btn btn-success btn-block btn-search" ng-show="!User.submitting">
                   <span class="h4">REGISTER</span>
+                </button>
+                <button class="btn btn-success btn-block btn-search" ng-show="User.submitting" ng-disabled='true'>
+                  <span class="h4">REGISTERING ...</span>
                 </button>
               </span>
           </div>

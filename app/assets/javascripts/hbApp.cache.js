@@ -4986,7 +4986,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('/templates/landing.html',
     "<div id=\"landing\">\n" +
-    "  <div ng-show=\"emailSuccess()\" class='alert-message'>\n" +
+    "  <div ng-show=\"User.emailSuccess\" class='alert-message'>\n" +
     "    <div class=\"alert alert-success text-center\">\n" +
     "      <a class=\"close\" data-dismiss=\"alert\" href=\"#\" aria-hidden=\"true\">&times;</a>\n" +
     "      <span class=\"h4\">\n" +
@@ -5089,8 +5089,11 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "                required\n" +
     "                >\n" +
     "              <span class=\"input-group-btn\">\n" +
-    "                <button class=\"btn btn-success btn-block btn-search\">\n" +
+    "                <button class=\"btn btn-success btn-block btn-search\" ng-show=\"!User.submitting\">\n" +
     "                  <span class=\"h4\">REGISTER</span>\n" +
+    "                </button>\n" +
+    "                <button class=\"btn btn-success btn-block btn-search\" ng-show=\"User.submitting\" ng-disabled='true'>\n" +
+    "                  <span class=\"h4\">REGISTERING ...</span>\n" +
     "                </button>\n" +
     "              </span>\n" +
     "          </div>\n" +
