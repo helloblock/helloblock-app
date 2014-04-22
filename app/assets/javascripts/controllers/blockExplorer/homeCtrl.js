@@ -67,7 +67,7 @@ hbApp.controller("blockExplorer/homeCtrl", function($scope, $routeParams, $rootS
     if (data.channel === "blocks") {
       var resource = data.data.block
       $scope.$apply(function() {
-        $scope.blocks.latest.unshift(data)
+        $scope.blocks.latest.unshift(resource)
 
         if ($scope.blocks.latest.length >= listLimit) {
           $scope.blocks.latest.pop();
