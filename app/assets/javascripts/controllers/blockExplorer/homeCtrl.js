@@ -33,15 +33,48 @@ hbApp.controller("blockExplorer/homeCtrl", function($scope, $routeParams, $rootS
   ws.onopen = function() {
     ws.send(JSON.stringify({
       "op": "subscribe",
-      "channel": "transaction",
-      "events": ["unconfirmed"]
+      "channel": "transactions",
+      "filters": ["unconfirmed"]
     }));
 
     ws.send(JSON.stringify({
       "op": "subscribe",
-      "channel": "block",
-      "events": ['mainchain']
+      "channel": "blocks",
+      "filters": ['latest']
     }));
+  }
+
+  ws.onmessage = function(event) {
+    if ($scope.transactions.latest.length === 0) return;
+    if ($scope.blocks.latest.length === 0) return;
+
+    var data = JSON.parse(event.data)
+
+    if (data.op !== "broadcast") return;
+
+    if (data.channel === "transactions") {
+      var resource = data.data.transaction
+
+      $scope.$apply(function() {
+        $scope.transactions.latest.unshift(resource)
+
+        if ($scope.transactions.latest.length >= listLimit) {
+          $scope.transactions.latest.pop();
+        }
+      })
+    }
+
+    if (data.channel === "blocks") {
+      var resource = data.data.block
+      $scope.$apply(function() {
+        $scope.blocks.latest.unshift(data)
+
+        if ($scope.blocks.latest.length >= listLimit) {
+          $scope.blocks.latest.pop();
+        }
+      })
+    }
+
   }
 
   HelloBlock[explorerMode].Blocks.get({
@@ -49,25 +82,6 @@ hbApp.controller("blockExplorer/homeCtrl", function($scope, $routeParams, $rootS
     limit: 20
   }, function(res) {
     $scope.blocks.latest = res.data.blocks
-
-    // Callback Level 2
-    ws.onmessage = function(event) {
-      var data = JSON.parse(event.data)
-
-      // TODO: Better sub handler
-      if (!data.prevBlockHash) {
-        return;
-      };
-
-      $scope.$apply(function() {
-        $scope.blocks.latest.unshift(data);
-
-        if ($scope.blocks.latest.length >= listLimit) {
-          $scope.blocks.latest.pop();
-        };
-      });
-    }
-
   }, function(err) {
     console.log(err)
   })
@@ -79,25 +93,6 @@ hbApp.controller("blockExplorer/homeCtrl", function($scope, $routeParams, $rootS
     inputsOutputs: false
   }, function(res) {
     $scope.transactions.latest = res.data.transactions
-
-    // Callback Level 2
-    ws.onmessage = function(event) {
-      var data = JSON.parse(event.data)
-
-      // TODO: Better sub handler
-      if (!data.txHash) {
-        return;
-      }
-
-      $scope.$apply(function() {
-        $scope.transactions.latest.unshift(data)
-
-        if ($scope.transactions.latest.length >= listLimit) {
-          $scope.transactions.latest.pop();
-        }
-      })
-    }
-
   }, function(err) {
     console.log(err)
   })
