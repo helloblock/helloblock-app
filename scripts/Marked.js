@@ -33,7 +33,7 @@ Marked.setOptions({
 	langPrefix: ""
 });
 
-var baseDir = "public/md/";
+var baseDir = "tutorials/";
 
 fs.readdir(baseDir, function(err, files) {
 
