@@ -38,7 +38,6 @@ var baseDir = "public/md/";
 fs.readdir(baseDir, function(err, files) {
 
 	files.forEach(function(file) {
-		console.log(file)
 		fs.readFile(baseDir + file, function(err, data) {
 
 			var renderedFile = Marked(data.toString());

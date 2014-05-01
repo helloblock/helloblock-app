@@ -33,6 +33,6 @@ gem 'redcarpet'
 
 gem 'github-markup'
 
-# group :production do
-#   gem 'prerender_rails'
-# end
+group :production do
+  gem 'prerender_rails'
+end

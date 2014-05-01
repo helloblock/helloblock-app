@@ -69,6 +69,8 @@ GEM
     pg (0.17.1)
     polyglot (0.3.3)
     posix-spawn (0.3.8)
+    prerender_rails (0.1.18)
+      rack
     pry (0.9.12.4)
       coderay (~> 1.0)
       method_source (~> 0.8)
@@ -163,6 +165,7 @@ DEPENDENCIES
   less-rails (~> 2.4.2)
   newrelic_rpm
   pg
+  prerender_rails
   pry-rails
   puma
   rails (= 4.0.2)
