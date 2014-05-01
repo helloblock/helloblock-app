@@ -1,0 +1,140 @@
+<h3 id="headlines">Headlines</h3>
+<p>How to create a Bitcoin Wallet</p>
+<p>How to create a Javascript Bitcoin Wallet</p>
+<p>How to create a Blockchain.info-like Bitcoin Wallet</p>
+<h3 id="resources">Resources</h3>
+<p><a href="http://bitcoinhistory.net/Technical_Papers/ProgrammingBitcoinTransactionScripts.pdf">http://bitcoinhistory.net/Technical_Papers/ProgrammingBitcoinTransactionScripts.pdf</a>
+<a href="http://www.righto.com/2014/02/bitcoins-hard-way-using-raw-bitcoin.html">http://www.righto.com/2014/02/bitcoins-hard-way-using-raw-bitcoin.html</a>
+<a href="http://bitcoin.stackexchange.com/questions/3374/how-to-redeem-a-basic-tx">http://bitcoin.stackexchange.com/questions/3374/how-to-redeem-a-basic-tx</a></p>
+<h3 id="tasks">Tasks</h3>
+<p>1.</p>
+<ul>
+<li>intial code sample</li>
+<li>Send money (create transactions)</li>
+<li>Bytes/OP Code</li>
+<li>Stack</li>
+<li>Receive money/Transaction History</li>
+<li>Different transaction types, multisig, p2sh</li>
+<li>Testing, mocha, Faucet</li>
+<li>JSON View</li>
+</ul>
+<p>2.</p>
+<ul>
+<li>Creating/Manage addresses</li>
+<li>Key generation vulnerabilities</li>
+<li>HD Wallet</li>
+<li>Other options, seeds, p2sh, secret sharing</li>
+</ul>
+<p>require &#39;bitcoinjs-lib&#39;, &#39;0.2.0&#39; here
+require &#39;helloblock-js&#39;</p>
+<p>images
+seeing the script being executed on the stack was helpful</p>
+<p>/decode endpoint
+/propagate clean up?</p>
+<h3 id="transaction-building-painpoints">Transaction building painpoints</h3>
+<p>Do you have to spend bitcoin everytime? No! testnet.
+LE/BE
+scriptSig vs scriptPubKey
+What does OP_DUP mean? How is that executed on the stack?
+What&#39;s an unspent? UTXO
+What is serializing? Why hex? Take binary?
+What is signing, what are we signing? Why do we script?
+hashTransactionForSignature
+hash types</p>
+<h1 id="how-to-build-a-wallet-part-1-of-2-">How to build a wallet (Part 1 of 2)</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Let&#39;s make a javascript client side Bitcoin Wallet. You may have seen some of these around.</p>
+<ul>
+<li>Blockchain.info</li>
+<li>Carbon Wallet</li>
+<li>Sparecoins</li>
+</ul>
+<p>Client side wallets are important because it allows users to be in control of their money.</p>
+<p>We get to the nitty gritty of how this works, right down to the raw bytes. But firstly, let&#39;s take a high level approach.</p>
+<p>A Wallet is just a collection of Bitcoin addresses</p>
+<p>To make a functional wallet, we need to</p>
+<ul>
+<li>Send/Receive Bitcoins (Part 1)</li>
+<li>Manage the private keys and addresses (Part 2)</li>
+</ul>
+<p>We&#39;re using bitcoinjs-lib for this tutorial. You can open Chrome console (Apple + Option + J) and follow on.</p>
+<h2 id="the-easy-way">The Easy Way</h2>
+<p>One of the most difficult things to initially grasp is how to build transactions in Bitcoin. Luckily for us, bitcoinjs-lib provides a simple Wallet class to manage building transactions. You don&#39;t really need to understand how Bitcoin transactions are constructed to make it work.</p>
+<p>Here&#39;s some executable code (e.g you can run it in the browser)</p>
+<pre>
+  <code class="javascript" hljs>
+
+
+  </code>
+</pre>
+<h2 id="the-hard-way">The Hard Way</h2>
+<p>But because Bitcoin as a Protocol hasn&#39;t fully been explorered yet, let&#39;s going into how this all actually works.</p>
+<p>Again, here&#39;s the initial working code.</p>
+<p>What is happening here? What are the things we need to</p>
+<p>Transaction Checklist</p>
+<ul>
+<li>have the private keys</li>
+<li>get unspent outputs</li>
+<li>set the value, amount + fee</li>
+<li>add all the inputs, which are unspent outputs</li>
+<li>add all outputs<ul>
+<li>determine change amount/address</li>
+</ul>
+</li>
+<li>sign the whole transaction for each input<ul>
+<li>hash transaction for signature</li>
+<li>sign the hash with ecdsa signing</li>
+<li>add hash type to the end of signature</li>
+<li>include signature for input</li>
+<li>repeat for all inputs</li>
+</ul>
+</li>
+<li>serialize the entire transaction into hex</li>
+<li>propagate the hex</li>
+</ul>
+<h3 id="what-is-a-transaction-">What is a transaction?</h3>
+<p>First we need to understand what is a transaction?</p>
+<p>A good way to understand is to look at how the historical General Law system worked.</p>
+<p>Pre 1800s, there was no central registry for Property (land) as there is today (ORG).</p>
+<p>Title was proved based on a chain of previous titles, originating back to the Crown.</p>
+<p>Unfortunately this model did not work very well because X</p>
+<p>This is referred to as the Byzantine General&#39;s problem in Computer Science, which was a solved by Satoshi Nakamoto in his proof-of-work concept.</p>
+<p>Traditionally, from account A to account B with value.</p>
+<p>With Bitcoin, it&#39;s about from input A to new output.</p>
+<p>Similarly, it could be multiples inputs to multiple outputs</p>
+<p>Thinking of this a property being passed from one address to another</p>
+<h3 id="raw-bytes-map">Raw Bytes Map</h3>
+<p>// show where you are in raw byte map below</p>
+<h3 id="private-keys-and-fees">Private Keys and fees</h3>
+<p>ECDSA, elliptic curve</p>
+<h3 id="unspents-utxo">Unspents/UTXO</h3>
+<p>Once a previous input has been &#39;spent&#39;, and becomes a new output, then that previous input can no longer be used again.</p>
+<p>Previous inputs that have not been spent are referred to as &quot;Unspent Outputs&quot; or &quot;UTXO&quot; for short.</p>
+<p>This is important because our Wallet can only use Unspent Outputs to build and propagate new transactions.</p>
+<p>The value of all the Unspents Outputs is also the balance for an address.</p>
+<h3 id="fees">Fees</h3>
+<p>Can only spend the entire previous output</p>
+<p>Fee is total input value - total output value</p>
+<h3 id="add-all-inputs-outputs">Add all inputs/outputs</h3>
+<h3 id="script">Script</h3>
+<p>You may have seen something like this</p>
+<pre>
+  <code class="" hljs>
+OP_DUP OP_HASH160 e06c30499eec71471ba28f4d684c8e1e515f7462 OP_EQUALVERIFY OP_CHECKSIG
+  </code>
+</pre>
+<p>This is a Bitcoin Script, the underlying executables that are evaluated everything a transaction is propagated.</p>
+<p>Bitcoin nodes around the world check/run this script</p>
+<p>You could put lots of things in here, but for now, let&#39;s just stick to the standard script as above.</p>
+<h3 id="scriptsig-and-scriptpubkey">scriptSig and scriptPubKey</h3>
+<h3 id="signing">Signing</h3>
+<h3 id="serialize-propagate">Serialize/propagate</h3>
+<p>Convert to hex, big endian, little endian
+bitcoinjs-lib will handle this for you</p>
+<p>You may wish to do this via bitcoind</p>
+<p>/decode
+/propagate</p>
+<p>Propagate through the HelloBlock API.</p>
+<h2 id="convenience-methods">Convenience Methods</h2>
+<p>A Wallet is a collection of addresses and often times, you will need to display the total balance for all addresses and propagate transactions using unspent outputs from multiple addresses.</p>
+<p>/wallet</p>
