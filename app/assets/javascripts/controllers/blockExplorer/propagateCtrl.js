@@ -69,24 +69,19 @@ hbApp.controller("blockExplorer/propagateCtrl", function($scope, HelloBlock, $ro
 
   $scope.alertsArray = []
 
+  $scope.close = function() {
+    $scope.alertsArray = []
+  }
+
   var Alerts = {
     addDanger: function(message, fade) {
-      if (fade === undefined) {
-        fade = true
-      }
-
       $scope.alertsArray.unshift({
         css: "alert-danger alert-danger-light",
-        fade: fade,
+        fade: fade || true,
         message: message
       })
-      console.log($scope.alertsArray[0])
     },
     addSuccess: function(message, fade) {
-      if (fade === undefined) {
-        fade = true
-      }
-
       $scope.alertsArray.unshift({
         css: "alert-success",
         fade: fade || true,

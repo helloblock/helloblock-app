@@ -1283,12 +1283,11 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<div class=\"transaction-decoded\">\n" +
     "  <div class=\"container\">\n" +
     "    <span ng-repeat=\"alert in alertsArray\">\n" +
-    "      <div class=\"alert {{alert.css}} text-center\" fade-timeout='{{alert.fade}}'>\n" +
-    "        <a class=\"close\" data-dismiss=\"alert\" href=\"#\" aria-hidden=\"true\">&times;</a>\n" +
+    "      <alert type=\"\" close=\"close()\" class=\"{{alert.css}} text-center\">\n" +
     "        <span class=\"h4\">\n" +
     "          {{alert.message}}\n" +
     "        </span>\n" +
-    "      </div>\n" +
+    "      </alert>\n" +
     "    </span>\n" +
     "  </div>\n" +
     "  <waitspin left=\"620%\" ng-if=\"sending\"></waitspin>\n" +

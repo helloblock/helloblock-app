@@ -78,4 +78,15 @@ Helloblock::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.middleware.use Rack::Prerender, prerender_token: ENV["PRERENDER_TOKEN"]
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :authentication => :plain,
+    :address => "smtp.mandrillapp.com",
+    :port => 587,
+    :domain => "thenoteblock.com",
+    :user_name => ENV["MANDRILL_USERNAME"],
+    :password => ENV["MANDRILL_PASSWORD"]
+  }
+
 end
