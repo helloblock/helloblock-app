@@ -1,8 +1,11 @@
 class SignupMailer < ActionMailer::Base
-  default from: "signup@helloblock.io"
+  default(
+    to: ["scott@helloblock.io", "sidney@helloblock.io"],
+    from: "signup@helloblock.io"
+  )
 
   def notify(email)
      @email = email
-     mail(to: "scott@helloblock.io", subject: 'Sign Up')
+     mail(subject: 'Sign Up')
    end
 end
