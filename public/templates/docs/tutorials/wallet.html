@@ -177,6 +177,7 @@ of its predecessing transaction (scriptPubKey) validates to true.</p>
   scriptSig + scriptPubKey === true
   </code>
 </pre>
+<p>You can see these components individually in the bytemap above.</p>
 <p>In standard transactions, the <code>scriptSig</code> component looks like <code>&lt;signature&gt; &lt;pubkey&gt;</code></p>
 <p>the <code>scriptPubKey</code> component then looks like <code>OP_DUP OP_HASH160 &lt;pubkeyhash&gt; OP_EQUALVERIFY OP_CHECKSIG</code></p>
 <p>Put together, the following expression must evaluate to true for valid transactions,</p>
@@ -197,8 +198,10 @@ of its predecessing transaction (scriptPubKey) validates to true.</p>
 <h3 id="signing">Signing</h3>
 <p>To prove that you control a particular address you will have to sign the transaction. You sign over the whole transaction so evesdroppers can&#39;t simply just substitute the output address to myself and steal all your money. This would invalidate the original signature.</p>
 <p>See <a href="">this video</a> if you would like a primer on how digital signatures work.</p>
-<p>Different types of signing</p>
+<p>Signing Bitcoin transactions can be a difficult process and very error-prone. A common gotcha is</p>
 <p>Append 01</p>
+<p>Different types of signing</p>
+<p>We will cover differetn signature types in another tutorial.</p>
 <h3 id="serialize-propagate">Serialize/propagate</h3>
 <p>Convert to hex, big endian, little endian
 bitcoinjs-lib will handle this for you</p>

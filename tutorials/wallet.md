@@ -232,9 +232,14 @@ To prove that you control a particular address you will have to sign the transac
 
 See [this video]() if you would like a primer on how digital signatures work.
 
-Different types of signing
+Signing Bitcoin transactions can be a difficult process and very error-prone. A common gotcha is
+
 
 Append 01
+
+Different types of signing
+
+We will cover differetn signature types in another tutorial.
 
 ### Serialize/propagate
 
