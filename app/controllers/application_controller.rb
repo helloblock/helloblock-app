@@ -22,6 +22,8 @@ class ApplicationController < ActionController::Base
       email: params[:email],
       ip_address: request.remote_ip
     })
+
+    SignupMailer.notify(params[:email]).deliver
     render nothing: true
   end
 
