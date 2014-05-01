@@ -72,7 +72,9 @@ A Wallet is just a collection of Bitcoin addresses. To make a functional wallet,
 
 We're using [bitcoinjs-lib]() for this tutorial. The library is included on the this, so you can open Chrome console (Apple + Option + J) and follow on.
 
-## Building Transactions - The Easy Way
+We also recommend [JSON View]() which beautifies JSON data inside your browser.
+
+## Creating Transactions - The Easy Way
 
 One of the most difficult things to initially grasp is how to build transactions in Bitcoin. Luckily for us, bitcoinjs-lib provides a convenience methods to build transactions. You don't need to fully understand how Bitcoin transactions to get them working.
 
@@ -82,7 +84,7 @@ Here's some executable code (e.g you can run it in the browser)
 
 ```
 
-## Building Transactions - The Hard Way
+## Creating Transactions - The Hard Way
 
 Whilst it's useful to get a high level overview, it's important to know the nitty gritty details of how transactions work, especially for Bitcoin. This is because the ecosystem is still primitive, things break all the time and we need to know how to debug.
 
@@ -95,7 +97,7 @@ Here's the detailed code, it will perform the same function as above, but using 
 We will walk through step by step how this works. Here's a useful checklist
 
  - Ensure you have the private keys.
- - Get unspent outputs (UTXO) for the keys
+ - Get unspent outputs (UTXO) for addresses you want to send money from.
  - Determine the right transaction value (amount + fee)
  - Add all necessary inputs (UTXO)
  - All all desired outputs
@@ -115,73 +117,124 @@ A transaction is a transfer of value one set of inputs to a new set of outputs.
 
 Let's look at the raw bytes.
 
-```bash
+```javascript
   curl https://testnet.helloblock.io/q/getrawtransaction?txHashes=c772d1b8efd97e78aa882b4bfa04bb17a67fca62436010516472367aeb2b28ac
+
+  {
+    "status": "success",
+    "data": {
+      "transactions": [
+        {
+          "txHash": "c772d1b8efd97e78aa882b4bfa04bb17a67fca62436010516472367aeb2b28ac",
+          "rawTxHex": "0100000001cf6b23baf0ebb8a09559f761144ab4407b5dce75a9484ed07a6da41f7f0218e9010000008a4730440220372be617d9d276340846265ddc7ba9dabbe78e97fac97091f7e2cb19ec2929ae02203be15a0a3929b2353ebb81f5d67b20ab3b1e427f124855a2309649858eaa4b340141040cfa3dfb357bdff37c8748c7771e173453da5d7caa32972ab2f5c888fff5bbaeb5fc812b473bf808206930fade81ef4e373e60039886b51022ce68902d96ef70ffffffff0240420f00000000001976a914a5319d469e1ddd9558bd558a50e95f74b3da58c988ac78c4f81e010000001976a91461b469ada61f37c620010912a9d5d56646015f1688ac00000000"
+        }
+      ]
+    }
+  }
 ```
-
-| Field | Bytes    | Type  | Value|
-| ------- | -------- |
-| Version   | 01 00 00 00 |
-| Input Count | 01 |
-| Previous Output Hash | cf 6b 23 ba f0 eb b8 a0 95 59 f7 61 14 4a b4 40 7b 5d ce 75 a9 48 4e d0 7a 6d a4 1f 7f 02 18 e9
-| Index | 01 00 00 00 |
-| Script Length | 8a |
-| scriptSig | 47 30 44 02 20 37 2b e6 17 d9 d2 76 34 08 46 26 5d dc 7b a9 da bb e7 8e 97 fa c9 70 91 f7 e2 cb 19 ec 29 29 ae 02 20 3b e1 5a 0a 39 29 b2 35 3e bb 81 f5 d6 7b 20 ab 3b 1e 42 7f 12 48 55 a2 30 96 49 85 8e aa 4b 34 01 41 04 0c fa 3d fb 35 7b df f3 7c 87 48 c7 77 1e 17 34 53 da 5d 7c aa 32 97 2a b2 f5 c8 88 ff f5 bb ae b5 fc 81 2b 47 3b f8 08 20 69 30 fa de 81 ef 4e 37 3e 60 03 98 86 b5 10 22 ce 68 90 2d 96 ef 70 |
-| Sequence | ff ff ff ff |
-| Outputs Count | 02 |
-| Value | 40 42 0f 00 00 00 00 00 |
-| Script Length | 19 |
-| Script Pubkey | 76 a9 14 a5 31 9d 46 9e 1d dd 95 58 bd 55 8a 50 e9 5f 74 b3 da 58 c9 88 ac |
-| Value | 78 c4 f8 1e 01 00 00 00 |
-| Script Length | 19 |
-| Script Pubkey | 76 a9 14 61 b4 69 ad a6 1f 37 c6 20 01 09 12 a9 d5 d5 66 46 01 5f 16 88 ac |
-| Block Time | 00 00 00 00 |
-
-
-
 
 ### Private Keys and fees
 
 ECDSA, elliptic curve
+```javascript
+  var privateKey = '1asdf'
+  var key = bitcoin.ECKey.fromWif(privateKey)
+```
+
 
 ### Unspents/UTXO
 
-Once a previous input has been 'spent', and becomes a new output, then that previous input can no longer be used again.
+To build a new valid transaction, we must find previous outputs belonging to an address that have not already been spent. These are referred to as "Unspent Outputs" or "UTXO" for short.
 
-Previous inputs that have not been spent are referred to as "Unspent Outputs" or "UTXO" for short.
+Our Wallet can only use "Unspent Outputs" for the addresses it owns.
 
-This is important because our Wallet can only use Unspent Outputs to build and propagate new transactions.
+Our Wallet balance is also the value of all the Unspents Outputs.
 
-The value of all the Unspents Outputs is also the balance for an address.
+```javascript
+  helloblock.addresses.getUnspents()
+```
 
-### Fees
+There are 3 important fields we need to get (seen in the byte map above) and add to the pending transaction.
+ - Previous Transaction Hash
+ - Previous Transaction Output Index
+ - Previous Transaction Output Script Pubkey
 
-Can only spend the entire previous output
+### Amount/Fees
 
-Fee is total input value - total output value
+You may only spend the entire previous transaction output.
 
-10000 satoshis per 1000 bytes
+For example, if the UTXO was 10 BTC, you can't simply send a portion of it such as 3 BTC. To spent 3 BTC, you must create 2 outputs
+
+ 1. 3 BTC to recipient
+ 2. 7 BTC back to yourself
+
+To prevent Blockchain spam and DDOS attacks, every Bitcoin transaction must contain a fee. If it does not contain a fee, it is not likely to be accepted into the Blockchain by miners. The average fee is 10000 satoshis, or 0.0001 BTC, per 1000 bytes. Our transaction here is only 257 bytes. If we chooose to add more inputs/outputs, this will increase and we may need to increase the fee.
+
+The fee is the "Total input value" - "Total output value" of a transaction. For example, if you create 2 outputs such that
+
+1. 3 BTC is sent to the recipient
+2. 6.999 BTC is sent back to yourself
+
+0.0001 BTC will be regarded as the fee.
+
+If you forget to send 7 BTC back to yourself in the above example, the 'missing' 7 BTC will go to Bitcoin miners as a fee.
 
 ### Add all inputs/outputs
 
-### Script
-
-You may have seen something like this
+We can use bitcoinjs-lib to add all the inputs and outputs
 
 ```javascript
-  OP_DUP OP_HASH160 e06c30499eec71471ba28f4d684c8e1e515f7462 OP_EQUALVERIFY OP_CHECKSIG
+
 ```
 
-This is a Bitcoin Script, the underlying executables that are evaluated everything a transaction is propagated.
+Note that we don't include the input script for now because that requries a signature that we add later (see below).
 
-Bitcoin nodes around the world check/run this script
+### Script
 
-You could put lots of things in here, but for now, let's just stick to the standard script as above.
 
-** scriptSig and scriptPubKey **
+> Bitcoin uses a scripting system for transactions. Forth-like, Script is simple, stack-based, and processed from left to right. It is purposefully not Turing-complete, with no loops.
 
+A new transaction is valid if the transaction scripts of its input field (scriptSig) and the transaction script
+of its predecessing transaction (scriptPubKey) validates to true.
+
+In other words, we check if
+```javascript
+  scriptSig + scriptPubKey === true
+```
+
+You can see these components individually in the bytemap above.
+
+In standard transactions, the ```scriptSig``` component looks like ```<signature> <pubkey>```
+
+the ```scriptPubKey``` component then looks like ```OP_DUP OP_HASH160 <pubkeyhash> OP_EQUALVERIFY OP_CHECKSIG```
+
+Put together, the following expression must evaluate to true for valid transactions,
+
+```bash
+  &lt;signature&gt; &lt;pubkey&gt; OP_DUP OP_HASH160 &lt;pubkeyhash&gt; OP_EQUALVERIFY OP_CHECKSIG
+```
+
+Now the whole thing with actual data,
+
+```javascript
+  30440220372be617d9d276340846265ddc7ba9dabbe78e97fac97091f7e2cb19ec2929ae02203be15a0a3929b2353ebb81f5d67b20ab3b1e427f124855a2309649858eaa4b3401 040cfa3dfb357bdff37c8748c7771e173453da5d7caa32972ab2f5c888fff5bbaeb5fc812b473bf808206930fade81ef4e373e60039886b51022ce68902d96ef70 OP_DUP OP_HASH160 e06c30499eec71471ba28f4d684c8e1e515f7462 OP_EQUALVERIFY OP_CHECKSIG
+```
+
+Bitcoin nodes in the network run the script when they hear about a transaction.
+
+There are many possibilities in what this scripting language offers (e.g. Multi-signature transactions) but this will be explored in another tutorial.
+
+How this expression is evaluated is also beyond the scope of this tutorial. You may wish to read [this guide]() to get a better sense of how this works.
 
 ### Signing
+
+To prove that you control a particular address you will have to sign the transaction. You sign over the whole transaction so evesdroppers can't simply just substitute the output address to myself and steal all your money. This would invalidate the original signature.
+
+See [this video]() if you would like a primer on how digital signatures work.
+
+Different types of signing
+
+Append 01
 
 ### Serialize/propagate
 
@@ -196,7 +249,9 @@ You may wish to do this via bitcoind
 Propagate through the HelloBlock API.
 
 
-## Convenience Methods
+## HelloBlock API
+
+/testnet; faucet
 
 A Wallet is a collection of addresses and often times, you will need to display the total balance for all addresses and propagate transactions using unspent outputs from multiple addresses.
 

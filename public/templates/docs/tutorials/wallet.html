@@ -58,7 +58,8 @@ hash types</p>
 <li>Manage the private keys and addresses (Part 2)</li>
 </ul>
 <p>We&#39;re using <a href="">bitcoinjs-lib</a> for this tutorial. The library is included on the this, so you can open Chrome console (Apple + Option + J) and follow on.</p>
-<h2 id="building-transactions-the-easy-way">Building Transactions - The Easy Way</h2>
+<p>We also recommend <a href="">JSON View</a> which beautifies JSON data inside your browser.</p>
+<h2 id="creating-transactions-the-easy-way">Creating Transactions - The Easy Way</h2>
 <p>One of the most difficult things to initially grasp is how to build transactions in Bitcoin. Luckily for us, bitcoinjs-lib provides a convenience methods to build transactions. You don&#39;t need to fully understand how Bitcoin transactions to get them working.</p>
 <p>Here&#39;s some executable code (e.g you can run it in the browser)</p>
 <pre>
@@ -67,7 +68,7 @@ hash types</p>
 
   </code>
 </pre>
-<h2 id="building-transactions-the-hard-way">Building Transactions - The Hard Way</h2>
+<h2 id="creating-transactions-the-hard-way">Creating Transactions - The Hard Way</h2>
 <p>Whilst it&#39;s useful to get a high level overview, it&#39;s important to know the nitty gritty details of how transactions work, especially for Bitcoin. This is because the ecosystem is still primitive, things break all the time and we need to know how to debug.</p>
 <p>Here&#39;s the detailed code, it will perform the same function as above, but using lower level functions.</p>
 <pre>
@@ -79,7 +80,7 @@ hash types</p>
 <p>We will walk through step by step how this works. Here&#39;s a useful checklist</p>
 <ul>
 <li>Ensure you have the private keys.</li>
-<li>Get unspent outputs (UTXO) for the keys</li>
+<li>Get unspent outputs (UTXO) for addresses you want to send money from.</li>
 <li>Determine the right transaction value (amount + fee)</li>
 <li>Add all necessary inputs (UTXO)</li>
 <li>All all desired outputs<ul>
@@ -101,108 +102,103 @@ hash types</p>
 <p>A transaction is a transfer of value one set of inputs to a new set of outputs.</p>
 <p>Let&#39;s look at the raw bytes.</p>
 <pre>
-  <code class="bash" hljs>
+  <code class="javascript" hljs>
   curl https://testnet.helloblock.io/q/getrawtransaction?txHashes=c772d1b8efd97e78aa882b4bfa04bb17a67fca62436010516472367aeb2b28ac
+
+  {
+    "status": "success",
+    "data": {
+      "transactions": [
+        {
+          "txHash": "c772d1b8efd97e78aa882b4bfa04bb17a67fca62436010516472367aeb2b28ac",
+          "rawTxHex": "0100000001cf6b23baf0ebb8a09559f761144ab4407b5dce75a9484ed07a6da41f7f0218e9010000008a4730440220372be617d9d276340846265ddc7ba9dabbe78e97fac97091f7e2cb19ec2929ae02203be15a0a3929b2353ebb81f5d67b20ab3b1e427f124855a2309649858eaa4b340141040cfa3dfb357bdff37c8748c7771e173453da5d7caa32972ab2f5c888fff5bbaeb5fc812b473bf808206930fade81ef4e373e60039886b51022ce68902d96ef70ffffffff0240420f00000000001976a914a5319d469e1ddd9558bd558a50e95f74b3da58c988ac78c4f81e010000001976a91461b469ada61f37c620010912a9d5d56646015f1688ac00000000"
+        }
+      ]
+    }
+  }
   </code>
 </pre>
-<table class='table table-bordered'>
-  <thead>
-    <tr>
-<th>Field</th>
-<th>Bytes</th>
-<th>Type</th>
-<th>Value</th>
-</tr>
-
-  </thead>
-  <tbody>
-    <tr>
-<td>Version</td>
-<td>01 00 00 00</td>
-</tr>
-<tr>
-<td>Input Count</td>
-<td>01</td>
-</tr>
-<tr>
-<td>Previous Output Hash</td>
-<td>cf 6b 23 ba f0 eb b8 a0 95 59 f7 61 14 4a b4 40 7b 5d ce 75 a9 48 4e d0 7a 6d a4 1f 7f 02 18 e9</td>
-</tr>
-<tr>
-<td>Index</td>
-<td>01 00 00 00</td>
-</tr>
-<tr>
-<td>Script Length</td>
-<td>8a</td>
-</tr>
-<tr>
-<td>scriptSig</td>
-<td>47 30 44 02 20 37 2b e6 17 d9 d2 76 34 08 46 26 5d dc 7b a9 da bb e7 8e 97 fa c9 70 91 f7 e2 cb 19 ec 29 29 ae 02 20 3b e1 5a 0a 39 29 b2 35 3e bb 81 f5 d6 7b 20 ab 3b 1e 42 7f 12 48 55 a2 30 96 49 85 8e aa 4b 34 01 41 04 0c fa 3d fb 35 7b df f3 7c 87 48 c7 77 1e 17 34 53 da 5d 7c aa 32 97 2a b2 f5 c8 88 ff f5 bb ae b5 fc 81 2b 47 3b f8 08 20 69 30 fa de 81 ef 4e 37 3e 60 03 98 86 b5 10 22 ce 68 90 2d 96 ef 70</td>
-</tr>
-<tr>
-<td>Sequence</td>
-<td>ff ff ff ff</td>
-</tr>
-<tr>
-<td>Outputs Count</td>
-<td>02</td>
-</tr>
-<tr>
-<td>Value</td>
-<td>40 42 0f 00 00 00 00 00</td>
-</tr>
-<tr>
-<td>Script Length</td>
-<td>19</td>
-</tr>
-<tr>
-<td>Script Pubkey</td>
-<td>76 a9 14 a5 31 9d 46 9e 1d dd 95 58 bd 55 8a 50 e9 5f 74 b3 da 58 c9 88 ac</td>
-</tr>
-<tr>
-<td>Value</td>
-<td>78 c4 f8 1e 01 00 00 00</td>
-</tr>
-<tr>
-<td>Script Length</td>
-<td>19</td>
-</tr>
-<tr>
-<td>Script Pubkey</td>
-<td>76 a9 14 61 b4 69 ad a6 1f 37 c6 20 01 09 12 a9 d5 d5 66 46 01 5f 16 88 ac</td>
-</tr>
-<tr>
-<td>Block Time</td>
-<td>00 00 00 00</td>
-</tr>
-
-  </tbody>
-</table>
 <h3 id="private-keys-and-fees">Private Keys and fees</h3>
 <p>ECDSA, elliptic curve</p>
-<h3 id="unspents-utxo">Unspents/UTXO</h3>
-<p>Once a previous input has been &#39;spent&#39;, and becomes a new output, then that previous input can no longer be used again.</p>
-<p>Previous inputs that have not been spent are referred to as &quot;Unspent Outputs&quot; or &quot;UTXO&quot; for short.</p>
-<p>This is important because our Wallet can only use Unspent Outputs to build and propagate new transactions.</p>
-<p>The value of all the Unspents Outputs is also the balance for an address.</p>
-<h3 id="fees">Fees</h3>
-<p>Can only spend the entire previous output</p>
-<p>Fee is total input value - total output value</p>
-<p>10000 satoshis per 1000 bytes</p>
-<h3 id="add-all-inputs-outputs">Add all inputs/outputs</h3>
-<h3 id="script">Script</h3>
-<p>You may have seen something like this</p>
 <pre>
   <code class="javascript" hljs>
-  OP_DUP OP_HASH160 e06c30499eec71471ba28f4d684c8e1e515f7462 OP_EQUALVERIFY OP_CHECKSIG
+  var privateKey = '1asdf'
+  var key = bitcoin.ECKey.fromWif(privateKey)
   </code>
 </pre>
-<p>This is a Bitcoin Script, the underlying executables that are evaluated everything a transaction is propagated.</p>
-<p>Bitcoin nodes around the world check/run this script</p>
-<p>You could put lots of things in here, but for now, let&#39;s just stick to the standard script as above.</p>
-<p><strong> scriptSig and scriptPubKey </strong></p>
+<h3 id="unspents-utxo">Unspents/UTXO</h3>
+<p>To build a new valid transaction, we must find previous outputs belonging to an address that have not already been spent. These are referred to as &quot;Unspent Outputs&quot; or &quot;UTXO&quot; for short.</p>
+<p>Our Wallet can only use &quot;Unspent Outputs&quot; for the addresses it owns.</p>
+<p>Our Wallet balance is also the value of all the Unspents Outputs.</p>
+<pre>
+  <code class="javascript" hljs>
+  helloblock.addresses.getUnspents()
+  </code>
+</pre>
+<p>There are 3 important fields we need to get (seen in the byte map above) and add to the pending transaction.</p>
+<ul>
+<li>Previous Transaction Hash</li>
+<li>Previous Transaction Output Index</li>
+<li>Previous Transaction Output Script Pubkey</li>
+</ul>
+<h3 id="amount-fees">Amount/Fees</h3>
+<p>You may only spend the entire previous transaction output.</p>
+<p>For example, if the UTXO was 10 BTC, you can&#39;t simply send a portion of it such as 3 BTC. To spent 3 BTC, you must create 2 outputs</p>
+<ol>
+<li>3 BTC to recipient</li>
+<li>7 BTC back to yourself</li>
+</ol>
+<p>To prevent Blockchain spam and DDOS attacks, every Bitcoin transaction must contain a fee. If it does not contain a fee, it is not likely to be accepted into the Blockchain by miners. The average fee is 10000 satoshis, or 0.0001 BTC, per 1000 bytes. Our transaction here is only 257 bytes. If we chooose to add more inputs/outputs, this will increase and we may need to increase the fee.</p>
+<p>The fee is the &quot;Total input value&quot; - &quot;Total output value&quot; of a transaction. For example, if you create 2 outputs such that</p>
+<ol>
+<li>3 BTC is sent to the recipient</li>
+<li>6.999 BTC is sent back to yourself</li>
+</ol>
+<p>0.0001 BTC will be regarded as the fee.</p>
+<p>If you forget to send 7 BTC back to yourself in the above example, the &#39;missing&#39; 7 BTC will go to Bitcoin miners as a fee.</p>
+<h3 id="add-all-inputs-outputs">Add all inputs/outputs</h3>
+<p>We can use bitcoinjs-lib to add all the inputs and outputs</p>
+<pre>
+  <code class="javascript" hljs>
+
+
+  </code>
+</pre>
+<p>Note that we don&#39;t include the input script for now because that requries a signature that we add later (see below).</p>
+<h3 id="script">Script</h3>
+<blockquote>
+<p>Bitcoin uses a scripting system for transactions. Forth-like, Script is simple, stack-based, and processed from left to right. It is purposefully not Turing-complete, with no loops.</p>
+</blockquote>
+<p>A new transaction is valid if the transaction scripts of its input field (scriptSig) and the transaction script
+of its predecessing transaction (scriptPubKey) validates to true.</p>
+<p>In other words, we check if</p>
+<pre>
+  <code class="javascript" hljs>
+  scriptSig + scriptPubKey === true
+  </code>
+</pre>
+<p>In standard transactions, the <code>scriptSig</code> component looks like <code>&lt;signature&gt; &lt;pubkey&gt;</code></p>
+<p>the <code>scriptPubKey</code> component then looks like <code>OP_DUP OP_HASH160 &lt;pubkeyhash&gt; OP_EQUALVERIFY OP_CHECKSIG</code></p>
+<p>Put together, the following expression must evaluate to true for valid transactions,</p>
+<pre>
+  <code class="bash" hljs>
+  &lt;signature&gt; &lt;pubkey&gt; OP_DUP OP_HASH160 &lt;pubkeyhash&gt; OP_EQUALVERIFY OP_CHECKSIG
+  </code>
+</pre>
+<p>Now the whole thing with actual data,</p>
+<pre>
+  <code class="javascript" hljs>
+  30440220372be617d9d276340846265ddc7ba9dabbe78e97fac97091f7e2cb19ec2929ae02203be15a0a3929b2353ebb81f5d67b20ab3b1e427f124855a2309649858eaa4b3401 040cfa3dfb357bdff37c8748c7771e173453da5d7caa32972ab2f5c888fff5bbaeb5fc812b473bf808206930fade81ef4e373e60039886b51022ce68902d96ef70 OP_DUP OP_HASH160 e06c30499eec71471ba28f4d684c8e1e515f7462 OP_EQUALVERIFY OP_CHECKSIG
+  </code>
+</pre>
+<p>Bitcoin nodes in the network run the script when they hear about a transaction.</p>
+<p>There are many possibilities in what this scripting language offers (e.g. Multi-signature transactions) but this will be explored in another tutorial.</p>
+<p>How this expression is evaluated is also beyond the scope of this tutorial. You may wish to read <a href="">this guide</a> to get a better sense of how this works.</p>
 <h3 id="signing">Signing</h3>
+<p>To prove that you control a particular address you will have to sign the transaction. You sign over the whole transaction so evesdroppers can&#39;t simply just substitute the output address to myself and steal all your money. This would invalidate the original signature.</p>
+<p>See <a href="">this video</a> if you would like a primer on how digital signatures work.</p>
+<p>Different types of signing</p>
+<p>Append 01</p>
 <h3 id="serialize-propagate">Serialize/propagate</h3>
 <p>Convert to hex, big endian, little endian
 bitcoinjs-lib will handle this for you</p>
@@ -210,6 +206,7 @@ bitcoinjs-lib will handle this for you</p>
 <p>/decode
 /propagate</p>
 <p>Propagate through the HelloBlock API.</p>
-<h2 id="convenience-methods">Convenience Methods</h2>
+<h2 id="helloblock-api">HelloBlock API</h2>
+<p>/testnet; faucet</p>
 <p>A Wallet is a collection of addresses and often times, you will need to display the total balance for all addresses and propagate transactions using unspent outputs from multiple addresses.</p>
 <p>/wallet</p>
