@@ -2,6 +2,7 @@
 <p>How to create a Bitcoin Wallet</p>
 <p>How to create a Javascript Bitcoin Wallet</p>
 <p>How to create a Blockchain.info-like Bitcoin Wallet</p>
+<p>Build your own Bitcoin Wallet</p>
 <h3 id="resources">Resources</h3>
 <p><a href="http://bitcoinhistory.net/Technical_Papers/ProgrammingBitcoinTransactionScripts.pdf">http://bitcoinhistory.net/Technical_Papers/ProgrammingBitcoinTransactionScripts.pdf</a>
 <a href="http://www.righto.com/2014/02/bitcoins-hard-way-using-raw-bitcoin.html">http://www.righto.com/2014/02/bitcoins-hard-way-using-raw-bitcoin.html</a>
@@ -29,7 +30,7 @@
 require &#39;helloblock-js&#39;</p>
 <p>images
 seeing the script being executed on the stack was helpful</p>
-<p>/decode endpoint
+<p>/decode endpoint; .toASM()
 /propagate clean up?</p>
 <h3 id="transaction-building-painpoints">Transaction building painpoints</h3>
 <p>Do you have to spend bitcoin everytime? No! testnet.
@@ -43,23 +44,22 @@ hashTransactionForSignature
 hash types</p>
 <h1 id="how-to-build-a-wallet-part-1-of-2-">How to build a wallet (Part 1 of 2)</h1>
 <h2 id="introduction">Introduction</h2>
-<p>Let&#39;s make a javascript client side Bitcoin Wallet. You may have seen some of these around.</p>
+<p>In this tutorial, we&#39;re going to make a javascript client side Bitcoin Wallet. You may have seen some of these around.</p>
 <ul>
-<li>Blockchain.info</li>
+<li><a href="https://blockchain.info/wallet">Blockchain.info</a></li>
 <li>Carbon Wallet</li>
-<li>Sparecoins</li>
+<li><a href="http://sparecoins.io">Sparecoins</a></li>
 </ul>
-<p>Client side wallets are important because it allows users to be in control of their money.</p>
+<p>Client side wallets allow users to be in control of their money.</p>
 <p>We get to the nitty gritty of how this works, right down to the raw bytes. But firstly, let&#39;s take a high level approach.</p>
-<p>A Wallet is just a collection of Bitcoin addresses</p>
-<p>To make a functional wallet, we need to</p>
+<p>A Wallet is just a collection of Bitcoin addresses. To make a functional wallet, we need to</p>
 <ul>
 <li>Send/Receive Bitcoins (Part 1)</li>
 <li>Manage the private keys and addresses (Part 2)</li>
 </ul>
-<p>We&#39;re using bitcoinjs-lib for this tutorial. You can open Chrome console (Apple + Option + J) and follow on.</p>
-<h2 id="the-easy-way">The Easy Way</h2>
-<p>One of the most difficult things to initially grasp is how to build transactions in Bitcoin. Luckily for us, bitcoinjs-lib provides a simple Wallet class to manage building transactions. You don&#39;t really need to understand how Bitcoin transactions are constructed to make it work.</p>
+<p>We&#39;re using <a href="">bitcoinjs-lib</a> for this tutorial. The library is included on the this, so you can open Chrome console (Apple + Option + J) and follow on.</p>
+<h2 id="building-transactions-the-easy-way">Building Transactions - The Easy Way</h2>
+<p>One of the most difficult things to initially grasp is how to build transactions in Bitcoin. Luckily for us, bitcoinjs-lib provides a convenience methods to build transactions. You don&#39;t need to fully understand how Bitcoin transactions to get them working.</p>
 <p>Here&#39;s some executable code (e.g you can run it in the browser)</p>
 <pre>
   <code class="javascript" hljs>
@@ -67,44 +67,118 @@ hash types</p>
 
   </code>
 </pre>
-<h2 id="the-hard-way">The Hard Way</h2>
-<p>But because Bitcoin as a Protocol hasn&#39;t fully been explorered yet, let&#39;s going into how this all actually works.</p>
-<p>Again, here&#39;s the initial working code.</p>
-<p>What is happening here? What are the things we need to</p>
-<p>Transaction Checklist</p>
+<h2 id="building-transactions-the-hard-way">Building Transactions - The Hard Way</h2>
+<p>Whilst it&#39;s useful to get a high level overview, it&#39;s important to know the nitty gritty details of how transactions work, especially for Bitcoin. This is because the ecosystem is still primitive, things break all the time and we need to know how to debug.</p>
+<p>Here&#39;s the detailed code, it will perform the same function as above, but using lower level functions.</p>
+<pre>
+  <code class="javascript" hljs>
+
+
+  </code>
+</pre>
+<p>We will walk through step by step how this works. Here&#39;s a useful checklist</p>
 <ul>
-<li>have the private keys</li>
-<li>get unspent outputs</li>
-<li>set the value, amount + fee</li>
-<li>add all the inputs, which are unspent outputs</li>
-<li>add all outputs<ul>
-<li>determine change amount/address</li>
+<li>Ensure you have the private keys.</li>
+<li>Get unspent outputs (UTXO) for the keys</li>
+<li>Determine the right transaction value (amount + fee)</li>
+<li>Add all necessary inputs (UTXO)</li>
+<li>All all desired outputs<ul>
+<li>Make sure to include a change address</li>
 </ul>
 </li>
-<li>sign the whole transaction for each input<ul>
-<li>hash transaction for signature</li>
-<li>sign the hash with ecdsa signing</li>
-<li>add hash type to the end of signature</li>
-<li>include signature for input</li>
-<li>repeat for all inputs</li>
+<li>Sign the transaction for each input<ul>
+<li>Hash the transaction</li>
+<li>Sign the hash with your private key</li>
+<li>Add the hash type to the end of signature</li>
+<li>Add the signature for the input</li>
+<li>Repeat for all inputs</li>
 </ul>
 </li>
-<li>serialize the entire transaction into hex</li>
-<li>propagate the hex</li>
+<li>Serialize the entire transaction into hexadecimal format</li>
+<li>Propagate the transaction</li>
 </ul>
 <h3 id="what-is-a-transaction-">What is a transaction?</h3>
-<p>First we need to understand what is a transaction?</p>
-<p>A good way to understand is to look at how the historical General Law system worked.</p>
-<p>Pre 1800s, there was no central registry for Property (land) as there is today (ORG).</p>
-<p>Title was proved based on a chain of previous titles, originating back to the Crown.</p>
-<p>Unfortunately this model did not work very well because X</p>
-<p>This is referred to as the Byzantine General&#39;s problem in Computer Science, which was a solved by Satoshi Nakamoto in his proof-of-work concept.</p>
-<p>Traditionally, from account A to account B with value.</p>
-<p>With Bitcoin, it&#39;s about from input A to new output.</p>
-<p>Similarly, it could be multiples inputs to multiple outputs</p>
-<p>Thinking of this a property being passed from one address to another</p>
-<h3 id="raw-bytes-map">Raw Bytes Map</h3>
-<p>// show where you are in raw byte map below</p>
+<p>A transaction is a transfer of value one set of inputs to a new set of outputs.</p>
+<p>Let&#39;s look at the raw bytes.</p>
+<pre>
+  <code class="bash" hljs>
+  curl https://testnet.helloblock.io/q/getrawtransaction?txHashes=c772d1b8efd97e78aa882b4bfa04bb17a67fca62436010516472367aeb2b28ac
+  </code>
+</pre>
+<table class='table table-bordered'>
+  <thead>
+    <tr>
+<th>Field</th>
+<th>Bytes</th>
+<th>Type</th>
+<th>Value</th>
+</tr>
+
+  </thead>
+  <tbody>
+    <tr>
+<td>Version</td>
+<td>01 00 00 00</td>
+</tr>
+<tr>
+<td>Input Count</td>
+<td>01</td>
+</tr>
+<tr>
+<td>Previous Output Hash</td>
+<td>cf 6b 23 ba f0 eb b8 a0 95 59 f7 61 14 4a b4 40 7b 5d ce 75 a9 48 4e d0 7a 6d a4 1f 7f 02 18 e9</td>
+</tr>
+<tr>
+<td>Index</td>
+<td>01 00 00 00</td>
+</tr>
+<tr>
+<td>Script Length</td>
+<td>8a</td>
+</tr>
+<tr>
+<td>scriptSig</td>
+<td>47 30 44 02 20 37 2b e6 17 d9 d2 76 34 08 46 26 5d dc 7b a9 da bb e7 8e 97 fa c9 70 91 f7 e2 cb 19 ec 29 29 ae 02 20 3b e1 5a 0a 39 29 b2 35 3e bb 81 f5 d6 7b 20 ab 3b 1e 42 7f 12 48 55 a2 30 96 49 85 8e aa 4b 34 01 41 04 0c fa 3d fb 35 7b df f3 7c 87 48 c7 77 1e 17 34 53 da 5d 7c aa 32 97 2a b2 f5 c8 88 ff f5 bb ae b5 fc 81 2b 47 3b f8 08 20 69 30 fa de 81 ef 4e 37 3e 60 03 98 86 b5 10 22 ce 68 90 2d 96 ef 70</td>
+</tr>
+<tr>
+<td>Sequence</td>
+<td>ff ff ff ff</td>
+</tr>
+<tr>
+<td>Outputs Count</td>
+<td>02</td>
+</tr>
+<tr>
+<td>Value</td>
+<td>40 42 0f 00 00 00 00 00</td>
+</tr>
+<tr>
+<td>Script Length</td>
+<td>19</td>
+</tr>
+<tr>
+<td>Script Pubkey</td>
+<td>76 a9 14 a5 31 9d 46 9e 1d dd 95 58 bd 55 8a 50 e9 5f 74 b3 da 58 c9 88 ac</td>
+</tr>
+<tr>
+<td>Value</td>
+<td>78 c4 f8 1e 01 00 00 00</td>
+</tr>
+<tr>
+<td>Script Length</td>
+<td>19</td>
+</tr>
+<tr>
+<td>Script Pubkey</td>
+<td>76 a9 14 61 b4 69 ad a6 1f 37 c6 20 01 09 12 a9 d5 d5 66 46 01 5f 16 88 ac</td>
+</tr>
+<tr>
+<td>Block Time</td>
+<td>00 00 00 00</td>
+</tr>
+
+  </tbody>
+</table>
 <h3 id="private-keys-and-fees">Private Keys and fees</h3>
 <p>ECDSA, elliptic curve</p>
 <h3 id="unspents-utxo">Unspents/UTXO</h3>
@@ -115,18 +189,19 @@ hash types</p>
 <h3 id="fees">Fees</h3>
 <p>Can only spend the entire previous output</p>
 <p>Fee is total input value - total output value</p>
+<p>10000 satoshis per 1000 bytes</p>
 <h3 id="add-all-inputs-outputs">Add all inputs/outputs</h3>
 <h3 id="script">Script</h3>
 <p>You may have seen something like this</p>
 <pre>
-  <code class="" hljs>
-OP_DUP OP_HASH160 e06c30499eec71471ba28f4d684c8e1e515f7462 OP_EQUALVERIFY OP_CHECKSIG
+  <code class="javascript" hljs>
+  OP_DUP OP_HASH160 e06c30499eec71471ba28f4d684c8e1e515f7462 OP_EQUALVERIFY OP_CHECKSIG
   </code>
 </pre>
 <p>This is a Bitcoin Script, the underlying executables that are evaluated everything a transaction is propagated.</p>
 <p>Bitcoin nodes around the world check/run this script</p>
 <p>You could put lots of things in here, but for now, let&#39;s just stick to the standard script as above.</p>
-<h3 id="scriptsig-and-scriptpubkey">scriptSig and scriptPubKey</h3>
+<p><strong> scriptSig and scriptPubKey </strong></p>
 <h3 id="signing">Signing</h3>
 <h3 id="serialize-propagate">Serialize/propagate</h3>
 <p>Convert to hex, big endian, little endian

@@ -18,6 +18,8 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 
 ### Code Samples
 
+----
+
 <tabset>
   <tab heading="ruby">
     <pre>
