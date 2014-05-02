@@ -1,81 +1,29 @@
-### Headlines
-How to create a Bitcoin Wallet
-
-How to create a Javascript Bitcoin Wallet
-
-How to create a Blockchain.info-like Bitcoin Wallet
-
-Build your own Bitcoin Wallet
-
-### Resources
-http://bitcoinhistory.net/Technical_Papers/ProgrammingBitcoinTransactionScripts.pdf
-http://www.righto.com/2014/02/bitcoins-hard-way-using-raw-bitcoin.html
-http://bitcoin.stackexchange.com/questions/3374/how-to-redeem-a-basic-tx
-
-### Tasks
-
-1.
-- intial code sample
-- Send money (create transactions)
-- Bytes/OP Code
-- Stack
-- Receive money/Transaction History
-- Different transaction types, multisig, p2sh
-- Testing, mocha, Faucet
-- JSON View
-
-2.
- - Creating/Manage addresses
- - Key generation vulnerabilities
- - HD Wallet
- - Other options, seeds, p2sh, secret sharing
-
-require 'bitcoinjs-lib', '0.2.0' here
-require 'helloblock-js'
-
-images
-seeing the script being executed on the stack was helpful
-
-/decode endpoint; .toASM()
-/propagate clean up?
-
-### Transaction building painpoints
-
-Do you have to spend bitcoin everytime? No! testnet.
-LE/BE
-scriptSig vs scriptPubKey
-What does OP_DUP mean? How is that executed on the stack?
-What's an unspent? UTXO
-What is serializing? Why hex? Take binary?
-What is signing, what are we signing? Why do we script?
-hashTransactionForSignature
-hash types
-
 # How to build a wallet (Part 1 of 2)
-
-## Introduction
+<br>
 
 In this tutorial, we're going to make a javascript client side Bitcoin Wallet. You may have seen some of these around.
 
  - [Blockchain.info](https://blockchain.info/wallet)
- - Carbon Wallet
+ - [Carbon Wallet](http://carbonwallet.com/)
  - [Sparecoins](http://sparecoins.io)
 
-Client side wallets allow users to be in control of their money.
+Client side wallets allow users to be in control of their money. Unlike Bitcoin-qt, these client side wallets also allow easy web access and don't require users to download the Blockchain as there is generally an API provider.
 
 We get to the nitty gritty of how this works, right down to the raw bytes. But firstly, let's take a high level approach.
 
 A Wallet is just a collection of Bitcoin addresses. To make a functional wallet, we need to
 
- - Send/Receive Bitcoins (Part 1)
- - Manage the private keys and addresses (Part 2)
+ - ** Create Transactions (Part 1) **
+ - ** Manage Addresses/Keys (Part 2) **
 
 We're using [bitcoinjs-lib]() for this tutorial. The library is included on the this, so you can open Chrome console (Apple + Option + J) and follow on.
 
+You can find the full repo on [github.com/helloblock/demo-wallet]()
+
 We also recommend [JSON View]() which beautifies JSON data inside your browser.
-
+<br><br>
 ## Creating Transactions - The Easy Way
-
+<br>
 One of the most difficult things to initially grasp is how to build transactions in Bitcoin. Luckily for us, bitcoinjs-lib provides a convenience methods to build transactions. You don't need to fully understand how Bitcoin transactions to get them working.
 
 Here's some executable code (e.g you can run it in the browser)
@@ -83,9 +31,9 @@ Here's some executable code (e.g you can run it in the browser)
 ```javascript
 
 ```
-
+<br><br>
 ## Creating Transactions - The Hard Way
-
+<br>
 Whilst it's useful to get a high level overview, it's important to know the nitty gritty details of how transactions work, especially for Bitcoin. This is because the ecosystem is still primitive, things break all the time and we need to know how to debug.
 
 Here's the detailed code, it will perform the same function as above, but using lower level functions.
@@ -94,24 +42,26 @@ Here's the detailed code, it will perform the same function as above, but using 
 
 ```
 
-We will walk through step by step how this works. Here's a useful checklist
+We will walk through step by step how this works. A useful checklist is to:
 
- - Ensure you have the private keys.
- - Get unspent outputs (UTXO) for addresses you want to send money from.
- - Determine the right transaction value (amount + fee)
- - Add all necessary inputs (UTXO)
- - All all desired outputs
+ 1. Ensure you have the private keys.
+ 2. Get unspent outputs (UTXO) for addresses you want to send money from.
+ 3. Determine the right transaction value (amount + fee)
+ 4. Add all necessary inputs (UTXO)
+ 5. All all desired outputs
     - Make sure to include a change address
- - Sign the transaction for each input
+ 6. Sign the transaction for each input
     - Hash the transaction
     - Sign the hash with your private key
     - Add the hash type to the end of signature
     - Add the signature for the input
     - Repeat for all inputs
- - Serialize the entire transaction into hexadecimal format
- - Propagate the transaction
+ 7. Serialize the entire transaction into hexadecimal format
+ 8. Propagate the transaction
 
+<br>
 ### What is a transaction?
+<br>
 
 A transaction is a transfer of value one set of inputs to a new set of outputs.
 
@@ -133,16 +83,19 @@ Let's look at the raw bytes.
   }
 ```
 
+** INSERT TABLE HERE **
+<br><br>
 ### Private Keys and fees
+<br>
+Managing Private Keys will be covered in the next tutorial. For now, you may use this pre-generated private key which has already been loaded with some testnet coins. Testnet is an alternative Blockchain used for testing.
 
-ECDSA, elliptic curve
 ```javascript
   var privateKey = '1asdf'
   var key = bitcoin.ECKey.fromWif(privateKey)
 ```
-
-
+<br><br>
 ### Unspents/UTXO
+<br>
 
 To build a new valid transaction, we must find previous outputs belonging to an address that have not already been spent. These are referred to as "Unspent Outputs" or "UTXO" for short.
 
@@ -150,16 +103,18 @@ Our Wallet can only use "Unspent Outputs" for the addresses it owns.
 
 Our Wallet balance is also the value of all the Unspents Outputs.
 
+There are 3 important fields we need to get (seen in the byte map above) and add to the pending transaction.
+ 1. Previous Transaction Hash
+ 2. Previous Transaction Output Index
+ 3. Previous Transaction Output Script Pubkey
+
 ```javascript
   helloblock.addresses.getUnspents()
 ```
 
-There are 3 important fields we need to get (seen in the byte map above) and add to the pending transaction.
- - Previous Transaction Hash
- - Previous Transaction Output Index
- - Previous Transaction Output Script Pubkey
-
+<br><br>
 ### Amount/Fees
+<br>
 
 You may only spend the entire previous transaction output.
 
@@ -179,7 +134,14 @@ The fee is the "Total input value" - "Total output value" of a transaction. For 
 
 If you forget to send 7 BTC back to yourself in the above example, the 'missing' 7 BTC will go to Bitcoin miners as a fee.
 
+```javascript
+  var targetvalue = 100000
+  var fee = totalInputValue - totalOutputValue;
+```
+
+<br>
 ### Add all inputs/outputs
+<br><br>
 
 We can use bitcoinjs-lib to add all the inputs and outputs
 
@@ -189,13 +151,16 @@ We can use bitcoinjs-lib to add all the inputs and outputs
 
 Note that we don't include the input script for now because that requries a signature that we add later (see below).
 
+<br><br>
 ### Script
-
+<br>
 
 > Bitcoin uses a scripting system for transactions. Forth-like, Script is simple, stack-based, and processed from left to right. It is purposefully not Turing-complete, with no loops.
 
-A new transaction is valid if the transaction scripts of its input field (scriptSig) and the transaction script
-of its predecessing transaction (scriptPubKey) validates to true.
+Some bytes in the script carry a special operation. Here's a list of them []()
+
+A new transaction is valid if the transaction scripts of its input field ```(scriptSig)``` and the transaction script
+of its predecessing transaction ```(scriptPubKey)``` validates to true.
 
 In other words, we check if
 ```javascript
@@ -226,38 +191,81 @@ There are many possibilities in what this scripting language offers (e.g. Multi-
 
 How this expression is evaluated is also beyond the scope of this tutorial. You may wish to read [this guide]() to get a better sense of how this works.
 
+<br><br>
 ### Signing
+<br>
 
-To prove that you control a particular address you will have to sign the transaction. You sign over the whole transaction so evesdroppers can't simply just substitute the output address to myself and steal all your money. This would invalidate the original signature.
+To prove that you control a particular address you will have to sign the transaction. You sign over the whole transaction so evesdroppers can't simply just substitute the output address to themselves and steal all your money. This would invalidate the original signature.
 
 See [this video]() if you would like a primer on how digital signatures work.
 
-Signing Bitcoin transactions can be a difficult process and very error-prone. A common gotcha is
+Signing Bitcoin transactions can be a difficult process and very error-prone.
 
+In the above example, we saw the input script blanked on ```script: undefined```, this is because the input script itself would contain the signature (and the public key).
 
-Append 01
+```javascript
 
-Different types of signing
+```
 
-We will cover differetn signature types in another tutorial.
+So what do we actually sign? For standard transactions, we will need to sign over the
 
+  - previous output Script
+  - current outputs
+
+We need to get all that information, double hash it (SHA256), and sign it with our ECDSA Key
+
+```javascript
+
+```
+
+Then, we append the HASHTYPE to the end of the signature. For standard transactions, this is ```SIGHASH_ALL ``` represented by 0x01
+
+There are different hash types which result in different ways of howthe bitcoin protocol checks the signature. These will be covered in a different tutorial.
+
+<br><br>
 ### Serialize/propagate
+<br>
 
-Convert to hex, big endian, little endian
-bitcoinjs-lib will handle this for you
+We're almost done. Now all we need to do is serialize the transaction, converting into a hexadecimal format this is it input type for most APIs, clis.
 
-You may wish to do this via bitcoind
+```javascript
+  var rawTxHex = newTx.serialize()
+```
+There are a few ways to propagate
 
-/decode
-/propagate
+ - 3rd party APIs
+ - Your own bitcoind instance
+ - Custom node implementation
 
-Propagate through the HelloBlock API.
+For convenience we will propagate using the HelloBlock API
 
+You may also wish to check/decode the transaction before you propagate it just to make sure everything looks correct.
 
-## HelloBlock API
+[https://helloblock.io](https://helloblock.io/decode?rawTxhex="asdf")
+
+```javascript
+var rawTxHex = ""
+  helloblock.transactions.propagate()
+```
+
+And now we're done!
+
+<br><br>
+
+# Appendix A: More on the HelloBlock API
+<br>
+
+## Testing
 
 /testnet; faucet
+
+## Convenience Methods
 
 A Wallet is a collection of addresses and often times, you will need to display the total balance for all addresses and propagate transactions using unspent outputs from multiple addresses.
 
 /wallet
+
+# Futher Resources
+
+ - http://bitcoinhistory.net/Technical_Papers/ProgrammingBitcoinTransactionScripts.pdf
+ - http://www.righto.com/2014/02/bitcoins-hard-way-using-raw-bitcoin.html
