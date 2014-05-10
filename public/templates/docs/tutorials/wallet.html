@@ -14,6 +14,7 @@
 <li><strong> Manage Addresses/Keys (Part 2) </strong></li>
 </ul>
 <p>We&#39;re using <a href="">bitcoinjs-lib</a> for this tutorial. The library is included on the this, so you can open Chrome console (Apple + Option + J) and follow on.</p>
+<p>You can find the full repo on <a href="">github.com/helloblock/demo-wallet</a></p>
 <p>We also recommend <a href="">JSON View</a> which beautifies JSON data inside your browser.
 <br><br></p>
 <h2 id="creating-transactions-the-easy-way">Creating Transactions - The Easy Way</h2>
@@ -169,7 +170,7 @@ of its predecessing transaction <code>(scriptPubKey)</code> validates to true.</
 <p>Now the whole thing with actual data,</p>
 <pre>
   <code class="javascript" hljs>
-    30440220372be617d9d276340846265ddc7ba9dabbe78e97fac97091f7e2cb19ec2929ae02203be15a0a3929b2353ebb81f5d67b20ab3b1e427f124855a2309649858eaa4b3401 040cfa3dfb357bdff37c8748c7771e173453da5d7caa32972ab2f5c888fff5bbaeb5fc812b473bf808206930fade81ef4e373e60039886b51022ce68902d96ef70 OP_DUP OP_HASH160 e06c30499eec71471ba28f4d684c8e1e515f7462 OP_EQUALVERIFY OP_CHECKSIG
+  30440220372be617d9d276340846265ddc7ba9dabbe78e97fac97091f7e2cb19ec2929ae02203be15a0a3929b2353ebb81f5d67b20ab3b1e427f124855a2309649858eaa4b3401 040cfa3dfb357bdff37c8748c7771e173453da5d7caa32972ab2f5c888fff5bbaeb5fc812b473bf808206930fade81ef4e373e60039886b51022ce68902d96ef70 OP_DUP OP_HASH160 e06c30499eec71471ba28f4d684c8e1e515f7462 OP_EQUALVERIFY OP_CHECKSIG
   </code>
 </pre>
 <p>Bitcoin nodes in the network run the script when they hear about a transaction.</p>
@@ -229,14 +230,29 @@ var rawTxHex = ""
 <p>And now we&#39;re done!</p>
 <p><br><br></p>
 <h1 id="appendix-a-more-on-the-helloblock-api">Appendix A: More on the HelloBlock API</h1>
-<p><br></p>
+<p><br><br></p>
 <h2 id="testing">Testing</h2>
-<p>/testnet; faucet</p>
+<p><br></p>
+<pre>
+  <code class="javascript" hljs>
+  /testnet; faucet
+  </code>
+</pre>
+<p><br><br></p>
 <h2 id="convenience-methods">Convenience Methods</h2>
-<p>A Wallet is a collection of addresses and often times, you will need to display the total balance for all addresses and propagate transactions using unspent outputs from multiple addresses.</p>
-<p>/wallet</p>
+<p><br>
+A Wallet is a collection of addresses and often times, you will need to display the total balance for all addresses and propagate transactions using unspent outputs from multiple addresses.</p>
+<pre>
+  <code class="javascript" hljs>
+  /wallet
+  </code>
+</pre>
+<p><br><br><br></p>
 <h1 id="futher-resources">Futher Resources</h1>
+<p><br></p>
 <ul>
 <li><a href="http://bitcoinhistory.net/Technical_Papers/ProgrammingBitcoinTransactionScripts.pdf">http://bitcoinhistory.net/Technical_Papers/ProgrammingBitcoinTransactionScripts.pdf</a></li>
 <li><a href="http://www.righto.com/2014/02/bitcoins-hard-way-using-raw-bitcoin.html">http://www.righto.com/2014/02/bitcoins-hard-way-using-raw-bitcoin.html</a></li>
 </ul>
+<p><br><br>
+<br><br></p>

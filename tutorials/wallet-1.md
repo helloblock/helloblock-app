@@ -14,7 +14,7 @@ We get to the nitty gritty of how this works, right down to the raw bytes. But f
 A Wallet is just a collection of Bitcoin addresses. To make a functional wallet, we need to
 
  - ** Create Transactions (Part 1) **
- - ** Manage Addresses/Keys (Part 2) **
+ - Manage Addresses/Keys (Part 2)
 
 We're using [bitcoinjs-lib]() for this tutorial. The library is included on the this, so you can open Chrome console (Apple + Option + J) and follow on.
 
@@ -220,7 +220,11 @@ We need to get all that information, double hash it (SHA256), and sign it with o
 
 Then, we append the HASHTYPE to the end of the signature. For standard transactions, this is ```SIGHASH_ALL ``` represented by 0x01
 
-There are different hash types which result in different ways of howthe bitcoin protocol checks the signature. These will be covered in a different tutorial.
+This is what the final signature will look like as a byte map.
+
+** INSERT TABLE HERE **
+
+There are different hash types which result in different ways of how the bitcoin protocol checks the signature. These will be covered in a different tutorial.
 
 <br><br>
 ### Serialize/propagate
@@ -244,7 +248,7 @@ You may also wish to check/decode the transaction before you propagate it just t
 [https://helloblock.io](https://helloblock.io/decode?rawTxhex="asdf")
 
 ```javascript
-var rawTxHex = ""
+  var rawTxHex = ""
   helloblock.transactions.propagate()
 ```
 
@@ -253,19 +257,26 @@ And now we're done!
 <br><br>
 
 # Appendix A: More on the HelloBlock API
+<br><br>
+## Testing
 <br>
 
-## Testing
-
-/testnet; faucet
-
+```javascript
+  /testnet; faucet
+```
+<br><br>
 ## Convenience Methods
-
+<br>
 A Wallet is a collection of addresses and often times, you will need to display the total balance for all addresses and propagate transactions using unspent outputs from multiple addresses.
 
-/wallet
-
+```javascript
+  /wallet
+```
+<br><br><br>
 # Futher Resources
-
+<br>
  - http://bitcoinhistory.net/Technical_Papers/ProgrammingBitcoinTransactionScripts.pdf
  - http://www.righto.com/2014/02/bitcoins-hard-way-using-raw-bitcoin.html
+
+<br><br>
+<br><br>

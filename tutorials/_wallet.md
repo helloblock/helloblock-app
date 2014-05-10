@@ -12,6 +12,10 @@ http://bitcoinhistory.net/Technical_Papers/ProgrammingBitcoinTransactionScripts.
 http://www.righto.com/2014/02/bitcoins-hard-way-using-raw-bitcoin.html
 http://bitcoin.stackexchange.com/questions/3374/how-to-redeem-a-basic-tx
 
+Signing
+https://bitcoinarmory.com/developers/mit-project/
+
+
 ### Tasks
 
 1.
@@ -25,10 +29,18 @@ http://bitcoin.stackexchange.com/questions/3374/how-to-redeem-a-basic-tx
 - JSON View
 
 2.
- - Creating/Manage addresses
- - Key generation vulnerabilities
+ - BIP38
+ - Encrypt with password
+ - random, chrome storage
+ - p2sh
+ - secret sharing (https://github.com/amper5and/secrets.js/)
  - HD Wallet
- - Other options, seeds, p2sh, secret sharing
+ - Cold storage
+ - 2FA
+ - Key generation vulnerabilities
+ - Batch requests
+ - /wallet
+
 
 require 'bitcoinjs-lib', '0.2.0' here
 require 'helloblock-js'
