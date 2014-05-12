@@ -94,11 +94,17 @@ hbApp.directive("utc", function() {
 })
 
 moment.fn.fromNowWithSeconds = function(a) {
-	var milliseconds = Math.abs(moment().diff(this));
+	var epoch = parseInt(this._i)
+	var now = (new Date()).getTime() / 1000
+	if (now - epoch < 0) {
+		return 'n/a'
+	}
 
+	var milliseconds = Math.abs(moment().diff(this));
 	if (milliseconds > 0 && milliseconds < 60000) { // 60 seconds
 		var seconds = (milliseconds / 1000).toFixed(0)
-		return seconds + ' secs ago';
+		return '< 1 minute ago'
+		// return seconds + ' secs ago';
 	}
 
 	return this.fromNow(a);
