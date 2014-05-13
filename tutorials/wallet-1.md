@@ -7,39 +7,191 @@ In this tutorial, we're going to make a javascript client side Bitcoin Wallet. Y
  - [Carbon Wallet](http://carbonwallet.com/)
  - [Sparecoins](http://sparecoins.io)
 
-Web client side wallets allow users to be in control of their money. Also, unlike desktop clients such as Bitcoin-qt, web client side wallets also allow easy access and don't require users to download the Blockchain as there is generally an API provider.
+Web client side wallets allow users to be in control of their money. But, unlike desktop clients such as Bitcoin-qt, they allow easy web access and don't require users to download the Blockchain since there is generally a Blockchain API provider.
 
-We get into the nitty gritty of how this works, right down to the raw bytes. But firstly, let's take a high level approach.
+Before getting into the nitty gritty of how this works, let's take a high level approach.
 
 A Wallet is just a collection of Bitcoin addresses. To make a functional wallet, we need to
 
- - ** Create Transactions (Part 1) **
+ - ** Build Transactions (Part 1) **
  - Manage Addresses/Keys (Part 2)
 
-One of the challenges is that we cannot use the official reference client ```bitcoind``` because everything is done client side. However, [bitcoinjs-lib]() is a well-maintained reimplementation of the Bitcoin protocol in javascript. This is what we'll be using. The library is included on this page, so you can open console (e.g. Chrome console) and follow on.
+Client side javascript wallets cannot use the official reference client ```bitcoind```. However, [bitcoinjs-lib]() is a well-maintained reimplementation of the Bitcoin protocol in javascript. This is what we'll be using. The library is included on this page, so you can open console (e.g. Chrome console) and follow on.
 
 You can find the full repo on [github.com/helloblock/demo-wallet]()
 
 We also recommend [JSON View]() which beautifies JSON data inside your browser.
 <br><br>
-## Creating Transactions - The Easy Way
+## Building Transactions - The Easy Way
 <br>
 One of the most difficult things to grasp initially is how to build transactions in Bitcoin. Luckily for us, bitcoinjs-lib provides a convenience methods to build transactions. You don't need to fully understand how Bitcoin transactions to get them working.
 
 Here's some executable code (e.g you can run it in the browser)
 
 ```javascript
+  var bitcoin = require("bitcoinjs-lib")
+  var helloblock = require('helloblock-js')({
+      network: 'testnet'
+  });
+
+  var privateKey = "cND8kTK2zSJf1bTqaz5nZ2Pdqtv43kQNcwJ1Dp5XWtbRokJNS97N"
+  var key = new bitcoin.ECKey(privateKey);
+  var addressVersion = bitcoin.network.testnet.addressVersion
+  var fromAddress = key.getAddress(addressVersion).toString();
+  var toAddress = 'mzPkw5EdvHCntC2hrhRXSqwHLHpLWzSZiL'
+
+  var fee = 10000
+  var targetValue = 200000
+
+  helloblock.addresses.getUnspents(fromAddress, {
+      value: targetValue + fee
+  }, function(err, response, resource) {
+      if (err) throw new Error(err);
+
+      var unspents = resource;
+      var totalUnspentsValue = 0;
+
+      var tx = new bitcoin.Transaction()
+
+      unspents.forEach(function(unspent) {
+          tx.addInput(unspent.txHash, unspent.index)
+          totalUnspentsValue += unspent.value
+      })
+
+      tx.addOutput(toAddress, targetValue)
+
+      var changeValue = totalUnspentsValue - targetValue - fee
+      tx.addOutput(fromAddress, changeValue)
+
+      tx.sign(0, key)
+
+      var rawTxHex = tx.serializeHex();
+
+      console.log(rawTxHex)
+
+      helloblock.transactions.propagate(rawTxHex, function(err, response, resource) {
+          if (err) throw new Error(err);
+
+          console.log('https://test.helloblock.io/transactions/' + resource.txHash)
+      })
+  })
 
 ```
 <br><br>
-## Creating Transactions - The Hard Way
+## Building Transactions - The Hard Way
 <br>
 Whilst it's useful to get a high level overview, it's important to know the nitty gritty details of how transactions work, especially for Bitcoin. This is because the ecosystem is still primitive, things break all the time and we need to know how to debug.
 
-Here's the detailed code, it will perform the same function as above, but using lower level methods.
+Here's the detailed code, it will perform the same function as above, but using the more interesting lower level methods.
 
 ```javascript
+  var bitcoin = require("bitcoinjs-lib")
+  var Script = bitcoin.Script
+  var Transaction = bitcoin.Transaction
+  var TransactionIn = bitcoin.TransactionIn
+  var TransactionOut = bitcoin.TransactionOut
+  var Opcode = bitcoin.Opcode
+  var Address = bitcoin.Address
+  var ECKey = bitcoin.ECKey
+  var network = bitcoin.network
 
+  var helloblock = require('helloblock-js')({
+    network: 'testnet'
+  });
+
+  var privateKey = "cND8kTK2zSJf1bTqaz5nZ2Pdqtv43kQNcwJ1Dp5XWtbRokJNS97N"
+  var key = new ECKey(privateKey);
+  var addressVersion = network.testnet.addressVersion
+  var fromAddress = key.getAddress(addressVersion).toString();
+  var toAddress = 'mzPkw5EdvHCntC2hrhRXSqwHLHpLWzSZiL'
+
+  var fee = 10000
+  var targetValue = 200000
+
+  helloblock.addresses.getUnspents(fromAddress, {
+    value: targetValue + fee
+  }, function(err, response, resource) {
+    if (err) throw new Error(err);
+
+    var unspents = resource;
+    var totalUnspentsValue = 0;
+
+    var tx = new Transaction()
+
+    // INPUTS
+    unspents.forEach(function(unspent) {
+      var input = new TransactionIn({
+        sequence: [255, 255, 255, 255],
+        outpoint: {
+          hash: unspent.txHash,
+          index: unspent.index
+        },
+        script: undefined
+      })
+
+      tx.ins.push(input)
+
+      totalUnspentsValue += unspent.value
+    })
+
+    // OUTPUTS
+    var scriptRecipient = new Script()
+    scriptRecipient.writeOp(Opcode.map.OP_DUP)
+    scriptRecipient.writeOp(Opcode.map.OP_HASH160)
+    var toAddressObj = new Address(toAddress, addressVersion)
+    scriptRecipient.writeBytes(toAddressObj.hash)
+    scriptRecipient.writeOp(Opcode.map.OP_EQUALVERIFY)
+    scriptRecipient.writeOp(Opcode.map.OP_CHECKSIG)
+
+    var outputRecipient = new TransactionOut({
+      value: targetValue,
+      script: scriptRecipient
+    })
+
+    tx.outs.push(outputRecipient)
+
+    var changeValue = totalUnspentsValue - targetValue - fee
+
+    var scriptChange = new Script()
+    scriptChange.writeOp(Opcode.map.OP_DUP)
+    scriptChange.writeOp(Opcode.map.OP_HASH160)
+    scriptChange.writeBytes(key.getAddress(addressVersion).hash)
+    scriptChange.writeOp(Opcode.map.OP_EQUALVERIFY)
+    scriptChange.writeOp(Opcode.map.OP_CHECKSIG)
+
+    var outputChange = new TransactionOut({
+      value: changeValue,
+      script: scriptChange
+    })
+
+    tx.outs.push(outputChange)
+
+    // SIGNING
+    var SIGHASH_ALL = 1
+    var pubkey = key.getPub().toBytes()
+    tx.ins.forEach(function(input, index) {
+      var previousScript = Script.fromHex(unspents[index].scriptPubKey)
+
+      var hash = tx.hashTransactionForSignature(previousScript, index, SIGHASH_ALL)
+      var signature = key.sign(hash).concat([SIGHASH_ALL])
+
+      var inputScript = new Script()
+      inputScript.writeBytes(signature)
+      inputScript.writeBytes(pubkey)
+
+      input.script = inputScript
+    })
+
+    var rawTxHex = tx.serializeHex();
+
+    console.log(rawTxHex)
+
+    helloblock.transactions.propagate(rawTxHex, function(err, response, resource) {
+      if (err) throw new Error(err);
+
+      console.log('https://test.helloblock.io/transactions/' + resource.txHash)
+    })
+  })
 ```
 
 We will walk through step by step how this works. Here's a checklist of what we need to do:
@@ -48,13 +200,14 @@ We will walk through step by step how this works. Here's a checklist of what we 
  2. Get unspent outputs (UTXO) for addresses you want to send money from.
  3. Determine the right transaction value (amount + fee)
  4. Add all necessary inputs (UTXO)
- 5. All all desired outputs
+ 5. Add all desired outputs
     - Make sure to include a change address
  6. Sign the transaction for each input
     - Hash the transaction
     - Sign the hash with your private key
     - Add the hash type to the end of signature
     - Add the signature for the input
+    - Add the public key
     - Repeat for all inputs
  7. Serialize the entire transaction into hexadecimal format
  8. Propagate the transaction
@@ -63,9 +216,9 @@ We will walk through step by step how this works. Here's a checklist of what we 
 ### What is a transaction?
 <br>
 
-A transaction is a transfer of value one set of inputs to a new set of outputs.
+A transaction is generally a transfer of value from one Bitcoin address to another (or multiple).
 
-Let's look at a raw transaction.
+Let's see what a raw Bitcoin transaction looks like. You can get raw transactions from the HelloBlock API by providing the txHash (or txId) as follows.
 
 ```javascript
   curl https://testnet.helloblock.io/q/getrawtransaction?txHashes=c772d1b8efd97e78aa882b4bfa04bb17a67fca62436010516472367aeb2b28ac
@@ -83,15 +236,92 @@ Let's look at a raw transaction.
   }
 ```
 
-The above ```rawTxHex``` is the raw transaction (hexadecimal representation) contain all the information about inputs/outputs, type of transaction, value transferred etc...
+The ```rawTxHex``` is the raw transaction (hexadecimal representation) containing all the information about inputs/outputs, type of transaction, value transferred etc...
 
-The ```txHash``` is the hash (double SHA256) of the ```rawTxHex```, used as an ID for the transaction.
+The ```txHash``` is used as the ID for the ```rawTxHex```, inferred from hashing (double SHA256) the ```rawTxHex```.
 
-The decoded ```rawTxHex``` looks like this. The rules for how to decode this are on the [Transaction Wiki Page]()
+If we examine the ```rawTxHex``` byte for byte. It may be decoded as such. The rules for how to decode this are on the [Transaction Wiki Page]()
 
-** INSERT TABLE HERE **
 <br><br>
-### Private Keys and fees
+
+<table class='table table-condensed table-bordered'>
+  <thead>
+    <tr>
+      <th colspan='2' colspan="2">Field</th>
+      <th>Bytes</th>
+      <th>Type</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan='2'>Version</td>
+      <td>01 00 00 00</td>
+    </tr>
+    <tr>
+      <td colspan='2'>Input Count</td>
+      <td>01</td>
+    </tr>
+    <tr>
+      <td colspan='1' rowspan='5'>Inputs (1st)</td>
+      <td colspan='1'>Previous Output Hash</td>
+      <td>cf 6b 23 ba f0 eb b8 a0 95 59 f7 61 14 4a b4 40 7b 5d ce 75 a9 48 4e d0 7a 6d a4 1f 7f 02 18 e9</td>
+    </tr>
+    <tr>
+      <td colspan='1'>Index</td>
+      <td>01 00 00 00</td>
+    </tr>
+    <tr>
+      <td colspan='1'>Script Length</td>
+      <td>8a</td>
+    </tr>
+    <tr>
+      <td colspan='1'>Script Sig</td>
+      <td>47 30 44 02 20 37 2b e6 17 d9 d2 76 34 08 46 26 5d dc 7b a9 da bb e7 8e 97 fa c9 70 91 f7 e2 cb 19 ec 29 29 ae 02 20 3b e1 5a 0a 39 29 b2 35 3e bb 81 f5 d6 7b 20 ab 3b 1e 42 7f 12 48 55 a2 30 96 49 85 8e aa 4b 34 01 41 04 0c fa 3d fb 35 7b df f3 7c 87 48 c7 77 1e 17 34 53 da 5d 7c aa 32 97 2a b2 f5 c8 88 ff f5 bb ae b5 fc 81 2b 47 3b f8 08 20 69 30 fa de 81 ef 4e 37 3e 60 03 98 86 b5 10 22 ce 68 90 2d 96 ef 70</td>
+    </tr>
+    <tr>
+      <td colspan='1'>Sequence</td>
+      <td>ff ff ff ff</td>
+    </tr>
+    <tr>
+      <td colspan='2'>Outputs Count</td>
+      <td>02</td>
+    </tr>
+    <tr>
+      <td colspan='1' rowspan='3'>Outputs (1st)</td>
+      <td>Value</td>
+      <td>40 42 0f 00 00 00 00 00</td>
+    </tr>
+    <tr>
+      <td>Script Length</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <td>Script Pubkey</td>
+      <td>76 a9 14 a5 31 9d 46 9e 1d dd 95 58 bd 55 8a 50 e9 5f 74 b3 da 58 c9 88 ac</td>
+    </tr>
+    <tr>
+      <td rowspan='3'>Outputs (2nd)</td>
+      <td>Value</td>
+      <td>78 c4 f8 1e 01 00 00 00</td>
+    </tr>
+    <tr>
+      <td>Script Length</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <td>Script Pubkey</td>
+      <td>76 a9 14 61 b4 69 ad a6 1f 37 c6 20 01 09 12 a9 d5 d5 66 46 01 5f 16 88 ac</td>
+    </tr>
+    <tr>
+      <td colspan='2'>Block Time</td>
+      <td>00 00 00 00</td>
+    </tr>
+  </tbody>
+</table>
+
+<br><br>
+### Private Keys
 <br>
 Managing Private Keys will be covered in the next tutorial. For now, use this pre-generated private key which has already been loaded with some testnet coins. Testnet is an alternative Blockchain used for testing.
 
@@ -103,15 +333,13 @@ Managing Private Keys will be covered in the next tutorial. For now, use this pr
 ### Unspents/UTXO
 <br>
 
-Bitcoin Transactions work by chaining together transactions. Future transactions rely on previous transaction for verifiability. It gets chained all the way back to the original 'coinbase' output, generated by the Bitcoin miners.
+Bitcoin Transactions work by checking if a particular transaction refers to a previous transaction. This gets checked all the way back to the original 'coinbase' transaction, generated by the Bitcoin miners.
 
 You cannot use a previous transaction output that has already been spent. This would be double spending.
 
-Therefore, we must use unspent previous transaction outputs ("UTXO"/"unspents" for short) in order to build valid future transactions.
+Therefore, we can only use unspent previous transaction outputs ("UTXO"/"unspents" for short) in order to build valid future transactions.
 
-Our Wallet contains a set of addresses, both private keys and public addresses for each. Each address may have unspents, these unspents can be validly included in a transaction using the private key. We'll see how that works later.
-
-Our Wallet balance is also the sum value of all the unspents. In order words, our wallet is a sum of all the Bitcoins we've received, but haven't yet sent.
+An address's would be the sum of all the unspents. In order words, it is the sum of all the Bitcoins that has been received minus the Bitcoins that have been sent.
 
 There are 3 important fields we need to get when using unspents. (see byte map above)
  1. Previous Transaction Hash
@@ -126,23 +354,21 @@ There are 3 important fields we need to get when using unspents. (see byte map a
 ### Amount/Fees
 <br>
 
-A common gotcha is that may only spend the entire unspent previous transaction output.
+A common gotcha is that you may only spend the entire unspent previous transaction output.
 
-For example, if the unspent was 10 BTC, you can't simply send a portion of it such as 3 BTC. To spent 3 BTC, you must create 2 outputs
+For example, if the unspent was 10 BTC, you can't simply send 3 BTC. To spend 3 BTC, you must create 2 outputs
 
  1. 3 BTC to recipient
- 2. 7 BTC back to yourself
+ 2. 7 BTC back to yourself, just like change
 
-To prevent Blockchain spam and DDOS attacks, every Bitcoin transaction must contain a fee. If it does not contain a fee, it is not likely to be accepted into the Blockchain by miners. The average fee is 10000 satoshis, or 0.0001 BTC, per 1000 bytes. Our transaction here is only 257 bytes. If we chooose to add more inputs/outputs, this will increase and we may need to increase the fee.
+To prevent Blockchain spam and DDOS attacks, every Bitcoin transaction must contain a fee. If it does not contain a fee, it is not likely to be accepted into the Blockchain by miners. The current fee is 10000 satoshis, or 0.0001 BTC, per 1000 bytes. Our transaction here is only 257 bytes. The size will increase if we add more inputs/outputs.
 
-The fee is calculated as the "Total input value" - "Total output value" of a transaction.
+The fee is calculated as the "Total Input value" - "Total Output value" of a transaction.
 
-For example, let's assume the Total Input Value is 10 BTC. If you create 2 outputs such that
+For example, let's assume the Total Input Value, all the unspents we're going to use, is 10 BTC. To pay the 0.0001 BTC in fees, your outputs should be:
 
-1. 3 BTC is sent to the recipient
-2. 6.999 BTC is sent back to yourself
-
-0.0001 BTC will be regarded as the fee.
+1. 3 BTC to the recipient
+2. 6.999 BTC back to yourself
 
 If you forget to send Bitcoins back to yourself, the 'missing' 7 BTC will go to Bitcoin miners as a fee.
 
@@ -161,7 +387,7 @@ We can use bitcoinjs-lib to add all the inputs and outputs
 
 ```
 
-Note that we don't include the input script for now because input scripts require a signature that we add later (don't worry, we'll get to that below).
+Note that we don't include the input script for now because input scripts require a signature that we add later. We'll get to that below.
 
 <br><br>
 ### Script
@@ -176,7 +402,7 @@ Each input/output in a Bitcoin transaction carries a script - a set of instructi
 Here's a list of operations you can perform - [Bitcoin Script Wiki]()
 
 A new transaction is valid if the combination of transaction scripts of its input field ```(scriptSig)``` and the transaction script
-of its predecessing transaction ```(scriptPubKey)``` evaluates to true.
+of its previous transaction ```(scriptPubKey)``` evaluates to true.
 
 In other words, we check if
 ```javascript
@@ -248,7 +474,79 @@ Then, we append the HASHTYPE to the end of the signature. For standard transacti
 
 This is what the final signature will look like as a byte map.
 
-** INSERT TABLE HERE **
+<br><br>
+<table class='table table-condensed table-bordered'>
+  <thead>
+    <tr>
+      <th colspan='2' colspan="2">Field</th>
+      <th>Bytes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan='2'>PUSHDATA 47</td>
+      <td>47</td>
+    </tr>
+    <tr>
+      <td rowspan="8">Signature (DER)</td>
+      <td>Sequence</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <td>Total Length</td>
+      <td>44</td>
+    </tr>
+    <tr>
+      <td>Integer</td>
+      <td>02</td>
+    </tr>
+    <tr>
+      <td>
+        Length
+      </td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <td>X</td>
+      <td>37 2b e6 17 d9 d2 76 34 08 46 26 5d dc 7b a9 da bb e7 8e 97 fa c9 70 91 f7 e2 cb 19 ec 29 29 ae</td>
+    </tr>
+    <tr>
+      <td>Integer</td>
+      <td>02</td>
+    </tr>
+    <tr>
+      <td>Length</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <td>Y</td>
+      <td>3b e1 5a 0a 39 29 b2 35 3e bb 81 f5 d6 7b 20 ab 3b 1e 42 7f 12 48 55 a2 30 96 49 85 8e aa 4b 34</td>
+    </tr>
+    <tr>
+      <td colspan='2'>SIGHASH_ALL</td>
+      <td>01</td>
+    </tr>
+    <tr>
+      <td colspan='2'>PUSHDATA 41</td>
+      <td>41</td>
+    </tr>
+    <tr>
+      <td rowspan="3">Public Key</td>
+      <td>Type</td>
+      <td>04</td>
+    </tr>
+    <tr>
+      <td>X</td>
+      <td>0c fa 3d fb 35 7b df f3 7c 87 48 c7 77 1e 17 34 53 da 5d 7c aa 32 97 2a b2 f5 c8 88 ff f5 bb ae</td>
+      <td>
+    </tr>
+    <tr>
+      <td>Y</td>
+      <td>b5 fc 81 2b 47 3b f8 08 20 69 30 fa de 81 ef 4e 37 3e 60 03 98 86 b5 10 22 ce 68 90 2d 96 ef 70</td>
+    </tr>
+  </tbody>
+</table>
+
 
 There are different hash types which result in different ways of how the bitcoin protocol checks the signature. These will be covered in a different tutorial.
 
