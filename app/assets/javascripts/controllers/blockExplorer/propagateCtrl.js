@@ -10,25 +10,25 @@ hbApp.controller("blockExplorer/propagateCtrl", function($scope, HelloBlock, $ro
 
   $scope.sending = false;
 
-  // $scope.decodeHex = function() {
-  //   if ( !$scope.rawTransaction.rawTxHex ) {
-  //     Alerts.addDanger( "Hex can't be blank" )
-  //     return;
-  //   }
+  $scope.decodeHex = function() {
+    if (!$scope.rawTransaction.rawTxHex) {
+      Alerts.addDanger("Hex can't be blank")
+      return;
+    }
 
-  //   $scope.sending = true;
-  //   HelloBlock[ explorerMode ].TransactionsDecode.get( {
-  //     rawTxHex: $scope.rawTransaction.rawTxHex
-  //   }, function( res ) {
-  //     Alerts.addSuccess( "Decoding Successful" )
+    $scope.sending = true;
+    HelloBlock[explorerMode].TransactionsDecode.get({
+      rawTxHex: $scope.rawTransaction.rawTxHex
+    }, function(res) {
+      Alerts.addSuccess("Decoding Successful")
 
-  //     $scope.transaction = res.data.transaction
-  //     $scope.sending = false;
-  //   }, function( err ) {
-  //     Alerts.addDanger( "Something went wrong" );
-  //     $scope.sending = false;
-  //   } )
-  // }
+      $scope.transaction = res.data.transaction
+      $scope.sending = false;
+    }, function(err) {
+      Alerts.addDanger("Something went wrong");
+      $scope.sending = false;
+    })
+  }
 
   $scope.propagateHex = function() {
     if (!$scope.rawTransaction.rawTxHex) {
