@@ -16,7 +16,7 @@ hbApp.factory("HelloBlock", function($resource, $rootScope) {
       AddressTransactions: $resource(mode.url + "/addresses/:address/transactions"),
       AddressUnspents: $resource(mode.url + "/addresses/:address/unspents"),
       Transactions: $resource(mode.url + "/transactions/:txHash"),
-      // TransactionsDecode: $resource(mode.url + "/transactions/decode"),
+      TransactionsDecode: $resource(mode.url + "/transactions/decode"),
       Blocks: $resource(mode.url + "/blocks/:identifier"),
       BlockTransactions: $resource(mode.url + "/blocks/:identifier/transactions")
     }

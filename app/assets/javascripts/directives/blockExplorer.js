@@ -24,6 +24,8 @@ hbApp.directive("spent", function() {
 	return function($scope, element, attrs) {
 
 		$scope.$watch(WATCHED, function() {
+			if (!attrs.spent) return;
+
 			var spent = JSON.parse(attrs.spent) // parseBool
 
 			if (spent === true) {
@@ -104,7 +106,7 @@ moment.fn.fromNowWithSeconds = function(a) {
 	if (milliseconds > 0 && milliseconds < 60000) { // 60 seconds
 		var seconds = (milliseconds / 1000).toFixed(0)
 		return '< 1 minute ago'
-		// return seconds + ' secs ago';
+			// return seconds + ' secs ago';
 	}
 
 	return this.fromNow(a);
