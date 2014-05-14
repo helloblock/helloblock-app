@@ -1261,7 +1261,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "<div class=\"centerpiece-alt text-center\">\n" +
     "  <div class=\"container heading\">\n" +
     "    <div class=\"h1 text-center white\">\n" +
-    "        PROPAGATE TRANSACTIONS [{{global.mode.toUpperCase()}}]\n" +
+    "        PROPAGATE/DECODE TRANSACTIONS ({{global.mode.toUpperCase()}})\n" +
     "      </div>\n" +
     "  </div>\n" +
     "</div>\n" +
@@ -1583,7 +1583,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        </li>\n" +
     "        <li ng-class=\"{'active': selected == 'propagate'}\">\n" +
     "          <a href=\"/propagate\">\n" +
-    "            Propagate\n" +
+    "            Propagation\n" +
     "          </a>\n" +
     "        </li>\n" +
     "      </ul>\n" +
