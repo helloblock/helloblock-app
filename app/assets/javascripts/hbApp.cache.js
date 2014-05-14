@@ -712,6 +712,13 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "                <span>{{i.scriptSig}}</span>\n" +
     "              </td>\n" +
     "            </tr>\n" +
+    "            <tr>\n" +
+    "              <td class='text-center'>ScriptSig (ASM): </td>\n" +
+    "              <td class='break'>\n" +
+    "                <clipboard clip-copy=\"{{i.scriptSigASM}}\"></clipboard>\n" +
+    "                <span>{{i.scriptSigASM}}</span>\n" +
+    "              </td>\n" +
+    "            </tr>\n" +
     "          </tbody>\n" +
     "        </table>\n" +
     "      </div>\n" +
@@ -755,13 +762,15 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "              </span>\n" +
     "            </td>\n" +
     "          </tr>\n" +
-    "          <!-- <tr>\n" +
-    "            <td>\n" +
+    "          <tr>\n" +
+    "            <td rowspan=\"1\">scriptPubKey (ASM): </td>\n" +
+    "            <td class=\"break\">\n" +
+    "              <clipboard clip-copy=\"{{o.scriptPubKeyASM}}\"></clipboard>\n" +
     "              <span>\n" +
-    "                TODO: Parsed\n" +
+    "                {{o.scriptPubKeyASM}}\n" +
     "              </span>\n" +
     "            </td>\n" +
-    "          </tr> -->\n" +
+    "          </tr>\n" +
     "          <tr>\n" +
     "            <td>NextTxIn Index: </td>\n" +
     "            <td>\n" +
@@ -1269,9 +1278,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "        selected></textarea>\n" +
     "    </div>\n" +
     "    <div class=\"pull-right\">\n" +
-    "      <!-- <button class='btn btn-warning' ng-click=\"decodeHex()\">\n" +
+    "      <button class='btn btn-warning' ng-click=\"decodeHex()\">\n" +
     "        DECODE\n" +
-    "      </button> -->\n" +
+    "      </button>\n" +
     "      <button class='btn btn-danger' ng-click=\"propagateHex()\">\n" +
     "        PROPAGATE\n" +
     "      </button>\n" +
