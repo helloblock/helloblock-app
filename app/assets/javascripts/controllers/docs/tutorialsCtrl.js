@@ -1,6 +1,6 @@
 hbApp.controller("docs/tutorialsCtrl", function($scope, $routeParams) {
 
-  $scope.currentTutorial = $routeParams.tutorial_file || 'getting-started'
+  $scope.currentTutorial = $routeParams.tutorial_file || 'how-to-build-a-wallet-1'
 
   $scope.tutorials = [{
     name: "Build a Wallet (Part 1)",
