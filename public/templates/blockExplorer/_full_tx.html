@@ -143,6 +143,13 @@
                 <span>{{i.scriptSig}}</span>
               </td>
             </tr>
+            <tr>
+              <td class='text-center'>ScriptSig (ASM): </td>
+              <td class='break'>
+                <clipboard clip-copy="{{i.scriptSigASM}}"></clipboard>
+                <span>{{i.scriptSigASM}}</span>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -186,13 +193,15 @@
               </span>
             </td>
           </tr>
-          <!-- <tr>
-            <td>
+          <tr>
+            <td rowspan="1">scriptPubKey (ASM): </td>
+            <td class="break">
+              <clipboard clip-copy="{{o.scriptPubKeyASM}}"></clipboard>
               <span>
-                TODO: Parsed
+                {{o.scriptPubKeyASM}}
               </span>
             </td>
-          </tr> -->
+          </tr>
           <tr>
             <td>NextTxIn Index: </td>
             <td>
