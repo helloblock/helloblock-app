@@ -38,6 +38,9 @@ var baseDir = "tutorials/";
 fs.readdir(baseDir, function(err, files) {
 
 	files.forEach(function(file) {
+		if (file === "notes") {
+			return;
+		}
 		fs.readFile(baseDir + file, function(err, data) {
 
 			var renderedFile = Marked(data.toString());

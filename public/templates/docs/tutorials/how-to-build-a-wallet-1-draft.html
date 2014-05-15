@@ -23,49 +23,49 @@ One of the most difficult things to grasp initially is how to build transactions
 <p>Here&#39;s some executable code (e.g you can run it in the browser)</p>
 <pre>
   <code class="javascript" hljs>
-  var bitcoin = require("bitcoinjs-lib")
-  var helloblock = require('helloblock-js')({
-    network: 'testnet'
+var bitcoin = require("bitcoinjs-lib")
+var helloblock = require('helloblock-js')({
+  network: 'testnet'
+})
+
+var addressVersion = bitcoin.network.testnet.addressVersion
+
+var privateKey = "cND8kTK2zSJf1bTqaz5nZ2Pdqtv43kQNcwJ1Dp5XWtbRokJNS97N"
+var ecKey = new bitcoin.ECKey(privateKey)
+var ecKeyAddress = ecKey.getAddress(addressVersion).toString()
+var toAddress = 'mzPkw5EdvHCntC2hrhRXSqwHLHpLWzSZiL'
+
+var txFee = 10000
+var txTargetValue = 200000
+
+helloblock.addresses.getUnspents(ecKeyAddress, {
+  value: txTargetValue + txFee
+}, function(err, res, unspents) {
+  if (err) throw new Error(err)
+
+  var tx = new bitcoin.Transaction()
+
+  var totalUnspentsValue = 0
+  unspents.forEach(function(unspent) {
+    tx.addInput(unspent.txHash, unspent.index)
+    totalUnspentsValue += unspent.value
   })
 
-  var addressVersion = bitcoin.network.testnet.addressVersion
+  tx.addOutput(toAddress, txTargetValue)
 
-  var privateKey = "cND8kTK2zSJf1bTqaz5nZ2Pdqtv43kQNcwJ1Dp5XWtbRokJNS97N"
-  var ecKey = new bitcoin.ECKey(privateKey)
-  var ecKeyAddress = ecKey.getAddress(addressVersion).toString()
-  var toAddress = 'mzPkw5EdvHCntC2hrhRXSqwHLHpLWzSZiL'
+  var txChangeValue = totalUnspentsValue - txTargetValue - txFee
+  tx.addOutput(ecKeyAddress, txChangeValue)
 
-  var txFee = 10000
-  var txTargetValue = 200000
+  tx.sign(0, ecKey)
 
-  helloblock.addresses.getUnspents(ecKeyAddress, {
-    value: txTargetValue + txFee
-  }, function(err, res, unspents) {
+  var rawTxHex = tx.serializeHex()
+
+  helloblock.transactions.propagate(rawTxHex, function(err, res, tx) {
     if (err) throw new Error(err)
 
-    var tx = new bitcoin.Transaction()
-
-    var totalUnspentsValue = 0
-    unspents.forEach(function(unspent) {
-      tx.addInput(unspent.txHash, unspent.index)
-      totalUnspentsValue += unspent.value
-    })
-
-    tx.addOutput(toAddress, txTargetValue)
-
-    var txChangeValue = totalUnspentsValue - txTargetValue - txFee
-    tx.addOutput(ecKeyAddress, txChangeValue)
-
-    tx.sign(0, ecKey)
-
-    var rawTxHex = tx.serializeHex()
-
-    helloblock.transactions.propagate(rawTxHex, function(err, res, tx) {
-      if (err) throw new Error(err)
-
-      console.log('https://test.helloblock.io/transactions/' + tx.txHash)
-    })
+    console.log('https://test.helloblock.io/transactions/' + tx.txHash)
   })
+})
   </code>
 </pre>
 <p><br><br></p>
@@ -75,104 +75,104 @@ Whilst it&#39;s useful to get a high level overview, it&#39;s important to know 
 <p>Here&#39;s the detailed code, it will perform the same function as above, but using the more interesting lower level methods.</p>
 <pre>
   <code class="javascript" hljs>
-  var bitcoin = require("bitcoinjs-lib")
-  var helloblock = require('helloblock-js')({
-    network: 'testnet'
+var bitcoin = require("bitcoinjs-lib")
+var helloblock = require('helloblock-js')({
+  network: 'testnet'
+})
+var addressVersion = bitcoin.network.testnet.addressVersion
+
+var privateKey = "cND8kTK2zSJf1bTqaz5nZ2Pdqtv43kQNcwJ1Dp5XWtbRokJNS97N"
+var ecKey = new bitcoin.ECKey(privateKey)
+var ecKeyAddress = ecKey.getAddress(addressVersion).toString()
+var toAddress = 'mzPkw5EdvHCntC2hrhRXSqwHLHpLWzSZiL'
+
+var txFee = 10000
+var txTargetValue = 200000
+
+helloblock.addresses.getUnspents(ecKeyAddress, {
+  value: txTargetValue + txFee
+}, function(err, response, unspents) {
+  if (err) throw new Error(err)
+
+  var tx = new bitcoin.Transaction()
+
+  var totalUnspentsValue = 0
+
+  // INPUTS
+  unspents.forEach(function(unspent) {
+    var input = new bitcoin.TransactionIn({
+      sequence: [255, 255, 255, 255],
+      outpoint: {
+        hash: unspent.txHash,
+        index: unspent.index
+      },
+      script: undefined
+    })
+
+    tx.ins.push(input)
+
+    totalUnspentsValue += unspent.value
   })
-  var addressVersion = bitcoin.network.testnet.addressVersion
 
-  var privateKey = "cND8kTK2zSJf1bTqaz5nZ2Pdqtv43kQNcwJ1Dp5XWtbRokJNS97N"
-  var ecKey = new bitcoin.ECKey(privateKey)
-  var ecKeyAddress = ecKey.getAddress(addressVersion).toString()
-  var toAddress = 'mzPkw5EdvHCntC2hrhRXSqwHLHpLWzSZiL'
+  // OUTPUTS
+  // Output 1: Send value to recipient
+  var recipientScript = new bitcoin.Script()
+  var toAddressObj = new bitcoin.Address(toAddress, addressVersion)
 
-  var txFee = 10000
-  var txTargetValue = 200000
+  recipientScript.writeOp(bitcoin.Opcode.map.OP_DUP)
+  recipientScript.writeOp(bitcoin.Opcode.map.OP_HASH160)
+  recipientScript.writeBytes(toAddressObj.hash)
+  recipientScript.writeOp(bitcoin.Opcode.map.OP_EQUALVERIFY)
+  recipientScript.writeOp(bitcoin.Opcode.map.OP_CHECKSIG)
 
-  helloblock.addresses.getUnspents(ecKeyAddress, {
-    value: txTargetValue + txFee
-  }, function(err, response, unspents) {
+  var recipientOutput = new bitcoin.TransactionOut({
+    value: txTargetValue,
+    script: recipientScript
+  })
+
+  tx.outs.push(recipientOutput)
+
+  // Output 2: Send change back to self
+  var changeScript = new bitcoin.Script()
+  var changeValue = totalUnspentsValue - txTargetValue - txFee
+
+  changeScript.writeOp(bitcoin.Opcode.map.OP_DUP)
+  changeScript.writeOp(bitcoin.Opcode.map.OP_HASH160)
+  changeScript.writeBytes(ecKey.getAddress(addressVersion).hash)
+  changeScript.writeOp(bitcoin.Opcode.map.OP_EQUALVERIFY)
+  changeScript.writeOp(bitcoin.Opcode.map.OP_CHECKSIG)
+
+  var changeOutput = new bitcoin.TransactionOut({
+    value: changeValue,
+    script: changeScript
+  })
+
+  tx.outs.push(changeOutput)
+
+  // SIGNING
+  var sigHashAll = 1
+  var ecKeyPub = ecKey.getPub().toBytes()
+  tx.ins.forEach(function(input, index) {
+    var connectedScript = bitcoin.Script.fromHex(unspents[index].scriptPubKey)
+
+    var txSigHash = tx.hashTransactionForSignature(connectedScript, index, sigHashAll)
+    var signature = ecKey.sign(txSigHash).concat([sigHashAll])
+
+    var inputScript = new bitcoin.Script()
+    inputScript.writeBytes(signature)
+    inputScript.writeBytes(ecKeyPub)
+
+    input.script = inputScript
+  })
+
+  var rawTxHex = tx.serializeHex()
+
+  helloblock.transactions.propagate(rawTxHex, function(err, response, resource) {
     if (err) throw new Error(err)
 
-    var tx = new bitcoin.Transaction()
-
-    var totalUnspentsValue = 0
-
-    // INPUTS
-    unspents.forEach(function(unspent) {
-      var input = new bitcoin.TransactionIn({
-        sequence: [255, 255, 255, 255],
-        outpoint: {
-          hash: unspent.txHash,
-          index: unspent.index
-        },
-        script: undefined
-      })
-
-      tx.ins.push(input)
-
-      totalUnspentsValue += unspent.value
-    })
-
-    // OUTPUTS
-    // Output 1: Send value to recipient
-    var recipientScript = new bitcoin.Script()
-    var toAddressObj = new bitcoin.Address(toAddress, addressVersion)
-
-    recipientScript.writeOp(bitcoin.Opcode.map.OP_DUP)
-    recipientScript.writeOp(bitcoin.Opcode.map.OP_HASH160)
-    recipientScript.writeBytes(toAddressObj.hash)
-    recipientScript.writeOp(bitcoin.Opcode.map.OP_EQUALVERIFY)
-    recipientScript.writeOp(bitcoin.Opcode.map.OP_CHECKSIG)
-
-    var recipientOutput = new bitcoin.TransactionOut({
-      value: txTargetValue,
-      script: recipientScript
-    })
-
-    tx.outs.push(recipientOutput)
-
-    // Output 2: Send change back to self
-    var changeScript = new bitcoin.Script()
-    var changeValue = totalUnspentsValue - txTargetValue - txFee
-
-    changeScript.writeOp(bitcoin.Opcode.map.OP_DUP)
-    changeScript.writeOp(bitcoin.Opcode.map.OP_HASH160)
-    changeScript.writeBytes(ecKey.getAddress(addressVersion).hash)
-    changeScript.writeOp(bitcoin.Opcode.map.OP_EQUALVERIFY)
-    changeScript.writeOp(bitcoin.Opcode.map.OP_CHECKSIG)
-
-    var changeOutput = new bitcoin.TransactionOut({
-      value: changeValue,
-      script: changeScript
-    })
-
-    tx.outs.push(changeOutput)
-
-    // SIGNING
-    var sigHashAll = 1
-    var ecKeyPub = ecKey.getPub().toBytes()
-    tx.ins.forEach(function(input, index) {
-      var connectedScript = bitcoin.Script.fromHex(unspents[index].scriptPubKey)
-
-      var txSigHash = tx.hashTransactionForSignature(connectedScript, index, sigHashAll)
-      var signature = ecKey.sign(txSigHash).concat([sigHashAll])
-
-      var inputScript = new bitcoin.Script()
-      inputScript.writeBytes(signature)
-      inputScript.writeBytes(ecKeyPub)
-
-      input.script = inputScript
-    })
-
-    var rawTxHex = tx.serializeHex()
-
-    helloblock.transactions.propagate(rawTxHex, function(err, response, resource) {
-      if (err) throw new Error(err)
-
-      console.log('https://test.helloblock.io/transactions/' + resource.txHash)
-    })
+    console.log('https://test.helloblock.io/transactions/' + resource.txHash)
   })
+})
   </code>
 </pre>
 <p>We will walk through step by step how this works. Here&#39;s a checklist of what we need to do:</p>
@@ -203,20 +203,22 @@ Whilst it&#39;s useful to get a high level overview, it&#39;s important to know 
 <p>A transaction is generally a transfer of value from one Bitcoin address to another (or multiple).</p>
 <p>Let&#39;s see what a raw Bitcoin transaction looks like. You can get raw transactions from the HelloBlock API by providing the txHash (or txId) as follows.</p>
 <pre>
-  <code class="javascript" hljs>
-  curl https://testnet.helloblock.io/q/getrawtransaction?txHashes=c772d1b8efd97e78aa882b4bfa04bb17a67fca62436010516472367aeb2b28ac
+  <code class="bash" hljs>
+  # Example Request
+curl https://testnet.helloblock.io/q/getrawtransaction?txHashes=c772d1b8efd97e78aa882b4bfa04bb17a67fca62436010516472367aeb2b28ac
 
-  {
-    "status": "success",
-    "data": {
-      "transactions": [
-        {
-          "txHash": "c772d1b8efd97e78aa882b4bfa04bb17a67fca62436010516472367aeb2b28ac",
-          "rawTxHex": "0100000001cf6b23baf0ebb8a09559f761144ab4407b5dce75a9484ed07a6da41f7f0218e9010000008a4730440220372be617d9d276340846265ddc7ba9dabbe78e97fac97091f7e2cb19ec2929ae02203be15a0a3929b2353ebb81f5d67b20ab3b1e427f124855a2309649858eaa4b340141040cfa3dfb357bdff37c8748c7771e173453da5d7caa32972ab2f5c888fff5bbaeb5fc812b473bf808206930fade81ef4e373e60039886b51022ce68902d96ef70ffffffff0240420f00000000001976a914a5319d469e1ddd9558bd558a50e95f74b3da58c988ac78c4f81e010000001976a91461b469ada61f37c620010912a9d5d56646015f1688ac00000000"
-        }
-      ]
-    }
+  # Example Response
+{
+  "status": "success",
+  "data": {
+    "transactions": [
+      {
+        "txHash": "c772d1b8efd97e78aa882b4bfa04bb17a67fca62436010516472367aeb2b28ac",
+        "rawTxHex": "0100000001cf6b23baf0ebb8a09559f761144ab4407b5dce75a9484ed07a6da41f7f0218e9010000008a4730440220372be617d9d276340846265ddc7ba9dabbe78e97fac97091f7e2cb19ec2929ae02203be15a0a3929b2353ebb81f5d67b20ab3b1e427f124855a2309649858eaa4b340141040cfa3dfb357bdff37c8748c7771e173453da5d7caa32972ab2f5c888fff5bbaeb5fc812b473bf808206930fade81ef4e373e60039886b51022ce68902d96ef70ffffffff0240420f00000000001976a914a5319d469e1ddd9558bd558a50e95f74b3da58c988ac78c4f81e010000001976a91461b469ada61f37c620010912a9d5d56646015f1688ac00000000"
+      }
+    ]
   }
+}
   </code>
 </pre>
 <p>The <code>rawTxHex</code> is the raw transaction (hexadecimal representation) containing all the information about inputs/outputs, type of transaction, value transferred etc...</p>
@@ -228,8 +230,6 @@ Whilst it&#39;s useful to get a high level overview, it&#39;s important to know 
     <tr>
       <th colspan='2' colspan="2">Field</th>
       <th>Bytes</th>
-      <th>Type</th>
-      <th>Value</th>
     </tr>
   </thead>
   <tbody>
