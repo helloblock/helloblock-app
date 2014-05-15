@@ -4842,7 +4842,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  </div>\n" +
     "\n" +
     "  <div class=\"col-md-8\">\n" +
-    "    <div ng-include=\"tutorialUrl(currentTutorial)\"></div>\n" +
+    "    <div ng-include=\"tutorialUrl(currentTutorial)\" class='tutorials'></div>\n" +
     "  </div>\n" +
     "\n" +
     "</div>\n" +
@@ -4850,145 +4850,603 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/templates/docs/tutorials/getting-started.html',
-    "<h1 class='text-center'>Getting Started</h1>\n" +
-    "\n" +
-    "<h3>Introduction</h3>\n" +
-    "<blockquote>\n" +
-    "  <!-- <p>Hey there, you've come here a bit early but we're really exciting to share the open source API we've build. All the endpoints work and we're writing up the docs now.</p>\n" +
-    "  <p>In the mean time, shoot me an e-mail and let's discuss how we can help. scott@helloblock.io</p> -->\n" +
-    "  <p>Coming soon ...</p>\n" +
-    "</blockquote>\n" +
-    "\n" +
-    "<!-- <h3>Lorem</h3>\n" +
-    "<p>\n" +
-    "  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n" +
-    "  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n" +
-    "  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n" +
-    "  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n" +
-    "  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n" +
-    "  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n" +
-    "</p>\n" +
-    "<br>\n" +
-    "<h3>SubTitle</h3>\n" +
-    "<blockquote>\n" +
-    "  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n" +
-    "  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n" +
-    "  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n" +
-    "  consequat.\n" +
-    "</p>\n" +
-    "</blockquote>\n" +
-    "<div class=\"code-sample\">\n" +
-    "  <tabset>\n" +
-    "    <tab heading=\"ruby\">\n" +
-    "      <pre>\n" +
-    "        <code class=\"ruby\" hljs>\n" +
-    "# Writing a comment\n" +
-    "hex = \"123456789\"\n" +
-    "\n" +
-    "HelloBlock::Transaction.propagate({\n" +
-    "  hex: hex,\n" +
-    "  meta: \"blah\"\n" +
+  $templateCache.put('/templates/docs/tutorials/how-to-build-a-wallet-1.html',
+    "<h1 id=\"how-to-build-a-wallet-part-1-of-2-\">How to build a wallet (Part 1 of 2)</h1>\n" +
+    "<p><br></p>\n" +
+    "<p>In this tutorial, we&#39;re going to make a JavaScript client side Bitcoin Wallet. You may have seen some of these around:</p>\n" +
+    "<ul>\n" +
+    "<li><a href=\"https://blockchain.info/wallet\">Blockchain.info</a></li>\n" +
+    "<li><a href=\"http://carbonwallet.com/\">Carbon Wallet</a></li>\n" +
+    "<li><a href=\"http://sparecoins.io\">Sparecoins</a></li>\n" +
+    "</ul>\n" +
+    "<p>Web client side wallets allow users to be in control of their money. But, unlike desktop clients such as Bitcoin-qt, they allow easy web access and don&#39;t require users to download the Blockchain. There is generally a Blockchain API provider backing it.</p>\n" +
+    "<p>A Wallet is a collection of Bitcoin addresses. To make a functional wallet, we need to</p>\n" +
+    "<ol>\n" +
+    "<li><strong> Build Transactions (Part 1) </strong></li>\n" +
+    "<li>Manage Addresses/Keys (Part 2)</li>\n" +
+    "</ol>\n" +
+    "<p>You can find the full repo on <a href=\"https://github.com/helloblock/demo-wallet\">github.com/helloblock/demo-wallet</a></p>\n" +
+    "<p><br></p>\n" +
+    "<h2 id=\"dependencies\">Dependencies</h2>\n" +
+    "<p><br></p>\n" +
+    "<p>Client side JavaScript wallets cannot use the official reference client <code>bitcoind</code>. However, <a href=\"https://github.com/bitcoinjs/bitcoinjs-lib\">bitcoinjs-lib</a> is a well-maintained reimplementation of the Bitcoin protocol in JavaScript. This is what we&#39;ll be using.</p>\n" +
+    "<p><em>The library is included on this page, so you can open your browser console and follow along.</em></p>\n" +
+    "<h3 id=\"browser\">Browser</h3>\n" +
+    "<pre>\n" +
+    "  <code class=\"html\" hljs>\n" +
+    "&lt;script src=\"https://s3.amazonaws.com/helloblock-cdn/bitcoinjs-lib.min.js\"&gt;&lt;/script&gt;\n" +
+    "&lt;script src=\"https://s3.amazonaws.com/helloblock-cdn/helloblock-js.min.js\"&gt;&lt;/script&gt;\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<h3 id=\"node-js\">Node.js</h3>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "var bitcoin = require(\"bitcoinjs-lib\")\n" +
+    "var helloblock = require('helloblock-js')({\n" +
+    "  network: 'testnet'\n" +
     "})\n" +
-    "        </code>\n" +
-    "      </pre>\n" +
-    "    </tab>\n" +
-    "    <tab heading=\"javascript\">\n" +
-    "      <pre>\n" +
-    "        <code class=\"javascript\" hljs>\n" +
-    "// Writing a comment\n" +
-    "var hex = \"123456789\"\n" +
-    "\n" +
-    "HelloBlock.Transaction.propagate({\n" +
-    "  hex: hex,\n" +
-    "  meta: \"blah\"\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<p><br></p>\n" +
+    "<h2 id=\"building-transactions-the-easy-way\">Building Transactions - The Easy Way</h2>\n" +
+    "<p><br>\n" +
+    "Building raw Bitcoin transactions are hard. Fortunately, bitcoinjs-lib provides a convenience methods to build transactions. You don&#39;t need to fully understand Bitcoin transactions to make them working.</p>\n" +
+    "<p>Here&#39;s the easy way of doing it. The code is executable in the browser. We&#39;ve already loaded the private key with some testnet Bitcoins. But you can hit the <a href=\"https://helloblock.io/docs/ref#faucet\">Faucet</a> if it runs out.</p>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "var helloblock = new HelloBlock({\n" +
+    "  network: 'testnet'\n" +
     "})\n" +
-    "        </code>\n" +
-    "      </pre>\n" +
-    "    </tab>\n" +
-    "  </tabset>\n" +
-    "</div>\n" +
-    "<br>\n" +
-    "<h3>Subtitle</h3>\n" +
-    "<h4>Sub-subtitle</h4>\n" +
-    "<p>\n" +
-    "  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n" +
-    "  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n" +
-    "  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n" +
-    "  <code class=\"single\">https://api.helloblock.com/</code>. Duis aute irure dolor in reprehenderit in voluptate velit esse\n" +
-    "  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n" +
-    "  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n" +
-    "</p>\n" +
     "\n" +
-    "<table class=\"table table-bordered\">\n" +
+    "var addressVersion = bitcoin.network.testnet.addressVersion\n" +
+    "\n" +
+    "var privateKey = \"cND8kTK2zSJf1bTqaz5nZ2Pdqtv43kQNcwJ1Dp5XWtbRokJNS97N\"\n" +
+    "var ecKey = new bitcoin.ECKey(privateKey)\n" +
+    "var ecKeyAddress = ecKey.getAddress(addressVersion).toString()\n" +
+    "var toAddress = 'mzPkw5EdvHCntC2hrhRXSqwHLHpLWzSZiL'\n" +
+    "\n" +
+    "var txFee = 10000\n" +
+    "var txTargetValue = 200000\n" +
+    "\n" +
+    "helloblock.addresses.getUnspents(ecKeyAddress, {\n" +
+    "  value: txTargetValue + txFee\n" +
+    "}, function(err, res, unspents) {\n" +
+    "  if (err) throw new Error(err)\n" +
+    "\n" +
+    "  var tx = new bitcoin.Transaction()\n" +
+    "\n" +
+    "  var totalUnspentsValue = 0\n" +
+    "  unspents.forEach(function(unspent) {\n" +
+    "    tx.addInput(unspent.txHash, unspent.index)\n" +
+    "    totalUnspentsValue += unspent.value\n" +
+    "  })\n" +
+    "\n" +
+    "  tx.addOutput(toAddress, txTargetValue)\n" +
+    "\n" +
+    "  var txChangeValue = totalUnspentsValue - txTargetValue - txFee\n" +
+    "  tx.addOutput(ecKeyAddress, txChangeValue)\n" +
+    "\n" +
+    "  tx.sign(0, ecKey)\n" +
+    "\n" +
+    "  var rawTxHex = tx.serializeHex()\n" +
+    "\n" +
+    "  helloblock.transactions.propagate(rawTxHex, function(err, res, tx) {\n" +
+    "    if (err) throw new Error(err)\n" +
+    "\n" +
+    "    console.log('https://test.helloblock.io/transactions/' + tx.txHash)\n" +
+    "  })\n" +
+    "})\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<p><br></p>\n" +
+    "<h2 id=\"building-transactions-the-hard-way\">Building Transactions - The Hard Way</h2>\n" +
+    "<p><br>\n" +
+    "Whilst it&#39;s useful to get a high level overview, it&#39;s important to know the nitty gritty details of how transactions work, especially for Bitcoin. This is because the ecosystem is still primitive, things break all the time and we need to know how to debug.</p>\n" +
+    "<p>Here&#39;s the hard way to doing it. This will perform the same function as above, but using lower level methods.</p>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "var helloblock = new HelloBlock({\n" +
+    "  network: 'testnet'\n" +
+    "})\n" +
+    "\n" +
+    "var addressVersion = bitcoin.network.testnet.addressVersion\n" +
+    "\n" +
+    "var privateKey = \"cND8kTK2zSJf1bTqaz5nZ2Pdqtv43kQNcwJ1Dp5XWtbRokJNS97N\"\n" +
+    "var ecKey = new bitcoin.ECKey(privateKey)\n" +
+    "var ecKeyAddress = ecKey.getAddress(addressVersion).toString()\n" +
+    "var toAddress = 'mzPkw5EdvHCntC2hrhRXSqwHLHpLWzSZiL'\n" +
+    "\n" +
+    "var txFee = 10000\n" +
+    "var txTargetValue = 200000\n" +
+    "\n" +
+    "helloblock.addresses.getUnspents(ecKeyAddress, {\n" +
+    "  value: txTargetValue + txFee\n" +
+    "}, function(err, response, unspents) {\n" +
+    "  if (err) throw new Error(err)\n" +
+    "\n" +
+    "  var tx = new bitcoin.Transaction()\n" +
+    "\n" +
+    "  var totalUnspentsValue = 0\n" +
+    "\n" +
+    "  // INPUTS\n" +
+    "  // HelloBlock selects the optimal unspent outputs above using 'value'\n" +
+    "  // Now, we add all unspent outputs as an input in this transaction\n" +
+    "  unspents.forEach(function(unspent) {\n" +
+    "    var input = new bitcoin.TransactionIn({\n" +
+    "      sequence: [255, 255, 255, 255],\n" +
+    "      outpoint: {\n" +
+    "        hash: unspent.txHash,\n" +
+    "        index: unspent.index\n" +
+    "      }\n" +
+    "    })\n" +
+    "\n" +
+    "    tx.ins.push(input)\n" +
+    "\n" +
+    "    totalUnspentsValue += unspent.value\n" +
+    "  })\n" +
+    "\n" +
+    "  // OUTPUTS\n" +
+    "  // Output 1: Send value to recipient\n" +
+    "  var recipientScript = new bitcoin.Script()\n" +
+    "  var toAddressObj = new bitcoin.Address(toAddress, addressVersion)\n" +
+    "\n" +
+    "  recipientScript.writeOp(bitcoin.Opcode.map.OP_DUP)\n" +
+    "  recipientScript.writeOp(bitcoin.Opcode.map.OP_HASH160)\n" +
+    "  recipientScript.writeBytes(toAddressObj.hash)\n" +
+    "  recipientScript.writeOp(bitcoin.Opcode.map.OP_EQUALVERIFY)\n" +
+    "  recipientScript.writeOp(bitcoin.Opcode.map.OP_CHECKSIG)\n" +
+    "\n" +
+    "  var recipientOutput = new bitcoin.TransactionOut({\n" +
+    "    value: txTargetValue,\n" +
+    "    script: recipientScript\n" +
+    "  })\n" +
+    "\n" +
+    "  tx.outs.push(recipientOutput)\n" +
+    "\n" +
+    "  // Output 2: Send change back to self\n" +
+    "  var changeScript = new bitcoin.Script()\n" +
+    "  var changeValue = totalUnspentsValue - txTargetValue - txFee\n" +
+    "\n" +
+    "  changeScript.writeOp(bitcoin.Opcode.map.OP_DUP)\n" +
+    "  changeScript.writeOp(bitcoin.Opcode.map.OP_HASH160)\n" +
+    "  changeScript.writeBytes(ecKey.getAddress(addressVersion).hash)\n" +
+    "  changeScript.writeOp(bitcoin.Opcode.map.OP_EQUALVERIFY)\n" +
+    "  changeScript.writeOp(bitcoin.Opcode.map.OP_CHECKSIG)\n" +
+    "\n" +
+    "  var changeOutput = new bitcoin.TransactionOut({\n" +
+    "    value: changeValue,\n" +
+    "    script: changeScript\n" +
+    "  })\n" +
+    "\n" +
+    "  tx.outs.push(changeOutput)\n" +
+    "\n" +
+    "  // SIGNING\n" +
+    "  var sigHashAll = 1\n" +
+    "  var ecKeyPub = ecKey.getPub().toBytes()\n" +
+    "  tx.ins.forEach(function(input, index) {\n" +
+    "    var connectedScript = bitcoin.Script.fromHex(unspents[index].scriptPubKey)\n" +
+    "\n" +
+    "    var txSigHash = tx.hashTransactionForSignature(connectedScript, index, sigHashAll)\n" +
+    "    var signature = ecKey.sign(txSigHash).concat([sigHashAll])\n" +
+    "\n" +
+    "    var inputScript = new bitcoin.Script()\n" +
+    "    inputScript.writeBytes(signature)\n" +
+    "    inputScript.writeBytes(ecKeyPub)\n" +
+    "\n" +
+    "    input.script = inputScript\n" +
+    "  })\n" +
+    "\n" +
+    "  var rawTxHex = tx.serializeHex()\n" +
+    "\n" +
+    "  helloblock.transactions.propagate(rawTxHex, function(err, response, resource) {\n" +
+    "    if (err) throw new Error(err)\n" +
+    "\n" +
+    "    console.log('https://test.helloblock.io/transactions/' + resource.txHash)\n" +
+    "  })\n" +
+    "})\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<p><br>\n" +
+    "The rest of the tutorial will run through this code step-by-step. Here&#39;s a checklist:</p>\n" +
+    "<ol>\n" +
+    "<li>Ensure you have the private keys.</li>\n" +
+    "<li>Get unspent outputs (UTXO) for address you want to send money from.</li>\n" +
+    "<li>Determine the right transaction value (amount + fee).</li>\n" +
+    "<li>Add all necessary inputs (UTXO).</li>\n" +
+    "<li>Add all desired outputs:<ul>\n" +
+    "<li>Make sure to include a change address.</li>\n" +
+    "</ul>\n" +
+    "</li>\n" +
+    "<li>Sign the transaction for each input:<ul>\n" +
+    "<li>Hash the transaction,</li>\n" +
+    "<li>Sign the hash with your private key,</li>\n" +
+    "<li>Add the hash type to the end of signature,</li>\n" +
+    "<li>Add the signature to the input,</li>\n" +
+    "<li>Add the public key to the input,</li>\n" +
+    "<li>Repeat for all inputs.</li>\n" +
+    "</ul>\n" +
+    "</li>\n" +
+    "<li>Serialize the entire transaction into hexadecimal format.</li>\n" +
+    "<li>Propagate the transaction.</li>\n" +
+    "</ol>\n" +
+    "<p><br></p>\n" +
+    "<h3 id=\"what-is-a-transaction-\">What is a transaction?</h3>\n" +
+    "<p><br></p>\n" +
+    "<p>A transaction is generally a transfer of value from one Bitcoin address to another (or multiple).</p>\n" +
+    "<p>Let&#39;s see what a raw Bitcoin transaction looks like. You can get raw transactions from the HelloBlock API by providing the txHash as follows.</p>\n" +
+    "<pre>\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "  # Example Request\n" +
+    "curl https://testnet.helloblock.io/q/getrawtransaction?txHashes=c772d1b8efd97e78aa882b4bfa04bb17a67fca62436010516472367aeb2b28ac\n" +
+    "\n" +
+    "\n" +
+    "  # Example Response\n" +
+    "{\n" +
+    "  \"status\": \"success\",\n" +
+    "  \"data\": {\n" +
+    "    \"transactions\": [\n" +
+    "      {\n" +
+    "        \"txHash\": \"c772d1b8efd97e78aa882b4bfa04bb17a67fca62436010516472367aeb2b28ac\",\n" +
+    "        \"rawTxHex\": \"0100000001cf6b23baf0ebb8a09559f761144ab4407b5dce75a9484ed07a6da41f7f0218e9010000008a4730440220372be617d9d276340846265ddc7ba9dabbe78e97fac97091f7e2cb19ec2929ae02203be15a0a3929b2353ebb81f5d67b20ab3b1e427f124855a2309649858eaa4b340141040cfa3dfb357bdff37c8748c7771e173453da5d7caa32972ab2f5c888fff5bbaeb5fc812b473bf808206930fade81ef4e373e60039886b51022ce68902d96ef70ffffffff0240420f00000000001976a914a5319d469e1ddd9558bd558a50e95f74b3da58c988ac78c4f81e010000001976a91461b469ada61f37c620010912a9d5d56646015f1688ac00000000\"\n" +
+    "      }\n" +
+    "    ]\n" +
+    "  }\n" +
+    "}\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<p><code>rawTxHex</code> is the raw transaction (hexadecimal representation) containing all the information about inputs/outputs, type of transaction, value transferred etc...</p>\n" +
+    "<p><code>txHash</code> is the shorthand ID for <code>rawTxHex</code>. It is calculated by double hashing (SHA256) <code>rawTxHex</code>.</p>\n" +
+    "<p><code>rawTxHex</code>, when decoded, can be represented as a byte map. See the <a href=\"https://en.bitcoin.it/wiki/Transactions\">Transaction Wiki Page</a> for more details.</p>\n" +
+    "<p><br></p>\n" +
+    "<table class='table table-condensed table-bordered'>\n" +
     "  <thead>\n" +
     "    <tr>\n" +
-    "      <th>Keyword</th>\n" +
-    "      <th>Value</th>\n" +
+    "      <th colspan='2' colspan=\"2\">Field</th>\n" +
+    "      <th>Bytes</th>\n" +
     "    </tr>\n" +
     "  </thead>\n" +
     "  <tbody>\n" +
     "    <tr>\n" +
-    "      <td>Thing</td>\n" +
-    "      <td>1231231231232</td>\n" +
+    "      <td colspan='2'>Version</td>\n" +
+    "      <td>01 00 00 00</td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>Thing</td>\n" +
-    "      <td>1231231231232</td>\n" +
+    "      <td colspan='2'>Input Count</td>\n" +
+    "      <td>01</td>\n" +
     "    </tr>\n" +
     "    <tr>\n" +
-    "      <td>Thing</td>\n" +
-    "      <td>1231231231232</td>\n" +
+    "      <td colspan='1' rowspan='5'>Inputs (1st)</td>\n" +
+    "      <td colspan='1'>Previous Output Hash</td>\n" +
+    "      <td>cf 6b 23 ba f0 eb b8 a0 95 59 f7 61 14 4a b4 40 7b 5d ce 75 a9 48 4e d0 7a 6d a4 1f 7f 02 18 e9</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td colspan='1'>Index</td>\n" +
+    "      <td>01 00 00 00</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td colspan='1'>Script Length</td>\n" +
+    "      <td>8a</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td colspan='1'>Script Sig</td>\n" +
+    "      <td>47 30 44 02 20 37 2b e6 17 d9 d2 76 34 08 46 26 5d dc 7b a9 da bb e7 8e 97 fa c9 70 91 f7 e2 cb 19 ec 29 29 ae 02 20 3b e1 5a 0a 39 29 b2 35 3e bb 81 f5 d6 7b 20 ab 3b 1e 42 7f 12 48 55 a2 30 96 49 85 8e aa 4b 34 01 41 04 0c fa 3d fb 35 7b df f3 7c 87 48 c7 77 1e 17 34 53 da 5d 7c aa 32 97 2a b2 f5 c8 88 ff f5 bb ae b5 fc 81 2b 47 3b f8 08 20 69 30 fa de 81 ef 4e 37 3e 60 03 98 86 b5 10 22 ce 68 90 2d 96 ef 70</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td colspan='1'>Sequence</td>\n" +
+    "      <td>ff ff ff ff</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td colspan='2'>Outputs Count</td>\n" +
+    "      <td>02</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td colspan='1' rowspan='3'>Outputs (1st)</td>\n" +
+    "      <td>Value</td>\n" +
+    "      <td>40 42 0f 00 00 00 00 00</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>Script Length</td>\n" +
+    "      <td>19</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>Script Pubkey</td>\n" +
+    "      <td>76 a9 14 a5 31 9d 46 9e 1d dd 95 58 bd 55 8a 50 e9 5f 74 b3 da 58 c9 88 ac</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td rowspan='3'>Outputs (2nd)</td>\n" +
+    "      <td>Value</td>\n" +
+    "      <td>78 c4 f8 1e 01 00 00 00</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>Script Length</td>\n" +
+    "      <td>19</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>Script Pubkey</td>\n" +
+    "      <td>76 a9 14 61 b4 69 ad a6 1f 37 c6 20 01 09 12 a9 d5 d5 66 46 01 5f 16 88 ac</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td colspan='2'>Block Time</td>\n" +
+    "      <td>00 00 00 00</td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
     "</table>\n" +
-    "<div class=\"code-sample\">\n" +
-    "  <pre>\n" +
-    "    <code class=\"javascript\" hljs>\n" +
-    "{\n" +
-    "  stats: \"success\",\n" +
-    "  message: \"good job dude\",\n" +
-    "  data: {\n" +
-    "    a: 1,\n" +
-    "    b: 1,\n" +
-    "    c: 1,\n" +
-    "  }\n" +
+    "\n" +
+    "<p><br></p>\n" +
+    "<h3 id=\"private-keys\">Private Keys</h3>\n" +
+    "<p><br>\n" +
+    "You must first ensure you have the private keys required.</p>\n" +
+    "<p>Managing private keys will be covered in the next tutorial. For now, you can use this pre-generated private key which has already been loaded with some testnet coins. Testnet is an alternative Blockchain used for testing.</p>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "  var privateKey = \"cND8kTK2zSJf1bTqaz5nZ2Pdqtv43kQNcwJ1Dp5XWtbRokJNS97N\"\n" +
+    "  var ecKey = new bitcoin.ECKey(privateKey)\n" +
+    "\n" +
+    "  var addressVersion = bitcoin.network.testnet.addressVersion\n" +
+    "  var ecKeyAddress = ecKey.getAddress(addressVersion).toString()\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<p><br></p>\n" +
+    "<h3 id=\"unspents-utxo\">Unspents/UTXO</h3>\n" +
+    "<p><br></p>\n" +
+    "<p>Bitcoin Transactions work by checking if a particular transaction refers to a previous transaction. This gets checked all the way back to the original &#39;coinbase&#39; transaction, generated by the Bitcoin miners.</p>\n" +
+    "<p>We cannot use a previous transaction output that has already been spent. That would be double spending.</p>\n" +
+    "<p>Therefore, we can only use unspent previous transaction outputs (&quot;UTXO&quot;/&quot;unspents&quot; for short) in order to build valid future transactions.</p>\n" +
+    "<p>The address balance is be the sum of all the unspents. In order words, it is the sum of all the Bitcoins that has been received minus the Bitcoins that have been sent.</p>\n" +
+    "<p>There are 3 important fields we need to get when using unspents. (see byte map above)</p>\n" +
+    "<ol>\n" +
+    "<li>Previous Transaction Hash</li>\n" +
+    "<li>Previous Transaction Output Index</li>\n" +
+    "<li>Previous Transaction Output Script Pubkey</li>\n" +
+    "</ol>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "helloblock.addresses.getUnspents(ecKeyAddress, {\n" +
+    "  value: txTargetValue + txFee\n" +
+    "}, function(err, response, unspents) {\n" +
+    "\n" +
+    "// ...\n" +
     "}\n" +
-    "    </code>\n" +
-    "  </pre>\n" +
-    "</div>\n" +
-    "<br>\n" +
-    "<h3>Subtitle</h3>\n" +
-    "<h4>Sub-subtitle</h4>\n" +
-    "<p>\n" +
-    "  <ol>\n" +
-    "    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n" +
-    "    tempor </li>\n" +
-    "    <li>incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n" +
-    "    quis nostrud exercitation ullamco laboris nisi ut aliquip ex.</li>\n" +
-    "    <li> ea commodo\n" +
-    "    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n" +
-    "    cillum dolore eu fugiat.</li>\n" +
-    "  </ol>\n" +
-    "</p>\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<p><br></p>\n" +
+    "<h3 id=\"amount-fees\">Amount/Fees</h3>\n" +
+    "<p><br></p>\n" +
+    "<p>A common gotcha is that we may only spend the entire unspent previous transaction output.</p>\n" +
+    "<p>For example, if the unspent was 10 BTC, we can&#39;t simply send 3 BTC. To spend 3 BTC, we must create 2 outputs</p>\n" +
+    "<ol>\n" +
+    "<li>3 BTC to the recipient.</li>\n" +
+    "<li>7 BTC back to ourself, just like change.</li>\n" +
+    "</ol>\n" +
+    "<p>To prevent Blockchain spam and DDOS attacks, every Bitcoin transaction must contain a fee. If it does not contain a fee, it is not likely to be accepted into the Blockchain by miners. The current fee is 10000 satoshis, or 0.0001 BTC, per 1000 bytes. Our transaction here is only 257 bytes. The size will increase if we add lots of inputs/outputs.</p>\n" +
+    "<p>The fee is calculated as the &quot;Total Input value&quot; - &quot;Total Output value&quot; of a transaction.</p>\n" +
+    "<p>For example, let&#39;s assume the Total Input Value, all the unspents we&#39;re going to use, is 10 BTC. To pay the 0.0001 BTC in fees, your outputs should be:</p>\n" +
+    "<ol>\n" +
+    "<li>3 BTC to the recipient</li>\n" +
+    "<li>6.9999 BTC back to ourself</li>\n" +
+    "</ol>\n" +
+    "<p>If you forget to send Bitcoins back to ourself, the &#39;missing&#39; 7 BTC will go to Bitcoin miners as a fee.</p>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "var totalInputsValue = 1000000000\n" +
     "\n" +
-    "<h4>Sub-subtitle</h4>\n" +
-    "<p>\n" +
-    "  <ul>\n" +
-    "    <li>Point one</li>\n" +
-    "    <li>Point two</li>\n" +
-    "    <li>Point three</li>\n" +
-    "  </ul>\n" +
-    "</p>\n" +
+    "var totalRecipientValue = 300000000\n" +
+    "var totalChangeValue = 699990000\n" +
+    "var fee = totalInputsValue - (totalRecipientValue + totalChangeValue)\n" +
+    "//=> 10000\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<p><br></p>\n" +
+    "<h3 id=\"script\">Script</h3>\n" +
+    "<p><br></p>\n" +
+    "<p>One thing you may have wondered is how Bitcoins actually get sent to/from addresses.</p>\n" +
+    "<blockquote>\n" +
+    "<p>&quot;Bitcoin uses a scripting system for transactions. Forth-like, Script is simple, stack-based, and processed from left to right. It is purposefully not Turing-complete, with no loops.&quot;</p>\n" +
+    "</blockquote>\n" +
+    "<p>Each input and output in a Bitcoin transaction carries a script - a set of instructions that is executed by the miners and nodes.</p>\n" +
+    "<p>Here&#39;s a list of operations we can perform - <a href=\"https://en.bitcoin.it/wiki/Script\">Bitcoin Script Wiki</a></p>\n" +
+    "<p>A new transaction is valid if</p>\n" +
+    "<ul>\n" +
+    "<li><code>scriptSig</code> of the current input, combinated with</li>\n" +
+    "<li><code>scriptPubKey</code> of the previous output,</li>\n" +
+    "</ul>\n" +
+    "<p>evaluates to true.</p>\n" +
+    "<p>In other words, we check if</p>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "  scriptSig + scriptPubKey === true\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<p>What is <code>scriptSig</code> and <code>scriptPubKey</code> ?</p>\n" +
+    "<p><code>scriptPubKey</code> is an encumbrance that restricts how future transactions can may be spent.</p>\n" +
+    "<p><code>scriptSig</code> tries to redeem Bitcoins by satisfying the rules the previous <code>scriptPubKey</code> has set.</p>\n" +
+    "<p>In standard transactions, the <code>scriptPubKey</code> in an output will be:</p>\n" +
+    "<pre>\n" +
+    "  <code class=\"\" hljs>\n" +
+    "OP_DUP OP_HASH160 &lt;pubkeyhash&gt; OP_EQUALVERIFY OP_CHECKSIG\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "var recipientScript = new bitcoin.Script()\n" +
+    "var toAddressObj = new bitcoin.Address(toAddress, addressVersion)\n" +
+    "\n" +
+    "recipientScript.writeOp(bitcoin.Opcode.map.OP_DUP)\n" +
+    "recipientScript.writeOp(bitcoin.Opcode.map.OP_HASH160)\n" +
+    "recipientScript.writeBytes(toAddressObj.hash)\n" +
+    "recipientScript.writeOp(bitcoin.Opcode.map.OP_EQUALVERIFY)\n" +
+    "recipientScript.writeOp(bitcoin.Opcode.map.OP_CHECKSIG)\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<p>This basically means, he who can provide the publickey and valid signature for <code>&lt;pubkeyhash&gt;</code> may unlock the Bitcoins specified.</p>\n" +
+    "<p>If a person actually has those details, they will put in it the <code>scriptSig</code></p>\n" +
+    "<pre>\n" +
+    "  <code class=\"bash\" hljs>\n" +
+    "&lt;signature&gt; &lt;pubkey&gt;\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "var inputScript = new bitcoin.Script()\n" +
+    "inputScript.writeBytes(signature)\n" +
+    "inputScript.writeBytes(ecKeyPub)\n" +
+    "\n" +
+    "input.script = inputScript\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<p>There are many possibilities in what this scripting language offers (e.g. Multi-signature transactions) but this will be explored in another tutorial.</p>\n" +
+    "<p>How this expression is evaluated is also beyond the scope of this tutorial. You may wish to read the <a href=\"https://en.bitcoin.it/wiki/Script\">Bitcoin Wiki on Script</a> to get a better sense of how this works.</p>\n" +
+    "<p><br></p>\n" +
+    "<h3 id=\"signing\">Signing</h3>\n" +
+    "<p><br></p>\n" +
+    "<p>To unlock Bitcoins specified, we must sign the transaction a private key that corresponds to the <code>pubkeyhash</code>.</p>\n" +
+    "<p>We generally sign all the transaction&#39;s data so that it cannot be tampered with.</p>\n" +
+    "<p>e.g. This will prevent attackers from substituting their addresses in place of our recipient&#39;s, and steal all the Bitcoins.</p>\n" +
+    "<p>Signing Bitcoin transactions can be a difficult and error-prone process.</p>\n" +
+    "<p>We need to double hash it (SHA256) the entire transaction, and sign the hash with our private key.</p>\n" +
+    "<p>Then, we append the HASHTYPE to the end of the signature. For standard transactions, this is <code>SIGHASH_ALL</code> represented by 0x01</p>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "var connectedScript = bitcoin.Script.fromHex(unspents[index].scriptPubKey)\n" +
+    "var txSigHash = tx.hashTransactionForSignature(connectedScript, index, sigHashAll)\n" +
+    "var signature = ecKey.sign(txSigHash).concat([sigHashAll])\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<p>This is what the final signature will look like on the byte map.</p>\n" +
+    "<p><br></p>\n" +
+    "<table class='table table-condensed table-bordered'>\n" +
+    "  <thead>\n" +
+    "    <tr>\n" +
+    "      <th colspan='2' colspan=\"2\">Field</th>\n" +
+    "      <th>Bytes</th>\n" +
+    "    </tr>\n" +
+    "  </thead>\n" +
+    "  <tbody>\n" +
+    "    <tr>\n" +
+    "      <td colspan='2'>PUSHDATA 47</td>\n" +
+    "      <td>47</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td rowspan=\"8\">Signature (DER)</td>\n" +
+    "      <td>Sequence</td>\n" +
+    "      <td>30</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>Total Length</td>\n" +
+    "      <td>44</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>Integer</td>\n" +
+    "      <td>02</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>\n" +
+    "        Length\n" +
+    "      </td>\n" +
+    "      <td>20</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>X</td>\n" +
+    "      <td>37 2b e6 17 d9 d2 76 34 08 46 26 5d dc 7b a9 da bb e7 8e 97 fa c9 70 91 f7 e2 cb 19 ec 29 29 ae</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>Integer</td>\n" +
+    "      <td>02</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>Length</td>\n" +
+    "      <td>20</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>Y</td>\n" +
+    "      <td>3b e1 5a 0a 39 29 b2 35 3e bb 81 f5 d6 7b 20 ab 3b 1e 42 7f 12 48 55 a2 30 96 49 85 8e aa 4b 34</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td colspan='2'>SIGHASH_ALL</td>\n" +
+    "      <td>01</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td colspan='2'>PUSHDATA 41</td>\n" +
+    "      <td>41</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td rowspan=\"3\">Public Key</td>\n" +
+    "      <td>Type</td>\n" +
+    "      <td>04</td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>X</td>\n" +
+    "      <td>0c fa 3d fb 35 7b df f3 7c 87 48 c7 77 1e 17 34 53 da 5d 7c aa 32 97 2a b2 f5 c8 88 ff f5 bb ae</td>\n" +
+    "      <td>\n" +
+    "    </tr>\n" +
+    "    <tr>\n" +
+    "      <td>Y</td>\n" +
+    "      <td>b5 fc 81 2b 47 3b f8 08 20 69 30 fa de 81 ef 4e 37 3e 60 03 98 86 b5 10 22 ce 68 90 2d 96 ef 70</td>\n" +
+    "    </tr>\n" +
+    "  </tbody>\n" +
+    "</table>\n" +
     "\n" +
     "\n" +
-    "<div class=\"space-big\"></div>\n" +
-    " -->\n"
+    "<p>There are different hash types which result in different ways of how the bitcoin protocol checks the signature. These will be covered in a different tutorial.</p>\n" +
+    "<p><br></p>\n" +
+    "<h3 id=\"add-all-inputs-outputs\">Add all inputs/outputs</h3>\n" +
+    "<p><br></p>\n" +
+    "<p>The constructed inputs and outputs, with all necessary scripts must be added to the transaction object.</p>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "// INPUTS\n" +
+    "var input = new bitcoin.TransactionIn({\n" +
+    "  sequence: [255, 255, 255, 255],\n" +
+    "  outpoint: {\n" +
+    "    hash: unspent.txHash,\n" +
+    "    index: unspent.index\n" +
+    "  }\n" +
+    "})\n" +
+    "\n" +
+    "tx.ins.push(input)\n" +
+    "\n" +
+    "\n" +
+    "// OUTPUTS\n" +
+    "var recipientOutput = new bitcoin.TransactionOut({\n" +
+    "  value: txTargetValue,\n" +
+    "  script: recipientScript\n" +
+    "})\n" +
+    "\n" +
+    "tx.outs.push(recipientOutput)\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<p><br></p>\n" +
+    "<h3 id=\"serialize-propagate\">Serialize/propagate</h3>\n" +
+    "<p><br></p>\n" +
+    "<p>We&#39;re almost done. Now we must serialize the transaction, converting into its hexadecimal format. This is it input type for most APIs, command line tools.</p>\n" +
+    "<p>For convenience we will propagate using the HelloBlock API.</p>\n" +
+    "<p>You may also wish to <a href=\"https://helloblock.io/propagate\">decode</a> the transaction before we propagate it to make sure everything looks correct.</p>\n" +
+    "<pre>\n" +
+    "  <code class=\"javascript\" hljs>\n" +
+    "var rawTxHex = tx.serializeHex()\n" +
+    "\n" +
+    "helloblock.transactions.propagate(rawTxHex, function(err, response, resource) {\n" +
+    "  if (err) throw new Error(err)\n" +
+    "\n" +
+    "  console.log('https://test.helloblock.io/transactions/' + resource.txHash)\n" +
+    "})\n" +
+    "  </code>\n" +
+    "</pre>\n" +
+    "<p>And now we&#39;re done!</p>\n" +
+    "<p><br></p>\n" +
+    "<h1 id=\"further-resources\">Further Resources</h1>\n" +
+    "<p><br></p>\n" +
+    "<ul>\n" +
+    "<li><a href=\"http://bitcoinhistory.net/Technical_Papers/ProgrammingBitcoinTransactionScripts.pdf\">http://bitcoinhistory.net/Technical_Papers/ProgrammingBitcoinTransactionScripts.pdf</a></li>\n" +
+    "<li><a href=\"http://www.righto.com/2014/02/bitcoins-hard-way-using-raw-bitcoin.html\">http://www.righto.com/2014/02/bitcoins-hard-way-using-raw-bitcoin.html</a></li>\n" +
+    "</ul>\n" +
+    "<p><br>\n" +
+    "<br></p>\n"
   );
 
 
-  $templateCache.put('/templates/docs/tutorials/send-transaction.html',
-    "<h1 class='text-center'>Send a Transaction</h1>\n"
+  $templateCache.put('/templates/docs/tutorials/how-to-build-a-wallet-2.html',
+    ""
   );
 
 
