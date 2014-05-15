@@ -16,8 +16,9 @@ A Wallet is just a collection of Bitcoin addresses. To make a functional wallet,
  - ** Build Transactions (Part 1) **
  - Manage Addresses/Keys (Part 2)
 
-<br>o
+<br>
 ## Dependencies
+<br>
 
 Client side javascript wallets cannot use the official reference client ```bitcoind```. However, [bitcoinjs-lib](https://github.com/bitcoinjs/bitcoinjs-lib) is a well-maintained reimplementation of the Bitcoin protocol in javascript. This is what we'll be using. The library is included on this page, so you can open console (e.g. Chrome console) and follow on.
 
@@ -39,16 +40,14 @@ var helloblock = require('helloblock-js')({
 })
 ```
 
-<br><br>
-
 You can find the full repo on [github.com/helloblock/demo-wallet](https://github.com/helloblock/demo-wallet)
 
 We also recommend [JSON View](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en) which beautifies JSON data inside your browser.
 
-<br><br>
+<br>
 ## Building Transactions - The Easy Way
 <br>
-One of the most difficult things to grasp initially is how to build transactions in Bitcoin. Luckily for us, bitcoinjs-lib provides a convenience methods to build transactions. You don't need to fully understand how Bitcoin transactions to get them working.
+One of the most difficult things to grasp initially is how to build transactions in Bitcoin. Fortunately, bitcoinjs-lib provides a convenience methods to build transactions. You don't need to fully understand how Bitcoin transactions to get them working.
 
 Here's the executable code, runnable in the browser. We've already loaded the private key with some testnet Bitcoins. But you can hit the [Faucet](https://helloblock.io/docs/ref#faucet) if it runs out.
 
@@ -100,7 +99,7 @@ helloblock.addresses.getUnspents(ecKeyAddress, {
 
 
 ```
-<br><br>
+<br>
 ## Building Transactions - The Hard Way
 <br>
 Whilst it's useful to get a high level overview, it's important to know the nitty gritty details of how transactions work, especially for Bitcoin. This is because the ecosystem is still primitive, things break all the time and we need to know how to debug.
@@ -209,7 +208,7 @@ helloblock.addresses.getUnspents(ecKeyAddress, {
 })
 
 ```
-
+<br>
 We will walk through step by step how this works. Here's a checklist of what we need to do:
 
  1. Ensure you have the private keys.
@@ -261,7 +260,7 @@ The ```txHash``` is used as the ID for the ```rawTxHex```, inferred from hashing
 
 If we examine the ```rawTxHex``` byte for byte. It may be decoded as such. The rules for how to decode this are on the [Transaction Wiki Page](https://en.bitcoin.it/wiki/Transactions)
 
-<br><br>
+<br>
 
 <table class='table table-condensed table-bordered'>
   <thead>
@@ -337,7 +336,7 @@ If we examine the ```rawTxHex``` byte for byte. It may be decoded as such. The r
   </tbody>
 </table>
 
-<br><br>
+<br>
 ### Private Keys
 <br>
 Managing Private Keys will be covered in the next tutorial. For now, use this pre-generated private key which has already been loaded with some testnet coins. Testnet is an alternative Blockchain used for testing.
@@ -347,7 +346,7 @@ Managing Private Keys will be covered in the next tutorial. For now, use this pr
   var ecKey = new bitcoin.ECKey(privateKey)
   var ecKeyAddress = ecKey.getAddress(addressVersion).toString()
 ```
-<br><br>
+<br>
 ### Unspents/UTXO
 <br>
 
@@ -373,7 +372,7 @@ helloblock.addresses.getUnspents(ecKeyAddress, {
 }
 ```
 
-<br><br>
+<br>
 ### Amount/Fees
 <br>
 
@@ -404,7 +403,7 @@ var changeValue = totalUnspentsValue - txTargetValue - txFee
 
 <br>
 ### Add all inputs/outputs
-<br><br>
+<br>
 
 We can use bitcoinjs-lib to add all the inputs and outputs
 
@@ -432,7 +431,7 @@ tx.outs.push(recipientOutput)
 
 Note that we don't include the input script for now because input scripts require a signature that we add later. We'll get to that below.
 
-<br><br>
+<br>
 ### Script
 <br>
 
@@ -499,7 +498,7 @@ There are many possibilities in what this scripting language offers (e.g. Multi-
 
 How this expression is evaluated is also beyond the scope of this tutorial. You may wish to read the [Bitcoin Wiki on Script](https://en.bitcoin.it/wiki/Script) to get a better sense of how this works.
 
-<br><br>
+<br>
 ### Signing
 <br>
 
@@ -526,7 +525,7 @@ Then, we append the HASHTYPE to the end of the signature. For standard transacti
 
 This is what the final signature will look like as a byte map.
 
-<br><br>
+<br>
 <table class='table table-condensed table-bordered'>
   <thead>
     <tr>
@@ -622,7 +621,7 @@ tx.ins.forEach(function(input, index) {
 })
 ```
 
-<br><br>
+<br>
 ### Serialize/propagate
 <br>
 
@@ -650,12 +649,12 @@ helloblock.transactions.propagate(rawTxHex, function(err, response, resource) {
 
 And now we're done!
 
-<br><br>
+<br>
 
-# Futher Resources
+# Further Resources
 <br>
  - http://bitcoinhistory.net/Technical_Papers/ProgrammingBitcoinTransactionScripts.pdf
  - http://www.righto.com/2014/02/bitcoins-hard-way-using-raw-bitcoin.html
 
-<br><br>
-<br><br>
+<br>
+<br>
