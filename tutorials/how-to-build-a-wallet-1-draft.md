@@ -16,21 +16,46 @@ A Wallet is just a collection of Bitcoin addresses. To make a functional wallet,
  - ** Build Transactions (Part 1) **
  - Manage Addresses/Keys (Part 2)
 
-Client side javascript wallets cannot use the official reference client ```bitcoind```. However, [bitcoinjs-lib]() is a well-maintained reimplementation of the Bitcoin protocol in javascript. This is what we'll be using. The library is included on this page, so you can open console (e.g. Chrome console) and follow on.
+<br>o
+## Dependencies
 
-You can find the full repo on [github.com/helloblock/demo-wallet]()
+Client side javascript wallets cannot use the official reference client ```bitcoind```. However, [bitcoinjs-lib](https://github.com/bitcoinjs/bitcoinjs-lib) is a well-maintained reimplementation of the Bitcoin protocol in javascript. This is what we'll be using. The library is included on this page, so you can open console (e.g. Chrome console) and follow on.
 
-We also recommend [JSON View]() which beautifies JSON data inside your browser.
+
+### Browser
+
+```html
+&lt;script src="https://s3.amazonaws.com/helloblock-cdn/bitcoinjs-lib.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://s3.amazonaws.com/helloblock-cdn/helloblock-js.min.js"&gt;&lt;/script&gt;
+```
+
+
+### Node.js
+
+```javascript
+var bitcoin = require("bitcoinjs-lib")
+var helloblock = require('helloblock-js')({
+  network: 'testnet'
+})
+```
+
+<br><br>
+
+You can find the full repo on [github.com/helloblock/demo-wallet](https://github.com/helloblock/demo-wallet)
+
+We also recommend [JSON View](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en) which beautifies JSON data inside your browser.
+
 <br><br>
 ## Building Transactions - The Easy Way
 <br>
 One of the most difficult things to grasp initially is how to build transactions in Bitcoin. Luckily for us, bitcoinjs-lib provides a convenience methods to build transactions. You don't need to fully understand how Bitcoin transactions to get them working.
 
-Here's the executable code, runnable in the browser. We've already loaded the private key with some testnet Bitcoins. But you can hit the [faucet](https://helloblock.io/doc/ref#faucet) if it runs out.
+Here's the executable code, runnable in the browser. We've already loaded the private key with some testnet Bitcoins. But you can hit the [Faucet](https://helloblock.io/docs/ref#faucet) if it runs out.
+
+
 
 ```javascript
-var bitcoin = require("bitcoinjs-lib")
-var helloblock = require('helloblock-js')({
+var helloblock = new HelloBlock({
   network: 'testnet'
 })
 
@@ -73,6 +98,7 @@ helloblock.addresses.getUnspents(ecKeyAddress, {
   })
 })
 
+
 ```
 <br><br>
 ## Building Transactions - The Hard Way
@@ -82,10 +108,10 @@ Whilst it's useful to get a high level overview, it's important to know the nitt
 Here's the detailed code, it will perform the same function as above, but using the more interesting lower level methods.
 
 ```javascript
-var bitcoin = require("bitcoinjs-lib")
-var helloblock = require('helloblock-js')({
+var helloblock = new HelloBlock({
   network: 'testnet'
 })
+
 var addressVersion = bitcoin.network.testnet.addressVersion
 
 var privateKey = "cND8kTK2zSJf1bTqaz5nZ2Pdqtv43kQNcwJ1Dp5XWtbRokJNS97N"
@@ -106,14 +132,15 @@ helloblock.addresses.getUnspents(ecKeyAddress, {
   var totalUnspentsValue = 0
 
   // INPUTS
+  // HelloBlock selects the optimal unspent outputs above using 'value'
+  // Now, we add all unspent outputs as an input in this transaction
   unspents.forEach(function(unspent) {
     var input = new bitcoin.TransactionIn({
       sequence: [255, 255, 255, 255],
       outpoint: {
         hash: unspent.txHash,
         index: unspent.index
-      },
-      script: undefined
+      }
     })
 
     tx.ins.push(input)
@@ -232,7 +259,7 @@ The ```rawTxHex``` is the raw transaction (hexadecimal representation) containin
 
 The ```txHash``` is used as the ID for the ```rawTxHex```, inferred from hashing (double SHA256) the ```rawTxHex```.
 
-If we examine the ```rawTxHex``` byte for byte. It may be decoded as such. The rules for how to decode this are on the [Transaction Wiki Page]()
+If we examine the ```rawTxHex``` byte for byte. It may be decoded as such. The rules for how to decode this are on the [Transaction Wiki Page](https://en.bitcoin.it/wiki/Transactions)
 
 <br><br>
 
@@ -338,12 +365,12 @@ There are 3 important fields we need to get when using unspents. (see byte map a
  3. Previous Transaction Output Script Pubkey
 
 ```javascript
-  helloblock.addresses.getUnspents(ecKeyAddress, {
-    value: txTargetValue + txFee
-  }, function(err, response, unspents) {
+helloblock.addresses.getUnspents(ecKeyAddress, {
+  value: txTargetValue + txFee
+}, function(err, response, unspents) {
 
-  // ...
-  }
+// ...
+}
 ```
 
 <br><br>
@@ -369,10 +396,10 @@ For example, let's assume the Total Input Value, all the unspents we're going to
 If you forget to send Bitcoins back to yourself, the 'missing' 7 BTC will go to Bitcoin miners as a fee.
 
 ```javascript
-  var txFee = 10000
-  var txTargetValue = 200000
-  var totalUnspentsValue = 99999999 // example
-  var changeValue = totalUnspentsValue - txTargetValue - txFee
+var txFee = 10000
+var txTargetValue = 200000
+var totalUnspentsValue = 99999999 // example
+var changeValue = totalUnspentsValue - txTargetValue - txFee
 ```
 
 <br>
@@ -382,26 +409,25 @@ If you forget to send Bitcoins back to yourself, the 'missing' 7 BTC will go to 
 We can use bitcoinjs-lib to add all the inputs and outputs
 
 ```javascript
-  // input
-  var input = new bitcoin.TransactionIn({
-    sequence: [255, 255, 255, 255],
-    outpoint: {
-      hash: unspent.txHash,
-      index: unspent.index
-    },
-    script: undefined
-  })
+// INPUTS
+var input = new bitcoin.TransactionIn({
+  sequence: [255, 255, 255, 255],
+  outpoint: {
+    hash: unspent.txHash,
+    index: unspent.index
+  }
+})
 
-  tx.ins.push(input)
+tx.ins.push(input)
 
 
-  // output
-  var changeOutput = new bitcoin.TransactionOut({
-    value: changeValue,
-    script: changeScript
-  })
+// OUTPUTS
+var recipientOutput = new bitcoin.TransactionOut({
+  value: txTargetValue,
+  script: recipientScript
+})
 
-  tx.outs.push(changeOutput)
+tx.outs.push(recipientOutput)
 ```
 
 Note that we don't include the input script for now because input scripts require a signature that we add later. We'll get to that below.
@@ -416,7 +442,7 @@ One thing you may have wondered is how Bitcoins actually get sent to/from addres
 
 Each input/output in a Bitcoin transaction carries a script - a set of instructions that is executed by the miners/nodes.
 
-Here's a list of operations you can perform - [Bitcoin Script Wiki]()
+Here's a list of operations you can perform - [Bitcoin Script Wiki](https://en.bitcoin.it/wiki/Script)
 
 A new transaction is valid if the combination of transaction scripts of its input field ```(scriptSig)``` and the transaction script
 of its previous transaction ```(scriptPubKey)``` evaluates to true.
@@ -431,14 +457,14 @@ What do we actually write in the input scripts and output scripts just to simply
 In standard transactions, we put together the following expression which must evaluate to true for the transaction to be valid.
 
 ```javascript
-  var recipientScript = new bitcoin.Script()
-  var toAddressObj = new bitcoin.Address(toAddress, addressVersion)
+var recipientScript = new bitcoin.Script()
+var toAddressObj = new bitcoin.Address(toAddress, addressVersion)
 
-  recipientScript.writeOp(bitcoin.Opcode.map.OP_DUP)
-  recipientScript.writeOp(bitcoin.Opcode.map.OP_HASH160)
-  recipientScript.writeBytes(toAddressObj.hash)
-  recipientScript.writeOp(bitcoin.Opcode.map.OP_EQUALVERIFY)
-  recipientScript.writeOp(bitcoin.Opcode.map.OP_CHECKSIG)
+recipientScript.writeOp(bitcoin.Opcode.map.OP_DUP)
+recipientScript.writeOp(bitcoin.Opcode.map.OP_HASH160)
+recipientScript.writeBytes(toAddressObj.hash)
+recipientScript.writeOp(bitcoin.Opcode.map.OP_EQUALVERIFY)
+recipientScript.writeOp(bitcoin.Opcode.map.OP_CHECKSIG)
 ```
 
 What does this actually mean?
@@ -453,21 +479,31 @@ A valid ```<signature> <pubkey>``` may only be created if that person indeed has
 
 Here's what it looks like with actual data.
 
-```javascript
-  30440220372be617d9d276340846265ddc7ba9dabbe78e97fac97091f7e2cb19ec2929ae02203be15a0a3929b2353ebb81f5d67b20ab3b1e427f124855a2309649858eaa4b3401 040cfa3dfb357bdff37c8748c7771e173453da5d7caa32972ab2f5c888fff5bbaeb5fc812b473bf808206930fade81ef4e373e60039886b51022ce68902d96ef70 OP_DUP OP_HASH160 e06c30499eec71471ba28f4d684c8e1e515f7462 OP_EQUALVERIFY OP_CHECKSIG
+```bash
+30440220372be617d9d276340846265ddc7ba9dabbe78e97fac97091f7e2cb19ec2929ae02203be15a0a3929b2353ebb81f5d67b20ab3b1e427f124855a2309649858eaa4b3401
+
+040cfa3dfb357bdff37c8748c7771e173453da5d7caa32972ab2f5c888fff5bbaeb5fc812b473bf808206930fade81ef4e373e60039886b51022ce68902d96ef70
+
+OP_DUP
+
+OP_HASH160
+
+e06c30499eec71471ba28f4d684c8e1e515f7462
+
+OP_EQUALVERIFY
+
+OP_CHECKSIG
 ```
 
 There are many possibilities in what this scripting language offers (e.g. Multi-signature transactions) but this will be explored in another tutorial.
 
-How this expression is evaluated is also beyond the scope of this tutorial. You may wish to read the [Bitcoin Wiki on Script]() to get a better sense of how this works.
+How this expression is evaluated is also beyond the scope of this tutorial. You may wish to read the [Bitcoin Wiki on Script](https://en.bitcoin.it/wiki/Script) to get a better sense of how this works.
 
 <br><br>
 ### Signing
 <br>
 
 To prove that you control a particular address you will have to sign the transaction. See ```signature``` above. This signature can only be provided by the person who holds the private key for that address.
-
-See [this video]() if you would like a primer on how digital signatures work.
 
 So what do you sign?
 
@@ -570,20 +606,20 @@ Lastly, we will also attach the ```<pubkey>``` to the input script, which is der
 
 
 ```javascript
-  var sigHashAll = 1
-  var ecKeyPub = ecKey.getPub().toBytes()
-  tx.ins.forEach(function(input, index) {
-    var connectedScript = bitcoin.Script.fromHex(unspents[index].scriptPubKey)
+var sigHashAll = 1
+var ecKeyPub = ecKey.getPub().toBytes()
+tx.ins.forEach(function(input, index) {
+  var connectedScript = bitcoin.Script.fromHex(unspents[index].scriptPubKey)
 
-    var txSigHash = tx.hashTransactionForSignature(connectedScript, index, sigHashAll)
-    var signature = ecKey.sign(txSigHash).concat([sigHashAll])
+  var txSigHash = tx.hashTransactionForSignature(connectedScript, index, sigHashAll)
+  var signature = ecKey.sign(txSigHash).concat([sigHashAll])
 
-    var inputScript = new bitcoin.Script()
-    inputScript.writeBytes(signature)
-    inputScript.writeBytes(ecKeyPub)
+  var inputScript = new bitcoin.Script()
+  inputScript.writeBytes(signature)
+  inputScript.writeBytes(ecKeyPub)
 
-    input.script = inputScript
-  })
+  input.script = inputScript
+})
 ```
 
 <br><br>
@@ -603,13 +639,13 @@ For convenience we will propagate using the HelloBlock API
 You may also wish to [decode](https://helloblock.io/propagate) the transaction before you propagate it just to make sure everything looks correct.
 
 ```javascript
-  var rawTxHex = tx.serializeHex()
+var rawTxHex = tx.serializeHex()
 
-  helloblock.transactions.propagate(rawTxHex, function(err, response, resource) {
-    if (err) throw new Error(err)
+helloblock.transactions.propagate(rawTxHex, function(err, response, resource) {
+  if (err) throw new Error(err)
 
-    console.log('https://test.helloblock.io/transactions/' + resource.txHash)
-  })
+  console.log('https://test.helloblock.io/transactions/' + resource.txHash)
+})
 ```
 
 And now we're done!
