@@ -4926,7 +4926,9 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  var txChangeValue = totalUnspentsValue - txTargetValue - txFee\n" +
     "  tx.addOutput(ecKeyAddress, txChangeValue)\n" +
     "\n" +
-    "  tx.sign(0, ecKey)\n" +
+    "  tx.ins.forEach(function(input, index) {\n" +
+    "    tx.sign(index, ecKey)\n" +
+    "  })\n" +
     "\n" +
     "  var rawTxHex = tx.serializeHex()\n" +
     "\n" +
