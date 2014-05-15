@@ -1456,7 +1456,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "    <div class=\"navbar-collapse collapse navbar-responsive-collapse\">\n" +
     "      <ul class=\"nav navbar-nav navbar-right\">\n" +
     "        <li ng-class=\"{'active': global.isOnLink('docs')}\">\n" +
-    "          <a href=\"/docs/ref\">\n" +
+    "          <a href=\"/docs/tutorials\">\n" +
     "            <i class=\"fa fa-book\"></i>\n" +
     "            <span>Documentation</span>\n" +
     "          </a>\n" +
