@@ -5446,7 +5446,10 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/templates/docs/tutorials/how-to-build-a-wallet-2.html',
-    ""
+    "<h1 id=\"how-to-build-a-wallet-part-1-of-2-\">How to build a wallet (Part 1 of 2)</h1>\n" +
+    "<blockquote>\n" +
+    "<p>Coming soon ...</p>\n" +
+    "</blockquote>\n"
   );
 
 
