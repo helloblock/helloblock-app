@@ -4933,7 +4933,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  helloblock.transactions.propagate(rawTxHex, function(err, res, tx) {\n" +
     "    if (err) throw new Error(err)\n" +
     "\n" +
-    "    console.log('https://test.helloblock.io/transactions/' + tx.txHash)\n" +
+    "    console.log('SUCCESS: https://test.helloblock.io/transactions/' + tx.txHash)\n" +
     "  })\n" +
     "})\n" +
     "  </code>\n" +
@@ -5041,7 +5041,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "  helloblock.transactions.propagate(rawTxHex, function(err, response, resource) {\n" +
     "    if (err) throw new Error(err)\n" +
     "\n" +
-    "    console.log('https://test.helloblock.io/transactions/' + resource.txHash)\n" +
+    "    console.log('SUCCESS: https://test.helloblock.io/transactions/' + resource.txHash)\n" +
     "  })\n" +
     "})\n" +
     "  </code>\n" +
@@ -5428,7 +5428,7 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "helloblock.transactions.propagate(rawTxHex, function(err, response, resource) {\n" +
     "  if (err) throw new Error(err)\n" +
     "\n" +
-    "  console.log('https://test.helloblock.io/transactions/' + resource.txHash)\n" +
+    "  console.log('SUCCESS: https://test.helloblock.io/transactions/' + resource.txHash)\n" +
     "})\n" +
     "  </code>\n" +
     "</pre>\n" +

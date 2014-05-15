@@ -91,7 +91,7 @@ helloblock.addresses.getUnspents(ecKeyAddress, {
   helloblock.transactions.propagate(rawTxHex, function(err, res, tx) {
     if (err) throw new Error(err)
 
-    console.log('https://test.helloblock.io/transactions/' + tx.txHash)
+    console.log('SUCCESS: https://test.helloblock.io/transactions/' + tx.txHash)
   })
 })
 
@@ -201,7 +201,7 @@ helloblock.addresses.getUnspents(ecKeyAddress, {
   helloblock.transactions.propagate(rawTxHex, function(err, response, resource) {
     if (err) throw new Error(err)
 
-    console.log('https://test.helloblock.io/transactions/' + resource.txHash)
+    console.log('SUCCESS: https://test.helloblock.io/transactions/' + resource.txHash)
   })
 })
 
@@ -615,7 +615,7 @@ var rawTxHex = tx.serializeHex()
 helloblock.transactions.propagate(rawTxHex, function(err, response, resource) {
   if (err) throw new Error(err)
 
-  console.log('https://test.helloblock.io/transactions/' + resource.txHash)
+  console.log('SUCCESS: https://test.helloblock.io/transactions/' + resource.txHash)
 })
 ```
 
