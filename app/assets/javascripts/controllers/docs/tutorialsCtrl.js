@@ -25,6 +25,7 @@ hbApp.controller("docs/tutorialsCtrl", function($scope, $routeParams, $http) {
   User.submitting = false
   User.signUp = function(email) {
     if (!email) return;
+    if (User.emailSuccess) return;
 
     User.submitting = true
     $http.post("/email", {
