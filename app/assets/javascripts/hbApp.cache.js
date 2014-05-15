@@ -4852,8 +4852,34 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('/templates/docs/tutorials/how-to-build-a-wallet-1.html',
     "<h1 id=\"how-to-build-a-wallet-part-1-of-2-\">How to build a wallet (Part 1 of 2)</h1>\n" +
-    "<p><br></p>\n" +
-    "<p>In this tutorial, we&#39;re going to make a JavaScript client side Bitcoin Wallet. You may have seen some of these around:</p>\n" +
+    "<p><div class=\"row\"></p>\n" +
+    "<p><div class=\"col-md-10 col-md-offset-1\"></p>\n" +
+    "<blockquote>\n" +
+    "<p>Register your e-mail to receive future Bitcoin tutorials.</p>\n" +
+    "</blockquote>\n" +
+    "<p>  <form ng-submit=\"User.signUp(User.email)\">\n" +
+    "    <div class=\"input-group\">\n" +
+    "        <input\n" +
+    "          class='h3 big-input'\n" +
+    "          spellcheck=\"false\"\n" +
+    "          type=\"email\"\n" +
+    "          name=\"email\"\n" +
+    "          ng-model=\"User.email\"\n" +
+    "          ng-minlength=\"4\"\n" +
+    "          placeholder=\"person@example.com\"\n" +
+    "          required\n" +
+    "          >\n" +
+    "        <span class=\"input-group-btn\">\n" +
+    "          <button class=\"btn btn-success btn-block btn-search\" ng-show=\"!User.submitting && !User.emailSuccess\"><span class=\"h4\">REGISTER</span></button>\n" +
+    "          <button class=\"btn btn-success btn-block btn-search\" ng-show=\"User.submitting\" ng-disabled='true'><span class=\"h4\">REGISTERING ...</span></button>\n" +
+    "          <button class=\"btn btn-success btn-block btn-search\" ng-show=\"User.emailSuccess\" ng-disabled='true'><span class=\"h4\">REGISTERED!</span></button>\n" +
+    "        </span>\n" +
+    "    </div>\n" +
+    "  </form>\n" +
+    "</div>\n" +
+    "</div>\n" +
+    "<br>\n" +
+    "In this tutorial, we&#39;re going to make a JavaScript client side Bitcoin Wallet. You may have seen some of these around:</p>\n" +
     "<ul>\n" +
     "<li><a href=\"https://blockchain.info/wallet\">Blockchain.info</a></li>\n" +
     "<li><a href=\"http://carbonwallet.com/\">Carbon Wallet</a></li>\n" +
@@ -5436,6 +5462,33 @@ angular.module('hbApp').run(['$templateCache', function($templateCache) {
     "</pre>\n" +
     "<p>And now we&#39;re done!</p>\n" +
     "<p><br></p>\n" +
+    "<p><div class=\"row\"></p>\n" +
+    "<p><div class=\"col-md-10 col-md-offset-1\"></p>\n" +
+    "<blockquote>\n" +
+    "<p>Register your e-mail to receive future Bitcoin tutorials.</p>\n" +
+    "</blockquote>\n" +
+    "<p>  <form ng-submit=\"User.signUp(User.email)\">\n" +
+    "    <div class=\"input-group\">\n" +
+    "        <input\n" +
+    "          class='h3 big-input'\n" +
+    "          spellcheck=\"false\"\n" +
+    "          type=\"email\"\n" +
+    "          name=\"email\"\n" +
+    "          ng-model=\"User.email\"\n" +
+    "          ng-minlength=\"4\"\n" +
+    "          placeholder=\"person@example.com\"\n" +
+    "          required\n" +
+    "          >\n" +
+    "        <span class=\"input-group-btn\">\n" +
+    "          <button class=\"btn btn-success btn-block btn-search\" ng-show=\"!User.submitting && !User.emailSuccess\"><span class=\"h4\">REGISTER</span></button>\n" +
+    "          <button class=\"btn btn-success btn-block btn-search\" ng-show=\"User.submitting\" ng-disabled='true'><span class=\"h4\">REGISTERING ...</span></button>\n" +
+    "          <button class=\"btn btn-success btn-block btn-search\" ng-show=\"User.emailSuccess\" ng-disabled='true'><span class=\"h4\">REGISTERED!</span></button>\n" +
+    "        </span>\n" +
+    "    </div>\n" +
+    "  </form>\n" +
+    "</div>\n" +
+    "</div>\n" +
+    "<br></p>\n" +
     "<h1 id=\"further-resources\">Further Resources</h1>\n" +
     "<p><br></p>\n" +
     "<ul>\n" +

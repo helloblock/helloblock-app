@@ -1,4 +1,4 @@
-hbApp.controller("docs/tutorialsCtrl", function($scope, $routeParams) {
+hbApp.controller("docs/tutorialsCtrl", function($scope, $routeParams, $http) {
 
   $scope.currentTutorial = $routeParams.tutorial_file || 'how-to-build-a-wallet-1'
 
@@ -16,4 +16,33 @@ hbApp.controller("docs/tutorialsCtrl", function($scope, $routeParams) {
     var url = base + tutorial;
     return url;
   }
+
+  // TODO: Refactor
+  var User = {}
+  User.email;
+
+  User.emailSuccess = false;
+  User.submitting = false
+  User.signUp = function(email) {
+    if (!email) return;
+
+    User.submitting = true
+    $http.post("/email", {
+      email: email
+    })
+      .success(function(data) {
+        User.emailSuccess = true;
+        User.submitting = false;
+      })
+      .error(function(err) {
+        User.submitting = false;
+      });
+
+    // $location.path("/account/signup").search({
+    //  email: email
+    // })
+  }
+
+  $scope.User = User;
+
 })

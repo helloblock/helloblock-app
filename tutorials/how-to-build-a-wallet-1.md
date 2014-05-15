@@ -1,6 +1,30 @@
 # How to build a wallet (Part 1 of 2)
-<br>
+<div class="row">
+<div class="col-md-10 col-md-offset-1">
+> Register your e-mail to receive future Bitcoin tutorials.
 
+  <form ng-submit="User.signUp(User.email)">
+    <div class="input-group">
+        <input
+          class='h3 big-input'
+          spellcheck="false"
+          type="email"
+          name="email"
+          ng-model="User.email"
+          ng-minlength="4"
+          placeholder="person@example.com"
+          required
+          >
+        <span class="input-group-btn">
+          <button class="btn btn-success btn-block btn-search" ng-show="!User.submitting && !User.emailSuccess"><span class="h4">REGISTER</span></button>
+          <button class="btn btn-success btn-block btn-search" ng-show="User.submitting" ng-disabled='true'><span class="h4">REGISTERING ...</span></button>
+          <button class="btn btn-success btn-block btn-search" ng-show="User.emailSuccess" ng-disabled='true'><span class="h4">REGISTERED!</span></button>
+        </span>
+    </div>
+  </form>
+</div>
+</div>
+<br>
 In this tutorial, we're going to make a JavaScript client side Bitcoin Wallet. You may have seen some of these around:
 
  - [Blockchain.info](https://blockchain.info/wallet)
@@ -624,6 +648,33 @@ helloblock.transactions.propagate(rawTxHex, function(err, response, resource) {
 
 And now we're done!
 
+<br>
+
+<div class="row">
+<div class="col-md-10 col-md-offset-1">
+> Register your e-mail to receive future Bitcoin tutorials.
+
+  <form ng-submit="User.signUp(User.email)">
+    <div class="input-group">
+        <input
+          class='h3 big-input'
+          spellcheck="false"
+          type="email"
+          name="email"
+          ng-model="User.email"
+          ng-minlength="4"
+          placeholder="person@example.com"
+          required
+          >
+        <span class="input-group-btn">
+          <button class="btn btn-success btn-block btn-search" ng-show="!User.submitting && !User.emailSuccess"><span class="h4">REGISTER</span></button>
+          <button class="btn btn-success btn-block btn-search" ng-show="User.submitting" ng-disabled='true'><span class="h4">REGISTERING ...</span></button>
+          <button class="btn btn-success btn-block btn-search" ng-show="User.emailSuccess" ng-disabled='true'><span class="h4">REGISTERED!</span></button>
+        </span>
+    </div>
+  </form>
+</div>
+</div>
 <br>
 
 # Further Resources

@@ -1,6 +1,32 @@
 <h1 id="how-to-build-a-wallet-part-1-of-2-">How to build a wallet (Part 1 of 2)</h1>
-<p><br></p>
-<p>In this tutorial, we&#39;re going to make a JavaScript client side Bitcoin Wallet. You may have seen some of these around:</p>
+<p><div class="row"></p>
+<p><div class="col-md-10 col-md-offset-1"></p>
+<blockquote>
+<p>Register your e-mail to receive future Bitcoin tutorials.</p>
+</blockquote>
+<p>  <form ng-submit="User.signUp(User.email)">
+    <div class="input-group">
+        <input
+          class='h3 big-input'
+          spellcheck="false"
+          type="email"
+          name="email"
+          ng-model="User.email"
+          ng-minlength="4"
+          placeholder="person@example.com"
+          required
+          >
+        <span class="input-group-btn">
+          <button class="btn btn-success btn-block btn-search" ng-show="!User.submitting && !User.emailSuccess"><span class="h4">REGISTER</span></button>
+          <button class="btn btn-success btn-block btn-search" ng-show="User.submitting" ng-disabled='true'><span class="h4">REGISTERING ...</span></button>
+          <button class="btn btn-success btn-block btn-search" ng-show="User.emailSuccess" ng-disabled='true'><span class="h4">REGISTERED!</span></button>
+        </span>
+    </div>
+  </form>
+</div>
+</div>
+<br>
+In this tutorial, we&#39;re going to make a JavaScript client side Bitcoin Wallet. You may have seen some of these around:</p>
 <ul>
 <li><a href="https://blockchain.info/wallet">Blockchain.info</a></li>
 <li><a href="http://carbonwallet.com/">Carbon Wallet</a></li>
@@ -583,6 +609,33 @@ helloblock.transactions.propagate(rawTxHex, function(err, response, resource) {
 </pre>
 <p>And now we&#39;re done!</p>
 <p><br></p>
+<p><div class="row"></p>
+<p><div class="col-md-10 col-md-offset-1"></p>
+<blockquote>
+<p>Register your e-mail to receive future Bitcoin tutorials.</p>
+</blockquote>
+<p>  <form ng-submit="User.signUp(User.email)">
+    <div class="input-group">
+        <input
+          class='h3 big-input'
+          spellcheck="false"
+          type="email"
+          name="email"
+          ng-model="User.email"
+          ng-minlength="4"
+          placeholder="person@example.com"
+          required
+          >
+        <span class="input-group-btn">
+          <button class="btn btn-success btn-block btn-search" ng-show="!User.submitting && !User.emailSuccess"><span class="h4">REGISTER</span></button>
+          <button class="btn btn-success btn-block btn-search" ng-show="User.submitting" ng-disabled='true'><span class="h4">REGISTERING ...</span></button>
+          <button class="btn btn-success btn-block btn-search" ng-show="User.emailSuccess" ng-disabled='true'><span class="h4">REGISTERED!</span></button>
+        </span>
+    </div>
+  </form>
+</div>
+</div>
+<br></p>
 <h1 id="further-resources">Further Resources</h1>
 <p><br></p>
 <ul>
