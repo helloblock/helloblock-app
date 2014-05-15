@@ -43,8 +43,6 @@ GEM
     execjs (2.0.2)
     font-awesome-rails (4.0.3.0)
       railties (>= 3.2, < 5.0)
-    github-markup (1.1.1)
-      posix-spawn (~> 0.3.8)
     hike (1.2.3)
     httparty (0.12.0)
       json (~> 1.8)
@@ -68,7 +66,6 @@ GEM
     newrelic_rpm (3.7.1.180)
     pg (0.17.1)
     polyglot (0.3.3)
-    posix-spawn (0.3.8)
     prerender_rails (0.1.18)
       rack
     pry (0.9.12.4)
@@ -103,7 +100,6 @@ GEM
     rake (10.1.1)
     rdoc (3.12.2)
       json (~> 1.4)
-    redcarpet (3.1.1)
     ref (1.0.5)
     rspec-core (2.14.7)
     rspec-expectations (2.14.4)
@@ -160,7 +156,6 @@ DEPENDENCIES
   awesome_print
   coffee-rails (~> 4.0.0)
   font-awesome-rails
-  github-markup
   httparty
   less-rails (~> 2.4.2)
   newrelic_rpm
@@ -170,7 +165,6 @@ DEPENDENCIES
   puma
   rails (= 4.0.2)
   rails_12factor
-  redcarpet
   rspec-rails
   sass-rails (~> 4.0.0)
   sdoc

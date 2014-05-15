@@ -2,7 +2,6 @@
 //= require yeti/loader
 //= require yeti/bootswatch
 
-//= require cryptocoin
 //= require ng-infinite-scroll
 
 //= require hbApp

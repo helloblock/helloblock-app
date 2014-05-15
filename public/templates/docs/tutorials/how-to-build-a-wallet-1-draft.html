@@ -20,7 +20,7 @@
 <h2 id="building-transactions-the-easy-way">Building Transactions - The Easy Way</h2>
 <p><br>
 One of the most difficult things to grasp initially is how to build transactions in Bitcoin. Luckily for us, bitcoinjs-lib provides a convenience methods to build transactions. You don&#39;t need to fully understand how Bitcoin transactions to get them working.</p>
-<p>Here&#39;s some executable code (e.g you can run it in the browser)</p>
+<p>Here&#39;s the executable code, runnable in the browser. We&#39;ve already loaded the private key with some testnet Bitcoins. But you can hit the <a href="https://helloblock.io/doc/ref#faucet">faucet</a> if it runs out.</p>
 <pre>
   <code class="javascript" hljs>
 var bitcoin = require("bitcoinjs-lib")
@@ -206,6 +206,7 @@ helloblock.addresses.getUnspents(ecKeyAddress, {
   <code class="bash" hljs>
   # Example Request
 curl https://testnet.helloblock.io/q/getrawtransaction?txHashes=c772d1b8efd97e78aa882b4bfa04bb17a67fca62436010516472367aeb2b28ac
+
 
   # Example Response
 {

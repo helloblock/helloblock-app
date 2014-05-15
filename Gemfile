@@ -29,10 +29,6 @@ gem 'newrelic_rpm'
 gem 'rspec-rails'
 gem 'httparty'
 
-gem 'redcarpet'
-
-gem 'github-markup'
-
 group :production do
   gem 'prerender_rails'
 end

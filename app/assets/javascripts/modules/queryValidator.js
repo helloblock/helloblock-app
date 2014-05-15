@@ -3,7 +3,7 @@ var QueryValidator = {};
 QueryValidator.hexRegex = /^[0-9a-f]+$/i;
 
 QueryValidator.address = function(query) {
-  return cryptocoin.Address.validate(query)
+  return bitcoin.Address.validate(query)
 }
 
 QueryValidator.transaction = function(query) {
