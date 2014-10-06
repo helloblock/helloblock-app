@@ -48,7 +48,6 @@ Client side JavaScript wallets cannot use the official reference client ```bitco
 
 *The library is included on this page, so you can open your browser console and follow along.*
 
-
 ### Browser
 
 ```html
@@ -80,11 +79,11 @@ var helloblock = new HelloBlock({
   network: 'testnet'
 })
 
-var addressVersion = bitcoin.network.testnet.addressVersion
+var addressVersion = bitcoin.networks.testnet
 
 var privateKey = "cND8kTK2zSJf1bTqaz5nZ2Pdqtv43kQNcwJ1Dp5XWtbRokJNS97N"
-var ecKey = new bitcoin.ECKey(privateKey)
-var ecKeyAddress = ecKey.getAddress(addressVersion).toString()
+var ecKey = bitcoin.ECKey.fromWIF(privateKey)
+var ecKeyAddress = ecKey.pub.getAddress(addressVersion).toString()
 var toAddress = 'mzPkw5EdvHCntC2hrhRXSqwHLHpLWzSZiL'
 
 var txFee = 10000
@@ -112,7 +111,7 @@ helloblock.addresses.getUnspents(ecKeyAddress, {
     tx.sign(index, ecKey)
   })
 
-  var rawTxHex = tx.serializeHex()
+  var rawTxHex = tx.toHex()
 
   helloblock.transactions.propagate(rawTxHex, function(err, res, tx) {
     if (err) throw new Error(err)
